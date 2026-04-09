@@ -59,8 +59,8 @@ nav {
   justify-content: space-between;
   padding: 20px 48px;
   background: rgba(4, 37, 58, 0.92);
-  backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: padding 0.3s ease;
 }
@@ -250,6 +250,7 @@ nav.scrolled { padding: 14px 48px; }
   padding: 8px 18px;
   border-radius: 100px;
   margin-bottom: 36px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -287,15 +288,7 @@ nav.scrolled { padding: 14px 48px; }
 }
 
 .hero-headline em::after {
-  content: '';
-  position: absolute;
-  bottom: 6px;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: var(--turquoise);
-  opacity: 0.25;
-  transform: skewX(-15deg);
+  content: none;
 }
 
 .hero-sub {
@@ -311,6 +304,77 @@ nav.scrolled { padding: 14px 48px; }
 .hero-sub strong {
   color: white;
   font-weight: 600;
+}
+
+/* Subtle divider between buttons and agnostic statement */
+.hero-divider {
+  width: 100%;
+  max-width: 280px;
+  height: 1px;
+  margin: 36px auto 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(20, 212, 196, 0.4) 25%,
+    rgba(46, 237, 219, 0.7) 50%,
+    rgba(20, 212, 196, 0.4) 75%,
+    transparent 100%);
+  box-shadow: 0 0 12px rgba(20, 212, 196, 0.4);
+}
+
+/* Agnostic-by-design statement — pure typography, no frame */
+.hero-agnostic {
+  margin: 24px auto 32px;
+  max-width: 820px;
+  text-align: center;
+}
+
+.hero-agnostic-label {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 900;
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--turquoise-bright);
+  text-shadow:
+    0 0 20px rgba(46, 237, 219, 0.8),
+    0 0 40px rgba(46, 237, 219, 0.5),
+    0 0 60px rgba(20, 212, 196, 0.3);
+  margin-bottom: 14px;
+}
+
+.hero-agnostic-tags {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 800;
+  font-size: clamp(15px, 1.6vw, 19px);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 16px;
+}
+
+.hero-agnostic-tags .sep {
+  color: var(--turquoise);
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+.hero-agnostic-line {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.5;
+  color: white;
+  font-weight: 500;
+  margin: 0 auto;
+  max-width: 720px;
+}
+
+.hero-agnostic-line strong {
+  color: var(--turquoise);
+  font-weight: 700;
 }
 
 .hero-actions {
@@ -362,6 +426,7 @@ nav.scrolled { padding: 14px 48px; }
   border-radius: 10px;
   text-decoration: none;
   transition: all 0.25s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: inline-flex;
   align-items: center;
@@ -427,6 +492,8 @@ nav.scrolled { padding: 14px 48px; }
   padding: 20px 0;
   border-top: 4px solid var(--blue-deep);
   border-bottom: 4px solid var(--blue-deep);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .marquee-track {
@@ -489,6 +556,328 @@ section { position: relative; }
   background: var(--turquoise);
 }
 
+/* ─── CHAOS SECTION ─── */
+.section-chaos {
+  padding: 70px 0 80px;
+  background: #010810;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-chaos::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(20,212,196,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20,212,196,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 30%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 30%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+.chaos-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chaos-glow-1 {
+  top: 8%;
+  left: 30%;
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(20, 212, 196, 0.18) 0%, transparent 65%);
+}
+
+.chaos-glow-2 {
+  bottom: -10%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(20, 212, 196, 0.12) 0%, transparent 60%);
+}
+
+.chaos-glow-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1100px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(46, 237, 219, 0.22) 0%, rgba(20, 212, 196, 0.1) 35%, transparent 70%);
+}
+
+.chaos-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* Row 1: Title centered, paragraph below */
+.chaos-header {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.chaos-header .section-label {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.chaos-header .section-label::after {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--turquoise);
+}
+
+.chaos-headline {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 6.8vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -2.8px;
+  color: white;
+  margin: 0 0 14px 0;
+}
+
+.chaos-headline em {
+  font-style: normal;
+  color: var(--turquoise);
+  position: relative;
+  display: inline-block;
+}
+
+.chaos-headline em::after {
+  content: none;
+}
+
+.chaos-intro {
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.88);
+  margin: 0 auto;
+  max-width: 720px;
+}
+
+.chaos-equation {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 900;
+  font-size: clamp(20px, 2.4vw, 32px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 28px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.chaos-equation .eq-visible {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.chaos-equation .eq-symbol {
+  color: var(--turquoise);
+  font-size: 1.2em;
+}
+
+.chaos-equation .eq-reality {
+  color: var(--turquoise-bright);
+  text-shadow: 0 0 24px rgba(46, 237, 219, 0.5);
+}
+
+/* Row 2: Bubble scene with glowing waterline */
+.chaos-scene {
+  position: relative;
+  width: 100%;
+  height: 540px;
+}
+
+.chaos-waterline {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(20, 212, 196, 0.4) 12%,
+    rgba(46, 237, 219, 1) 50%,
+    rgba(20, 212, 196, 0.4) 88%,
+    transparent 100%);
+  box-shadow:
+    0 0 20px rgba(20, 212, 196, 0.8),
+    0 0 40px rgba(20, 212, 196, 0.5),
+    0 0 80px rgba(20, 212, 196, 0.3);
+  z-index: 3;
+  animation: waterlinePulse 4s ease-in-out infinite;
+}
+
+@keyframes waterlinePulse {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+
+/* Floating bubble labels */
+.bubble {
+  position: absolute;
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 4;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  will-change: transform;
+}
+
+.bubble.above {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(20, 212, 196, 0.7);
+  color: var(--blue-deep);
+  font-size: 12px;
+  padding: 8px 14px;
+  font-weight: 800;
+  border-radius: 100px;
+  box-shadow: 0 8px 28px rgba(20, 212, 196, 0.35), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.bubble.below {
+  background: rgba(20, 212, 196, 0.18);
+  border: 1px solid rgba(20, 212, 196, 0.55);
+  color: white;
+  font-size: 11px;
+  padding: 6px 12px;
+  font-weight: 700;
+  border-radius: 100px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.bubble.below.tiny {
+  font-size: 9px;
+  padding: 5px 9px;
+  background: rgba(20, 212, 196, 0.14);
+  border-color: rgba(20, 212, 196, 0.45);
+}
+
+/* Drift animations */
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(8px, -8px); }
+}
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-8px, 6px); }
+}
+@keyframes drift3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(6px, 8px); }
+}
+
+.bubble.d1 { animation: drift1 12s ease-in-out infinite; }
+.bubble.d2 { animation: drift2 14s ease-in-out infinite; }
+.bubble.d3 { animation: drift3 16s ease-in-out infinite; }
+
+/* ABOVE WATERLINE — top band 6-24% (waterline at 50%) */
+.b-advisor         { top:  6%; left: 42%; animation-delay: -0.2s; }
+.b-recommendations { top: 10%; left: 60%; animation-delay: -0.6s; }
+.b-products        { top: 12%; left: 78%; animation-delay: -1.6s; }
+.b-team            { top:  8%; left: 22%; animation-delay: -0.9s; }
+.b-presence        { top: 22%; left: 40%; animation-delay: -3.0s; }
+.b-services        { top: 20%; left: 24%; animation-delay: -2.3s; }
+.b-experience      { top: 24%; left: 56%; animation-delay: -3.7s; }
+
+/* BELOW WATERLINE — main grid 55-77% in 4 rows */
+
+/* Row 1 — 55% */
+.b-carriers        { top: 55%; left:  4%; animation-delay: -0.3s; }
+.b-processes       { top: 56%; left: 22%; animation-delay: -0.9s; }
+.b-workflows       { top: 55%; left: 42%; animation-delay: -1.5s; }
+.b-compliance      { top: 56%; left: 60%; animation-delay: -2.1s; }
+.b-tech            { top: 55%; left: 86%; animation-delay: -2.7s; }
+
+/* Row 2 — 62% */
+.b-mgas            { top: 62%; left:  8%; animation-delay: -3.3s; }
+.b-dealers         { top: 63%; left: 22%; animation-delay: -3.9s; }
+.b-regulators      { top: 62%; left: 40%; animation-delay: -4.5s; }
+.b-laws            { top: 63%; left: 58%; animation-delay: -5.1s; }
+.b-jurisdictions   { top: 62%; left: 78%; animation-delay: -5.7s; }
+
+/* Row 3 — 69% */
+.b-licenses        { top: 69%; left:  4%; animation-delay: -6.3s; }
+.b-ethics          { top: 70%; left: 18%; animation-delay: -1.0s; }
+.b-ce              { top: 69%; left: 32%; animation-delay: -1.8s; }
+.b-designations    { top: 70%; left: 50%; animation-delay: -2.4s; }
+.b-conflict        { top: 69%; left: 66%; animation-delay: -3.0s; }
+
+/* Row 4 — 76% */
+.b-cyber           { top: 76%; left:  4%; animation-delay: -0.6s; }
+.b-systems         { top: 77%; left: 22%; animation-delay: -2.0s; }
+.b-policies        { top: 76%; left: 38%; animation-delay: -4.1s; }
+.b-households      { top: 77%; left: 60%; animation-delay: -4.8s; }
+.b-competing       { top: 76%; left: 78%; animation-delay: -5.5s; }
+
+/* Row 5 — 82% — small acronyms left, chaos overflow right */
+.b-aum             { top: 82%; left:  4%; animation-delay: -3.6s; }
+.b-kyc             { top: 82%; left: 14%; animation-delay: -4.2s; }
+.b-aml             { top: 82%; left: 24%; animation-delay: -4.8s; }
+.b-pipeda          { top: 82%; left: 34%; animation-delay: -5.4s; }
+.b-casl            { top: 82%; left: 46%; animation-delay: -6.0s; }
+.b-crm             { top: 82%; left: 58%; animation-delay: -4.4s; }
+.b-backoffices     { top: 82%; left: 70%; animation-delay: -5.0s; }
+.b-wholesalers     { top: 82%; left: 84%; animation-delay: -3.8s; }
+
+/* Row 6 — 88% — bumping into each other on purpose */
+.b-dirty           { top: 88%; left:  4%; animation-delay: -2.5s; }
+.b-disengaged      { top: 88%; left: 18%; animation-delay: -3.1s; }
+.b-outdated        { top: 88%; left: 38%; animation-delay: -1.7s; }
+.b-complaints      { top: 88%; left: 64%; animation-delay: -2.2s; }
+.b-twofa           { top: 88%; left: 84%; animation-delay: -1.4s; }
+
+/* Row 3: Pullout */
+.chaos-pullout {
+  text-align: center;
+}
+
+.chaos-pullout p {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 4.2vw, 64px);
+  line-height: 1;
+  letter-spacing: -1.6px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 44px 0;
+  border-top: 1px solid rgba(20, 212, 196, 0.3);
+  border-bottom: 1px solid rgba(20, 212, 196, 0.3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+.chaos-pullout .line-white {
+  color: white;
+  text-shadow: 0 0 30px rgba(255,255,255,0.2);
+}
+
+.chaos-pullout .line-turquoise {
+  color: var(--turquoise);
+  text-shadow: 0 0 40px rgba(20, 212, 196, 0.5);
+}
+
 /* ─── STORY ─── */
 .section-story {
   padding: 140px 0;
@@ -520,9 +909,9 @@ section { position: relative; }
 .story-headline {
   font-family: 'League Spartan', sans-serif;
   font-weight: 900;
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: clamp(48px, 6.4vw, 96px);
   line-height: 0.95;
-  letter-spacing: -2px;
+  letter-spacing: -2.6px;
   color: var(--blue-deep);
   margin-bottom: 32px;
 }
@@ -711,6 +1100,7 @@ section { position: relative; }
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 18px;
   padding: 44px 36px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 0.4s ease;
   position: relative;
@@ -822,9 +1212,9 @@ section { position: relative; }
 .products-headline {
   font-family: 'League Spartan', sans-serif;
   font-weight: 900;
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: clamp(48px, 6.4vw, 96px);
   line-height: 0.95;
-  letter-spacing: -2px;
+  letter-spacing: -2.6px;
   color: var(--blue-deep);
   margin-bottom: 24px;
 }
@@ -1195,6 +1585,7 @@ section { position: relative; }
   border: 1px solid rgba(255,255,255,0.18);
   padding: 8px 8px 8px 36px;
   border-radius: 100px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
@@ -1333,7 +1724,7 @@ footer {
 
 /* ─── AI SECTION ─── */
 .section-ai {
-  padding: 160px 0;
+  padding: 160px 0 90px;
   background: #010810;
   color: white;
   position: relative;
@@ -1405,6 +1796,7 @@ footer {
   padding: 10px 22px;
   border-radius: 100px;
   margin-bottom: 36px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -1467,7 +1859,6 @@ footer {
   gap: 28px;
   position: relative;
   z-index: 2;
-  margin-bottom: 64px;
 }
 
 .ai-card.featured {
@@ -1508,6 +1899,7 @@ footer {
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
 
@@ -1671,54 +2063,6 @@ footer {
 @keyframes blink {
   50% { opacity: 0; }
 }
-
-/* Categories Pill Strip */
-.ai-categories-wrap {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding-top: 56px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.ai-categories-label {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 28px;
-}
-
-.ai-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.ai-category-pill {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: white;
-  padding: 12px 22px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 100px;
-  transition: all 0.25s ease;
-}
-
-.ai-category-pill:hover {
-  background: rgba(20, 212, 196, 0.12);
-  border-color: var(--turquoise);
-  color: var(--turquoise);
-  transform: translateY(-2px);
-}
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
   .nav-links { display: none; }
@@ -1729,7 +2073,12 @@ footer {
   .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
   .hero-stat { border-right: none; padding: 0 16px; }
 
-  .section-story, .section-method, .section-products, .section-contact, .section-ai { padding: 90px 0; }
+  .section-story, .section-method, .section-products, .section-contact, .section-ai, .section-chaos { padding: 90px 0; }
+
+  .chaos-scene { height: 600px; }
+  .bubble.above { font-size: 10px; padding: 6px 12px; }
+  .bubble.below { font-size: 9px; padding: 5px 10px; }
+  .bubble.below.tiny { font-size: 8px; padding: 4px 8px; }
 
   .ai-bento { grid-template-columns: 1fr; }
   .ai-card { padding: 36px 28px; }
@@ -1746,7 +2095,6 @@ footer {
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
-
 @media (max-width: 600px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-ghost { justify-content: center; }
@@ -1803,9 +2151,25 @@ footer {
     <p class="hero-sub">
       Etc. Projects has spent over two decades modernizing independent Canadian financial advisory practices from the inside out. <strong>People first. Then process. Then technology.</strong> Twenty-five years in, five hundred transformations behind us, and we love this work more than the day we started.
     </p>
+
     <div class="hero-actions">
       <a href="#story" class="btn-primary">See How We Work <span class="arrow">→</span></a>
       <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener" class="btn-ghost">Visit the Lab</a>
+    </div>
+
+    <div class="hero-divider"></div>
+
+    <div class="hero-agnostic reveal reveal-d2">
+      <div class="hero-agnostic-label">Agnostic by design</div>
+      <div class="hero-agnostic-tags">
+        <span>Tech</span><span class="sep">·</span>
+        <span>Dealer</span><span class="sep">·</span>
+        <span>MGA</span><span class="sep">·</span>
+        <span>License</span><span class="sep">·</span>
+        <span>Designation</span><span class="sep">·</span>
+        <span>Jurisdiction</span>
+      </div>
+      <p class="hero-agnostic-line">Built to <strong>protect your independence</strong> and <strong>support the relationships</strong> you have already built.</p>
     </div>
 
     <div class="hero-stats">
@@ -1819,7 +2183,7 @@ footer {
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">100<span>%</span></div>
-        <div class="hero-stat-label">Canadian Built<br>And Hosted</div>
+        <div class="hero-stat-label">Canadian<br>Built</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">0<span>%</span></div>
@@ -1847,6 +2211,93 @@ footer {
   </div>
 </div>
 
+<!-- CHAOS -->
+<section class="section-chaos" id="chaos">
+  <div class="chaos-glow chaos-glow-1"></div>
+  <div class="chaos-glow chaos-glow-2"></div>
+  <div class="chaos-glow chaos-glow-center"></div>
+
+  <div class="wrap">
+    <div class="chaos-inner">
+
+      <!-- ROW 1: TITLE + PARAGRAPH (centered) -->
+      <div class="chaos-header">
+        <div class="section-label reveal">The Reality</div>
+        <h2 class="chaos-headline reveal reveal-d1">
+          We bring calm<br>to the <em>chaos.</em>
+        </h2>
+        <p class="chaos-intro reveal reveal-d2">
+          You are running a complex business in a regulated industry with many stakeholders and competing priorities. With clients who trust you, a team that depends on you, regulators watching you, and a thousand moving parts that nobody outside your office will ever see.
+        </p>
+        <p class="chaos-equation reveal reveal-d3">
+          <span class="eq-visible">What's visible</span>
+          <span class="eq-symbol">≠</span>
+          <span class="eq-reality">Advisor reality</span>
+        </p>
+      </div>
+
+      <!-- ROW 2: BUBBLE SCENE WITH GLOWING WATERLINE -->
+      <div class="chaos-scene reveal reveal-d2">
+        <div class="chaos-waterline"></div>
+
+        <!-- ABOVE-WATERLINE BUBBLES -->
+        <span class="bubble above b-advisor d1">Advisor</span>
+        <span class="bubble above b-recommendations d2">Recommendations</span>
+        <span class="bubble above b-team d3">Team</span>
+        <span class="bubble above b-products d1">Products</span>
+        <span class="bubble above b-services d2">Services</span>
+        <span class="bubble above b-presence d3">Presence</span>
+        <span class="bubble above b-experience d1">Experience</span>
+
+        <!-- BELOW-WATERLINE BUBBLES -->
+        <span class="bubble below b-carriers d2">20 Carriers</span>
+        <span class="bubble below b-processes d3">60 Processes</span>
+        <span class="bubble below b-workflows d1">150 Workflows</span>
+        <span class="bubble below b-compliance d2">80 Compliance Checks Per Client</span>
+        <span class="bubble below b-tech d3">Technology Stack</span>
+        <span class="bubble below b-mgas d1">MGAs</span>
+        <span class="bubble below b-dealers d2">Dealers</span>
+        <span class="bubble below b-regulators d3">Regulators</span>
+        <span class="bubble below b-laws d1">Laws</span>
+        <span class="bubble below b-jurisdictions d2">Jurisdictions</span>
+        <span class="bubble below b-licenses d3">Licenses</span>
+        <span class="bubble below b-ethics d1">Ethics</span>
+        <span class="bubble below b-ce d2">CE Credits</span>
+        <span class="bubble below b-designations d3">Designations</span>
+        <span class="bubble below b-conflict d1">Conflict of Interest</span>
+        <span class="bubble below b-cyber d2">Cyber Security</span>
+        <span class="bubble below b-systems d3">170 Systems</span>
+        <span class="bubble below b-policies d1">2,000 Policy Holders</span>
+        <span class="bubble below b-households d2">380 Households</span>
+        <span class="bubble below b-competing d3">Competing Priorities</span>
+        <span class="bubble below b-aum tiny d1">AUM</span>
+        <span class="bubble below b-kyc tiny d2">KYC</span>
+        <span class="bubble below b-aml tiny d3">AML</span>
+        <span class="bubble below b-pipeda tiny d1">PIPEDA</span>
+        <span class="bubble below b-casl tiny d2">CASL</span>
+        <span class="bubble below b-dirty d3">Dirty Data</span>
+        <span class="bubble below b-disengaged d1">Disengaged Clients</span>
+        <span class="bubble below b-outdated d2">Outdated Industry Processes</span>
+        <span class="bubble below b-crm d3">CRM</span>
+        <span class="bubble below b-backoffices d1">Back Offices</span>
+        <span class="bubble below b-complaints d2">Complaint Handling</span>
+        <span class="bubble below b-wholesalers d3">Wholesalers</span>
+        <span class="bubble below b-twofa d1">2FA</span>
+      </div>
+
+      <!-- ROW 3: PULLOUT -->
+      <div class="chaos-pullout reveal reveal-d3">
+        <p>
+          <span class="line-white">We see you.</span>
+          <span class="line-turquoise">We get it.</span>
+          <span class="line-white">We can help.</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- STORY -->
 <section class="section-story" id="story">
   <div class="wrap">
@@ -1863,9 +2314,6 @@ footer {
           <p class="story-pullout">You deserve better.</p>
           <p>
             We knew we could build it, so we rolled up our sleeves and went to work. <strong>Five hundred transformations later, we have a system and proven method that is rooted in advisor reality.</strong> A process we have used, refined, and used again. Successfully.
-          </p>
-          <p>
-            We are tech agnostic but never neutral. We test, use, and prove every solution we recommend. If we cannot stand behind it, we do not put it in front of you.
           </p>
         </div>
       </div>
@@ -2032,7 +2480,7 @@ footer {
         </p>
         <ul class="ai-card-features">
           <li>Built around your reality</li>
-          <li>Holds it all together</li>
+          <li>Industry aligned</li>
           <li>Compliance first</li>
           <li>Structured output</li>
         </ul>
@@ -2081,6 +2529,7 @@ footer {
         </p>
         <ul class="ai-card-features">
           <li>Plug-and-play</li>
+          <li>Guardrails included</li>
           <li>Bundle savings</li>
           <li>Always growing</li>
         </ul>
@@ -2096,6 +2545,7 @@ footer {
         <ul class="ai-card-features">
           <li>Built for recurring work</li>
           <li>Tailored to your practice</li>
+          <li>Reality tested</li>
         </ul>
       </div>
 
@@ -2215,4 +2665,22 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
   setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.visible)')
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 2000);
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
+
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>
