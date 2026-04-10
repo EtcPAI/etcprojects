@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Krips Financial — Today's Working Session</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00583c;
+    --green-bright: #00a758;
+    --green-soft: #e8f2ec;
+    --cream: #faf7f0;
+    --ink: #1a2e25;
+    --ink-soft: #4a5c54;
+    --gold: #b8933a;
+    --rule: #e0dace;
+    --card: #ffffff;
+    --shadow: 0 2px 12px rgba(0,88,60,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--green) 0%, #003d29 100%);
+    color: var(--cream);
+    padding: 64px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,167,88,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-bright);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::after {
+    content: '';
+    flex: 0 0 40px;
+    height: 1px;
+    background: var(--green-bright);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green-bright);
+    font-weight: 500;
+  }
+  .hero .lede {
+    font-size: 19px;
+    font-weight: 300;
+    max-width: 640px;
+    color: rgba(250,247,240,0.85);
+    margin-bottom: 36px;
+  }
+  .meta-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .meta-bar div {
+    background: rgba(0,61,41,0.6);
+    padding: 16px 20px;
+  }
+  .meta-bar span {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--green-bright);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .meta-bar strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .timer-bar {
+    background: var(--green-bright);
+    color: white;
+    padding: 14px 32px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .timer-bar button {
+    background: white;
+    color: var(--green);
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .timer-bar button:hover { background: var(--cream); }
+  #timer-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    min-width: 90px;
+  }
+  main { max-width: 900px; margin: 0 auto; padding: 56px 32px 80px; }
+  .intro-card {
+    background: var(--card);
+    padding: 32px 36px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+    border-left: 4px solid var(--green-bright);
+    font-size: 16px;
+  }
+  .intro-card p { color: var(--ink-soft); }
+  .intro-card strong { color: var(--green); }
+  .block {
+    background: var(--card);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+  .block:hover { box-shadow: 0 4px 20px rgba(0,88,60,0.1); }
+  .block-head {
+    padding: 26px 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .block-head:hover { background: var(--green-soft); }
+  .block-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--green-bright);
+    line-height: 1;
+    font-style: italic;
+    min-width: 48px;
+  }
+  .block-title-wrap { flex: 1; }
+  .block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .block-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .time-pill {
+    background: var(--green);
+    color: var(--cream);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .chevron {
+    font-size: 20px;
+    color: var(--green-bright);
+    transition: transform 0.3s;
+  }
+  .block.open .chevron { transform: rotate(180deg); }
+  .block-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .block.open .block-body { max-height: 5000px; }
+  .block-body-inner {
+    padding: 0 32px 32px;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+  }
+  .goal-box {
+    background: var(--green-soft);
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--green);
+  }
+  .goal-box strong { font-weight: 600; }
+  .section-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 22px 0 10px;
+  }
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 12px 0 12px 36px;
+    position: relative;
+    font-size: 15px;
+    border-bottom: 1px dashed var(--rule);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 20px; height: 20px;
+    border: 2px solid var(--green-bright);
+    border-radius: 4px;
+    background: white;
+    transition: all 0.2s;
+  }
+  .checklist li.checked::before { background: var(--green-bright); }
+  .checklist li.checked::after {
+    content: '✓';
+    position: absolute;
+    left: 4px; top: 11px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .checklist li.checked {
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    text-decoration-color: var(--green-bright);
+  }
+  .cta-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-bright) 100%);
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s;
+  }
+  .cta-link:hover { transform: translateX(4px); }
+  .cta-link .icon {
+    font-size: 24px;
+    background: rgba(255,255,255,0.2);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cta-link-text { flex: 1; }
+  .cta-link-text strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .cta-link-text span {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .cta-link .arrow { font-size: 20px; }
+  .note-box {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: #fdf9ed;
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .note-box strong { color: var(--gold); font-weight: 600; }
+  .note-box em { color: var(--ink-soft); }
+  .form-section {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 36px;
+    box-shadow: var(--shadow);
+    margin-top: 40px;
+    border-top: 4px solid var(--gold);
+  }
+  .form-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .form-section .form-intro {
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    font-size: 15px;
+  }
+  .form-q { margin-bottom: 22px; }
+  .form-q > label {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .form-q .q-num {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .form-q textarea, .form-q input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--cream);
+    color: var(--ink);
+    resize: vertical;
+    transition: border 0.2s;
+  }
+  .form-q textarea:focus, .form-q input:focus {
+    outline: none;
+    border-color: var(--green-bright);
+    background: white;
+  }
+  .form-q textarea { min-height: 64px; }
+  .radio-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .radio-group label {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 14px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  .radio-group input { display: none; }
+  .radio-group label.selected {
+    background: var(--green-soft);
+    border-color: var(--green-bright);
+    color: var(--green);
+    font-weight: 600;
+  }
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--green); color: white; }
+  .btn-primary:hover { background: var(--green-bright); }
+  .btn-secondary {
+    background: white;
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+  .btn-secondary:hover { background: var(--green-soft); }
+  .closer {
+    text-align: center;
+    margin-top: 56px;
+    padding: 40px 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .closer-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .closer-line {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .closer-line strong { color: var(--green-bright); font-weight: 600; }
+  .signature {
+    margin-top: 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 48px 20px 60px; }
+    main { padding: 40px 20px; }
+    .block-head { padding: 20px; gap: 14px; }
+    .block-number { font-size: 32px; min-width: 36px; }
+    .block h2 { font-size: 19px; }
+    .block-body-inner { padding: 20px; }
+    .form-section { padding: 24px; }
+  }
+  @media print {
+    .timer-bar, .form-actions { display: none; }
+    .block-body { max-height: none !important; }
+    .block-body-inner { border-top: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Etc. Projects · Working Session</div>
+    <h1>Today with Kelvin.<br><em>Two hours. Three decisions.</em></h1>
+    <p class="lede">Two hours to work through continuity, plan the junior advisor's arrival, and rebuild Kelvin's week around what is actually coming.</p>
+    <div class="meta-bar">
+      <div><span>With</span><strong>Kelvin Krips</strong></div>
+      <div><span>Facilitator</span><strong>Kelly</strong></div>
+      <div><span>Duration</span><strong>2 hours</strong></div>
+      <div><span>Format</span><strong>Working</strong></div>
+    </div>
+  </div>
+</header>
+
+<div class="timer-bar">
+  <span>Session timer</span>
+  <span id="timer-display">00:00</span>
+  <button id="timer-btn">Start</button>
+  <button id="timer-reset">Reset</button>
+</div>
+
+<main>
+
+  <div class="intro-card">
+    <p>The team is at <strong>50-55% comfort in Laylah</strong> and growing weekly, contacts are 90% cleaned, and the last mutual fund data lands this weekend. Today is about the next layer: continuity, the junior advisor, and how Kelvin spends his days once there are two licensed people in the building. Click any section to expand. Check items off as you cover them.</p>
+  </div>
+
+  <div class="block open" data-block="1">
+    <div class="block-head">
+      <div class="block-number">01</div>
+      <div class="block-title-wrap">
+        <h2>Continuity Readiness</h2>
+        <div class="block-sub">Complete the assessment together, live</div>
+      </div>
+      <div class="time-pill">40 min</div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="block-body-inner">
+        <div class="goal-box"><strong>Goal:</strong> Walk the Continuity Readiness assessment section by section with Kelvin answering in real time, then stage the gaps into the roadmap.</div>
+        <ul class="checklist">
+          <li>Walk the assessment section by section, Kelvin answering live</li>
+          <li>Flag what surprises him, what is already handled, what needs a real plan</li>
+          <li>Tie results back to Priority 0 (leadership bandwidth) and the dealer transition</li>
+          <li>Agree which gaps belong in the next 90 days and which can wait until after the junior advisor is active</li>
+        </ul>
+        <a class="cta-link" href="https://practiceperformancelab.fillout.com/contannuity_readiness" target="_blank">
+          <div class="icon">📋</div>
+          <div class="cta-link-text">
+            <strong>Open Continuity Readiness Assessment</strong>
+            <span>practiceperformancelab.fillout.com/contannuity_readiness</span>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="block" data-block="2">
+    <div class="block-head">
+      <div class="block-number">02</div>
+      <div class="block-title-wrap">
+        <h2>Onboarding the Junior Advisor</h2>
+        <div class="block-sub">Mechanics and handoff strategy. Language stays general in the office.</div>
+      </div>
+      <div class="time-pill">40 min</div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="block-body-inner">
+        <div class="goal-box"><strong>Goal:</strong> Give Kelvin a structured way to think about bringing a licensed advisor onto the team, covering the mechanics and the client handoff strategy.</div>
+
+        <div class="section-label">Part A — The Mechanics</div>
+        <ul class="checklist">
+          <li>License moves and the Manulife MGA and Manulife Wealth sequence</li>
+          <li>Worldsource vesting timeline and how it stacks against a May 1 notice date</li>
+          <li>Laylah training, Continuum training, process training with Karen and Ilana</li>
+          <li>Desk, tech access, week-one experience</li>
+        </ul>
+
+        <div class="section-label">Part B — Getting Him Active, Fast</div>
+        <ul class="checklist">
+          <li>How does Kelvin build the list of clients to introduce right away?</li>
+          <li>Which clients will always want Kelvin in the room, full stop?</li>
+          <li>Which clients are a fit for the junior advisor to gather info and support while Kelvin stays the face?</li>
+          <li>Frame every meeting as a training opportunity, Kelvin teaching while working</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block" data-block="3">
+    <div class="block-head">
+      <div class="block-number">03</div>
+      <div class="block-title-wrap">
+        <h2>Kelvin's Time, Rebuilt</h2>
+        <div class="block-sub">Two offices, a second advisor, and a life that still fits</div>
+      </div>
+      <div class="time-pill">30 min</div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="block-body-inner">
+        <div class="goal-box"><strong>Goal:</strong> Help Kelvin see where his time needs to go once there is a second licensed advisor on the team, and give him a way to decide what to keep, hand off, or teach.</div>
+        <ul class="checklist">
+          <li>Client meetings, how much can reasonably move in the first 90 days?</li>
+          <li>Dedicated teaching time, sessions where Kelvin shows how he thinks, not just what to do</li>
+          <li>Licensed activities for Karen and Ilana (trade tickets, approvals) that only Kelvin can do</li>
+          <li>Red Deer vs Stettler rhythm, with the junior advisor based in Red Deer</li>
+          <li>Personal time. This stays on the list on purpose.</li>
+        </ul>
+        <div class="note-box">
+          <strong>Take-home resource we will build after the session:</strong> a simple delegation and "where does this fit" assessment Kelvin can use on his own, plus a habit for capturing wisdom on the fly. Example: a quick voice note after a client meeting, <em>"I was talking with X today, they mentioned this life change, here is where my head went and why"</em>, shared with the junior advisor so he learns Kelvin's reasoning without Kelvin being in every room.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block" data-block="4">
+    <div class="block-head">
+      <div class="block-number">04</div>
+      <div class="block-title-wrap">
+        <h2>Project Pulse</h2>
+        <div class="block-sub">Quick read so Kelvin has the full picture</div>
+      </div>
+      <div class="time-pill">10 min</div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="block-body-inner">
+        <ul class="checklist">
+          <li><strong>Laylah comfort:</strong> team at 50-55% and growing weekly. Simplifying a few cases and tasks now that the team knows what they actually use.</li>
+          <li><strong>Contacts:</strong> 90% cleaned. Final pass on people-in-organizations still coming.</li>
+          <li><strong>Data:</strong> last mutual fund load in by end of weekend. Final clarifying questions asked yesterday.</li>
+          <li><strong>Continuum vs Otter:</strong> running in tandem. Slight lean to Otter on familiarity, drifting toward Continuum.</li>
+          <li><strong>Friedmann:</strong> trialed and intrigued. Worth a real conversation if there is time.</li>
+          <li><strong>Engagement Agreement, Disclosure, CASL:</strong> revised version in use. Team can pre-populate and send for signature.</li>
+          <li><strong>Forms:</strong> team wants off current online forms. Building a data gathering sheet that mirrors Laylah's fields, full migration once Laylah form functionality lands.</li>
+          <li><strong>Mood:</strong> excited, sometimes impatient, always receptive. Gently managing expectations on features still coming.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="form-section">
+    <h2>Live Capture</h2>
+    <p class="form-intro">Use this as we go. Save or export when done so nothing gets lost.</p>
+
+    <div class="form-q">
+      <label><span class="q-num">01.</span> Continuity Readiness — biggest gap surfaced today</label>
+      <textarea id="q1" placeholder="What surprised Kelvin? What needs a real plan?"></textarea>
+    </div>
+
+    <div class="form-q">
+      <label><span class="q-num">02.</span> Clients for immediate junior advisor introduction</label>
+      <textarea id="q2" placeholder="Names or segments Kelvin is comfortable handing off first..."></textarea>
+    </div>
+
+    <div class="form-q">
+      <label><span class="q-num">03.</span> Clients who will always want Kelvin in the room</label>
+      <textarea id="q3" placeholder="The ones where Kelvin stays the face, no matter what..."></textarea>
+    </div>
+
+    <div class="form-q">
+      <label><span class="q-num">04.</span> Biggest time drain Kelvin wants off his plate first</label>
+      <input type="text" id="q4" placeholder="One specific thing...">
+    </div>
+
+    <div class="form-q">
+      <label><span class="q-num">05.</span> How is Kelvin feeling about the pace?</label>
+      <div class="radio-group" id="pace-group">
+        <label data-val="slow"><input type="radio" name="q5" value="slow">Too slow</label>
+        <label data-val="right"><input type="radio" name="q5" value="right">About right</label>
+        <label data-val="fast"><input type="radio" name="q5" value="fast">A bit much</label>
+        <label data-val="overwhelming"><input type="radio" name="q5" value="overwhelming">Overwhelming</label>
+      </div>
+    </div>
+
+    <div class="form-q">
+      <label><span class="q-num">06.</span> Next-session agenda items</label>
+      <textarea id="q6" placeholder="What came up that we need to pick up next time..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" id="btn-save">Save Notes</button>
+      <button class="btn btn-secondary" id="btn-export">Export to Text</button>
+      <button class="btn btn-secondary" id="btn-print">Print Agenda</button>
+    </div>
+  </section>
+
+  <div class="closer">
+    <div class="closer-title">If today goes well</div>
+    <div class="closer-line">Continuity assessment <strong>complete</strong> · onboarding plan <strong>mapped</strong> · Kelvin's week <strong>reshaped</strong></div>
+    <div class="signature">Etc. Projects × Krips Financial</div>
+  </div>
+
+</main>
+
+<script>
+  // Block expand/collapse via event delegation
+  document.querySelectorAll('.block-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Checklist toggling via event delegation
+  document.querySelectorAll('.checklist').forEach(list => {
+    list.addEventListener('click', (e) => {
+      let el = e.target;
+      while (el && el.tagName !== 'LI' && el !== list) el = el.parentElement;
+      if (el && el.tagName === 'LI') el.classList.toggle('checked');
+    });
+  });
+
+  // Timer
+  let seconds = 0, timerInterval = null, running = false;
+  const timerBtn = document.getElementById('timer-btn');
+  const timerDisplay = document.getElementById('timer-display');
+
+  function updateTimer() {
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+    timerDisplay.textContent = m + ':' + s;
+  }
+
+  timerBtn.addEventListener('click', () => {
+    if (running) {
+      clearInterval(timerInterval);
+      timerBtn.textContent = 'Resume';
+      running = false;
+    } else {
+      timerInterval = setInterval(() => { seconds++; updateTimer(); }, 1000);
+      timerBtn.textContent = 'Pause';
+      running = true;
+    }
+  });
+
+  document.getElementById('timer-reset').addEventListener('click', () => {
+    clearInterval(timerInterval);
+    seconds = 0;
+    running = false;
+    timerBtn.textContent = 'Start';
+    updateTimer();
+  });
+
+  // Radio button styling
+  document.querySelectorAll('#pace-group label').forEach(lbl => {
+    lbl.addEventListener('click', () => {
+      document.querySelectorAll('#pace-group label').forEach(l => l.classList.remove('selected'));
+      lbl.classList.add('selected');
+    });
+  });
+
+  // Notes
+  const notesStore = {};
+  function captureNotes() {
+    ['q1', 'q2', 'q3', 'q4', 'q6'].forEach(id => {
+      notesStore[id] = document.getElementById(id).value;
+    });
+    const radio = document.querySelector('input[name="q5"]:checked');
+    notesStore.q5 = radio ? radio.value : '';
+  }
+
+  document.getElementById('btn-save').addEventListener('click', (e) => {
+    captureNotes();
+    const btn = e.currentTarget;
+    const orig = btn.textContent;
+    btn.textContent = '\u2713 Saved';
+    setTimeout(() => btn.textContent = orig, 1600);
+  });
+
+  document.getElementById('btn-export').addEventListener('click', () => {
+    captureNotes();
+    const checked = Array.from(document.querySelectorAll('.checklist li.checked'))
+      .map(li => li.textContent.trim().substring(0, 100));
+    const todayLabel = "KRIPS FINANCIAL \u2014 TODAY'S WORKING SESSION";
+    const lines = [
+      todayLabel,
+      'Notes exported: ' + new Date().toLocaleString(),
+      '',
+      '1. CONTINUITY \u2014 Biggest gap:',
+      notesStore.q1 || '(empty)',
+      '',
+      '2. CLIENTS FOR IMMEDIATE INTRODUCTION:',
+      notesStore.q2 || '(empty)',
+      '',
+      '3. CLIENTS WHO WANT KELVIN IN THE ROOM:',
+      notesStore.q3 || '(empty)',
+      '',
+      '4. BIGGEST TIME DRAIN TO REMOVE:',
+      notesStore.q4 || '(empty)',
+      '',
+      "5. KELVIN'S PACE: " + (notesStore.q5 || '(not marked)'),
+      '',
+      '6. NEXT-SESSION AGENDA:',
+      notesStore.q6 || '(empty)',
+      '',
+      '---',
+      'COMPLETED ITEMS:'
+    ].concat(checked.map(c => '\u2713 ' + c)).join('\n');
+    const blob = new Blob([lines], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'krips-today-notes.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('btn-print').addEventListener('click', () => window.print());
+</script>
+</body>
+</html>
