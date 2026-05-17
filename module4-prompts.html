@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Prompt Library | AI Training Program | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#04253a;--navy-mid:#0a3a55;--navy-deep:#021724;--orange:#f0640e;--orange-hover:#d65709;--orange-soft:rgba(240,100,14,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#5BC2C7;--teal-soft:rgba(91,194,199,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--radius:14px;--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+em,.em{font-style:italic;color:var(--accent);font-weight:900}
+button{font-family:inherit}
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 44px;background:rgba(4,37,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);gap:24px}
+.logo{display:inline-flex;flex-direction:column;background:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+.page-badge{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px;white-space:nowrap}
+.progress-track{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-bar{height:100%;width:0%;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.hero{position:relative;padding:64px 44px 56px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)}
+.hero::before{content:'';position:absolute;right:-10%;top:-20%;width:560px;height:560px;background:radial-gradient(circle,rgba(240,100,14,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:36px}}
+.eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance;color:var(--white);margin-bottom:18px}
+.hero .tagline{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--accent);letter-spacing:.01em;margin-bottom:22px;padding:6px 0;border-bottom:2px solid rgba(240,100,14,.4)}
+.hero .lede{font-size:17px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;font-weight:500;max-width:560px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;padding-top:24px;border-top:1px solid var(--border)}
+.hero-stat-val{font-family:'Manrope',sans-serif;font-weight:900;font-size:24px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px}
+.hero-side{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:18px;padding:28px 28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.hero-side::before{content:'';position:absolute;top:-1px;left:24px;right:24px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.hero-side-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.hero-side-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:-.01em;line-height:1.25;margin-bottom:14px}
+.hero-side-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.container{max-width:880px;margin:0 auto;padding:48px 44px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:44px 48px;margin-bottom:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.card::before{content:'';position:absolute;top:-1px;left:36px;right:36px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+@media(max-width:640px){.card{padding:32px 26px}.card::before{left:22px;right:22px}}
+.unit-num{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:5px 12px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.unit-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.unit-title .em{color:var(--accent)}
+.unit-intro{font-size:16px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;font-weight:500;max-width:680px}
+
+.audio-wrap{margin-bottom:30px}
+.audio-placeholder{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.22);border-radius:12px}
+.audio-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-placeholder-icon svg{width:16px;height:16px}
+.audio-placeholder-body{flex:1;min-width:0}
+.audio-placeholder-title{font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--white);line-height:1.3}
+.audio-placeholder-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.lesson{font-size:15.5px;line-height:1.75;color:var(--text-muted)}
+.lesson h3{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white);letter-spacing:-.005em}
+.lesson p{margin-bottom:14px}
+.lesson ul{margin:8px 0 18px 22px}
+.lesson li{margin-bottom:10px;color:var(--text-muted)}
+.lesson li::marker{color:var(--accent)}
+.lesson strong{color:var(--white);font-weight:700}
+
+/* CALLOUTS */
+.callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
+.role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
+.role-nod strong{color:var(--status-warn);font-weight:700}
+
+/* PULL QUOTE */
+.pull-quote{margin:24px 0;padding:22px 26px 22px 32px;border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(240,100,14,.06) 0%,rgba(240,100,14,0) 80%);border-radius:0 12px 12px 0;font-family:'Manrope',sans-serif;font-style:italic;font-weight:700;font-size:17px;line-height:1.5;color:var(--white);letter-spacing:-.005em}
+
+/* WORKED EXAMPLE */
+.worked-example{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:22px 0;position:relative}
+.worked-example::before{content:'WORKED EXAMPLE';position:absolute;top:-9px;left:18px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent);background:var(--navy);padding:0 10px}
+.worked-example h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);margin:4px 0 10px;letter-spacing:-.005em}
+.worked-example p{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.worked-example p:last-child{margin-bottom:0}
+
+/* BEFORE / AFTER */
+.before-after{margin:22px 0}
+.before-after-prompt{font-size:13.5px;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.55}
+.before-after-prompt strong{color:var(--white);font-weight:700;display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;color:var(--accent)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:740px){.ba-grid{grid-template-columns:1fr}}
+.ba-card{border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.ba-card-bad{background:rgba(208,106,78,.05);border-color:rgba(208,106,78,.25);border-left:3px solid var(--status-alert)}
+.ba-card-good{background:rgba(193,225,167,.05);border-color:rgba(193,225,167,.22);border-left:3px solid var(--status-complete)}
+.ba-card-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ba-card-bad .ba-card-label{color:var(--status-alert)}
+.ba-card-good .ba-card-label{color:var(--status-complete)}
+.ba-card-body{font-size:13px;line-height:1.6;color:var(--text-muted);white-space:pre-line;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ba-card-body em{font-style:italic;color:var(--text-dim);font-weight:500}
+.ba-takeaway{margin-top:14px;font-size:13.5px;color:var(--text-muted);line-height:1.6;padding:12px 18px;background:rgba(255,255,255,.03);border-radius:8px}
+.ba-takeaway strong{color:var(--white);font-weight:700}
+
+/* PROMPT ANATOMY (Unit 1) */
+.anatomy-block{display:grid;grid-template-columns:130px 1fr;gap:18px;margin-bottom:12px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;align-items:start}
+.anatomy-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);padding-top:2px}
+.anatomy-text{font-size:14px;color:var(--text-muted);line-height:1.6}
+.anatomy-text strong{color:var(--white);font-weight:600}
+@media(max-width:640px){.anatomy-block{grid-template-columns:1fr;gap:6px}}
+
+/* STARTER PROMPT CARDS (Unit 2) */
+.starter-list{display:flex;flex-direction:column;gap:14px;margin:16px 0 18px}
+.starter{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:18px 22px;transition:border-color .15s,background .15s}
+.starter.kept{border-color:rgba(193,225,167,.4);background:rgba(193,225,167,.04)}
+.starter-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px}
+.starter-name{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);letter-spacing:-.005em}
+.starter-when{font-size:12.5px;color:var(--text-dim);margin-top:2px}
+.starter-toggle{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;color:var(--text-dim);cursor:pointer;text-transform:uppercase;letter-spacing:1.2px;flex-shrink:0;padding:7px 14px;border:1px solid var(--border-strong);border-radius:999px;transition:all .15s;background:transparent}
+.starter-toggle.kept{color:var(--status-complete);border-color:rgba(193,225,167,.4);background:rgba(193,225,167,.08)}
+.starter-toggle:hover{border-color:rgba(255,255,255,.4);color:var(--white)}
+.starter-toggle.kept:hover{border-color:var(--status-complete);color:var(--status-complete)}
+.starter-toggle input{display:none}
+.starter-prompt{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--text-muted);background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-top:10px;line-height:1.55;white-space:pre-wrap;word-break:break-word;max-height:0;overflow:hidden;opacity:0;transition:max-height .2s ease,opacity .2s ease,padding .2s ease,margin .2s ease}
+.starter.expanded .starter-prompt{max-height:600px;opacity:1;padding:14px 16px;margin-top:10px}
+.starter-expand{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--text-dim);font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;padding:6px 0;margin-top:6px}
+.starter-expand:hover{color:var(--accent)}
+.starter-expand::after{content:'\25BE';margin-left:4px;display:inline-block;transition:transform .2s}
+.starter.expanded .starter-expand::after{transform:rotate(180deg)}
+
+/* CUSTOM PROMPT FORM (Unit 3) */
+.prompt-form{background:rgba(255,255,255,.03);border:1px dashed var(--border-strong);border-radius:12px;padding:22px 24px;margin-top:18px}
+.prompt-form h4{font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+.custom-prompts{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.custom-prompt{background:rgba(255,255,255,.04);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px}
+.custom-prompt-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.custom-prompt-name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:var(--white)}
+.custom-prompt-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.custom-prompt-tag{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.custom-prompt-meta-text{font-size:11.5px;color:var(--text-dim);font-weight:600}
+.custom-prompt-when{font-size:12.5px;color:var(--text-dim);margin-bottom:8px}
+.custom-prompt-body{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--text-muted);background:rgba(0,0,0,.2);border-radius:6px;padding:10px 12px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.custom-prompt-rm{background:none;border:none;color:var(--status-alert);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.custom-prompt-rm:hover{background:rgba(208,106,78,.1)}
+
+/* GLOSSARY/DRAWER */
+.glossary-entry{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.glossary-entry h4{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:8px}
+.glossary-entry .def{font-size:13.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+.glossary-entry .watch,.glossary-entry .do{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:6px}
+.glossary-entry .watch strong,.glossary-entry .do strong{color:var(--white);font-weight:700}
+.watchout-item{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;padding-left:18px;position:relative}
+.watchout-item::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.watchout-item strong{color:var(--white);font-weight:700}
+
+.deep-trigger{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:11px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:999px;color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+.deep-trigger:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.deep-trigger::after{content:'\2192';margin-left:4px;transition:transform .2s;font-weight:700}
+.deep-trigger:hover::after{transform:translateX(3px)}
+
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);background:var(--navy-deep);border-left:1px solid var(--border-strong);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-deep) 100%);position:relative}
+.drawer-header::before{content:'';position:absolute;top:-1px;left:24px;right:80px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.drawer-eyebrow{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.drawer-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;line-height:1.2}
+.drawer-close{background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-family:inherit;flex-shrink:0;transition:all .15s;line-height:1;padding:0}
+.drawer-close:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.drawer-body{flex:1;overflow-y:auto;padding:24px 28px 36px}
+.drawer-intro{font-size:14.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.65}
+.drawer-section{margin-bottom:30px}
+.drawer-section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* FORM */
+.field{margin-bottom:18px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.row2{grid-template-columns:1fr}}
+label.lbl{display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+label.lbl .req{color:var(--accent);margin-left:2px}
+label.lbl .opt{color:var(--text-faint);font-weight:500;text-transform:none;letter-spacing:.02em;margin-left:4px}
+input[type=text],select,textarea{width:100%;padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500}
+input::placeholder,textarea::placeholder{color:var(--text-faint)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+textarea{resize:vertical;line-height:1.55}
+.prompt-form textarea{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;min-height:140px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select option{background:var(--navy);color:var(--white)}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-orange{background:var(--accent);color:var(--navy)}
+.btn-orange:hover{background:var(--accent-hover)}
+.btn-orange:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+.btn-orange::after{content:'\2192';transition:transform .2s;font-weight:700}
+.btn-orange:hover::after{transform:translateX(3px)}
+.btn-orange:disabled::after{display:none}
+.btn-back{background:transparent;color:var(--text-dim);font-weight:700;padding:13px 18px}
+.btn-back:hover{color:var(--white)}
+.btn-back::before{content:'\2190';margin-right:6px;font-weight:700}
+.btn-add{background:var(--accent);color:var(--navy);padding:11px 22px;border-radius:8px;border:none;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:.02em}
+.btn-add:hover{background:var(--accent-hover)}
+.btn-add:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+
+.review-block{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px;position:relative}
+.review-block h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.review-block .review-content{font-size:14.5px;line-height:1.65;color:var(--text-muted)}
+.review-block .review-content ul{margin-left:22px;margin-top:8px;list-style:disc}
+.review-block .review-content li{margin-bottom:6px}
+.review-block .review-content li::marker{color:var(--accent)}
+.review-block .review-content strong{color:var(--white);font-weight:700}
+.review-edit{font-size:11.5px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;float:right;padding:2px 8px;border-radius:6px;text-decoration:none}
+.review-edit:hover{background:var(--accent-soft)}
+
+.success-card{text-align:center;padding:60px 48px}
+.success-card .check{width:72px;height:72px;background:var(--accent);color:var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin-bottom:22px;box-shadow:0 8px 24px rgba(240,100,14,.3)}
+.success-card h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:14px}
+.success-card .success-lede{color:var(--text-muted);margin-bottom:18px;font-size:16px;line-height:1.65;max-width:520px;margin:0 auto 18px}
+.success-card .next-up{font-size:14px;color:var(--text-muted);max-width:520px;margin:0 auto 8px}
+.success-card .next-up strong{color:var(--white);font-weight:700}
+
+.footer{max-width:880px;margin:0 auto;padding:0 44px 40px;text-align:center}
+.footer .reset{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;padding:10px 18px;border-radius:8px;letter-spacing:.02em}
+.footer .reset:hover{color:var(--status-alert);border-color:rgba(208,106,78,.4)}
+.disclaimer{font-size:11.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;font-weight:500}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#" style="text-decoration:none">
+    <span class="logo-mark">Etc.<span style="font-weight:300;opacity:.7"> Projects</span></span>
+    <span class="logo-sub">ai training program</span>
+  </a>
+  <span class="page-badge" id="headerBadge">Module 4 of 5</span>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<section id="step-welcome">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <span class="eyebrow">AI Training Program · Module 4</span>
+        <h1>Practice Prompt <span class="em">Library</span></h1>
+        <span class="tagline">the prompts your team builds together</span>
+        <p class="lede">Working prompts that fit your practice. Five starter patterns advisors use most. Add your own. Edit, save, share. Your library grows as your team learns what works.</p>
+        <p class="lede" style="margin-bottom:8px">This is the first shared artifact in the program. The library belongs to the practice, not just to one person.</p>
+
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">4</div><div class="hero-stat-label">Short Steps</div></div>
+          <div><div class="hero-stat-val">5</div><div class="hero-stat-label">Starter Patterns</div></div>
+          <div><div class="hero-stat-val">1</div><div class="hero-stat-label">Shared Library</div></div>
+        </div>
+
+        <div class="btn-row" style="justify-content:flex-start;margin-top:32px">
+          <button class="btn btn-orange" data-go="unit-1">Begin</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-side-label">Welcome from the Etc. Projects AI Steward</div>
+        <div class="hero-side-title">A library, not a list.</div>
+        <div class="hero-side-desc">Press play. About a minute. A walk-through of how the library works and why every team member can contribute.</div>
+        <div class="audio-wrap" style="margin-bottom:0">
+          <div class="audio-placeholder" role="note">
+            <div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div>
+            <div class="audio-placeholder-body"><div class="audio-placeholder-title">Welcome to Module 4</div><div class="audio-placeholder-meta">≈ 1 min</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- UNIT 1: Anatomy -->
+  <section class="card hidden" id="step-unit-1">
+    <span class="unit-num">Step 1 of 4</span>
+    <h2 class="unit-title">What makes a <span class="em">working</span> prompt</h2>
+    <p class="unit-intro">A working prompt has five parts. Skip any one and you get generic output. The patterns later in this module follow this anatomy. Your custom prompts should too.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">What makes a working prompt</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <div class="anatomy-block"><div class="anatomy-label">Role</div><div class="anatomy-text"><strong>Who AI is being.</strong> "You are an associate advisor preparing notes for a senior advisor's review." Setting the role narrows the output and changes the register.</div></div>
+      <div class="anatomy-block"><div class="anatomy-label">Context</div><div class="anatomy-text"><strong>What AI needs to know.</strong> The client situation, the meeting that happened, the product involved, the jurisdiction. As much as is true and not sensitive.</div></div>
+      <div class="anatomy-block"><div class="anatomy-label">Task</div><div class="anatomy-text"><strong>The specific thing AI is producing.</strong> Not "help me write a follow-up." "Draft a three-paragraph email confirming next steps after today's needs analysis."</div></div>
+      <div class="anatomy-block"><div class="anatomy-label">Format</div><div class="anatomy-text"><strong>How the output should be shaped.</strong> Length. Structure. Whether it includes headings, bullets, or runs as prose. Where it will end up.</div></div>
+      <div class="anatomy-block"><div class="anatomy-label">Constraints</div><div class="anatomy-text"><strong>What AI must honor.</strong> Your foundation, identity, and compliance files. Things to avoid (jargon, specific phrasings, overpromising).</div></div>
+
+      <h3>Before and after: what the anatomy actually changes</h3>
+      <div class="before-after">
+        <div class="ba-grid">
+          <div class="ba-card ba-card-bad">
+            <div class="ba-card-label">A bare prompt</div>
+            <div class="ba-card-body"><em>Help me write a follow-up email to my client.</em></div>
+          </div>
+          <div class="ba-card ba-card-good">
+            <div class="ba-card-label">The same intent, written with the five parts</div>
+            <div class="ba-card-body">Role: You are drafting a client follow-up email on behalf of an Ontario CFP serving pre-retirement clients.
+
+Context: Following our annual review with Maria (first name only) on Tuesday, the topics we covered were the updated retirement income projection and the change to her CPP start date. The next steps we agreed on are: I send the updated income summary by Friday, Maria reviews and replies with any questions by the following Tuesday, and we book the next review for early September.
+
+Task: Draft a three-paragraph follow-up email that confirms what we discussed and what comes next, in a tone that matches my-identity.md.
+
+Format: Plain email. Greeting, body, closing. No bullet lists.
+
+Constraints: Honor my-ai-foundation.md, my-identity.md, and my-compliance-context.md. Do not invent commitments I did not make. Keep client identifiers limited to first name only. Flag anything that needs my review before sending.</div>
+          </div>
+        </div>
+        <div class="ba-takeaway"><strong>What changed:</strong> the output now reads as a specific message to Maria, in your voice, referencing the actual meeting, with the actual next steps. The anatomy did the work.</div>
+      </div>
+
+      <div class="callout">
+        <strong>Why this anatomy works.</strong> Each part covers something AI cannot infer reliably without you telling it. Skip Role and AI guesses. Skip Context and AI fills the gap with patterns from training data. Skip Format and you get a generic shape. Skip Constraints and your foundation and identity work never gets applied. The five parts together produce work that fits your seat.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-1">Go deeper on prompt anatomy</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="welcome">Back</button>
+      <button class="btn btn-orange" data-go="unit-2">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 2: Five patterns -->
+  <section class="card hidden" id="step-unit-2">
+    <span class="unit-num">Step 2 of 4</span>
+    <h2 class="unit-title">The <span class="em">five patterns</span> advisors need</h2>
+    <p class="unit-intro">Five prompt patterns cover most of the work an advisor's team uses AI for. Keep the ones that fit your practice. Drop any that do not. Edit each in your own voice.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">The five patterns</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="starter-list" id="starterList"></div>
+
+    <button class="deep-trigger" data-deep="unit-2" style="margin-top:8px">Go deeper on pattern selection</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-1">Back</button>
+      <button class="btn btn-orange" data-go="unit-3">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 3: Add your first prompt -->
+  <section class="card hidden" id="step-unit-3">
+    <span class="unit-num">Step 3 of 4</span>
+    <h2 class="unit-title">Add your <span class="em">first</span> prompt</h2>
+    <p class="unit-intro">Capture a prompt you already use, or one you have wanted to. Use the anatomy from Step 1. Tag it for your role. The more specific the prompt, the more it earns its place in the library.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Add your first prompt</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <div class="worked-example">
+        <h4>A Licensed Assistant builds the prompt the whole team adopts</h4>
+        <p>Anna is a Licensed Assistant supporting two advisors. She drafts post-meeting follow-ups for both of them, and the common case (confirm what was discussed, list the action items with deadlines, set a check-in date) shows up almost every week. She builds a working prompt that handles this case well, using the five-part anatomy and including a section that asks AI to flag any action items with regulatory implications (KYC updates, disclosure obligations) for advisor review.</p>
+        <p>She saves the prompt to the practice library with a clear "When to use" line. Three weeks later, the other Licensed Assistant in the practice picks up the prompt for her own advisor's follow-ups. Cycle time across the team drops. The prompt now carries Anna's name and the date she added it. When the practice updates its tool the following quarter, Anna is the one who tests the prompt against the new model and refreshes the constraints.</p>
+        <p>The library is a place team members build expertise out loud. Anna's contribution shows up every time someone else uses her prompt.</p>
+      </div>
+
+      <div class="prompt-form">
+        <h4>New prompt</h4>
+        <div class="row2">
+          <div class="field">
+            <label class="lbl" for="np-title">Title <span class="req">*</span></label>
+            <input type="text" id="np-title" placeholder="e.g. Annual review prep">
+          </div>
+          <div class="field">
+            <label class="lbl" for="np-tag">Role tag <span class="opt">(who uses this)</span></label>
+            <select id="np-tag">
+              <option value="any">Any role</option>
+              <option value="lead">Lead Advisor</option>
+              <option value="associate">Associate Advisor</option>
+              <option value="licensed-assistant">Licensed Assistant</option>
+              <option value="admin">Admin</option>
+              <option value="legacy">Legacy Advisor</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="np-when">When to use <span class="req">*</span></label>
+          <input type="text" id="np-when" placeholder="e.g. Two weeks before a client annual review meeting">
+        </div>
+        <div class="field">
+          <label class="lbl" for="np-body">Prompt body <span class="req">*</span></label>
+          <textarea id="np-body" placeholder="Write the full prompt. Use the five-part anatomy: Role, Context, Task, Format, Constraints."></textarea>
+        </div>
+        <div style="display:flex;justify-content:flex-end">
+          <button type="button" class="btn-add" id="addPromptBtn" disabled>Save to library</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top:28px;margin-bottom:8px">Your custom prompts</h3>
+      <div class="custom-prompts" id="customPrompts"></div>
+
+      <button class="deep-trigger" data-deep="unit-3" style="margin-top:24px">Go deeper on input quality</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-2">Back</button>
+      <button class="btn btn-orange" data-go="unit-4">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 4: Sharing -->
+  <section class="card hidden" id="step-unit-4">
+    <span class="unit-num">Step 4 of 4</span>
+    <h2 class="unit-title">Sharing across your <span class="em">team</span></h2>
+    <p class="unit-intro">How the library grows. What gets shared, what gets attributed, and how the team learns from each other's prompts.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Sharing across your team</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>Visibility</h3>
+      <p>Every prompt in the library is visible to every team member who has registered against your license. Role tags help each seat find the prompts most relevant to their work, and everyone can see and use every prompt regardless of tag.</p>
+
+      <h3>Attribution</h3>
+      <p>Every prompt carries the contributor's name and the date it was added. When a prompt gets edited, the edit history is preserved so the team can see how the prompt has evolved. Attribution builds trust in the library because the team knows who tested what.</p>
+
+      <h3>Tagging by tool origin</h3>
+      <p>Every prompt also carries a tag for the tool it was tested against (Claude, ChatGPT, Copilot, Gemini). Same prompt, different tool, often different output. Tagging the origin keeps the team from assuming portability.</p>
+
+      <div class="worked-example">
+        <h4>A Lead Advisor catches a stale prompt</h4>
+        <p>Theo is the Lead Advisor at a four-person practice. Three weeks after the team updated its AI tool to a new model version, he notices that the output from the practice's "Document drafting" prompt has gotten softer and less specific. The drafts no longer include the [VERIFY: question] flags the prompt asked for. Constraints that the prompt sets explicitly are being skipped.</p>
+        <p>Theo flags the issue at the team stand-up. He tests the same prompt against the previous model version and confirms the output had been sharper. The team rewrites the constraints section, tightens the format spec, and updates the library entry with a new tool-origin tag and a note in the edit history. The prompt name and purpose stay the same. The body got refreshed for the tool it now runs against.</p>
+        <p>Library health works as the team's early warning system. Every team member who uses a prompt becomes a quality check on whether it still does what it says it does.</p>
+      </div>
+
+      <div class="callout">
+        <strong>The library is a living thing.</strong> Prompts get retired when they stop working. Prompts get rewritten when a tool updates. The team keeps the library current by using it, reporting what's not working, and adding what is.
+      </div>
+
+      <div class="role-nod">
+        <strong>For Lead Advisors:</strong> a healthy library is a sign of healthy AI use across your team. When only one or two people are contributing, the rest of the team is either not using AI or using it without sharing what's working. Both are worth a conversation.<br><br>
+        <strong>For Associates, Licensed Assistants, and Admin:</strong> contribution is part of the work. The prompt that helped you today probably helps someone else next week.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-4">Go deeper on library health</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-3">Back</button>
+      <button class="btn btn-orange" data-go="review">Review and generate</button>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="card hidden" id="step-review">
+    <span class="unit-num">Almost done</span>
+    <h2 class="unit-title">Review your <span class="em">library</span></h2>
+    <p class="unit-intro">A look at what gets included in the file. Edit anything that needs adjusting.</p>
+
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-2">Edit</a><h4>Starter patterns kept</h4><div class="review-content" id="reviewStarters"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-3">Edit</a><h4>Custom prompts</h4><div class="review-content" id="reviewCustoms"></div></div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-4">Back</button>
+      <button class="btn btn-orange" id="generateBtn">Generate practice-prompt-library.md</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="card success-card hidden" id="step-success">
+    <div class="check">✓</div>
+    <h2>Your library is <span class="em">started</span>.</h2>
+    <p class="success-lede">Your file has been downloaded. Share it with your team. As prompts get tested and refined, regenerate the file and re-share.</p>
+    <p class="next-up"><strong>What's next:</strong> Module 5, Practice AI Kit. The team-level standards every team member operates by.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <button class="reset" id="resetBtn">Start over from the beginning</button>
+  <p class="disclaimer">This training program is provided for guidance and planning only. It is not legal, regulatory, or compliance advice. © 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="deepDrawer" aria-hidden="true" role="dialog" tabindex="-1">
+  <div class="drawer-header"><div><div class="drawer-eyebrow">Go deeper</div><div class="drawer-title" id="drawerTitle"></div></div><button class="drawer-close" id="drawerClose" aria-label="Close">×</button></div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+const STORAGE_KEY = 'etc_module4_state';
+const M1_KEY = 'etc_module1_state';
+const M2_KEY = 'etc_module2_state';
+const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','review','success'];
+
+const STARTER_PROMPTS = [
+  {
+    id: 'follow-up',
+    name: 'Client follow-up',
+    when: 'After a client meeting, when you need a clean recap and next steps.',
+    body: `Role: You are drafting a client follow-up email on behalf of [advisor name and role].
+
+Context: Following our [meeting type] with [client first name only] on [date], the topics covered were [topics]. The next steps we agreed on are [next steps].
+
+Task: Draft a three-to-four paragraph follow-up email that confirms what we discussed and what comes next, in a tone that matches my-identity.md.
+
+Format: Plain email. Greeting, body, closing. No bullet lists unless the next steps are more than three items.
+
+Constraints:
+- Honor my-ai-foundation.md and my-identity.md.
+- Do not invent commitments I did not make.
+- Keep client identifiers limited to first name only.
+- Flag anything that needs my review before sending.`
+  },
+  {
+    id: 'meeting-notes',
+    name: 'Meeting note synthesis',
+    when: 'Right after a meeting, when you have rough notes and need a clean summary for the file.',
+    body: `Role: You are an associate preparing meeting notes for a senior advisor's review.
+
+Context: Below are my rough notes from a meeting on [date] with [client first name only]. The meeting type was [type, e.g. annual review, plan update].
+
+[Paste rough notes here]
+
+Task: Synthesize these into a structured note suitable for the client file.
+
+Format: Sections for (1) what was discussed, (2) decisions made, (3) follow-ups assigned, (4) anything flagged for advisor attention. Use plain prose under each heading.
+
+Constraints:
+- Honor my-ai-foundation.md, my-identity.md, and my-compliance-context.md.
+- Do not invent details I did not capture.
+- Use first names only.
+- Flag any compliance touch points (suitability, disclosure, KYC updates).`
+  },
+  {
+    id: 'compliance-check',
+    name: 'Compliance touch-point check',
+    when: 'Before sending any client-facing document, when you want a second pair of eyes for compliance gaps.',
+    body: `Role: You are reviewing a client-facing draft for compliance touch points only. You are not approving the substantive content.
+
+Context: My compliance context is in my-compliance-context.md. The document below is intended for [client first name only], a client in [province], related to [product or topic].
+
+[Paste draft here]
+
+Task: Identify any compliance touch points that need my attention before sending.
+
+Format: A short list. For each point: (1) what it is, (2) which regulator or pillar it touches, (3) what to verify or change before sending.
+
+Constraints:
+- Limit yourself to compliance touch points. Do not rewrite the draft.
+- Reference only the regulators in my-compliance-context.md.
+- If you cannot identify a regulator with certainty, flag it as "needs verification" rather than guessing.`
+  },
+  {
+    id: 'doc-draft',
+    name: 'Document drafting',
+    when: 'When starting any internal or client-facing document from scratch.',
+    body: `Role: You are drafting [document type, e.g. an internal SOP, a client letter, a one-page summary].
+
+Context: The document is for [audience]. The purpose is [purpose]. Key points to include: [bullets].
+
+Task: Draft a complete first version.
+
+Format: [length, structure, headings if any].
+
+Constraints:
+- Honor my-ai-foundation.md, my-identity.md, and my-compliance-context.md.
+- Match my voice from my-identity.md sample text.
+- Keep claims verifiable. Do not invent statistics, citations, or product features.
+- Mark any place I should fact-check with [VERIFY: question].`
+  },
+  {
+    id: 'research',
+    name: 'Research summary',
+    when: 'When you need a quick understanding of a topic before a meeting or follow-up.',
+    body: `Role: You are summarizing what is known about [topic] for an advisor preparing for a client conversation.
+
+Context: The advisor needs to understand [specific question or angle]. Audience is professional, so plain-but-specific is the right register.
+
+Task: Produce a one-page summary.
+
+Format: Sections for (1) what it is in plain language, (2) why it matters to the client conversation, (3) the most important factual points, (4) areas where I should verify before relying on the summary.
+
+Constraints:
+- Flag every factual claim you cannot trace to a primary source.
+- Distinguish what is well-established from what is debated or uncertain.
+- For regulatory or product specifics, defer to primary sources rather than summarizing them.`
+  }
+];
+
+const ROLE_TAG_LABELS = {
+  any: 'Any role',
+  lead: 'Lead Advisor',
+  associate: 'Associate Advisor',
+  'licensed-assistant': 'Licensed Assistant',
+  admin: 'Admin',
+  legacy: 'Legacy Advisor'
+};
+
+let state = {
+  step: 'welcome',
+  starterIds: STARTER_PROMPTS.map(p => p.id),
+  expanded: {},
+  customPrompts: [],
+  identity: { name: '', role: '', practice: '' },
+  inheritedFromPrior: false,
+  completedAt: null,
+  seenDeep: {}
+};
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function load() {
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+  if (!state.starterIds) state.starterIds = STARTER_PROMPTS.map(p => p.id);
+  if (!state.expanded) state.expanded = {};
+  if (!state.customPrompts) state.customPrompts = [];
+}
+function loadM1() { try { const raw = localStorage.getItem(M1_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function loadM2() { try { const raw = localStorage.getItem(M2_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function reset() {
+  if (!confirm('This wipes everything you have entered and starts over. Continue?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function escapeHtml(s) { if (s == null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
+
+function goTo(step) { if (!STEPS.includes(step)) return; state.step = step; save(); render(); }
+
+function inheritIdentity() {
+  if (state.inheritedFromPrior) return;
+  const m2 = loadM2();
+  const m1 = loadM1();
+  const id = (m2 && m2.identity && m2.identity.name) ? m2.identity : (m1 && m1.identity ? m1.identity : null);
+  if (id && (id.name || id.role || id.practice)) {
+    state.identity = { name: id.name || '', role: id.role || '', practice: id.practice || '' };
+  }
+  state.inheritedFromPrior = true;
+  save();
+}
+
+function render() {
+  inheritIdentity();
+  STEPS.forEach(s => { const el = document.getElementById('step-'+s); if (el) el.classList.toggle('hidden', s !== state.step); });
+  const idx = STEPS.indexOf(state.step);
+  const pct = state.step === 'welcome' ? 0 : state.step === 'success' ? 100 : Math.round((idx/(STEPS.length-2))*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  const badge = document.getElementById('headerBadge');
+  if (state.step === 'welcome') badge.textContent = 'Module 4 of 5';
+  else if (state.step === 'success') badge.textContent = 'Complete';
+  else if (state.step === 'review') badge.textContent = 'Review';
+  else badge.textContent = `Step ${idx} of 4`;
+
+  if (state.step === 'unit-2') renderStarters();
+  if (state.step === 'unit-3') { renderCustomPrompts(); bindCustomForm(); }
+  if (state.step === 'review') renderReview();
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- UNIT 2: starter prompts ---------- */
+function renderStarters() {
+  const wrap = document.getElementById('starterList');
+  wrap.innerHTML = '';
+  STARTER_PROMPTS.forEach(p => {
+    const kept = state.starterIds.includes(p.id);
+    const expanded = !!state.expanded[p.id];
+    const card = document.createElement('div');
+    card.className = 'starter' + (kept ? ' kept' : '') + (expanded ? ' expanded' : '');
+    card.innerHTML = `
+      <div class="starter-head">
+        <div>
+          <div class="starter-name">${escapeHtml(p.name)}</div>
+          <div class="starter-when">${escapeHtml(p.when)}</div>
+        </div>
+        <label class="starter-toggle ${kept?'kept':''}">
+          <input type="checkbox" ${kept?'checked':''}>
+          ${kept ? '✓ In library' : 'Add to library'}
+        </label>
+      </div>
+      <button type="button" class="starter-expand">${expanded ? 'Hide prompt body' : 'Show prompt body'}</button>
+      <pre class="starter-prompt">${escapeHtml(p.body)}</pre>
+    `;
+    card.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked && !state.starterIds.includes(p.id)) state.starterIds.push(p.id);
+      else if (!e.target.checked) state.starterIds = state.starterIds.filter(x => x !== p.id);
+      save(); renderStarters();
+    });
+    card.querySelector('.starter-expand').addEventListener('click', () => {
+      state.expanded[p.id] = !state.expanded[p.id];
+      save(); renderStarters();
+    });
+    wrap.appendChild(card);
+  });
+}
+
+/* ---------- UNIT 3: custom prompts ---------- */
+function bindCustomForm() {
+  const title = document.getElementById('np-title');
+  const when = document.getElementById('np-when');
+  const body = document.getElementById('np-body');
+  const tag = document.getElementById('np-tag');
+  const btn = document.getElementById('addPromptBtn');
+  if (!title || title.dataset.bound) { updateAddBtn(); return; }
+  ['np-title','np-when','np-body'].forEach(id => {
+    const el = document.getElementById(id);
+    el.dataset.bound = '1';
+    el.addEventListener('input', updateAddBtn);
+  });
+  btn.addEventListener('click', () => {
+    const t = title.value.trim(), w = when.value.trim(), b = body.value.trim();
+    if (!t || !w || !b) return;
+    state.customPrompts.push({
+      id: 'c'+Date.now(),
+      title: t, when: w, body: b, tag: tag.value,
+      addedBy: state.identity.name || '',
+      addedAt: new Date().toISOString().slice(0,10)
+    });
+    title.value = ''; when.value = ''; body.value = ''; tag.value = 'any';
+    save(); renderCustomPrompts(); updateAddBtn();
+  });
+  function updateAddBtn() {
+    btn.disabled = !(title.value.trim() && when.value.trim() && body.value.trim());
+  }
+  updateAddBtn();
+}
+function renderCustomPrompts() {
+  const wrap = document.getElementById('customPrompts');
+  if (state.customPrompts.length === 0) {
+    wrap.innerHTML = '<p style="color:var(--text-dim);font-size:14px">No custom prompts yet.</p>';
+    return;
+  }
+  wrap.innerHTML = '';
+  state.customPrompts.forEach((p, idx) => {
+    const card = document.createElement('div');
+    card.className = 'custom-prompt';
+    const meta = [];
+    if (p.tag) meta.push(`<span class="custom-prompt-tag">${escapeHtml(ROLE_TAG_LABELS[p.tag]||p.tag)}</span>`);
+    if (p.addedBy || p.addedAt) {
+      meta.push(`<span class="custom-prompt-meta-text">Added by ${escapeHtml(p.addedBy||'unknown')}${p.addedAt?' · '+escapeHtml(p.addedAt):''}</span>`);
+    }
+    card.innerHTML = `
+      <div class="custom-prompt-head">
+        <div>
+          <div class="custom-prompt-name">${escapeHtml(p.title)}</div>
+          <div class="custom-prompt-meta">${meta.join('')}</div>
+        </div>
+        <button class="custom-prompt-rm" type="button">Remove</button>
+      </div>
+      <div class="custom-prompt-when">${escapeHtml(p.when)}</div>
+      <pre class="custom-prompt-body">${escapeHtml(p.body)}</pre>
+    `;
+    card.querySelector('.custom-prompt-rm').addEventListener('click', () => {
+      state.customPrompts.splice(idx, 1); save(); renderCustomPrompts();
+    });
+    wrap.appendChild(card);
+  });
+}
+
+/* ---------- REVIEW ---------- */
+function renderReview() {
+  const kept = STARTER_PROMPTS.filter(p => state.starterIds.includes(p.id));
+  document.getElementById('reviewStarters').innerHTML = kept.length
+    ? '<ul>'+kept.map(p=>`<li><strong>${escapeHtml(p.name)}</strong> — ${escapeHtml(p.when)}</li>`).join('')+'</ul>'
+    : '<span style="color:var(--text-dim)">None kept</span>';
+  document.getElementById('reviewCustoms').innerHTML = state.customPrompts.length
+    ? '<ul>'+state.customPrompts.map(p=>`<li><strong>${escapeHtml(p.title)}</strong> · ${escapeHtml(ROLE_TAG_LABELS[p.tag]||p.tag||'any')}</li>`).join('')+'</ul>'
+    : '<span style="color:var(--text-dim)">No custom prompts yet</span>';
+}
+
+/* ---------- Markdown ---------- */
+function buildMarkdown() {
+  const i = state.identity;
+  const today = new Date().toISOString().slice(0,10);
+  const owner = i.name ? `\n**Started by:** ${i.name}${i.role?', '+i.role:''}` : '';
+  const practice = i.practice ? `\n**Practice:** ${i.practice}` : '';
+
+  const kept = STARTER_PROMPTS.filter(p => state.starterIds.includes(p.id));
+  const starterMd = kept.map(p => `### ${p.name}\n\n**When to use:** ${p.when}\n\n\`\`\`\n${p.body}\n\`\`\`\n`).join('\n');
+
+  const customMd = state.customPrompts.map(p => {
+    const tagLabel = ROLE_TAG_LABELS[p.tag] || p.tag || 'Any role';
+    const attribution = p.addedBy ? `\n**Added by:** ${p.addedBy}${p.addedAt?', '+p.addedAt:''}` : (p.addedAt ? `\n**Added:** ${p.addedAt}` : '');
+    return `### ${p.title}\n\n**Role tag:** ${tagLabel}\n**When to use:** ${p.when}${attribution}\n\n\`\`\`\n${p.body}\n\`\`\`\n`;
+  }).join('\n');
+
+  return `# Practice Prompt Library
+
+**Created:** ${today}${owner}${practice}
+
+This is a shared, living library. Prompts get added, edited, and retired by the team. Every prompt assumes the user has loaded my-ai-foundation.md, my-identity.md, and my-compliance-context.md as system context first.
+
+## Starter patterns
+
+${starterMd || '_No starter patterns kept._'}
+
+## Custom prompts
+
+${customMd || '_None yet. Add your first via the Practice Prompt Library tool._'}
+
+## How AI should use this file
+
+When this library is loaded as system context:
+- Treat it as a menu of approved patterns. When the user names a prompt by title, use it as written.
+- Honor the constraints inside each prompt body. They reference the foundation, identity, and compliance files.
+- When a prompt is asked to do something outside its anatomy (Role, Context, Task, Format, Constraints), flag the gap rather than filling it.
+
+---
+*Generated by the Etc. Projects AI Training Program · Module 4 · ${today}*
+*This is a shared practice document, not legal, regulatory, or compliance advice.*
+`;
+}
+function downloadMarkdown() {
+  const md = buildMarkdown();
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'practice-prompt-library.md';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- DRAWER ---------- */
+const DEEP_CONTENT = {
+  'unit-1': {
+    title: 'Prompt anatomy in depth',
+    intro: 'Five parts. Each one prevents a specific failure mode.',
+    glossary: [
+      { term: 'Vague input', def: 'A prompt that does not give AI enough specific context produces generic output. AI fills the gaps with whatever is most common.', watch: 'Output that could apply to any advisor, any client, any situation.', do: 'Before sending, check that the prompt includes who the client is (in general terms), what the context is, what the output is for, and what format you need.' },
+      { term: 'Missing context', def: 'AI produces output based on what you gave it. When the context is incomplete, the output reflects the gap.', watch: 'Output that is accurate to the input and misses something important you know and did not include.', do: 'Review your input before sending. Ask yourself: what does AI not know that would change this output? Add that to the prompt.' }
+    ]
+  },
+  'unit-2': {
+    title: 'Picking the right pattern',
+    intro: 'Five patterns cover most advisor work. Two questions tell you which pattern fits.',
+    watchouts: [
+      '<strong>What is the deliverable?</strong> A short email is Client follow-up. A meeting summary is Meeting note synthesis. A document for the file is Document drafting.',
+      '<strong>What is the work?</strong> Generating new content uses Document drafting or Client follow-up. Reviewing existing content uses Compliance touch-point check. Understanding a topic uses Research summary. Synthesizing a meeting uses Meeting note synthesis.',
+      '<strong>When in doubt, start with Research summary.</strong> When you are not sure what you need, ask AI to summarize the topic first. The summary will surface the right next pattern.'
+    ]
+  },
+  'unit-3': {
+    title: 'Why input quality determines output quality',
+    intro: 'The patterns prevent some failure modes. The rest depend on what you bring to the prompt.',
+    glossary: [
+      { term: 'Multi-part prompt overload', def: 'Asking AI to do several distinct things in one prompt. AI attempts all of them and handles each with less precision than it would handle one at a time.', watch: 'Output that covers everything and does none of it well. Sections that are thinner than they should be.', do: 'Identify the distinct tasks and send them one at a time. Output quality per task improves significantly.' },
+      { term: 'Prompt creep', def: 'Over time you add more and more to a single prompt to get better output. The prompt becomes long, instructions conflict, output becomes less reliable.', watch: 'A prompt that has grown into a paragraph of conditions. Output that follows some instructions and ignores others.', do: 'Simplify rather than adding more. Remove instructions that are no longer essential. Test the core task first, then add specifics one at a time.' }
+    ]
+  },
+  'unit-4': {
+    title: 'Library health',
+    intro: 'A few signs the library is working, and a few signs it has gone quiet.',
+    watchouts: [
+      '<strong>Working:</strong> the library is being used. Prompts are being added. Old prompts are being retired or updated. Different team members are contributing.',
+      '<strong>Gone quiet:</strong> the library is static. Same five starters, never edited. No one has added a custom prompt in months. The lead is the only contributor, or no one is.',
+      '<strong>Repair:</strong> ask the team in a stand-up which prompts they used this week. Ask what they tried that did not work. The conversation usually surfaces what is missing from the library.'
+    ]
+  }
+};
+function renderDrawer(unitId) {
+  const c = DEEP_CONTENT[unitId];
+  if (!c) return false;
+  document.getElementById('drawerTitle').textContent = c.title;
+  let html = '';
+  if (c.intro) html += `<p class="drawer-intro">${c.intro}</p>`;
+  if (c.glossary && c.glossary.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Terms</div>';
+    c.glossary.forEach(g => {
+      html += `<div class="glossary-entry"><h4>${escapeHtml(g.term)}</h4><p class="def">${escapeHtml(g.def)}</p>`;
+      if (g.watch) html += `<p class="watch"><strong>Watch for:</strong> ${escapeHtml(g.watch)}</p>`;
+      if (g.do) html += `<p class="do"><strong>What to do:</strong> ${escapeHtml(g.do)}</p>`;
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  if (c.watchouts && c.watchouts.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">What to watch for</div>';
+    c.watchouts.forEach(w => { html += `<div class="watchout-item">${w}</div>`; });
+    html += '</div>';
+  }
+  document.getElementById('drawerBody').innerHTML = html;
+  document.getElementById('drawerBody').scrollTop = 0;
+  return true;
+}
+function openDrawer(id) { if (!renderDrawer(id)) return; document.getElementById('deepDrawer').classList.add('open'); document.getElementById('drawerBackdrop').classList.add('open'); document.body.style.overflow = 'hidden'; state.seenDeep[id]=true; save(); }
+function closeDrawer() { document.getElementById('deepDrawer').classList.remove('open'); document.getElementById('drawerBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
+
+function bindButtons() {
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); goTo(el.getAttribute('data-go')); }));
+  document.querySelectorAll('[data-deep]').forEach(el => el.addEventListener('click', () => openDrawer(el.getAttribute('data-deep'))));
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && document.getElementById('deepDrawer').classList.contains('open')) closeDrawer(); });
+  document.getElementById('generateBtn').addEventListener('click', () => { state.completedAt = new Date().toISOString(); save(); downloadMarkdown(); goTo('success'); });
+  document.getElementById('downloadAgainBtn').addEventListener('click', downloadMarkdown);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+}
+
+load(); bindButtons(); render();
+</script>
+</body>
+</html>

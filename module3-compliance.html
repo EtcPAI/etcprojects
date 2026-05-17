@@ -325,7 +325,7 @@ input:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
     <div class="worked-example">
       <h4>A Licensed Assistant catches AI naming the wrong regulator</h4>
       <p>Priya is a Licensed Assistant in an Alberta-based practice. She drafts a privacy disclosure paragraph for a new client onboarding letter and asks AI to clean up the wording. The cleaned-up version references "the Securities and Exchange Commission" as the body overseeing client information practices.</p>
-      <p>Priya stops at the line. The SEC is a US regulator. It has no authority over a Canadian insurance practice. AI defaulted to a familiar regulator name because the prompt did not tell it otherwise. She loads the compliance context file (which has OPC, CAI for Quebec, and OIPC Alberta selected), regenerates the paragraph, and the language now references PIPEDA and the Office of the Information and Privacy Commissioner of Alberta. The file did the work the prompt did not.</p>
+      <p>Priya stops at the line. The SEC is a US regulator. It has no authority over a Canadian insurance practice. AI defaulted to a familiar regulator name because the prompt did not tell it otherwise. She loads the compliance context file (which has OPC, CAI for Quebec, and OIPC Alberta selected), regenerates the paragraph, and the language now reflects Canadian privacy rules without invoking US regulators or naming the federal and provincial agencies by full title in the client's letter. The file did the work the prompt did not.</p>
     </div>
 
     <button class="deep-trigger" data-deep="unit-2" style="margin-top:18px">Go deeper on regulator scope</button>
@@ -371,22 +371,22 @@ input:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
           <div class="ba-card-label">With Quebec / Law 25 loaded</div>
           <div class="ba-card-body"><em>Hi [Client first name],</em>
 
-<em>A quick note on how we handle your personal information.</em>
+<em>A quick note on how we handle your personal information. Quebec has stricter privacy rules than the rest of Canada, and we follow them for everyone we work with.</em>
 
-<em>Because we serve clients in Quebec, our privacy practices follow Law 25 (the Act respecting the protection of personal information in the private sector). A few specifics that matter for you:</em>
+<em>The short version:</em>
 
-<em>- We collect only the information we need to provide you with advisory services
-- We let you know in advance when your information will leave the province (cross-border data transfers)
-- You can access, correct, or ask us to delete your information at any time
-- Our designated privacy officer is [name], and you can reach them at [contact]</em>
+<em>- We only collect what we need to do our work for you
+- We let you know before any of your information leaves Quebec
+- You can ask to see, update, or delete what we have on file anytime
+- [Name] handles privacy questions, and you can reach them at [contact]</em>
 
-<em>If a privacy concern ever comes up, you have the right to file a complaint with the Commission d'accès à l'information du Québec (CAI).</em>
+<em>If something ever feels off about how your information is being handled, Quebec also has a privacy regulator you can contact directly. I can give you that contact information whenever you want it.</em>
 
 <em>Talk soon,
 [Advisor first name]</em></div>
         </div>
       </div>
-      <div class="ba-takeaway"><strong>What changed:</strong> generic Canadian framing became Quebec-specific. Law 25 named. CAI named. The deletion right and cross-border notice obligations that Law 25 requires beyond PIPEDA show up where the original missed them. The compliance file did that.</div>
+      <div class="ba-takeaway"><strong>What changed:</strong> Quebec context is right. The Law 25 obligations show up in what the email talks about (deletion right, cross-border notice, designated privacy contact) without the regulator's full legal name landing in the client's inbox. The compliance file shaped the substance. The advisor's voice shaped how the message reads.</div>
     </div>
 
     <div class="callout">

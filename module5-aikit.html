@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice AI Kit | AI Training Program | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#04253a;--navy-mid:#0a3a55;--navy-deep:#021724;--orange:#f0640e;--orange-hover:#d65709;--orange-soft:rgba(240,100,14,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#5BC2C7;--teal-soft:rgba(91,194,199,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--radius:14px;--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+em,.em{font-style:italic;color:var(--accent);font-weight:900}
+button{font-family:inherit}
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 44px;background:rgba(4,37,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);gap:24px}
+.logo{display:inline-flex;flex-direction:column;background:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+.page-badge{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px;white-space:nowrap}
+.progress-track{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-bar{height:100%;width:0%;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.hero{position:relative;padding:64px 44px 56px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)}
+.hero::before{content:'';position:absolute;right:-10%;top:-20%;width:560px;height:560px;background:radial-gradient(circle,rgba(240,100,14,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:36px}}
+.eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance;color:var(--white);margin-bottom:18px}
+.hero .tagline{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--accent);letter-spacing:.01em;margin-bottom:22px;padding:6px 0;border-bottom:2px solid rgba(240,100,14,.4)}
+.hero .lede{font-size:17px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;font-weight:500;max-width:560px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;padding-top:24px;border-top:1px solid var(--border)}
+.hero-stat-val{font-family:'Manrope',sans-serif;font-weight:900;font-size:24px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px}
+.hero-side{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:18px;padding:28px 28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.hero-side::before{content:'';position:absolute;top:-1px;left:24px;right:24px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.hero-side-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.hero-side-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:-.01em;line-height:1.25;margin-bottom:14px}
+.hero-side-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.container{max-width:880px;margin:0 auto;padding:48px 44px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:44px 48px;margin-bottom:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.card::before{content:'';position:absolute;top:-1px;left:36px;right:36px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+@media(max-width:640px){.card{padding:32px 26px}.card::before{left:22px;right:22px}}
+.unit-num{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:5px 12px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.unit-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.unit-title .em{color:var(--accent)}
+.unit-intro{font-size:16px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;font-weight:500;max-width:680px}
+
+.audio-wrap{margin-bottom:30px}
+.audio-placeholder{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.22);border-radius:12px}
+.audio-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-placeholder-icon svg{width:16px;height:16px}
+.audio-placeholder-body{flex:1;min-width:0}
+.audio-placeholder-title{font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--white);line-height:1.3}
+.audio-placeholder-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.lesson{font-size:15.5px;line-height:1.75;color:var(--text-muted)}
+.lesson h3{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white);letter-spacing:-.005em}
+.lesson p{margin-bottom:14px}
+.lesson ul{margin:8px 0 18px 22px}
+.lesson li{margin-bottom:10px;color:var(--text-muted)}
+.lesson li::marker{color:var(--accent)}
+.lesson strong{color:var(--white);font-weight:700}
+
+/* CALLOUTS */
+.callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
+.role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
+.role-nod strong{color:var(--status-warn);font-weight:700}
+
+/* WORKED EXAMPLE */
+.worked-example{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:22px 0;position:relative}
+.worked-example::before{content:'WORKED EXAMPLE';position:absolute;top:-9px;left:18px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent);background:var(--navy);padding:0 10px}
+.worked-example h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);margin:4px 0 10px;letter-spacing:-.005em}
+.worked-example p{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.worked-example p:last-child{margin-bottom:0}
+
+/* THREE-SEAT BEFORE/AFTER (Unit 1) — uses a stacked variant */
+.seats-panel{margin:22px 0}
+.seats-panel h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.seats-bad h4{color:var(--status-alert)}
+.seats-good h4{color:var(--status-complete)}
+.seats-card{border-radius:12px;padding:20px 24px;border:1px solid var(--border);margin-bottom:16px}
+.seats-bad .seats-card{background:rgba(208,106,78,.05);border-color:rgba(208,106,78,.22);border-left:3px solid var(--status-alert)}
+.seats-good .seats-card{background:rgba(193,225,167,.05);border-color:rgba(193,225,167,.22);border-left:3px solid var(--status-complete)}
+.seats-card p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.seats-card p:last-child{margin-bottom:0}
+.seats-card p strong{color:var(--white);font-weight:700}
+
+/* SECTION LABEL */
+.section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:22px 0 10px}
+.section-label:first-child{margin-top:0}
+.section-help{font-size:13.5px;color:var(--text-dim);margin:-4px 0 14px;line-height:1.55}
+
+/* RULE/TRIGGER LIST */
+.rule-list{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px}
+.rule-card{display:flex;flex-direction:column;gap:0;padding:14px 18px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);transition:all .15s}
+.rule-card.selected{border-color:var(--accent);background:var(--accent-soft)}
+.rule-top{display:flex;gap:12px;align-items:flex-start}
+.rule-top input[type=checkbox]{accent-color:var(--accent);width:18px;height:18px;cursor:pointer;margin-top:2px;flex-shrink:0}
+.rule-text{flex:1;font-size:14.5px;font-weight:600;color:var(--text-muted);line-height:1.5;cursor:pointer}
+.rule-card.selected .rule-text{color:var(--white)}
+.rule-reviewer{margin-top:10px;padding-left:30px;display:none}
+.rule-card.selected .rule-reviewer{display:block}
+.rule-reviewer-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.rule-reviewer input{width:100%;padding:8px 12px;border:1px solid var(--border-strong);border-radius:6px;font-size:13.5px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(0,0,0,.2);outline:none;font-weight:500}
+.rule-reviewer input::placeholder{color:var(--text-faint);font-style:italic}
+.rule-reviewer input:focus{border-color:var(--accent)}
+
+/* CUSTOM RULE FORM */
+.custom-rule-form{background:rgba(255,255,255,.03);border:1px dashed var(--border-strong);border-radius:12px;padding:18px 22px;margin-top:14px}
+.custom-rule-form h4{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.custom-rule-form textarea,.custom-rule-form input{width:100%;padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500;line-height:1.5}
+.custom-rule-form textarea{resize:vertical;min-height:64px;margin-bottom:10px}
+.custom-rule-form textarea::placeholder,.custom-rule-form input::placeholder{color:var(--text-faint)}
+.custom-rule-form textarea:focus,.custom-rule-form input:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+.custom-rule-form-actions{display:flex;justify-content:flex-end;margin-top:12px}
+.btn-add-rule{background:var(--accent);color:var(--navy);border:none;padding:10px 20px;border-radius:8px;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:.02em}
+.btn-add-rule:hover{background:var(--accent-hover)}
+.btn-add-rule:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+
+/* CUSTOM RULE LIST */
+.custom-rules-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.custom-rule-item{display:flex;flex-direction:column;gap:8px;padding:14px 18px;border:1px solid var(--accent);background:var(--accent-soft);border-radius:10px}
+.custom-rule-item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.custom-rule-item-text{flex:1;font-size:14.5px;font-weight:600;color:var(--white);line-height:1.5}
+.custom-rule-item-meta{font-size:12.5px;color:var(--text-dim);font-weight:600}
+.custom-rule-item-meta strong{color:var(--white);font-weight:700}
+.custom-rule-item-rm{background:none;border:none;color:var(--status-alert);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 8px;border-radius:6px;flex-shrink:0}
+.custom-rule-item-rm:hover{background:rgba(208,106,78,.1)}
+
+/* ROSTER */
+.roster-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.roster-row{display:grid;grid-template-columns:2fr 1.5fr auto;gap:10px;align-items:center}
+@media(max-width:640px){.roster-row{grid-template-columns:1fr 1fr auto}}
+.roster-row input,.roster-row select{padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500}
+.roster-row input:focus,.roster-row select:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+.roster-row select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.roster-row select option{background:var(--navy);color:var(--white)}
+.roster-rm{background:rgba(208,106,78,.08);border:1px solid rgba(208,106,78,.25);color:var(--status-alert);width:38px;height:38px;border-radius:8px;font-size:18px;cursor:pointer;font-family:inherit;font-weight:700;line-height:1;padding:0;transition:background .15s}
+.roster-rm:hover{background:rgba(208,106,78,.2)}
+.btn-add-member{background:transparent;color:var(--accent);border:1px dashed var(--border-strong);padding:11px 22px;border-radius:8px;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:.02em;transition:all .15s}
+.btn-add-member:hover{border-color:var(--accent);background:var(--accent-soft);border-style:solid}
+
+/* DRAWER + GLOSSARY */
+.glossary-entry{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.glossary-entry h4{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:8px}
+.glossary-entry .def{font-size:13.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+.glossary-entry .watch,.glossary-entry .do{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:6px}
+.glossary-entry .watch strong,.glossary-entry .do strong{color:var(--white);font-weight:700}
+.watchout-item{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;padding-left:18px;position:relative}
+.watchout-item::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.watchout-item strong{color:var(--white);font-weight:700}
+
+.deep-trigger{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:11px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:999px;color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+.deep-trigger:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.deep-trigger::after{content:'\2192';margin-left:4px;transition:transform .2s;font-weight:700}
+.deep-trigger:hover::after{transform:translateX(3px)}
+
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);background:var(--navy-deep);border-left:1px solid var(--border-strong);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-deep) 100%);position:relative}
+.drawer-header::before{content:'';position:absolute;top:-1px;left:24px;right:80px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.drawer-eyebrow{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.drawer-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;line-height:1.2}
+.drawer-close{background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-family:inherit;flex-shrink:0;transition:all .15s;line-height:1;padding:0}
+.drawer-close:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.drawer-body{flex:1;overflow-y:auto;padding:24px 28px 36px}
+.drawer-intro{font-size:14.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.65}
+.drawer-section{margin-bottom:30px}
+.drawer-section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* FORM */
+.field{margin-bottom:18px}
+label.lbl{display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+label.lbl .req{color:var(--accent);margin-left:2px}
+label.lbl .opt{color:var(--text-faint);font-weight:500;text-transform:none;letter-spacing:.02em;margin-left:4px}
+input[type=text],textarea{width:100%;padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500}
+input::placeholder,textarea::placeholder{color:var(--text-faint)}
+input:focus,textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+textarea{resize:vertical;line-height:1.55;min-height:80px}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-orange{background:var(--accent);color:var(--navy)}
+.btn-orange:hover{background:var(--accent-hover)}
+.btn-orange:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+.btn-orange::after{content:'\2192';transition:transform .2s;font-weight:700}
+.btn-orange:hover::after{transform:translateX(3px)}
+.btn-orange:disabled::after{display:none}
+.btn-back{background:transparent;color:var(--text-dim);font-weight:700;padding:13px 18px}
+.btn-back:hover{color:var(--white)}
+.btn-back::before{content:'\2190';margin-right:6px;font-weight:700}
+
+.review-block{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px;position:relative}
+.review-block h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.review-block .review-content{font-size:14.5px;line-height:1.65;color:var(--text-muted)}
+.review-block .review-content ul{margin-left:22px;margin-top:8px;list-style:disc}
+.review-block .review-content li{margin-bottom:6px}
+.review-block .review-content li::marker{color:var(--accent)}
+.review-block .review-content strong{color:var(--white);font-weight:700}
+.review-edit{font-size:11.5px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;float:right;padding:2px 8px;border-radius:6px;text-decoration:none}
+.review-edit:hover{background:var(--accent-soft)}
+
+.success-card{text-align:center;padding:60px 48px}
+.success-card .check{width:72px;height:72px;background:var(--accent);color:var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin-bottom:22px;box-shadow:0 8px 24px rgba(240,100,14,.3)}
+.success-card h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:14px}
+.success-card .success-lede{color:var(--text-muted);margin-bottom:18px;font-size:16px;line-height:1.65;max-width:520px;margin:0 auto 18px}
+.success-card .next-up{font-size:14px;color:var(--text-muted);max-width:520px;margin:0 auto 8px}
+.success-card .next-up strong{color:var(--white);font-weight:700}
+
+.footer{max-width:880px;margin:0 auto;padding:0 44px 40px;text-align:center}
+.footer .reset{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;padding:10px 18px;border-radius:8px;letter-spacing:.02em}
+.footer .reset:hover{color:var(--status-alert);border-color:rgba(208,106,78,.4)}
+.disclaimer{font-size:11.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;font-weight:500}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#" style="text-decoration:none">
+    <span class="logo-mark">Etc.<span style="font-weight:300;opacity:.7"> Projects</span></span>
+    <span class="logo-sub">ai training program</span>
+  </a>
+  <span class="page-badge" id="headerBadge">Module 5 of 5</span>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<section id="step-welcome">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <span class="eyebrow">AI Training Program · Module 5</span>
+        <h1>Practice <span class="em">AI Kit</span></h1>
+        <span class="tagline">the rules your whole team works by</span>
+        <p class="lede">Team-level standards that govern how AI is used across your practice. Escalation rules. The do-not-AI list. Your team voice. Built by a Lead Advisor or Admin, ratified by every team member.</p>
+        <p class="lede" style="margin-bottom:8px">This is the second shared artifact. The Practice Prompt Library is what the team uses. The Practice AI Kit is what the team agrees to operate by.</p>
+
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">5</div><div class="hero-stat-label">Short Steps</div></div>
+          <div><div class="hero-stat-val">~30</div><div class="hero-stat-label">Minutes to Draft</div></div>
+          <div><div class="hero-stat-val">1</div><div class="hero-stat-label">Kit Your Team Signs</div></div>
+        </div>
+
+        <div class="btn-row" style="justify-content:flex-start;margin-top:32px">
+          <button class="btn btn-orange" data-go="unit-1">Begin</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-side-label">Welcome from the Etc. Projects AI Steward</div>
+        <div class="hero-side-title">Why teams need a Kit.</div>
+        <div class="hero-side-desc">Press play. About a minute. A walk-through of why individual standards stop working at team scale, and what the Kit fixes.</div>
+        <div class="audio-wrap" style="margin-bottom:0">
+          <div class="audio-placeholder" role="note">
+            <div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div>
+            <div class="audio-placeholder-body"><div class="audio-placeholder-title">Welcome to Module 5</div><div class="audio-placeholder-meta">≈ 1 min</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- UNIT 1: Why team standards matter -->
+  <section class="card hidden" id="step-unit-1">
+    <span class="unit-num">Step 1 of 5</span>
+    <h2 class="unit-title">Why team <span class="em">standards</span> matter</h2>
+    <p class="unit-intro">Foundation, identity, and compliance files are personal. They keep one user aligned. The Practice AI Kit is shared. It keeps the team aligned with each other.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Why team standards matter</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>Three things only a team-level Kit can solve</h3>
+      <ul>
+        <li><strong>Consistency across seats.</strong> When every team member makes their own AI decisions, clients see different versions of the practice depending on whose seat their work passed through. The Kit makes consistency easier than inconsistency.</li>
+        <li><strong>Escalation paths.</strong> When AI output touches something sensitive (a complex case, a regulatory edge, a high-net-worth client), every team member should know what gets reviewed and by whom. Without a written rule, escalation depends on who happens to feel uncertain that day.</li>
+        <li><strong>Shared do-not-AI list.</strong> Some tasks AI should not touch. The list belongs to the practice, not to one person's discretion. New team members inherit it on day one rather than learning it after a near-miss.</li>
+      </ul>
+
+      <h3>Before and after: what the Kit prevents across three seats</h3>
+      <p>Imagine a three-person practice. Lead Advisor, Associate Advisor, Licensed Assistant. All three use AI. There is no Kit yet.</p>
+
+      <div class="seats-panel seats-bad">
+        <h4>Without a Kit</h4>
+        <div class="seats-card">
+          <p><strong>The Lead Advisor</strong> uses AI to draft client emails and treats account numbers as okay to paste because his AI tool is "private."</p>
+          <p><strong>The Associate</strong> uses AI for suitability comparisons and sends drafts directly to clients because no one told her she had to route them through anyone first.</p>
+          <p><strong>The Licensed Assistant</strong> uses AI to draft a response to a client complaint letter, because the Lead Advisor never said not to.</p>
+          <p>Three seats. Three different standards. Three different exposure levels. One regulator inquiry away from a problem the practice did not see coming.</p>
+        </div>
+      </div>
+
+      <div class="seats-panel seats-good">
+        <h4>With a Kit</h4>
+        <div class="seats-card">
+          <p>Same practice. Same three seats. Same prompts on the same day.</p>
+          <p><strong>The Lead's</strong> foundation file (and the Kit) names "I will never paste a client's full name, SIN, account numbers, or other identifiers into a public AI tool." Account numbers stay out of AI.</p>
+          <p><strong>The Associate</strong> sees "AI-generated product recommendations or suitability statements before they reach a client" on the escalation list. She routes her draft to the Lead for review. The Lead reviews, the draft gets refined, the meeting prep is solid.</p>
+          <p><strong>The Licensed Assistant</strong> sees "AI is never used to draft a regulator response, complaint reply, or legal letter without firm review" on the do-not-AI list. She stops, routes to the Lead, who handles the response with firm support. AI stays out of it entirely.</p>
+          <p>Same tools. Same prompts. Different exposure. The Kit did that.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Who builds it.</strong> A Lead Advisor or Admin drafts the Kit. The team reviews and ratifies it. Once ratified, the Kit becomes the meta-context for every AI session: loaded alongside every team member's personal files, referenced when a tool produces output the user is uncertain about.
+      </div>
+
+      <div class="role-nod">
+        <strong>For Lead Advisors:</strong> drafting the Kit is your work. Take the time. Pull the team in for ratification.<br><br>
+        <strong>For Admin:</strong> often the Kit lives with you operationally. You are the one who keeps it current.<br><br>
+        <strong>For everyone else:</strong> ratification deserves a real read. When something in the Kit does not fit, surface it now. Better to surface it before the rule has to be applied in real time.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-1">Go deeper on team-scale dysfunctions</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="welcome">Back</button>
+      <button class="btn btn-orange" data-go="unit-2">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 2: Escalation -->
+  <section class="card hidden" id="step-unit-2">
+    <span class="unit-num">Step 2 of 5</span>
+    <h2 class="unit-title">Your <span class="em">escalation</span> rules</h2>
+    <p class="unit-intro">When AI output goes to human review before it leaves the practice. Pick the triggers that fit your work. Add your own. Three to seven rules is the target.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your escalation rules</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="section-label">Common escalation triggers</div>
+    <p class="section-help">When you select a trigger, name the reviewer for it. Lead Advisor for substantive content. Compliance for compliance content. Admin for operational.</p>
+    <div class="rule-list" id="escalationList"></div>
+
+    <div class="section-label">Add a custom escalation rule</div>
+    <div class="custom-rule-form">
+      <h4>New trigger + reviewer</h4>
+      <textarea id="customEscText" placeholder="e.g. AI-drafted content for any high-net-worth client (>$2M)"></textarea>
+      <input type="text" id="customEscReviewer" placeholder="Reviewer (e.g. Lead Advisor, Kelly Smith, Compliance)">
+      <div class="custom-rule-form-actions"><button class="btn-add-rule" id="addCustomEscBtn" type="button" disabled>Add trigger</button></div>
+    </div>
+    <div class="custom-rules-list" id="customEscList"></div>
+
+    <div class="worked-example">
+      <h4>An Associate Advisor uses the escalation rule</h4>
+      <p>Sarah is an Associate Advisor at a four-person practice. She drafts talking points for a client meeting using AI. The client wants to discuss shifting from a balanced fund to a higher-equity allocation. AI's draft includes specific allocation suggestions ("a 70/30 split between equities and fixed income would align with the client's stated time horizon").</p>
+      <p>The Kit's escalation list includes "AI-generated product recommendations or suitability statements before they reach a client." Sarah recognizes the trigger and routes the draft to the Lead Advisor before the meeting. The Lead reviews, removes the specific allocation suggestion (because suitability requires the full KYC picture that the prompt did not include), reshapes the talking points around what the client wants to explore, and the meeting prep gets sharper. The trigger did its work. The suitability decision stays with the Lead, where it belongs.</p>
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-2" style="margin-top:18px">Go deeper on escalation design</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-1">Back</button>
+      <button class="btn btn-orange" data-go="unit-3">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 3: Do-not-AI -->
+  <section class="card hidden" id="step-unit-3">
+    <span class="unit-num">Step 3 of 5</span>
+    <h2 class="unit-title">Your <span class="em">do-not-AI</span> list</h2>
+    <p class="unit-intro">Specific things AI never does in this practice. Sometimes because compliance forbids it. Sometimes because judgment requires a human in the seat. Both reasons go on the list.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your do-not-AI list</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="section-label">Common items</div>
+    <div class="rule-list" id="doNotList"></div>
+
+    <div class="section-label">Add a custom item</div>
+    <div class="custom-rule-form">
+      <h4>New do-not item</h4>
+      <textarea id="customDoNotText" placeholder="e.g. AI never drafts the regulator complaint response"></textarea>
+      <div class="custom-rule-form-actions"><button class="btn-add-rule" id="addCustomDoNotBtn" type="button" disabled>Add item</button></div>
+    </div>
+    <div class="custom-rules-list" id="customDoNotList"></div>
+
+    <div class="worked-example">
+      <h4>An Admin stops the list from getting tested</h4>
+      <p>Naveen is the Admin for a three-advisor practice. The practice receives an inquiry letter from FSRA asking for information about a recent client complaint. Naveen's instinct is to use AI to produce a first draft of the response so the Lead Advisor can edit.</p>
+      <p>Before he prompts, he checks the Kit. Item three on the do-not-AI list reads "AI is never used to draft a regulator response, complaint reply, or legal letter without firm review." Naveen stops. He flags the inquiry to the Lead Advisor immediately, who handles the response personally with the firm's compliance support team. AI plays no role in producing the response.</p>
+      <p>The do-not list is the boundary the practice agreed to in advance, before the moment of decision. Naveen did not have to weigh whether AI was "appropriate enough" in the moment. The Kit already decided.</p>
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-3" style="margin-top:18px">Go deeper on what belongs on the list</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-2">Back</button>
+      <button class="btn btn-orange" data-go="unit-4">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 4: Team voice -->
+  <section class="card hidden" id="step-unit-4">
+    <span class="unit-num">Step 4 of 5</span>
+    <h2 class="unit-title">Your team <span class="em">voice</span></h2>
+    <p class="unit-intro">The team voice extends the Lead Advisor's identity from Module 2. It captures how every team member's AI-generated content should sound, with adjustments per role.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your team voice</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="callout">
+      <strong>Where team voice comes from.</strong> The Lead Advisor's <code>my-identity.md</code> is the anchor. Other team members make adjustments per role. A Licensed Assistant writing on behalf of the practice carries the Lead's voice with assistant-level signoffs and disclaimers.
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="vLeadRef">Lead Advisor voice reference <span class="req">*</span></label>
+      <input type="text" id="vLeadRef" placeholder="e.g. Loaded from Kelly's my-identity.md, Module 2">
+    </div>
+    <div class="field">
+      <label class="lbl" for="vShared">What is shared across all roles <span class="req">*</span></label>
+      <textarea id="vShared" placeholder="Three to five lines. The voice characteristics every team member's AI-generated content carries. Tone, sentence rhythm, do-not-say words."></textarea>
+    </div>
+    <div class="field">
+      <label class="lbl" for="vAssoc">Adjustments for Associate Advisors <span class="opt">(optional)</span></label>
+      <textarea id="vAssoc" placeholder="Anything different for an associate writing in the practice's voice."></textarea>
+    </div>
+    <div class="field">
+      <label class="lbl" for="vLicensed">Adjustments for Licensed Assistants <span class="opt">(optional)</span></label>
+      <textarea id="vLicensed" placeholder="Anything different for a Licensed Assistant. Often: more prominent disclaimers, more conservative product language."></textarea>
+    </div>
+    <div class="field">
+      <label class="lbl" for="vAdmin">Adjustments for Admin <span class="opt">(optional)</span></label>
+      <textarea id="vAdmin" placeholder="Anything different for Admin. Often: operational tone vs. advisory tone."></textarea>
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-4">Go deeper on cross-role voice</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-3">Back</button>
+      <button class="btn btn-orange" data-go="unit-5" id="unit4Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 5: Roster + Ratify -->
+  <section class="card hidden" id="step-unit-5">
+    <span class="unit-num">Step 5 of 5</span>
+    <h2 class="unit-title">Save and <span class="em">ratify</span></h2>
+    <p class="unit-intro">Roster the team members covered by this Kit. After download, every team member reads it and signs the ratification column. The signed file gets kept on record.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Save and ratify</div><div class="audio-placeholder-meta">&lt; 1 min</div></div></div></div>
+
+    <div class="field">
+      <label class="lbl" for="practiceName">Practice or firm name <span class="req">*</span></label>
+      <input type="text" id="practiceName" placeholder="e.g. Smith Wealth Management">
+    </div>
+
+    <div class="section-label">Team roster</div>
+    <p class="section-help">Add every team member who works under this Kit. Add yourself first.</p>
+    <div class="roster-list" id="rosterList"></div>
+    <button type="button" class="btn-add-member" id="addMemberBtn">+ Add team member</button>
+
+    <button class="deep-trigger" data-deep="unit-5" style="margin-top:24px">Go deeper on ratification</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-4">Back</button>
+      <button class="btn btn-orange" data-go="review" id="unit5Next" disabled>Review and generate</button>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="card hidden" id="step-review">
+    <span class="unit-num">Almost done</span>
+    <h2 class="unit-title">Review your <span class="em">Kit</span></h2>
+    <p class="unit-intro">A look at what gets included in the file. Edit anything that needs adjusting.</p>
+
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-2">Edit</a><h4>Escalation rules</h4><div class="review-content" id="reviewEscalation"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-3">Edit</a><h4>Do-not-AI list</h4><div class="review-content" id="reviewDoNot"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-4">Edit</a><h4>Team voice</h4><div class="review-content" id="reviewVoice"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-5">Edit</a><h4>Practice and roster</h4><div class="review-content" id="reviewRoster"></div></div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-5">Back</button>
+      <button class="btn btn-orange" id="generateBtn">Generate practice-ai-kit.md</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="card success-card hidden" id="step-success">
+    <div class="check">✓</div>
+    <h2>Your Kit is <span class="em">ready</span> to ratify.</h2>
+    <p class="success-lede">Your file has been downloaded. Share it with every team member on the roster. Each one confirms they have read it. Update the file as the practice evolves.</p>
+    <p class="next-up"><strong>You've completed the modules.</strong> The Steward's Log delivers monthly updates from this point on. Watch for the first one.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <button class="reset" id="resetBtn">Start over from the beginning</button>
+  <p class="disclaimer">This training program is provided for guidance and planning only. It is not legal, regulatory, or compliance advice. © 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="deepDrawer" aria-hidden="true" role="dialog" tabindex="-1">
+  <div class="drawer-header"><div><div class="drawer-eyebrow">Go deeper</div><div class="drawer-title" id="drawerTitle"></div></div><button class="drawer-close" id="drawerClose" aria-label="Close">×</button></div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+const STORAGE_KEY = 'etc_module5_state';
+const M1_KEY = 'etc_module1_state';
+const M2_KEY = 'etc_module2_state';
+const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','unit-5','review','success'];
+
+const ESCALATION_TRIGGERS = [
+  { id: 'e1', text: 'AI-drafted content that references a regulator or compliance requirement' },
+  { id: 'e2', text: 'AI-generated product recommendations or suitability statements before they reach a client' },
+  { id: 'e3', text: 'Any first-time use of a new AI tool with client information' },
+  { id: 'e4', text: 'Communication on sensitive client matters (death, divorce, illness, dispute)' },
+  { id: 'e5', text: 'Complex tax, estate, or cross-border content drafted by AI' },
+  { id: 'e6', text: 'Anything touching multiple jurisdictions where rules diverge' },
+  { id: 'e7', text: 'AI output that surfaces or implies a possible privacy or compliance breach' },
+  { id: 'e8', text: 'AI handling any client matter that involves PEP screening or AML triggers' }
+];
+
+const DO_NOT_ITEMS = [
+  { id: 'd1', text: 'AI is never given a SIN, full account number, or government ID number, in any form' },
+  { id: 'd2', text: 'AI is never used to make final product recommendations without licensed advisor sign-off' },
+  { id: 'd3', text: 'AI is never used to draft a regulator response, complaint reply, or legal letter without firm review' },
+  { id: 'd4', text: 'AI is never used to record or transcribe a client meeting without explicit, in-the-moment consent' },
+  { id: 'd5', text: 'AI is never used to write to a beneficiary about a deceased client without family acknowledgment first' },
+  { id: 'd6', text: 'AI is never used to publish content the team has not reviewed and verified' },
+  { id: 'd7', text: 'AI tools that train on submitted prompts are never given client-specific information' }
+];
+
+const ROSTER_ROLES = ['Legacy Advisor','Lead Advisor','Associate Advisor','Licensed Assistant','Admin'];
+
+let state = {
+  step: 'welcome',
+  escalationIds: [],
+  escalationReviewers: {},
+  customEscalations: [],
+  doNotIds: [],
+  customDoNots: [],
+  voice: { leadRef: '', shared: '', associate: '', licensed: '', admin: '' },
+  practiceName: '',
+  roster: [],
+  identity: { name: '', role: '', practice: '' },
+  inheritedFromPrior: false,
+  completedAt: null,
+  seenDeep: {}
+};
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function load() {
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+  if (!state.escalationIds) state.escalationIds = [];
+  if (!state.escalationReviewers) state.escalationReviewers = {};
+  if (!state.customEscalations) state.customEscalations = [];
+  if (!state.doNotIds) state.doNotIds = [];
+  if (!state.customDoNots) state.customDoNots = [];
+  if (!state.voice) state.voice = { leadRef: '', shared: '', associate: '', licensed: '', admin: '' };
+  if (!state.roster) state.roster = [];
+}
+function loadM1() { try { const raw = localStorage.getItem(M1_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function loadM2() { try { const raw = localStorage.getItem(M2_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function reset() { if (!confirm('This wipes everything you have entered and starts over. Continue?')) return; localStorage.removeItem(STORAGE_KEY); location.reload(); }
+
+function escapeHtml(s) { if (s == null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
+
+function goTo(step) { if (!STEPS.includes(step)) return; state.step = step; save(); render(); }
+
+function inheritIdentity() {
+  if (state.inheritedFromPrior) return;
+  const m2 = loadM2(); const m1 = loadM1();
+  const id = (m2 && m2.identity && m2.identity.name) ? m2.identity : (m1 && m1.identity ? m1.identity : null);
+  if (id) {
+    state.identity = { name: id.name || '', role: id.role || '', practice: id.practice || '' };
+    if (!state.practiceName && id.practice) state.practiceName = id.practice;
+    // Pre-load the lead's voice reference if M2 exists
+    if (!state.voice.leadRef && m2 && m2.identity && m2.identity.name) {
+      state.voice.leadRef = `Loaded from ${m2.identity.name}'s my-identity.md, Module 2`;
+    }
+    // Pre-roster the user as the first member
+    if (state.roster.length === 0 && id.name) {
+      state.roster.push({ id: 'r'+Date.now(), name: id.name, role: id.role || '' });
+    }
+  }
+  state.inheritedFromPrior = true;
+  save();
+}
+
+function render() {
+  inheritIdentity();
+  STEPS.forEach(s => { const el = document.getElementById('step-'+s); if (el) el.classList.toggle('hidden', s !== state.step); });
+  const idx = STEPS.indexOf(state.step);
+  const pct = state.step === 'welcome' ? 0 : state.step === 'success' ? 100 : Math.round((idx/(STEPS.length-2))*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  const badge = document.getElementById('headerBadge');
+  if (state.step === 'welcome') badge.textContent = 'Module 5 of 5';
+  else if (state.step === 'success') badge.textContent = 'Complete';
+  else if (state.step === 'review') badge.textContent = 'Review';
+  else badge.textContent = `Step ${idx} of 5`;
+
+  if (state.step === 'unit-2') { renderEscalation(); bindCustomEsc(); }
+  if (state.step === 'unit-3') { renderDoNot(); bindCustomDoNot(); }
+  if (state.step === 'unit-4') hydrateVoice();
+  if (state.step === 'unit-5') hydrateRoster();
+  if (state.step === 'review') renderReview();
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- UNIT 2: escalation ---------- */
+function renderEscalation() {
+  const wrap = document.getElementById('escalationList');
+  wrap.innerHTML = '';
+  ESCALATION_TRIGGERS.forEach(t => {
+    const isSel = state.escalationIds.includes(t.id);
+    const reviewer = state.escalationReviewers[t.id] || '';
+    const card = document.createElement('div');
+    card.className = 'rule-card' + (isSel ? ' selected' : '');
+    card.innerHTML = `
+      <div class="rule-top">
+        <input type="checkbox" ${isSel?'checked':''}>
+        <div class="rule-text">${escapeHtml(t.text)}</div>
+      </div>
+      <div class="rule-reviewer">
+        <div class="rule-reviewer-label">Reviewer for this trigger</div>
+        <input type="text" placeholder="e.g. Lead Advisor, Kelly Smith, Compliance" value="${escapeHtml(reviewer)}">
+      </div>
+    `;
+    card.querySelector('input[type=checkbox]').addEventListener('change', e => {
+      if (e.target.checked && !state.escalationIds.includes(t.id)) state.escalationIds.push(t.id);
+      else if (!e.target.checked) { state.escalationIds = state.escalationIds.filter(x => x !== t.id); delete state.escalationReviewers[t.id]; }
+      save(); renderEscalation();
+    });
+    const revInput = card.querySelector('.rule-reviewer input');
+    revInput.addEventListener('input', e => {
+      state.escalationReviewers[t.id] = e.target.value;
+      save();
+    });
+    wrap.appendChild(card);
+  });
+  renderCustomEscList();
+}
+function renderCustomEscList() {
+  const wrap = document.getElementById('customEscList');
+  wrap.innerHTML = '';
+  state.customEscalations.forEach((e, idx) => {
+    const item = document.createElement('div');
+    item.className = 'custom-rule-item';
+    item.innerHTML = `
+      <div class="custom-rule-item-top">
+        <div class="custom-rule-item-text">${escapeHtml(e.text)}</div>
+        <button class="custom-rule-item-rm" type="button">Remove</button>
+      </div>
+      <div class="custom-rule-item-meta"><strong>Reviewer:</strong> ${escapeHtml(e.reviewer || '_not named_')}</div>
+    `;
+    item.querySelector('.custom-rule-item-rm').addEventListener('click', () => {
+      state.customEscalations.splice(idx, 1); save(); renderEscalation();
+    });
+    wrap.appendChild(item);
+  });
+}
+function bindCustomEsc() {
+  const t = document.getElementById('customEscText');
+  const r = document.getElementById('customEscReviewer');
+  const btn = document.getElementById('addCustomEscBtn');
+  if (!t || t.dataset.bound) { update(); return; }
+  t.dataset.bound = '1';
+  t.addEventListener('input', update);
+  r.addEventListener('input', update);
+  btn.addEventListener('click', () => {
+    if (!t.value.trim()) return;
+    state.customEscalations.push({ id: 'ec'+Date.now(), text: t.value.trim(), reviewer: r.value.trim() });
+    t.value = ''; r.value = ''; update(); save(); renderEscalation();
+  });
+  function update() { btn.disabled = !t.value.trim(); }
+  update();
+}
+
+/* ---------- UNIT 3: do-not ---------- */
+function renderDoNot() {
+  const wrap = document.getElementById('doNotList');
+  wrap.innerHTML = '';
+  DO_NOT_ITEMS.forEach(t => {
+    const isSel = state.doNotIds.includes(t.id);
+    const card = document.createElement('div');
+    card.className = 'rule-card' + (isSel ? ' selected' : '');
+    card.innerHTML = `<div class="rule-top"><input type="checkbox" ${isSel?'checked':''}><div class="rule-text">${escapeHtml(t.text)}</div></div>`;
+    card.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked && !state.doNotIds.includes(t.id)) state.doNotIds.push(t.id);
+      else if (!e.target.checked) state.doNotIds = state.doNotIds.filter(x => x !== t.id);
+      save(); renderDoNot();
+    });
+    wrap.appendChild(card);
+  });
+  renderCustomDoNotList();
+}
+function renderCustomDoNotList() {
+  const wrap = document.getElementById('customDoNotList');
+  wrap.innerHTML = '';
+  state.customDoNots.forEach((d, idx) => {
+    const item = document.createElement('div');
+    item.className = 'custom-rule-item';
+    item.innerHTML = `<div class="custom-rule-item-top"><div class="custom-rule-item-text">${escapeHtml(d.text)}</div><button class="custom-rule-item-rm" type="button">Remove</button></div>`;
+    item.querySelector('.custom-rule-item-rm').addEventListener('click', () => {
+      state.customDoNots.splice(idx, 1); save(); renderDoNot();
+    });
+    wrap.appendChild(item);
+  });
+}
+function bindCustomDoNot() {
+  const t = document.getElementById('customDoNotText');
+  const btn = document.getElementById('addCustomDoNotBtn');
+  if (!t || t.dataset.bound) { update(); return; }
+  t.dataset.bound = '1';
+  t.addEventListener('input', update);
+  btn.addEventListener('click', () => {
+    if (!t.value.trim()) return;
+    state.customDoNots.push({ id: 'dc'+Date.now(), text: t.value.trim() });
+    t.value = ''; update(); save(); renderDoNot();
+  });
+  function update() { btn.disabled = !t.value.trim(); }
+  update();
+}
+
+/* ---------- UNIT 4: voice ---------- */
+function hydrateVoice() {
+  const map = { vLeadRef:'leadRef', vShared:'shared', vAssoc:'associate', vLicensed:'licensed', vAdmin:'admin' };
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el.value !== state.voice[key]) el.value = state.voice[key] || '';
+  });
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('input', () => {
+      state.voice[key] = el.value;
+      save(); updateUnit4Next();
+    });
+  });
+  updateUnit4Next();
+}
+function updateUnit4Next() {
+  document.getElementById('unit4Next').disabled = !(state.voice.leadRef.trim() && state.voice.shared.trim());
+}
+
+/* ---------- UNIT 5: roster ---------- */
+function hydrateRoster() {
+  const p = document.getElementById('practiceName');
+  if (p.value !== state.practiceName) p.value = state.practiceName || '';
+  if (!p.dataset.bound) {
+    p.dataset.bound = '1';
+    p.addEventListener('input', () => { state.practiceName = p.value; save(); updateUnit5Next(); });
+  }
+  renderRoster();
+  const addBtn = document.getElementById('addMemberBtn');
+  if (!addBtn.dataset.bound) {
+    addBtn.dataset.bound = '1';
+    addBtn.addEventListener('click', () => {
+      state.roster.push({ id: 'r'+Date.now()+Math.random().toString(36).slice(2,6), name: '', role: '' });
+      save(); renderRoster();
+    });
+  }
+  updateUnit5Next();
+}
+function renderRoster() {
+  const wrap = document.getElementById('rosterList');
+  wrap.innerHTML = '';
+  state.roster.forEach((m, idx) => {
+    const row = document.createElement('div');
+    row.className = 'roster-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Name" value="${escapeHtml(m.name)}">
+      <select>
+        <option value="">Role…</option>
+        ${ROSTER_ROLES.map(r => `<option value="${escapeHtml(r)}" ${m.role===r?'selected':''}>${escapeHtml(r)}</option>`).join('')}
+      </select>
+      <button type="button" class="roster-rm" aria-label="Remove">×</button>
+    `;
+    const inputs = row.querySelectorAll('input, select');
+    inputs[0].addEventListener('input', e => { state.roster[idx].name = e.target.value; save(); updateUnit5Next(); });
+    inputs[1].addEventListener('change', e => { state.roster[idx].role = e.target.value; save(); updateUnit5Next(); });
+    row.querySelector('.roster-rm').addEventListener('click', () => {
+      state.roster.splice(idx, 1); save(); renderRoster(); updateUnit5Next();
+    });
+    wrap.appendChild(row);
+  });
+}
+function updateUnit5Next() {
+  const hasPractice = !!state.practiceName.trim();
+  const validRoster = state.roster.filter(m => m.name.trim() && m.role).length > 0;
+  document.getElementById('unit5Next').disabled = !(hasPractice && validRoster);
+}
+
+/* ---------- REVIEW ---------- */
+function renderReview() {
+  // Escalation
+  const escLines = [];
+  ESCALATION_TRIGGERS.filter(t => state.escalationIds.includes(t.id)).forEach(t => {
+    const rev = state.escalationReviewers[t.id] || '_reviewer not named_';
+    escLines.push(`<li>${escapeHtml(t.text)} <em style="color:var(--text-dim);font-style:italic"> · Reviewer: ${escapeHtml(rev)}</em></li>`);
+  });
+  state.customEscalations.forEach(e => {
+    escLines.push(`<li>${escapeHtml(e.text)} <em style="color:var(--text-dim);font-style:italic"> · Reviewer: ${escapeHtml(e.reviewer||'_not named_')}</em></li>`);
+  });
+  document.getElementById('reviewEscalation').innerHTML = escLines.length ? `<ul>${escLines.join('')}</ul>` : '<span style="color:var(--text-dim)">None selected</span>';
+
+  // Do-not
+  const dLines = [];
+  DO_NOT_ITEMS.filter(d => state.doNotIds.includes(d.id)).forEach(d => dLines.push(`<li>${escapeHtml(d.text)}</li>`));
+  state.customDoNots.forEach(d => dLines.push(`<li>${escapeHtml(d.text)}</li>`));
+  document.getElementById('reviewDoNot').innerHTML = dLines.length ? `<ul>${dLines.join('')}</ul>` : '<span style="color:var(--text-dim)">None selected</span>';
+
+  // Voice
+  const v = state.voice;
+  let vHtml = '';
+  if (v.leadRef) vHtml += `<p><strong>Lead reference:</strong> ${escapeHtml(v.leadRef)}</p>`;
+  if (v.shared) vHtml += `<p><strong>Shared:</strong> ${escapeHtml(v.shared)}</p>`;
+  if (v.associate) vHtml += `<p><strong>Associate:</strong> ${escapeHtml(v.associate)}</p>`;
+  if (v.licensed) vHtml += `<p><strong>Licensed Assistant:</strong> ${escapeHtml(v.licensed)}</p>`;
+  if (v.admin) vHtml += `<p><strong>Admin:</strong> ${escapeHtml(v.admin)}</p>`;
+  document.getElementById('reviewVoice').innerHTML = vHtml || '<span style="color:var(--text-dim)">Nothing entered yet</span>';
+
+  // Roster
+  const valid = state.roster.filter(m => m.name.trim() && m.role);
+  let rHtml = state.practiceName ? `<p><strong>Practice:</strong> ${escapeHtml(state.practiceName)}</p>` : '';
+  if (valid.length) {
+    rHtml += '<ul>'+valid.map(m=>`<li><strong>${escapeHtml(m.name)}</strong>, ${escapeHtml(m.role)}</li>`).join('')+'</ul>';
+  } else {
+    rHtml += '<span style="color:var(--text-dim)">No team members yet</span>';
+  }
+  document.getElementById('reviewRoster').innerHTML = rHtml;
+}
+
+/* ---------- MARKDOWN ---------- */
+function buildMarkdown() {
+  const i = state.identity;
+  const today = new Date().toISOString().slice(0,10);
+  const builtBy = i.name ? `\n**Built by:** ${i.name}${i.role?', '+i.role:''}` : '';
+
+  // Escalations
+  const escLines = [];
+  ESCALATION_TRIGGERS.filter(t => state.escalationIds.includes(t.id)).forEach(t => {
+    const rev = state.escalationReviewers[t.id] || '_reviewer not named_';
+    escLines.push(`- ${t.text} — **Reviewer:** ${rev}`);
+  });
+  state.customEscalations.forEach(e => {
+    escLines.push(`- ${e.text} — **Reviewer:** ${e.reviewer || '_not named_'}`);
+  });
+  const escMd = escLines.length ? escLines.join('\n') : '_None selected._';
+
+  // Do-not
+  const dLines = [];
+  DO_NOT_ITEMS.filter(d => state.doNotIds.includes(d.id)).forEach(d => dLines.push(`- ${d.text}`));
+  state.customDoNots.forEach(d => dLines.push(`- ${d.text}`));
+  const dMd = dLines.length ? dLines.join('\n') : '_None selected._';
+
+  // Voice
+  const v = state.voice;
+  let voiceMd = `**Lead Advisor voice reference:** ${v.leadRef || '_not provided_'}\n\n`;
+  voiceMd += `**Shared across all roles:**\n${v.shared || '_not provided_'}\n`;
+  if (v.associate.trim()) voiceMd += `\n**Adjustments for Associate Advisors:**\n${v.associate}\n`;
+  if (v.licensed.trim()) voiceMd += `\n**Adjustments for Licensed Assistants:**\n${v.licensed}\n`;
+  if (v.admin.trim()) voiceMd += `\n**Adjustments for Admin:**\n${v.admin}\n`;
+
+  // Roster
+  const valid = state.roster.filter(m => m.name.trim() && m.role);
+  const rosterMd = valid.length
+    ? valid.map(m => `- [ ] **${m.name}**, ${m.role} · ratified date: ___________ · signature: ___________`).join('\n')
+    : '_No team members rostered._';
+
+  return `# Practice AI Kit
+
+**Practice:** ${state.practiceName || '_not provided_'}
+**Created:** ${today}${builtBy}
+
+This is the team-level standard for how AI is used across this practice. Every team member loads this file as system context in addition to their personal foundation, identity, and compliance files.
+
+## Escalation rules
+
+The following triggers require AI output to receive human review before it leaves the practice:
+
+${escMd}
+
+## Do-not-AI list
+
+The practice does not use AI for the following:
+
+${dMd}
+
+## Team voice
+
+${voiceMd}
+## Roster and ratification
+
+Every team member confirms they have read and agree to operate by this Kit:
+
+${rosterMd}
+
+## How AI should use this file
+
+When this Kit is loaded as system context alongside a team member's personal files:
+- Treat the escalation rules as required gates. When output triggers any escalation rule, surface it as a flag rather than letting the user push past it.
+- Treat the do-not-AI list as absolute. When a request falls inside the list, refuse and explain why. Do not produce a partial answer.
+- Apply the team voice on top of the user's personal voice. Where the two conflict, the personal voice wins for tone, and the Kit wins for content boundaries.
+- The Kit and the Practice Prompt Library work together. Prompts in the library assume the Kit is loaded.
+
+---
+*Generated by the Etc. Projects AI Training Program · Module 5 · ${today}*
+*This is a shared practice document, not legal, regulatory, or compliance advice.*
+`;
+}
+function downloadMarkdown() {
+  const md = buildMarkdown();
+  const slug = (state.practiceName||'practice').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'practice';
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `${slug}-ai-kit.md`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- DRAWER ---------- */
+const DEEP_CONTENT = {
+  'unit-1': {
+    title: 'Why teams need a Kit',
+    intro: 'Three specific patterns show up when a team uses AI without shared standards.',
+    glossary: [
+      { term: 'Tool variation', def: 'Different AI tools (Claude, ChatGPT, Copilot, Gemini) behave differently. Same prompt, different output. Across a team using different tools without coordination, output drifts.', watch: "One person's draft from Claude reads in your voice. Another person's from ChatGPT does not. Inconsistency without an obvious cause.", do: 'The Kit names the approved tools and the patterns each one is tested with. New tools require team review before adoption.' },
+      { term: 'Context bleed', def: 'AI carries context from one task into a different task in the same session. Across team members sharing tools or accounts, context bleed multiplies.', watch: 'A client detail from one task surfaces in a summary for a different client. Output mixing contexts in subtle ways.', do: 'The Kit specifies one client per session and a clean break between sessions. Shared accounts get a session-clear protocol before handover.' },
+      { term: 'Your own drift', def: 'At team scale, drift is contagious. One person stops reviewing carefully, others see it work, and the standard erodes across the practice.', watch: 'Output going out faster, with less review, across the team. Near-misses being absorbed without conversation.', do: 'The Kit holds the review standard in writing so it does not depend on individual judgment in the moment.' }
+    ]
+  },
+  'unit-2': {
+    title: 'Escalation design',
+    intro: 'A few principles for setting escalation rules that work without becoming bottlenecks.',
+    watchouts: [
+      '<strong>Specific beats general.</strong> "AI-drafted recommendations" creates a bottleneck. "AI-drafted product recommendations for clients with $500K or more in investable assets" creates a real rule.',
+      '<strong>Triggers should be observable.</strong> The team member should know in the moment whether their output triggers escalation. "Anything sensitive" leaves too much to interpretation. "Anything involving death, divorce, illness, or dispute" works.',
+      '<strong>The reviewer should be named.</strong> Escalation paths should specify who reviews. Lead Advisor for substantive content. Compliance for compliance content. Admin for operational. Without a named reviewer, escalation becomes a black hole.',
+      '<strong>Three to seven rules is the target.</strong> Fewer means too much gets through unreviewed. More means the team starts ignoring some, which weakens all of them.'
+    ]
+  },
+  'unit-3': {
+    title: 'What belongs on the do-not-AI list',
+    intro: 'Two tests determine whether something belongs on the list.',
+    watchouts: [
+      '<strong>Test 1: Compliance forbids it.</strong> When a regulator, your firm, or your dealer prohibits AI involvement, it belongs on the list. SIN handling. Some categories of advice. Specific document types.',
+      '<strong>Test 2: Judgment requires a human.</strong> Some work cannot be safely delegated even when compliance is silent. Beneficiary contact after a death. Regulator complaint responses. Client conversations that turn personal. The list captures these.',
+      '<strong>Items that fail both tests should stay off the list.</strong> "AI never drafts client emails" fails both tests for most practices. The list works because it is short and the items on it carry real weight. Long lists get ignored.',
+      '<strong>The list evolves.</strong> When the team has a near-miss or learns a new boundary, the list gets updated. Quarterly review at minimum.'
+    ]
+  },
+  'unit-4': {
+    title: 'Cross-role voice',
+    intro: "Why team voice is more than the lead's voice copied to everyone.",
+    watchouts: [
+      "<strong>The Lead's voice is the anchor.</strong> The Lead's identity file is the source. Other roles work from it rather than starting their own.",
+      "<strong>Adjustments are context-driven.</strong> A Licensed Assistant writing on behalf of the practice carries the Lead's voice with disclaimers added. An Associate writing recommendations carries the Lead's voice with more conservative language. Admin writing operational content uses the same voice with operational tone.",
+      "<strong>The Kit captures the adjustments, not the Lead's voice itself.</strong> The Lead's identity file is referenced from the Kit. When the Lead's voice evolves (annual update to my-identity.md), the Kit picks up the change automatically.",
+      "<strong>When in doubt, ask the Lead.</strong> Voice judgment calls default to the Lead's preference. The Kit covers the patterns. The Lead covers the edges."
+    ]
+  },
+  'unit-5': {
+    title: 'Ratification, in practice',
+    intro: 'The final step. How ratification works, and why it matters.',
+    watchouts: [
+      '<strong>Every team member reads the Kit before ratifying.</strong> A signature collected without a read leaves the Kit operational on paper and ignored in practice. The Kit only works when every team member knows what is in it.',
+      '<strong>Ratification is a decision point.</strong> When a team member disagrees with something in the Kit, ratification is when it surfaces. The conversation that follows is the point of the exercise.',
+      '<strong>The Kit gets re-ratified annually.</strong> Or sooner if it changes substantially. New team members ratify on day one as part of onboarding.',
+      '<strong>How ratification works today.</strong> Print the Kit or save it as a PDF. Every team member reads it and signs the ratification column. The signed file is kept on record. Re-ratify annually, or sooner if the Kit changes substantially.'
+    ]
+  }
+};
+function renderDrawer(unitId) {
+  const c = DEEP_CONTENT[unitId];
+  if (!c) return false;
+  document.getElementById('drawerTitle').textContent = c.title;
+  let html = '';
+  if (c.intro) html += `<p class="drawer-intro">${c.intro}</p>`;
+  if (c.glossary && c.glossary.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Terms</div>';
+    c.glossary.forEach(g => {
+      html += `<div class="glossary-entry"><h4>${escapeHtml(g.term)}</h4><p class="def">${escapeHtml(g.def)}</p>`;
+      if (g.watch) html += `<p class="watch"><strong>Watch for:</strong> ${escapeHtml(g.watch)}</p>`;
+      if (g.do) html += `<p class="do"><strong>What to do:</strong> ${escapeHtml(g.do)}</p>`;
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  if (c.watchouts && c.watchouts.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">What to watch for</div>';
+    c.watchouts.forEach(w => { html += `<div class="watchout-item">${w}</div>`; });
+    html += '</div>';
+  }
+  document.getElementById('drawerBody').innerHTML = html;
+  document.getElementById('drawerBody').scrollTop = 0;
+  return true;
+}
+function openDrawer(id) { if (!renderDrawer(id)) return; document.getElementById('deepDrawer').classList.add('open'); document.getElementById('drawerBackdrop').classList.add('open'); document.body.style.overflow = 'hidden'; state.seenDeep[id]=true; save(); }
+function closeDrawer() { document.getElementById('deepDrawer').classList.remove('open'); document.getElementById('drawerBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
+
+function bindButtons() {
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); goTo(el.getAttribute('data-go')); }));
+  document.querySelectorAll('[data-deep]').forEach(el => el.addEventListener('click', () => openDrawer(el.getAttribute('data-deep'))));
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && document.getElementById('deepDrawer').classList.contains('open')) closeDrawer(); });
+  document.getElementById('generateBtn').addEventListener('click', () => { state.completedAt = new Date().toISOString(); save(); downloadMarkdown(); goTo('success'); });
+  document.getElementById('downloadAgainBtn').addEventListener('click', downloadMarkdown);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+}
+
+load(); bindButtons(); render();
+</script>
+</body>
+</html>
