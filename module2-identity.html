@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Identity and Voice | AI Training Program | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#04253a;--navy-mid:#0a3a55;--navy-deep:#021724;--orange:#f0640e;--orange-hover:#d65709;--orange-soft:rgba(240,100,14,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#5BC2C7;--teal-soft:rgba(91,194,199,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--card-hover:rgba(255,255,255,.07);--radius:14px;--shadow:0 2px 20px rgba(0,0,0,.28);--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+em,.em{font-style:italic;color:var(--accent);font-weight:900}
+button{font-family:inherit}
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 44px;background:rgba(4,37,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);gap:24px}
+.logo{display:inline-flex;flex-direction:column;background:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+.page-badge{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px;white-space:nowrap}
+.progress-track{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-bar{height:100%;width:0%;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.hero{position:relative;padding:64px 44px 56px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)}
+.hero::before{content:'';position:absolute;right:-10%;top:-20%;width:560px;height:560px;background:radial-gradient(circle,rgba(240,100,14,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:36px}}
+.eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance;color:var(--white);margin-bottom:18px}
+.hero .tagline{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--accent);letter-spacing:.01em;margin-bottom:22px;padding:6px 0;border-bottom:2px solid rgba(240,100,14,.4)}
+.hero .lede{font-size:17px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;font-weight:500;max-width:560px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;padding-top:24px;border-top:1px solid var(--border)}
+.hero-stat-val{font-family:'Manrope',sans-serif;font-weight:900;font-size:24px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px}
+.hero-side{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:18px;padding:28px 28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.hero-side::before{content:'';position:absolute;top:-1px;left:24px;right:24px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.hero-side-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.hero-side-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:-.01em;line-height:1.25;margin-bottom:14px}
+.hero-side-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.container{max-width:880px;margin:0 auto;padding:48px 44px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:44px 48px;margin-bottom:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.card::before{content:'';position:absolute;top:-1px;left:36px;right:36px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+@media(max-width:640px){.card{padding:32px 26px}.card::before{left:22px;right:22px}}
+.unit-num{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:5px 12px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.unit-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.unit-title .em{color:var(--accent)}
+.unit-intro{font-size:16px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;font-weight:500;max-width:680px}
+
+.audio-wrap{margin-bottom:30px}
+.audio-placeholder{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.22);border-radius:12px}
+.audio-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-placeholder-icon svg{width:16px;height:16px}
+.audio-placeholder-body{flex:1;min-width:0}
+.audio-placeholder-title{font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--white);line-height:1.3}
+.audio-placeholder-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.lesson{font-size:15.5px;line-height:1.75;color:var(--text-muted)}
+.lesson h3{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white);letter-spacing:-.005em}
+.lesson h4{font-family:'Manrope',sans-serif;font-size:.98rem;font-weight:800;margin:22px 0 8px;color:var(--white);letter-spacing:-.005em}
+.lesson p{margin-bottom:14px}
+.lesson ul{margin:8px 0 18px 22px}
+.lesson li{margin-bottom:10px;color:var(--text-muted)}
+.lesson li::marker{color:var(--accent)}
+.lesson strong{color:var(--white);font-weight:700}
+.lesson a{color:var(--accent)}
+
+/* CALLOUT PALETTE */
+.callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
+.role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
+.role-nod strong{color:var(--status-warn);font-weight:700}
+
+/* PULL QUOTE */
+.pull-quote{margin:24px 0;padding:22px 26px 22px 32px;border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(240,100,14,.06) 0%,rgba(240,100,14,0) 80%);border-radius:0 12px 12px 0;font-family:'Manrope',sans-serif;font-style:italic;font-weight:700;font-size:17px;line-height:1.5;color:var(--white);letter-spacing:-.005em}
+
+/* WORKED EXAMPLE */
+.worked-example{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:22px 0;position:relative}
+.worked-example::before{content:'WORKED EXAMPLE';position:absolute;top:-9px;left:18px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent);background:var(--navy);padding:0 10px}
+.worked-example h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);margin:4px 0 10px;letter-spacing:-.005em}
+.worked-example p{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.worked-example p:last-child{margin-bottom:0}
+
+/* BEFORE / AFTER */
+.before-after{margin:22px 0}
+.before-after-prompt{font-size:13.5px;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.55}
+.before-after-prompt strong{color:var(--white);font-weight:700;display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;color:var(--accent)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:740px){.ba-grid{grid-template-columns:1fr}}
+.ba-card{border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.ba-card-bad{background:rgba(208,106,78,.05);border-color:rgba(208,106,78,.25);border-left:3px solid var(--status-alert)}
+.ba-card-good{background:rgba(193,225,167,.05);border-color:rgba(193,225,167,.22);border-left:3px solid var(--status-complete)}
+.ba-card-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ba-card-bad .ba-card-label{color:var(--status-alert)}
+.ba-card-good .ba-card-label{color:var(--status-complete)}
+.ba-card-body{font-size:13.5px;line-height:1.6;color:var(--text-muted);white-space:pre-line}
+.ba-card-body em{font-style:italic;color:var(--text-dim);font-weight:500}
+.ba-takeaway{margin-top:14px;font-size:13.5px;color:var(--text-muted);line-height:1.6;padding:12px 18px;background:rgba(255,255,255,.03);border-radius:8px}
+.ba-takeaway strong{color:var(--white);font-weight:700}
+
+/* SECTION LABEL */
+.section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:24px 0 10px}
+.section-label:first-child{margin-top:0}
+.section-help{font-size:13.5px;color:var(--text-dim);margin:-4px 0 14px;line-height:1.55}
+
+/* SAMPLE TEXTAREAS */
+.sample-field{margin-bottom:22px}
+.sample-field textarea{width:100%;min-height:140px;padding:14px 16px;border:1px solid var(--border-strong);border-radius:10px;font-size:14.5px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500;line-height:1.65;resize:vertical}
+.sample-field textarea::placeholder{color:var(--text-faint)}
+.sample-field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+.sample-meta{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:var(--text-dim);font-weight:600}
+.sample-meta .count{font-variant-numeric:tabular-nums}
+.sample-meta .status{font-family:'Manrope',sans-serif;letter-spacing:.04em;text-transform:uppercase;font-size:10.5px;font-weight:800}
+.sample-meta .status.ok{color:var(--status-complete)}
+.sample-meta .status.warn{color:var(--status-alert)}
+
+/* CHIP PICKER */
+.chip-group{margin-bottom:18px}
+.chip-group-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.chip-grid{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border-strong);border-radius:999px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--text-muted);background:rgba(255,255,255,.03);cursor:pointer;transition:all .15s;user-select:none}
+.chip:hover{border-color:rgba(255,255,255,.35);color:var(--white)}
+.chip.selected{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.chip input{display:none}
+
+/* VALIDATION BAR */
+.validation-bar{margin-top:18px;padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.5;font-weight:600;display:flex;align-items:center;gap:10px}
+.validation-bar.warn{background:rgba(208,106,78,.08);border:1px solid rgba(208,106,78,.25);color:var(--status-alert)}
+.validation-bar.ok{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.2);color:var(--status-complete)}
+.validation-bar.soft{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.22);color:var(--status-warn)}
+
+/* DRAWER + GLOSSARY (same as M1) */
+.glossary-entry{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.glossary-entry h4{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:8px}
+.glossary-entry .def{font-size:13.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+.glossary-entry .watch,.glossary-entry .do{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:6px}
+.glossary-entry .watch strong,.glossary-entry .do strong{color:var(--white);font-weight:700}
+.watchout-item{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;padding-left:18px;position:relative}
+.watchout-item::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.watchout-item strong{color:var(--white);font-weight:700}
+
+.deep-trigger{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:11px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:999px;color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+.deep-trigger:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.deep-trigger::after{content:'\2192';margin-left:4px;transition:transform .2s;font-weight:700}
+.deep-trigger:hover::after{transform:translateX(3px)}
+
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);background:var(--navy-deep);border-left:1px solid var(--border-strong);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-deep) 100%);position:relative}
+.drawer-header::before{content:'';position:absolute;top:-1px;left:24px;right:80px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.drawer-eyebrow{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.drawer-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;line-height:1.2}
+.drawer-close{background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-family:inherit;flex-shrink:0;transition:all .15s;line-height:1;padding:0}
+.drawer-close:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.drawer-body{flex:1;overflow-y:auto;padding:24px 28px 36px}
+.drawer-intro{font-size:14.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.65}
+.drawer-section{margin-bottom:30px}
+.drawer-section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* FORM */
+.field{margin-bottom:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.row2{grid-template-columns:1fr}}
+label.lbl{display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+label.lbl .req{color:var(--accent);margin-left:2px}
+label.lbl .opt{color:var(--text-faint);font-weight:500;text-transform:none;letter-spacing:.02em;margin-left:4px}
+input[type=text],select,textarea{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14.5px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);transition:border-color .2s,background .2s;outline:none;font-weight:500}
+input::placeholder,textarea::placeholder{color:var(--text-faint)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+textarea{resize:vertical;line-height:1.6}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select option{background:var(--navy);color:var(--white)}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-orange{background:var(--accent);color:var(--navy)}
+.btn-orange:hover{background:var(--accent-hover);color:var(--navy)}
+.btn-orange:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+.btn-orange::after{content:'\2192';transition:transform .2s;font-weight:700}
+.btn-orange:hover::after{transform:translateX(3px)}
+.btn-orange:disabled::after{display:none}
+.btn-back{background:transparent;color:var(--text-dim);font-weight:700;padding:13px 18px;letter-spacing:.02em}
+.btn-back:hover{color:var(--white)}
+.btn-back::before{content:'\2190';margin-right:6px;font-weight:700}
+
+.review-block{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px;position:relative}
+.review-block h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.review-block .review-content{font-size:14.5px;line-height:1.65;color:var(--text-muted)}
+.review-block .review-content strong{color:var(--white);font-weight:700}
+.review-block .review-content ul,.review-block .review-content ol{margin-left:22px;margin-top:8px;list-style:disc}
+.review-block .review-content li{margin-bottom:6px;color:var(--text-muted)}
+.review-block .review-content li::marker{color:var(--accent)}
+.review-block .review-content blockquote{margin:10px 0;padding:10px 16px;border-left:3px solid var(--accent);background:rgba(255,255,255,.03);border-radius:0 8px 8px 0;font-size:14px;color:var(--text-muted);font-style:italic}
+.review-edit{font-size:11.5px;color:var(--accent);text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;float:right;padding:2px 8px;border-radius:6px}
+.review-edit:hover{background:var(--accent-soft)}
+
+.success-card{text-align:center;padding:60px 48px}
+.success-card .check{width:72px;height:72px;background:var(--accent);color:var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin-bottom:22px;box-shadow:0 8px 24px rgba(240,100,14,.3)}
+.success-card h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:14px}
+.success-card .success-lede{color:var(--text-muted);margin-bottom:18px;font-size:16px;line-height:1.65;max-width:520px;margin-left:auto;margin-right:auto}
+.success-card .next-up{font-size:14px;color:var(--text-muted);max-width:520px;margin:0 auto 8px}
+.success-card .next-up strong{color:var(--white);font-weight:700}
+
+.footer{max-width:880px;margin:0 auto;padding:0 44px 40px;text-align:center}
+.footer .reset{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;padding:10px 18px;border-radius:8px;letter-spacing:.02em;transition:all .15s}
+.footer .reset:hover{color:var(--status-alert);border-color:rgba(208,106,78,.4)}
+.disclaimer{font-size:11.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;font-weight:500}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#" style="text-decoration:none">
+    <span class="logo-mark">Etc.<span style="font-weight:300;opacity:.7"> Projects</span></span>
+    <span class="logo-sub">ai training program</span>
+  </a>
+  <span class="page-badge" id="headerBadge">Module 2 of 5</span>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<section id="step-welcome">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <span class="eyebrow">AI Training Program · Module 2</span>
+        <h1>My Identity and <span class="em">Voice</span></h1>
+        <span class="tagline">so AI sounds like you, every time</span>
+        <p class="lede">By default, AI writes in a generic professional voice. This module captures how you actually sound, what you stand for, and what AI should know before it drafts anything in your name.</p>
+        <p class="lede" style="margin-bottom:8px">The artifact: <code>my-identity.md</code>. Loaded into your AI tools alongside your foundation file.</p>
+
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">4</div><div class="hero-stat-label">Short Steps</div></div>
+          <div><div class="hero-stat-val">2</div><div class="hero-stat-label">Samples You Paste</div></div>
+          <div><div class="hero-stat-val">1</div><div class="hero-stat-label">File That Pairs</div></div>
+        </div>
+
+        <div class="btn-row" style="justify-content:flex-start;margin-top:32px">
+          <button class="btn btn-orange" data-go="unit-1">Begin</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-side-label">Welcome from the Etc. Projects AI Steward</div>
+        <div class="hero-side-title">What this module gives you.</div>
+        <div class="hero-side-desc">Press play. About a minute. A walk-through of what we're doing, why voice matters, and how AI uses what you build here.</div>
+        <div class="audio-wrap" style="margin-bottom:0">
+          <div class="audio-placeholder" role="note">
+            <div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div>
+            <div class="audio-placeholder-body"><div class="audio-placeholder-title">Welcome to Module 2</div><div class="audio-placeholder-meta">≈ 1 min</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- UNIT 1 -->
+  <section class="card hidden" id="step-unit-1">
+    <span class="unit-num">Step 1 of 4</span>
+    <h2 class="unit-title">Why AI gets your voice <span class="em">wrong</span> by default</h2>
+    <p class="unit-intro">AI is trained to write fluently using patterns from a huge body of text. Without specific input from you, it averages to the median voice across all that text. The result reads competent, generic, and faintly corporate. Knowing why this happens makes the rest of the module easier.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Why AI gets your voice wrong</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>The default voice</h3>
+      <p>Without identity input, AI produces what amounts to the median voice across its training data. Polite. Hedging. Slightly formal. Words that no one would object to and no one would remember. For client-facing work in advisory practice, the median is almost always wrong.</p>
+
+      <h3>What gets lost</h3>
+      <ul>
+        <li><strong>Your specific phrases.</strong> The way you open a difficult conversation. The way you close a follow-up. The phrases your long-term clients recognize as yours.</li>
+        <li><strong>Your sentence rhythm.</strong> Some advisors write in short, direct lines. Others use longer, structured paragraphs. AI defaults to whichever is most common in its training, not yours.</li>
+        <li><strong>Your point of view.</strong> First-person plural (we) signals partnership. Second-person (you) signals advisory authority. Default AI drifts toward formal third-person.</li>
+        <li><strong>The things you leave out.</strong> Most practice voices are defined as much by what they leave out as by what they include. AI fills those gaps with patterns from somewhere else until you tell it not to.</li>
+      </ul>
+
+      <h3>Before and after: what a voice file actually changes</h3>
+      <div class="before-after">
+        <div class="before-after-prompt">
+          <strong>The prompt</strong>
+          Draft an email to a client letting them know I need to postpone next week's review meeting because of a scheduling conflict.
+        </div>
+        <div class="ba-grid">
+          <div class="ba-card ba-card-bad">
+            <div class="ba-card-label">Without a voice file</div>
+            <div class="ba-card-body"><em>Dear [Client],</em>
+
+<em>I am writing to inform you that, regrettably, due to an unforeseen scheduling conflict, I will need to postpone our previously scheduled review meeting that was set to take place next week. I sincerely apologize for any inconvenience this may cause.</em>
+
+<em>Please find below a list of available alternative dates and times. I would greatly appreciate it if you could review these options at your earliest convenience and let me know which works best for your schedule.</em>
+
+<em>I look forward to our rescheduled meeting and to continuing our productive working relationship.</em>
+
+<em>Warm regards,
+[Advisor Name]</em></div>
+          </div>
+          <div class="ba-card ba-card-good">
+            <div class="ba-card-label">With your voice loaded</div>
+            <div class="ba-card-body"><em>Hi [Client first name],</em>
+
+<em>Quick note. Something came up on my end for next week, so I need to push our review. Sorry for the late notice.</em>
+
+<em>Here are a few times that work this side of month-end. Take a look and let me know what fits. If none of these work, tell me and we'll sort it out.</em>
+
+<em>[Times]</em>
+
+<em>[Advisor first name]</em></div>
+          </div>
+        </div>
+        <div class="ba-takeaway"><strong>What changed:</strong> formal padding became conversational and direct. Three sentences where one would do became one sentence that does the work. Action-oriented close instead of a generic sign-off. Sounds like a real person who has met this client before. The voice file did that.</div>
+      </div>
+
+      <div class="pull-quote">A short voice file outperforms a long one. Two real samples and a handful of characteristics will outperform a 500-word style guide nine times out of ten.</div>
+
+      <div class="callout">
+        <strong>Why this fix is permanent.</strong> Once your voice file exists, you load it as system context at the start of every AI session. AI reads it before it writes anything. The default voice never gets a chance to take over.
+      </div>
+
+      <div class="role-nod">
+        <strong>A note for Licensed Assistants and Admin:</strong> the voice file matters most when work passes through more than one seat. A draft you produce using the advisor's voice file lands closer to the advisor's voice on the first pass, which means less rewrite and faster turnaround on client-facing work.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-1">Go deeper on why voice slips</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="welcome">Back</button>
+      <button class="btn btn-orange" data-go="unit-2">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 2 -->
+  <section class="card hidden" id="step-unit-2">
+    <span class="unit-num">Step 2 of 4</span>
+    <h2 class="unit-title">Capture your <span class="em">voice</span></h2>
+    <p class="unit-intro">Two sample messages and a short list of characteristics. That is the whole capture. Pick samples you would be willing to send to a client today. Real beats polished.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Capture your voice</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <p>Paste two messages you have sent. Different topics. Different recipients if possible. Strip out client identifiers before pasting (names, account numbers, anything sensitive).</p>
+
+      <div class="worked-example">
+        <h4>A Licensed Assistant working across two advisors</h4>
+        <p>Devon supports two advisors with very different voices. Advisor A writes warm and conversational. Advisor B writes structured and brief. Each has their own voice file loaded into the practice's shared library. When Devon drafts a client follow-up on behalf of Advisor A, she loads A's voice file before prompting. When she drafts on behalf of Advisor B, she loads B's.</p>
+        <p>Before the voice files existed, Devon had to code-switch between the two advisors' styles from memory, and each advisor would end up rewriting her drafts to sound right. With the files in place, the drafts land closer to each advisor's voice on the first pass. The rewrite step shrinks. The advisors get back time. Devon's drafts get reviewed and sent rather than reviewed and rewritten.</p>
+      </div>
+
+      <div class="section-label">Your voice samples</div>
+
+      <div class="sample-field">
+        <label class="lbl" for="sample1">Sample 1 — a recent message you sent (de-identified) <span class="req">*</span></label>
+        <textarea id="sample1" placeholder="Paste a message here. Could be a client follow-up, a meeting recap, a product explanation, an introduction. Anything you wrote that sounds like you."></textarea>
+        <div class="sample-meta"><span class="count" id="sample1Count">0 words</span><span class="status" id="sample1Status"></span></div>
+      </div>
+
+      <div class="sample-field">
+        <label class="lbl" for="sample2">Sample 2 — a different topic or recipient (de-identified) <span class="req">*</span></label>
+        <textarea id="sample2" placeholder="Paste a second message. Different from the first if possible. Different topic, different audience, different mood."></textarea>
+        <div class="sample-meta"><span class="count" id="sample2Count">0 words</span><span class="status" id="sample2Status"></span></div>
+      </div>
+
+      <div class="section-label">Pick the characteristics that fit your voice</div>
+      <p class="section-help">Pick four to seven. These tell AI what to match when it generates content for you.</p>
+
+      <div id="chipPicker"></div>
+
+      <div class="section-label">Voice notes <span style="font-weight:500;color:var(--text-faint);text-transform:none;letter-spacing:.02em">(optional)</span></div>
+      <div class="field">
+        <textarea id="voiceNotes" rows="3" placeholder="e.g. I avoid jargon when speaking with new clients. I always close with a clear next step. I never use the word 'utilize'."></textarea>
+      </div>
+
+      <div class="validation-bar" id="validationBar"></div>
+
+      <button class="deep-trigger" data-deep="unit-2">Go deeper on capturing voice well</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-1">Back</button>
+      <button class="btn btn-orange" data-go="unit-3" id="unit2Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 3 -->
+  <section class="card hidden" id="step-unit-3">
+    <span class="unit-num">Step 3 of 4</span>
+    <h2 class="unit-title">What you <span class="em">stand for</span></h2>
+    <p class="unit-intro">Voice captures how you sound. Values capture what shapes that sound. Both belong in the file because AI uses your values to make judgment calls when a prompt does not give a clear answer.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">What you stand for</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <p>Three to five lines per box is the target. Specific over abstract. "I never recommend a product I would not own myself" beats "I act with integrity."</p>
+
+      <div class="field">
+        <label class="lbl" for="valuesText">What I stand for <span class="req">*</span></label>
+        <textarea id="valuesText" rows="6" placeholder="Three to five short lines. Things you believe about how good advisory work happens. Concrete over lofty."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="commitmentsText">What I commit to my clients <span class="req">*</span></label>
+        <textarea id="commitmentsText" rows="6" placeholder="Three to five short lines. The promises that show up in how you work, even when no one is watching."></textarea>
+      </div>
+
+      <div class="worked-example">
+        <h4>An Associate Advisor sees values shape AI's framing</h4>
+        <p>Maya is an Associate Advisor preparing talking points for a meeting where a client wants to discuss an early RRSP withdrawal to fund a renovation. Without values loaded, AI produces a balanced draft: here are the tax consequences, here are the alternatives, here is a neutral summary.</p>
+        <p>Maya's lead advisor's commitments include "I always lead with the long-term cost of a short-term decision, even when the client has already made up their mind." With that commitment loaded, AI restructures the draft. The talking points open with what the withdrawal would cost the client at retirement, present the renovation options that protect the registered savings, and respect the client's right to choose either path. Same information. Different order. Different emphasis. The client's choice is theirs to make, and the advisor's commitment shows up in how the choice gets framed.</p>
+        <p>The values did not censor AI. They shaped how AI organized the work.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Why both fields exist.</strong> Values describe what you believe about good work. Commitments describe what clients can count on from you. AI handling client-facing work needs both. Values shape its judgment. Commitments shape its behavior.
+      </div>
+
+      <div class="role-nod">
+        <strong>A note for everyone on the team:</strong> the lead advisor's values and commitments anchor the practice. When you draft anything on behalf of the practice, those values travel with you. Loading them into AI is how you carry the practice's standards into the work even when the lead is not in the room.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-3">Go deeper on values and commitments</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-2">Back</button>
+      <button class="btn btn-orange" data-go="unit-4" id="unit3Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 4 -->
+  <section class="card hidden" id="step-unit-4">
+    <span class="unit-num">Step 4 of 4</span>
+    <h2 class="unit-title">Save your <span class="em">identity file</span></h2>
+    <p class="unit-intro">Final check. We pulled your name and role from your foundation file. Confirm or edit, then generate.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Save your identity file</div><div class="audio-placeholder-meta">&lt; 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <div id="inheritanceCallout"></div>
+
+      <div class="row2">
+        <div class="field">
+          <label class="lbl" for="f-name">Your name <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="First and last name">
+        </div>
+        <div class="field">
+          <label class="lbl" for="f-role">Your role <span class="req">*</span></label>
+          <select id="f-role">
+            <option value="">Select your role…</option>
+            <option value="Legacy Advisor">Legacy Advisor</option>
+            <option value="Lead Advisor">Lead Advisor</option>
+            <option value="Associate Advisor">Associate Advisor</option>
+            <option value="Licensed Assistant">Licensed Assistant</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="f-practice">Practice or firm <span class="opt">(optional)</span></label>
+        <input type="text" id="f-practice" placeholder="e.g. Smith Wealth Management">
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-4">Go deeper on how AI uses this file</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-3">Back</button>
+      <button class="btn btn-orange" data-go="review" id="unit4Next" disabled>Review and generate</button>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="card hidden" id="step-review">
+    <span class="unit-num">Almost done</span>
+    <h2 class="unit-title">Review your <span class="em">identity</span></h2>
+    <p class="unit-intro">Quick look before we generate your file. Edit anything that needs adjusting.</p>
+
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-4">Edit</a><h4>Owner</h4><div class="review-content" id="reviewOwner"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-2">Edit</a><h4>Voice characteristics</h4><div class="review-content" id="reviewChips"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-2">Edit</a><h4>Voice samples</h4><div class="review-content" id="reviewSamples"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-3">Edit</a><h4>Values and commitments</h4><div class="review-content" id="reviewValues"></div></div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-4">Back</button>
+      <button class="btn btn-orange" id="generateBtn">Generate my-identity.md</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="card success-card hidden" id="step-success">
+    <div class="check">✓</div>
+    <h2>Your voice is <span class="em">captured</span>.</h2>
+    <p class="success-lede">Your file has been downloaded. Load it alongside <code>my-ai-foundation.md</code> at the start of every AI session. AI reads both before it writes anything for you.</p>
+    <p class="next-up"><strong>What's next:</strong> Module 3, My Compliance Context. The regulators, jurisdictions, and products that govern your practice, captured for AI to honor.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <button class="reset" id="resetBtn">Start over from the beginning</button>
+  <p class="disclaimer">This training program is provided for guidance and planning only. It is not legal, regulatory, or compliance advice. © 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="deepDrawer" aria-hidden="true" role="dialog" tabindex="-1">
+  <div class="drawer-header">
+    <div><div class="drawer-eyebrow">Go deeper</div><div class="drawer-title" id="drawerTitle"></div></div>
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+const STORAGE_KEY = 'etc_module2_state';
+const M1_KEY = 'etc_module1_state';
+const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','review','success'];
+
+const CHIPS = {
+  tone: { label: 'Tone', items: ['warm','direct','plain-spoken','sophisticated','playful','understated','enthusiastic','candid'] },
+  sentence: { label: 'Sentence style', items: ['short and punchy','conversational','explanatory','structured (headings, bullets)'] },
+  viewpoint: { label: 'Voice and viewpoint', items: ['first-person plural (we)','second-person (you)','uses analogies','uses humor','avoids jargon','uses some industry terms','references specific cases','asks open questions'] },
+  closing: { label: 'Closing', items: ['warm signoff','action-oriented close','formal close','open-ended (invites reply)'] }
+};
+
+const MIN_SAMPLE_WORDS = 15;
+
+let state = {
+  step: 'welcome',
+  sample1: '',
+  sample2: '',
+  voiceChips: [],
+  voiceNotes: '',
+  values: '',
+  commitments: '',
+  identity: { name: '', role: '', practice: '' },
+  inheritedFromM1: false,
+  completedAt: null,
+  seenDeep: {}
+};
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function load() {
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+}
+function loadM1() {
+  try { const raw = localStorage.getItem(M1_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; }
+}
+function reset() {
+  if (!confirm('This wipes everything you have entered and starts over. Continue?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function wordCount(s) {
+  if (!s) return 0;
+  return (s.trim().match(/\S+/g) || []).length;
+}
+
+function goTo(step) { if (!STEPS.includes(step)) return; state.step = step; save(); render(); }
+
+function render() {
+  STEPS.forEach(s => { const el = document.getElementById('step-'+s); if (el) el.classList.toggle('hidden', s !== state.step); });
+  const idx = STEPS.indexOf(state.step);
+  const pct = state.step === 'welcome' ? 0 : state.step === 'success' ? 100 : Math.round((idx/(STEPS.length-2))*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  const badge = document.getElementById('headerBadge');
+  if (state.step === 'welcome') badge.textContent = 'Module 2 of 5';
+  else if (state.step === 'success') badge.textContent = 'Complete';
+  else if (state.step === 'review') badge.textContent = 'Review';
+  else badge.textContent = `Step ${idx} of 4`;
+
+  if (state.step === 'unit-2') hydrateUnit2();
+  if (state.step === 'unit-3') hydrateUnit3();
+  if (state.step === 'unit-4') hydrateUnit4();
+  if (state.step === 'review') renderReview();
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- UNIT 2 ---------- */
+function hydrateUnit2() {
+  const s1 = document.getElementById('sample1');
+  const s2 = document.getElementById('sample2');
+  const vn = document.getElementById('voiceNotes');
+  if (s1.value !== state.sample1) s1.value = state.sample1 || '';
+  if (s2.value !== state.sample2) s2.value = state.sample2 || '';
+  if (vn.value !== state.voiceNotes) vn.value = state.voiceNotes || '';
+  renderChips();
+  bindUnit2Inputs();
+  updateSampleMeta();
+  updateUnit2Validation();
+}
+function bindUnit2Inputs() {
+  ['sample1','sample2','voiceNotes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('input', () => {
+      if (id === 'sample1') state.sample1 = el.value;
+      else if (id === 'sample2') state.sample2 = el.value;
+      else state.voiceNotes = el.value;
+      save();
+      if (id !== 'voiceNotes') updateSampleMeta();
+      updateUnit2Validation();
+    });
+  });
+}
+function renderChips() {
+  const wrap = document.getElementById('chipPicker');
+  wrap.innerHTML = '';
+  Object.entries(CHIPS).forEach(([key, group]) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'chip-group';
+    groupDiv.innerHTML = `<div class="chip-group-label">${escapeHtml(group.label)}</div><div class="chip-grid" data-group="${key}"></div>`;
+    const grid = groupDiv.querySelector('.chip-grid');
+    group.items.forEach(item => {
+      const isSel = state.voiceChips.includes(item);
+      const chip = document.createElement('label');
+      chip.className = 'chip' + (isSel ? ' selected' : '');
+      chip.innerHTML = `<input type="checkbox" ${isSel?'checked':''}>${escapeHtml(item)}`;
+      chip.querySelector('input').addEventListener('change', e => {
+        if (e.target.checked && !state.voiceChips.includes(item)) state.voiceChips.push(item);
+        else if (!e.target.checked) state.voiceChips = state.voiceChips.filter(x => x !== item);
+        save(); renderChips(); updateUnit2Validation();
+      });
+      grid.appendChild(chip);
+    });
+    wrap.appendChild(groupDiv);
+  });
+}
+function updateSampleMeta() {
+  [1,2].forEach(n => {
+    const w = wordCount(state['sample'+n]);
+    const countEl = document.getElementById(`sample${n}Count`);
+    const statusEl = document.getElementById(`sample${n}Status`);
+    countEl.textContent = `${w} word${w===1?'':'s'}`;
+    if (w === 0) { statusEl.textContent = ''; statusEl.className = 'status'; }
+    else if (w < MIN_SAMPLE_WORDS) { statusEl.textContent = `Add more — at least ${MIN_SAMPLE_WORDS} words`; statusEl.className = 'status warn'; }
+    else { statusEl.textContent = 'Good'; statusEl.className = 'status ok'; }
+  });
+}
+function updateUnit2Validation() {
+  const bar = document.getElementById('validationBar');
+  const next = document.getElementById('unit2Next');
+  const w1 = wordCount(state.sample1), w2 = wordCount(state.sample2);
+  const n = state.voiceChips.length;
+  const samplesOk = w1 >= MIN_SAMPLE_WORDS && w2 >= MIN_SAMPLE_WORDS;
+  let cls, msg;
+  if (!samplesOk) {
+    cls = 'warn';
+    msg = `Add both sample messages (at least ${MIN_SAMPLE_WORDS} words each).`;
+    next.disabled = true;
+  } else if (n < 4) {
+    cls = 'warn';
+    msg = `Pick at least 4 characteristics. You have ${n}.`;
+    next.disabled = true;
+  } else if (n <= 7) {
+    cls = 'ok';
+    msg = `${n} characteristics selected. Good range.`;
+    next.disabled = false;
+  } else {
+    cls = 'soft';
+    msg = `You have ${n}. Four to seven keeps the signal sharp. More is fine if each one earns its place.`;
+    next.disabled = false;
+  }
+  bar.className = 'validation-bar ' + cls;
+  bar.textContent = msg;
+}
+
+/* ---------- UNIT 3 ---------- */
+function hydrateUnit3() {
+  const v = document.getElementById('valuesText');
+  const c = document.getElementById('commitmentsText');
+  if (v.value !== state.values) v.value = state.values || '';
+  if (c.value !== state.commitments) c.value = state.commitments || '';
+  bindUnit3Inputs();
+  updateUnit3Next();
+}
+function bindUnit3Inputs() {
+  ['valuesText','commitmentsText'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('input', () => {
+      if (id === 'valuesText') state.values = el.value;
+      else state.commitments = el.value;
+      save(); updateUnit3Next();
+    });
+  });
+}
+function updateUnit3Next() {
+  const ok = state.values.trim().length > 0 && state.commitments.trim().length > 0;
+  document.getElementById('unit3Next').disabled = !ok;
+}
+
+/* ---------- UNIT 4 ---------- */
+function hydrateUnit4() {
+  // Prefill from M1 if M2 identity is still empty
+  const m1 = loadM1();
+  if (m1 && m1.identity && !state.identity.name && !state.identity.role) {
+    state.identity = {
+      name: m1.identity.name || '',
+      role: m1.identity.role || '',
+      practice: m1.identity.practice || ''
+    };
+    state.inheritedFromM1 = true;
+    save();
+  }
+  renderInheritanceCallout(m1);
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el && el.value !== v) el.value = v || ''; };
+  setVal('f-name', state.identity.name);
+  setVal('f-role', state.identity.role);
+  setVal('f-practice', state.identity.practice);
+  bindUnit4Inputs();
+  updateUnit4Next();
+}
+function renderInheritanceCallout(m1) {
+  const wrap = document.getElementById('inheritanceCallout');
+  if (m1 && m1.identity && (m1.identity.name || m1.identity.role)) {
+    const parts = [];
+    if (m1.identity.name) parts.push(escapeHtml(m1.identity.name));
+    if (m1.identity.role) parts.push(escapeHtml(m1.identity.role));
+    if (m1.identity.practice) parts.push(escapeHtml(m1.identity.practice));
+    wrap.innerHTML = `<div class="callout"><strong>From your AI Foundation:</strong> ${parts.join(', ')}. Confirm or edit below.</div>`;
+  } else {
+    wrap.innerHTML = `<div class="callout"><strong>Heads up:</strong> we couldn't find your AI Foundation file on this device. No problem — fill in the basics below and your identity file will still pair with the foundation when you load both into AI.</div>`;
+  }
+}
+function bindUnit4Inputs() {
+  ['f-name','f-role','f-practice'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('input', captureIdentity);
+    el.addEventListener('change', captureIdentity);
+  });
+}
+function captureIdentity() {
+  state.identity = {
+    name: document.getElementById('f-name').value.trim(),
+    role: document.getElementById('f-role').value,
+    practice: document.getElementById('f-practice').value.trim()
+  };
+  state.inheritedFromM1 = false;
+  save(); updateUnit4Next();
+}
+function updateUnit4Next() {
+  const i = state.identity;
+  document.getElementById('unit4Next').disabled = !(i.name && i.role);
+}
+
+/* ---------- REVIEW ---------- */
+function renderReview() {
+  const i = state.identity;
+  const ownerLines = [];
+  if (i.name) ownerLines.push(`<li><strong>Name:</strong> ${escapeHtml(i.name)}</li>`);
+  if (i.role) ownerLines.push(`<li><strong>Role:</strong> ${escapeHtml(i.role)}</li>`);
+  if (i.practice) ownerLines.push(`<li><strong>Practice:</strong> ${escapeHtml(i.practice)}</li>`);
+  document.getElementById('reviewOwner').innerHTML = ownerLines.length
+    ? `<ul style="list-style:none;margin-left:0">${ownerLines.join('')}</ul>`
+    : '<span style="color:var(--text-dim)">Nothing entered yet</span>';
+
+  const chipsBlock = state.voiceChips.length
+    ? '<ul>'+state.voiceChips.map(c=>`<li>${escapeHtml(c)}</li>`).join('')+'</ul>'
+    : '<span style="color:var(--text-dim)">No characteristics selected</span>';
+  const notesBlock = state.voiceNotes.trim()
+    ? `<p style="margin-top:10px"><strong>Voice notes:</strong> ${escapeHtml(state.voiceNotes)}</p>`
+    : '';
+  document.getElementById('reviewChips').innerHTML = chipsBlock + notesBlock;
+
+  let samplesHtml = '';
+  if (state.sample1.trim()) samplesHtml += `<p><strong>Sample 1:</strong></p><blockquote>${escapeHtml(state.sample1)}</blockquote>`;
+  if (state.sample2.trim()) samplesHtml += `<p><strong>Sample 2:</strong></p><blockquote>${escapeHtml(state.sample2)}</blockquote>`;
+  document.getElementById('reviewSamples').innerHTML = samplesHtml || '<span style="color:var(--text-dim)">No samples pasted</span>';
+
+  let valuesHtml = '';
+  if (state.values.trim()) valuesHtml += `<p><strong>What I stand for:</strong></p><blockquote>${escapeHtml(state.values)}</blockquote>`;
+  if (state.commitments.trim()) valuesHtml += `<p><strong>What I commit to my clients:</strong></p><blockquote>${escapeHtml(state.commitments)}</blockquote>`;
+  document.getElementById('reviewValues').innerHTML = valuesHtml || '<span style="color:var(--text-dim)">Nothing entered yet</span>';
+}
+
+/* ---------- MARKDOWN ---------- */
+function buildMarkdown() {
+  const i = state.identity;
+  const today = new Date().toISOString().slice(0,10);
+  const practiceLine = i.practice ? `\n**Practice:** ${i.practice}` : '';
+
+  const chipList = state.voiceChips.length ? state.voiceChips.map(c => `- ${c}`).join('\n') : '_None selected._';
+  const notesLine = state.voiceNotes.trim() ? `\n\n**Voice notes:**\n${state.voiceNotes.trim()}` : '';
+
+  const sample1Block = state.sample1.trim()
+    ? `**Sample 1, how I write:**\n\n> ${state.sample1.trim().split('\n').join('\n> ')}`
+    : '**Sample 1, how I write:**\n\n_Not provided._';
+  const sample2Block = state.sample2.trim()
+    ? `**Sample 2, how I write:**\n\n> ${state.sample2.trim().split('\n').join('\n> ')}`
+    : '**Sample 2, how I write:**\n\n_Not provided._';
+
+  const valuesBlock = state.values.trim() || '_Not provided._';
+  const commitmentsBlock = state.commitments.trim() || '_Not provided._';
+
+  return `# My Identity and Voice
+
+**Created:** ${today}
+**Owner:** ${i.name || '_not provided_'}
+**Role:** ${i.role || '_not provided_'}${practiceLine}
+
+## How I sound
+
+**Voice characteristics:**
+${chipList}${notesLine}
+
+${sample1Block}
+
+${sample2Block}
+
+## What I stand for
+
+${valuesBlock}
+
+## What I commit to my clients
+
+${commitmentsBlock}
+
+## How AI should use this file
+
+When generating any client-facing or in-my-name content:
+- Match the voice characteristics above
+- Use Sample 1 and Sample 2 as references for sentence rhythm and word choice
+- Stay consistent with my values when AI is making judgment calls
+- Honor my client commitments in tone and substance
+- When the prompt is silent on style, default to my voice, not the model's default
+
+This file is loaded alongside my-ai-foundation.md as system context.
+
+---
+*Generated by the Etc. Projects AI Training Program · Module 2 · ${today}*
+*This is a personal voice document, not legal, regulatory, or compliance advice.*
+`;
+}
+
+function downloadMarkdown() {
+  const md = buildMarkdown();
+  const name = (state.identity.name||'my').toLowerCase().split(/\s+/)[0].replace(/[^a-z0-9-]/g,'');
+  const filename = `${name||'my'}-identity.md`;
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- DRAWER ---------- */
+const DEEP_CONTENT = {
+  'unit-1': {
+    title: 'Why voice slips',
+    intro: 'Two specific patterns explain most of what goes wrong when AI represents you in writing.',
+    glossary: [
+      { term: 'Drift', def: 'AI gradually moves away from the instructions and tone you established. Over a long session it reverts to its default patterns.', watch: 'Generic phrasing creeping back in. Banned words returning. Output reading more corporate-sounding than how you started.', do: 'Reload your identity file mid-session if drift is happening. Paste the file again as a message to reset.' },
+      { term: 'Over-compliance', def: 'AI agrees with everything, validates every framing, and avoids pushback. Voice goes flat because every line is calibrated to please.', watch: 'AI confirms your assumptions without checking. Output reads suspiciously upbeat about a weak draft. Critique is missing.', do: 'Ask AI to critique the output. "What is wrong with this?" or "Where would my voice not match this?" The pushback prompt produces more honest results.' }
+    ]
+  },
+  'unit-2': {
+    title: 'Capturing voice well',
+    intro: 'A few quick rules of thumb for getting more signal out of two short samples.',
+    watchouts: [
+      '<strong>Unedited samples carry more signal.</strong> Pick samples you have actually sent. Edited-for-publication writing reads as edited, and AI will copy the polish and lose the cadence.',
+      '<strong>Different topics, different audiences.</strong> Two samples about the same thing show one mood. Two samples across different situations show range.',
+      '<strong>De-identify before pasting.</strong> Strip names, account numbers, anything that identifies a client. Voice does not require client data.',
+      `<strong>Pick characteristics that feel uncomfortable to skip.</strong> If a tag is "nice to have," cut it. The four to seven you keep are the ones AI will hold onto.`
+    ]
+  },
+  'unit-3': {
+    title: 'Values and commitments',
+    intro: 'These two boxes do different work. Knowing which is which produces a sharper file.',
+    glossary: [
+      { term: 'Values', def: 'What you believe about good work in advisory practice. These are about you. They shape AI judgment when a prompt does not give a clear answer.', watch: 'Values that sound abstract, like "integrity" or "professionalism," do not give AI anything to work with. Push for the specific.', do: 'Write each value so it could be tested by an outside observer. "I never recommend a product I would not own myself" is testable. "I act with integrity" leaves too much room for interpretation.' },
+      { term: 'Commitments', def: 'What clients can count on from you. These are about how you show up. They shape AI behavior in client-touching content: tone, structure, follow-through.', watch: 'Commitments that nobody could disagree with give AI nothing to honor. AI will satisfy them by default and your voice will not show through.', do: 'Each commitment should be specific enough that breaking it would be visible. "I respond to client questions within one business day" is a commitment AI can honor in tone and structure.' }
+    ]
+  },
+  'unit-4': {
+    title: 'How AI uses this file',
+    intro: 'A short walkthrough of what happens once you drop my-identity.md into ChatGPT or Claude as system context.',
+    watchouts: [
+      '<strong>Read first.</strong> When AI receives your file as system context, it reads through before generating anything. Your voice characteristics, samples, values, and commitments shape the very first sentence it produces for you.',
+      '<strong>Reload at the start of every new session.</strong> Files do not persist across separate AI sessions. New chat, fresh load. Build the habit.',
+      '<strong>Pair with your foundation file.</strong> my-identity.md is most effective alongside my-ai-foundation.md. Foundation gives AI the rules. Identity gives AI the voice. Both together produce work that sounds like you and respects your standards.',
+      '<strong>Update over time.</strong> Voice evolves. Re-run this module annually or when something changes about how you work.'
+    ]
+  }
+};
+
+function renderDrawer(unitId) {
+  const c = DEEP_CONTENT[unitId];
+  if (!c) return false;
+  document.getElementById('drawerTitle').textContent = c.title;
+  let html = '';
+  if (c.intro) html += `<p class="drawer-intro">${c.intro}</p>`;
+  if (c.glossary && c.glossary.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Terms</div>';
+    c.glossary.forEach(g => {
+      html += `<div class="glossary-entry"><h4>${escapeHtml(g.term)}</h4><p class="def">${escapeHtml(g.def)}</p>`;
+      if (g.watch) html += `<p class="watch"><strong>Watch for:</strong> ${escapeHtml(g.watch)}</p>`;
+      if (g.do) html += `<p class="do"><strong>What to do:</strong> ${escapeHtml(g.do)}</p>`;
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  if (c.watchouts && c.watchouts.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">What to watch for</div>';
+    c.watchouts.forEach(w => { html += `<div class="watchout-item">${w}</div>`; });
+    html += '</div>';
+  }
+  document.getElementById('drawerBody').innerHTML = html;
+  document.getElementById('drawerBody').scrollTop = 0;
+  return true;
+}
+function openDrawer(id) {
+  if (!renderDrawer(id)) return;
+  document.getElementById('deepDrawer').classList.add('open');
+  document.getElementById('drawerBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  state.seenDeep[id] = true; save();
+}
+function closeDrawer() {
+  document.getElementById('deepDrawer').classList.remove('open');
+  document.getElementById('drawerBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function bindButtons() {
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); goTo(el.getAttribute('data-go')); }));
+  document.querySelectorAll('[data-deep]').forEach(el => el.addEventListener('click', () => openDrawer(el.getAttribute('data-deep'))));
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && document.getElementById('deepDrawer').classList.contains('open')) closeDrawer(); });
+
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    state.completedAt = new Date().toISOString(); save();
+    downloadMarkdown(); goTo('success');
+  });
+  document.getElementById('downloadAgainBtn').addEventListener('click', downloadMarkdown);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+}
+
+load(); bindButtons(); render();
+</script>
+</body>
+</html>
