@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Compliance Context | AI Training Program | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#04253a;--navy-mid:#0a3a55;--navy-deep:#021724;--orange:#f0640e;--orange-hover:#d65709;--orange-soft:rgba(240,100,14,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#5BC2C7;--teal-soft:rgba(91,194,199,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--card-hover:rgba(255,255,255,.07);--radius:14px;--shadow:0 2px 20px rgba(0,0,0,.28);--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+em,.em{font-style:italic;color:var(--accent);font-weight:900}
+button{font-family:inherit}
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 44px;background:rgba(4,37,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);gap:24px}
+.logo{display:inline-flex;flex-direction:column;background:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+.page-badge{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px;white-space:nowrap}
+.progress-track{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-bar{height:100%;width:0%;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.hero{position:relative;padding:64px 44px 56px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)}
+.hero::before{content:'';position:absolute;right:-10%;top:-20%;width:560px;height:560px;background:radial-gradient(circle,rgba(240,100,14,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:36px}}
+.eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance;color:var(--white);margin-bottom:18px}
+.hero .tagline{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--accent);letter-spacing:.01em;margin-bottom:22px;padding:6px 0;border-bottom:2px solid rgba(240,100,14,.4)}
+.hero .lede{font-size:17px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;font-weight:500;max-width:560px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;padding-top:24px;border-top:1px solid var(--border)}
+.hero-stat-val{font-family:'Manrope',sans-serif;font-weight:900;font-size:24px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px}
+.hero-side{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:18px;padding:28px 28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.hero-side::before{content:'';position:absolute;top:-1px;left:24px;right:24px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.hero-side-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.hero-side-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:-.01em;line-height:1.25;margin-bottom:14px}
+.hero-side-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.container{max-width:880px;margin:0 auto;padding:48px 44px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:44px 48px;margin-bottom:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.card::before{content:'';position:absolute;top:-1px;left:36px;right:36px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+@media(max-width:640px){.card{padding:32px 26px}.card::before{left:22px;right:22px}}
+.unit-num{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:5px 12px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.unit-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.unit-title .em{color:var(--accent)}
+.unit-intro{font-size:16px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;font-weight:500;max-width:680px}
+
+.audio-wrap{margin-bottom:30px}
+.audio-placeholder{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.22);border-radius:12px}
+.audio-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-placeholder-icon svg{width:16px;height:16px}
+.audio-placeholder-body{flex:1;min-width:0}
+.audio-placeholder-title{font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--white);line-height:1.3}
+.audio-placeholder-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.lesson{font-size:15.5px;line-height:1.75;color:var(--text-muted)}
+.lesson h3{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white);letter-spacing:-.005em}
+.lesson h4{font-family:'Manrope',sans-serif;font-size:.98rem;font-weight:800;margin:22px 0 8px;color:var(--white);letter-spacing:-.005em}
+.lesson p{margin-bottom:14px}
+.lesson ul{margin:8px 0 18px 22px}
+.lesson li{margin-bottom:10px;color:var(--text-muted)}
+.lesson li::marker{color:var(--accent)}
+.lesson strong{color:var(--white);font-weight:700}
+.lesson a{color:var(--accent)}
+
+/* CALLOUT PALETTE */
+.callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
+.role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
+.role-nod strong{color:var(--status-warn);font-weight:700}
+
+/* PULL QUOTE */
+.pull-quote{margin:24px 0;padding:22px 26px 22px 32px;border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(240,100,14,.06) 0%,rgba(240,100,14,0) 80%);border-radius:0 12px 12px 0;font-family:'Manrope',sans-serif;font-style:italic;font-weight:700;font-size:17px;line-height:1.5;color:var(--white);letter-spacing:-.005em}
+
+/* WORKED EXAMPLE */
+.worked-example{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:22px 0;position:relative}
+.worked-example::before{content:'WORKED EXAMPLE';position:absolute;top:-9px;left:18px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent);background:var(--navy);padding:0 10px}
+.worked-example h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);margin:4px 0 10px;letter-spacing:-.005em}
+.worked-example p{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.worked-example p:last-child{margin-bottom:0}
+
+/* BEFORE / AFTER */
+.before-after{margin:22px 0}
+.before-after-prompt{font-size:13.5px;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.55}
+.before-after-prompt strong{color:var(--white);font-weight:700;display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;color:var(--accent)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:740px){.ba-grid{grid-template-columns:1fr}}
+.ba-card{border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.ba-card-bad{background:rgba(208,106,78,.05);border-color:rgba(208,106,78,.25);border-left:3px solid var(--status-alert)}
+.ba-card-good{background:rgba(193,225,167,.05);border-color:rgba(193,225,167,.22);border-left:3px solid var(--status-complete)}
+.ba-card-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ba-card-bad .ba-card-label{color:var(--status-alert)}
+.ba-card-good .ba-card-label{color:var(--status-complete)}
+.ba-card-body{font-size:13.5px;line-height:1.6;color:var(--text-muted);white-space:pre-line}
+.ba-card-body em{font-style:italic;color:var(--text-dim);font-weight:500}
+.ba-takeaway{margin-top:14px;font-size:13.5px;color:var(--text-muted);line-height:1.6;padding:12px 18px;background:rgba(255,255,255,.03);border-radius:8px}
+.ba-takeaway strong{color:var(--white);font-weight:700}
+
+/* DOMAIN CARDS (Unit 1) */
+.domain-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:640px){.domain-grid{grid-template-columns:1fr}}
+.domain-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px}
+.domain-card-num{font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.domain-card-title{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:6px;letter-spacing:-.005em}
+.domain-card-desc{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+/* CHECK GRID (regulators, provinces, products) */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 18px}
+@media(max-width:640px){.check-grid{grid-template-columns:1fr}}
+.check-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border:1px solid var(--border);border-radius:10px;cursor:pointer;background:rgba(255,255,255,.03);transition:all .15s}
+.check-item:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.05)}
+.check-item.selected{border-color:var(--accent);background:var(--accent-soft)}
+.check-item.prefilled{border-color:var(--teal);background:var(--teal-soft)}
+.check-item input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer;margin-top:3px;flex-shrink:0}
+.check-item-body{flex:1;min-width:0}
+.check-item-name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);line-height:1.4}
+.check-item.selected .check-item-name,.check-item.prefilled .check-item-name{color:var(--white)}
+.check-item-desc{font-size:12.5px;color:var(--text-dim);margin-top:4px;line-height:1.45}
+.check-item-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal);background:rgba(91,194,199,.14);padding:2px 8px;border-radius:999px;margin-top:6px;border:1px solid rgba(91,194,199,.25)}
+.section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:22px 0 10px}
+.section-label:first-child{margin-top:0}
+
+/* CHIP GRID (designations) */
+.chip-grid{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border-strong);border-radius:999px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--text-muted);background:rgba(255,255,255,.03);cursor:pointer;transition:all .15s;user-select:none}
+.chip:hover{border-color:rgba(255,255,255,.35);color:var(--white)}
+.chip.selected{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.chip input{display:none}
+
+/* ADD CUSTOM (designation/membership) */
+.add-row{display:flex;gap:10px;margin-top:14px}
+.add-row input{flex:1}
+.add-row button{background:var(--accent);color:var(--navy);border:none;padding:10px 18px;border-radius:8px;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:.02em;white-space:nowrap}
+.add-row button:hover{background:var(--accent-hover)}
+.custom-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.custom-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.35);border-radius:999px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--accent)}
+.custom-tag button{background:none;border:none;color:var(--accent);cursor:pointer;font-size:14px;padding:0 4px;font-weight:700;line-height:1}
+
+/* DRAWER + GLOSSARY */
+.glossary-entry{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.glossary-entry h4{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:8px}
+.glossary-entry .def{font-size:13.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+.glossary-entry .watch,.glossary-entry .do{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:6px}
+.glossary-entry .watch strong,.glossary-entry .do strong{color:var(--white);font-weight:700}
+.watchout-item{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;padding-left:18px;position:relative}
+.watchout-item::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.watchout-item strong{color:var(--white);font-weight:700}
+
+.deep-trigger{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:11px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:999px;color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+.deep-trigger:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.deep-trigger::after{content:'\2192';margin-left:4px;transition:transform .2s;font-weight:700}
+.deep-trigger:hover::after{transform:translateX(3px)}
+
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);background:var(--navy-deep);border-left:1px solid var(--border-strong);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-deep) 100%);position:relative}
+.drawer-header::before{content:'';position:absolute;top:-1px;left:24px;right:80px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.drawer-eyebrow{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.drawer-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;line-height:1.2}
+.drawer-close{background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-family:inherit;flex-shrink:0;transition:all .15s;line-height:1;padding:0}
+.drawer-close:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.drawer-body{flex:1;overflow-y:auto;padding:24px 28px 36px}
+.drawer-intro{font-size:14.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.65}
+.drawer-section{margin-bottom:30px}
+.drawer-section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* FORM */
+input[type=text]{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14.5px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);transition:border-color .2s,background .2s;outline:none;font-weight:500}
+input::placeholder{color:var(--text-faint)}
+input:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-orange{background:var(--accent);color:var(--navy)}
+.btn-orange:hover{background:var(--accent-hover);color:var(--navy)}
+.btn-orange:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+.btn-orange::after{content:'\2192';transition:transform .2s;font-weight:700}
+.btn-orange:hover::after{transform:translateX(3px)}
+.btn-orange:disabled::after{display:none}
+.btn-back{background:transparent;color:var(--text-dim);font-weight:700;padding:13px 18px;letter-spacing:.02em}
+.btn-back:hover{color:var(--white)}
+.btn-back::before{content:'\2190';margin-right:6px;font-weight:700}
+
+.review-block{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px;position:relative}
+.review-block h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.review-block .review-content{font-size:14.5px;line-height:1.65;color:var(--text-muted)}
+.review-block .review-content strong{color:var(--white);font-weight:700}
+.review-block .review-content ul{margin-left:22px;margin-top:8px;list-style:disc}
+.review-block .review-content li{margin-bottom:6px;color:var(--text-muted)}
+.review-block .review-content li::marker{color:var(--accent)}
+.review-edit{font-size:11.5px;color:var(--accent);text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;float:right;padding:2px 8px;border-radius:6px}
+.review-edit:hover{background:var(--accent-soft)}
+
+.success-card{text-align:center;padding:60px 48px}
+.success-card .check{width:72px;height:72px;background:var(--accent);color:var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin-bottom:22px;box-shadow:0 8px 24px rgba(240,100,14,.3)}
+.success-card h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:14px}
+.success-card .success-lede{color:var(--text-muted);margin-bottom:18px;font-size:16px;line-height:1.65;max-width:520px;margin-left:auto;margin-right:auto}
+.success-card .next-up{font-size:14px;color:var(--text-muted);max-width:520px;margin:0 auto 8px}
+.success-card .next-up strong{color:var(--white);font-weight:700}
+
+.footer{max-width:880px;margin:0 auto;padding:0 44px 40px;text-align:center}
+.footer .reset{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;padding:10px 18px;border-radius:8px;letter-spacing:.02em;transition:all .15s}
+.footer .reset:hover{color:var(--status-alert);border-color:rgba(208,106,78,.4)}
+.disclaimer{font-size:11.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;font-weight:500}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#" style="text-decoration:none">
+    <span class="logo-mark">Etc.<span style="font-weight:300;opacity:.7"> Projects</span></span>
+    <span class="logo-sub">ai training program</span>
+  </a>
+  <span class="page-badge" id="headerBadge">Module 3 of 5</span>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<section id="step-welcome">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <span class="eyebrow">AI Training Program · Module 3</span>
+        <h1>My Compliance <span class="em">Context</span></h1>
+        <span class="tagline">the guardrails AI works inside</span>
+        <p class="lede">AI does not know which regulator covers your practice, which province you operate in, or which products you sell. This module captures all of it in one file. The artifact loads into your AI tools alongside your foundation and identity files.</p>
+        <p class="lede" style="margin-bottom:8px">For advisors with the full Etc. Projects suite, much of this is auto-prefilled from your Practice Profile. Standalone buyers fill it once.</p>
+
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">5</div><div class="hero-stat-label">Short Steps</div></div>
+          <div><div class="hero-stat-val">~25</div><div class="hero-stat-label">Minutes</div></div>
+          <div><div class="hero-stat-val">1</div><div class="hero-stat-label">File You Keep</div></div>
+        </div>
+
+        <div class="btn-row" style="justify-content:flex-start;margin-top:32px">
+          <button class="btn btn-orange" data-go="unit-1">Begin</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-side-label">Welcome from the Etc. Projects AI Steward</div>
+        <div class="hero-side-title">Why your context shapes every output.</div>
+        <div class="hero-side-desc">Press play. About a minute. A walk-through of why AI without your compliance context produces work that looks compliant and is not.</div>
+        <div class="audio-wrap" style="margin-bottom:0">
+          <div class="audio-placeholder" role="note">
+            <div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div>
+            <div class="audio-placeholder-body"><div class="audio-placeholder-title">Welcome to Module 3</div><div class="audio-placeholder-meta">≈ 1 min</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- UNIT 1: KYR Domains -->
+  <section class="card hidden" id="step-unit-1">
+    <span class="unit-num">Step 1 of 5</span>
+    <h2 class="unit-title">The seven <span class="em">KYR domains</span></h2>
+    <p class="unit-intro">Your compliance footprint covers seven domains. Privacy, cybersecurity, device management, physical security, AML, licensing and conduct, and the Four Pillars of ethics. Each one is a place AI can introduce a problem when it does not know where you operate.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">The seven KYR domains</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <div class="domain-grid">
+        <div class="domain-card"><div class="domain-card-num">Domain 1</div><div class="domain-card-title">Privacy</div><div class="domain-card-desc">PIPEDA and provincial privacy laws. Consent, collection, retention, breach notification.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 2</div><div class="domain-card-title">Cybersecurity</div><div class="domain-card-desc">Encrypted transmission, access controls, multi-factor authentication, secure backups.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 3</div><div class="domain-card-title">Device Management</div><div class="domain-card-desc">Authorized devices, remote access, encryption at rest, lost-device protocol.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 4</div><div class="domain-card-title">Physical Security</div><div class="domain-card-desc">Office access, document storage and disposal, visitor protocols, after-hours protections.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 5</div><div class="domain-card-title">AML and FINTRAC</div><div class="domain-card-desc">Know-your-client, suspicious transaction reporting, large cash transaction reporting, PEP screening.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 6</div><div class="domain-card-title">Licensing and Conduct</div><div class="domain-card-desc">Suitability, disclosure, continuing education, supervision boundaries for unlicensed staff.</div></div>
+        <div class="domain-card"><div class="domain-card-num">Domain 7</div><div class="domain-card-title">The Four Pillars</div><div class="domain-card-desc">Transparency, Consent, Confidentiality, Stewardship. The ethical floor under everything else.</div></div>
+      </div>
+
+      <div class="callout">
+        <strong>Why this is the first step.</strong> The remaining four units capture the specifics. Which regulators apply to you, where you practice, what you sell, what designations you hold. AI uses all of it to keep its output inside the right lane. Skip the context and AI produces plausible content that does not match your reality.
+      </div>
+
+      <div class="role-nod">
+        <strong>A note for the whole team:</strong> the compliance context file belongs to everyone. The licensed advisor anchors it, and every team member relies on it the moment they load AI to draft anything that touches a client. Licensed Assistants drafting letters. Admins building summaries. Associates preparing meeting talking points. The file is shared infrastructure.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-1">Go deeper on each domain</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="welcome">Back</button>
+      <button class="btn btn-orange" data-go="unit-2">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 2: Regulators -->
+  <section class="card hidden" id="step-unit-2">
+    <span class="unit-num">Step 2 of 5</span>
+    <h2 class="unit-title">Your <span class="em">regulators</span></h2>
+    <p class="unit-intro">Pick the bodies that govern your practice. Some apply to every Canadian advisor. Others depend on what you sell and where.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your regulators</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="section-label">Federal (apply to most Canadian advisors)</div>
+    <div class="check-grid" id="regsFederal"></div>
+
+    <div class="section-label">Provincial privacy</div>
+    <div class="check-grid" id="regsProvincialPrivacy"></div>
+
+    <div class="section-label">Investments and dealer conduct</div>
+    <div class="check-grid" id="regsInvestments"></div>
+
+    <div class="section-label">Insurance councils</div>
+    <div class="check-grid" id="regsInsurance"></div>
+
+    <div class="worked-example">
+      <h4>A Licensed Assistant catches AI naming the wrong regulator</h4>
+      <p>Priya is a Licensed Assistant in an Alberta-based practice. She drafts a privacy disclosure paragraph for a new client onboarding letter and asks AI to clean up the wording. The cleaned-up version references "the Securities and Exchange Commission" as the body overseeing client information practices.</p>
+      <p>Priya stops at the line. The SEC is a US regulator. It has no authority over a Canadian insurance practice. AI defaulted to a familiar regulator name because the prompt did not tell it otherwise. She loads the compliance context file (which has OPC, CAI for Quebec, and OIPC Alberta selected), regenerates the paragraph, and the language now references PIPEDA and the Office of the Information and Privacy Commissioner of Alberta. The file did the work the prompt did not.</p>
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-2" style="margin-top:18px">Go deeper on regulator scope</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-1">Back</button>
+      <button class="btn btn-orange" data-go="unit-3" id="unit2Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 3: Jurisdictions -->
+  <section class="card hidden" id="step-unit-3">
+    <span class="unit-num">Step 3 of 5</span>
+    <h2 class="unit-title">Your <span class="em">jurisdictions</span></h2>
+    <p class="unit-intro">The provinces where you practice and the provinces where your clients live both matter. Some rules tie to where you are licensed. Others tie to where the client sits when they receive advice.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your jurisdictions</div><div class="audio-placeholder-meta">&lt; 1 min</div></div></div></div>
+
+    <div id="provinceInheritanceCallout"></div>
+
+    <div class="section-label">Provinces and territories where you are licensed</div>
+    <div class="check-grid" id="provinces"></div>
+
+    <h3 style="font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white)">Before and after: what jurisdiction context actually changes</h3>
+    <div class="before-after">
+      <div class="before-after-prompt">
+        <strong>The prompt</strong>
+        Draft a short privacy disclosure email to a new client explaining how we handle their personal information.
+      </div>
+      <div class="ba-grid">
+        <div class="ba-card ba-card-bad">
+          <div class="ba-card-label">Without a compliance file</div>
+          <div class="ba-card-body"><em>Dear [Client],</em>
+
+<em>Thank you for choosing our firm. We take the privacy of your personal information seriously. Your information is collected in accordance with applicable privacy legislation in Canada and is used to provide financial advisory services to you. We retain your information for as long as necessary to provide our services and meet our legal obligations. You may contact us at any time to access or correct your personal information.</em>
+
+<em>If you have any questions, please contact our privacy officer.</em>
+
+<em>Sincerely,
+[Advisor]</em></div>
+        </div>
+        <div class="ba-card ba-card-good">
+          <div class="ba-card-label">With Quebec / Law 25 loaded</div>
+          <div class="ba-card-body"><em>Hi [Client first name],</em>
+
+<em>A quick note on how we handle your personal information.</em>
+
+<em>Because we serve clients in Quebec, our privacy practices follow Law 25 (the Act respecting the protection of personal information in the private sector). A few specifics that matter for you:</em>
+
+<em>- We collect only the information we need to provide you with advisory services
+- We let you know in advance when your information will leave the province (cross-border data transfers)
+- You can access, correct, or ask us to delete your information at any time
+- Our designated privacy officer is [name], and you can reach them at [contact]</em>
+
+<em>If a privacy concern ever comes up, you have the right to file a complaint with the Commission d'accès à l'information du Québec (CAI).</em>
+
+<em>Talk soon,
+[Advisor first name]</em></div>
+        </div>
+      </div>
+      <div class="ba-takeaway"><strong>What changed:</strong> generic Canadian framing became Quebec-specific. Law 25 named. CAI named. The deletion right and cross-border notice obligations that Law 25 requires beyond PIPEDA show up where the original missed them. The compliance file did that.</div>
+    </div>
+
+    <div class="callout">
+      <strong>For practices that serve clients across multiple provinces:</strong> tick every province where you are licensed to operate. Quebec gets handled separately because Law 25 has stronger consent and transparency requirements than PIPEDA, and AI needs to know to apply them.
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-3" style="margin-top:18px">Go deeper on multi-jurisdictional work</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-2">Back</button>
+      <button class="btn btn-orange" data-go="unit-4" id="unit3Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 4: Products -->
+  <section class="card hidden" id="step-unit-4">
+    <span class="unit-num">Step 4 of 5</span>
+    <h2 class="unit-title">Your <span class="em">products</span> and lines of business</h2>
+    <p class="unit-intro">What you sell or recommend. Tick everything that applies. AI uses this to keep recommendations and references inside the work you actually do.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your products and lines of business</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="section-label">Insurance</div>
+    <div class="check-grid" id="lobInsurance"></div>
+
+    <div class="section-label">Investments and group products</div>
+    <div class="check-grid" id="lobInvestments"></div>
+
+    <div class="section-label">Financial planning and other services</div>
+    <div class="check-grid" id="lobOther"></div>
+
+    <button class="deep-trigger" data-deep="unit-4" style="margin-top:18px">Go deeper on product accuracy</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-3">Back</button>
+      <button class="btn btn-orange" data-go="unit-5" id="unit4Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 5: Designations -->
+  <section class="card hidden" id="step-unit-5">
+    <span class="unit-num">Step 5 of 5</span>
+    <h2 class="unit-title">Your <span class="em">designations</span> and memberships</h2>
+    <p class="unit-intro">The credentials and bodies you carry shape how AI should describe you. Tick the common ones. Add anything else.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Designations and memberships</div><div class="audio-placeholder-meta">&lt; 1 min</div></div></div></div>
+
+    <div class="section-label">Common designations</div>
+    <div class="chip-grid" id="designations"></div>
+
+    <div class="section-label">Add another</div>
+    <div class="add-row">
+      <input type="text" id="customDesignation" placeholder="e.g. CHS, RIS, EPC, RFP">
+      <button id="addDesignationBtn" type="button">Add</button>
+    </div>
+    <div class="custom-list" id="customDesignations"></div>
+
+    <div class="section-label" style="margin-top:24px">Memberships and associations</div>
+    <div class="add-row">
+      <input type="text" id="customMembership" placeholder="e.g. Advocis, IFB, FP Canada, IIROC member firm">
+      <button id="addMembershipBtn" type="button">Add</button>
+    </div>
+    <div class="custom-list" id="customMemberships"></div>
+
+    <div class="worked-example">
+      <h4>An Admin catches a fabricated credential</h4>
+      <p>Marcus is the Admin for a two-advisor practice. He uses AI to draft introductory paragraphs for a new client onboarding package, including short bios for each advisor. AI's draft for one of the advisors includes "Certified Financial Strategist (CFS)." Marcus does not recognize the designation. He checks the advisor's actual credentials. The advisor holds CFP and CHS. There is no CFS designation in Canadian financial services. AI fabricated a plausible-sounding credential.</p>
+      <p>Marcus removes the fabricated line, replaces it with the advisor's actual designations, and adds the designation list to the practice's compliance context file so the same fabrication does not happen again. Bios that get sent to clients now match what the advisors actually hold.</p>
+    </div>
+
+    <div class="role-nod">
+      <strong>A note for everyone on the team:</strong> designation accuracy belongs to every seat that produces content with someone's name on it. A fabricated credential in a draft is a misrepresentation, regardless of which seat caught it. Loading the practice's actual designations into AI prevents the mistake at the source.
+    </div>
+
+    <button class="deep-trigger" data-deep="unit-5" style="margin-top:24px">Go deeper on how AI uses this file</button>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-4">Back</button>
+      <button class="btn btn-orange" data-go="review">Review and generate</button>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="card hidden" id="step-review">
+    <span class="unit-num">Almost done</span>
+    <h2 class="unit-title">Review your <span class="em">context</span></h2>
+    <p class="unit-intro">Quick look before we generate your file. Edit anything that needs adjusting.</p>
+
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-2">Edit</a><h4>Regulators</h4><div class="review-content" id="reviewRegs"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-3">Edit</a><h4>Jurisdictions</h4><div class="review-content" id="reviewProvinces"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-4">Edit</a><h4>Products and lines of business</h4><div class="review-content" id="reviewLobs"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-5">Edit</a><h4>Designations and memberships</h4><div class="review-content" id="reviewDesignations"></div></div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-5">Back</button>
+      <button class="btn btn-orange" id="generateBtn">Generate my-compliance-context.md</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="card success-card hidden" id="step-success">
+    <div class="check">✓</div>
+    <h2>Your context is <span class="em">captured</span>.</h2>
+    <p class="success-lede">Your file has been downloaded. Load it alongside your foundation and identity files at the start of every AI session.</p>
+    <p class="next-up"><strong>What's next:</strong> Module 4, Practice Prompt Library. Working prompts your team builds together, mapped to the patterns advisors use most.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <button class="reset" id="resetBtn">Start over from the beginning</button>
+  <p class="disclaimer">This training program is provided for guidance and planning only. It is not legal, regulatory, or compliance advice. © 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="deepDrawer" aria-hidden="true" role="dialog" tabindex="-1">
+  <div class="drawer-header">
+    <div><div class="drawer-eyebrow">Go deeper</div><div class="drawer-title" id="drawerTitle"></div></div>
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+const STORAGE_KEY = 'etc_module3_state';
+const M1_KEY = 'etc_module1_state';
+const M2_KEY = 'etc_module2_state';
+const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','unit-5','review','success'];
+
+const REGULATORS = {
+  federal: [
+    { id: 'opc', name: 'Office of the Privacy Commissioner of Canada (OPC)', desc: 'Administers PIPEDA. Applies to most advisor practices.' },
+    { id: 'fintrac', name: 'FINTRAC', desc: 'AML and terrorist-financing reporting. Mandatory for life insurance agents.' }
+  ],
+  provincialPrivacy: [
+    { id: 'cai', name: 'Quebec CAI (Law 25)', desc: 'Stronger consent and transparency than PIPEDA.' },
+    { id: 'oipc-ab', name: 'OIPC Alberta', desc: 'Alberta Personal Information Protection Act (PIPA).' },
+    { id: 'oipc-bc', name: 'OIPC British Columbia', desc: 'BC Personal Information Protection Act (PIPA).' }
+  ],
+  investments: [
+    { id: 'ciro', name: 'CIRO', desc: 'Canadian Investment Regulatory Organization. Investment dealer conduct.' }
+  ],
+  insurance: [
+    { id: 'aic', name: 'Alberta Insurance Council (AIC)', desc: 'Alberta life and accident and sickness conduct.' },
+    { id: 'icobc', name: 'Insurance Council of BC (ICoBC)', desc: 'BC life and accident and sickness conduct.' },
+    { id: 'fsra', name: 'FSRA (Ontario)', desc: 'Financial Services Regulatory Authority of Ontario.' },
+    { id: 'amf-ins', name: 'AMF (Quebec, insurance)', desc: 'Autorité des marchés financiers, insurance side.' }
+  ]
+};
+
+const PROVINCES = ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon'];
+
+const LOBS = {
+  insurance: [
+    { id: 'life', name: 'Life insurance' },
+    { id: 'living', name: 'Living benefits (CI, DI, LTC)' },
+    { id: 'health', name: 'Health insurance' },
+    { id: 'travel', name: 'Travel insurance' },
+    { id: 'group', name: 'Group benefits' },
+    { id: 'hsa', name: 'Health Spending Accounts' }
+  ],
+  investments: [
+    { id: 'segfunds', name: 'Segregated funds' },
+    { id: 'investments', name: 'Investments (mutual funds, securities)' },
+    { id: 'groupinvest', name: 'Group investments / RRSP' },
+    { id: 'banking', name: 'Banking products' }
+  ],
+  other: [
+    { id: 'fp', name: 'Financial planning (commission)' },
+    { id: 'fpfee', name: 'Fee-based financial planning' },
+    { id: 'ffs', name: 'Financial fitness / coaching services' },
+    { id: 'other_lob', name: 'Other (note in designations)' }
+  ]
+};
+
+const DESIGNATIONS = ['CFP','CLU','CHS','CIM','CFA','RFP','PFA','EPC','RIS','TEP','FCSI'];
+
+let state = {
+  step: 'welcome',
+  regulators: [],
+  provinces: [],
+  prefilledProvinces: [],
+  lobs: [],
+  designations: [],
+  customDesignations: [],
+  customMemberships: [],
+  identity: { name: '', role: '', practice: '' },
+  inheritedFromM1: false,
+  completedAt: null,
+  seenDeep: {}
+};
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function load() {
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+}
+function loadM1() { try { const raw = localStorage.getItem(M1_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function loadM2() { try { const raw = localStorage.getItem(M2_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; } }
+function reset() {
+  if (!confirm('This wipes everything you have entered and starts over. Continue?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function goTo(step) { if (!STEPS.includes(step)) return; state.step = step; save(); render(); }
+
+function inheritFromPriorModules() {
+  if (state.inheritedFromM1) return;
+  const m1 = loadM1();
+  const m2 = loadM2();
+  const id = (m2 && m2.identity && m2.identity.name) ? m2.identity : (m1 && m1.identity ? m1.identity : null);
+  if (id && (id.name || id.role || id.practice)) {
+    state.identity = {
+      name: id.name || '',
+      role: id.role || '',
+      practice: id.practice || ''
+    };
+  }
+  // Auto-tick the M1 province as a starter (user can untick)
+  if (m1 && m1.identity && m1.identity.province && !state.provinces.includes(m1.identity.province)) {
+    state.provinces.push(m1.identity.province);
+    state.prefilledProvinces.push(m1.identity.province);
+  }
+  state.inheritedFromM1 = true;
+  save();
+}
+
+function render() {
+  inheritFromPriorModules();
+  STEPS.forEach(s => { const el = document.getElementById('step-'+s); if (el) el.classList.toggle('hidden', s !== state.step); });
+  const idx = STEPS.indexOf(state.step);
+  const pct = state.step === 'welcome' ? 0 : state.step === 'success' ? 100 : Math.round((idx/(STEPS.length-2))*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  const badge = document.getElementById('headerBadge');
+  if (state.step === 'welcome') badge.textContent = 'Module 3 of 5';
+  else if (state.step === 'success') badge.textContent = 'Complete';
+  else if (state.step === 'review') badge.textContent = 'Review';
+  else badge.textContent = `Step ${idx} of 5`;
+
+  if (state.step === 'unit-2') renderRegs();
+  if (state.step === 'unit-3') { renderProvinces(); renderProvinceInheritance(); }
+  if (state.step === 'unit-4') renderLobs();
+  if (state.step === 'unit-5') renderDesignations();
+  if (state.step === 'review') renderReview();
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- pickers ---------- */
+function buildCheckGrid(containerId, items, stateKey, opts) {
+  opts = opts || {};
+  const wrap = document.getElementById(containerId);
+  wrap.innerHTML = '';
+  items.forEach(item => {
+    const isSel = state[stateKey].includes(item.id);
+    const isPrefilled = opts.prefilledKey && state[opts.prefilledKey] && state[opts.prefilledKey].includes(item.id);
+    const label = document.createElement('label');
+    label.className = 'check-item' + (isSel ? ' selected' : '') + (isPrefilled && isSel ? ' prefilled' : '');
+    let inner = `<input type="checkbox" ${isSel?'checked':''}><div class="check-item-body"><div class="check-item-name">${escapeHtml(item.name)}</div>`;
+    if (item.desc) inner += `<div class="check-item-desc">${escapeHtml(item.desc)}</div>`;
+    if (isPrefilled && isSel) inner += `<span class="check-item-tag">From your foundation</span>`;
+    inner += '</div>';
+    label.innerHTML = inner;
+    label.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked && !state[stateKey].includes(item.id)) state[stateKey].push(item.id);
+      else if (!e.target.checked) {
+        state[stateKey] = state[stateKey].filter(x => x !== item.id);
+        if (opts.prefilledKey) state[opts.prefilledKey] = state[opts.prefilledKey].filter(x => x !== item.id);
+      }
+      save();
+      if (containerId.startsWith('regs')) { renderRegs(); updateUnit2Next(); }
+      else if (containerId === 'provinces') { renderProvinces(); updateUnit3Next(); }
+      else if (containerId.startsWith('lob')) { renderLobs(); updateUnit4Next(); }
+    });
+    wrap.appendChild(label);
+  });
+}
+
+function renderRegs() {
+  buildCheckGrid('regsFederal', REGULATORS.federal, 'regulators');
+  buildCheckGrid('regsProvincialPrivacy', REGULATORS.provincialPrivacy, 'regulators');
+  buildCheckGrid('regsInvestments', REGULATORS.investments, 'regulators');
+  buildCheckGrid('regsInsurance', REGULATORS.insurance, 'regulators');
+  updateUnit2Next();
+}
+function updateUnit2Next() { document.getElementById('unit2Next').disabled = state.regulators.length === 0; }
+
+function renderProvinces() {
+  const items = PROVINCES.map(p => ({ id: p, name: p }));
+  buildCheckGrid('provinces', items, 'provinces', { prefilledKey: 'prefilledProvinces' });
+  updateUnit3Next();
+}
+function renderProvinceInheritance() {
+  const wrap = document.getElementById('provinceInheritanceCallout');
+  if (state.prefilledProvinces && state.prefilledProvinces.length) {
+    wrap.innerHTML = `<div class="callout-teal"><strong>Pre-ticked from your AI Foundation:</strong> ${state.prefilledProvinces.map(escapeHtml).join(', ')}. Add others where you are licensed, or untick if it doesn't apply.</div>`;
+  } else {
+    wrap.innerHTML = '';
+  }
+}
+function updateUnit3Next() { document.getElementById('unit3Next').disabled = state.provinces.length === 0; }
+
+function renderLobs() {
+  buildCheckGrid('lobInsurance', LOBS.insurance, 'lobs');
+  buildCheckGrid('lobInvestments', LOBS.investments, 'lobs');
+  buildCheckGrid('lobOther', LOBS.other, 'lobs');
+  updateUnit4Next();
+}
+function updateUnit4Next() { document.getElementById('unit4Next').disabled = state.lobs.length === 0; }
+
+function renderDesignations() {
+  const wrap = document.getElementById('designations');
+  wrap.innerHTML = '';
+  DESIGNATIONS.forEach(d => {
+    const isSel = state.designations.includes(d);
+    const label = document.createElement('label');
+    label.className = 'chip' + (isSel ? ' selected' : '');
+    label.innerHTML = `<input type="checkbox" ${isSel?'checked':''}>${escapeHtml(d)}`;
+    label.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) state.designations.push(d);
+      else state.designations = state.designations.filter(x => x !== d);
+      save(); renderDesignations();
+    });
+    wrap.appendChild(label);
+  });
+  renderCustomList('customDesignations', state.customDesignations, 'customDesignations');
+  renderCustomList('customMemberships', state.customMemberships, 'customMemberships');
+}
+
+function renderCustomList(containerId, list, stateKey) {
+  const wrap = document.getElementById(containerId);
+  wrap.innerHTML = '';
+  list.forEach((item, idx) => {
+    const tag = document.createElement('span');
+    tag.className = 'custom-tag';
+    tag.innerHTML = `${escapeHtml(item)} <button type="button" aria-label="Remove">×</button>`;
+    tag.querySelector('button').addEventListener('click', () => {
+      state[stateKey].splice(idx, 1); save(); renderDesignations();
+    });
+    wrap.appendChild(tag);
+  });
+}
+
+/* ---------- review ---------- */
+function renderReview() {
+  const regNames = state.regulators.map(id => {
+    const all = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.investments, ...REGULATORS.insurance];
+    const r = all.find(x => x.id === id);
+    return r ? r.name : id;
+  });
+  document.getElementById('reviewRegs').innerHTML = regNames.length ? '<ul>'+regNames.map(n=>`<li>${escapeHtml(n)}</li>`).join('')+'</ul>' : '<span style="color:var(--text-dim)">None selected</span>';
+  document.getElementById('reviewProvinces').innerHTML = state.provinces.length ? '<ul>'+state.provinces.map(p=>`<li>${escapeHtml(p)}</li>`).join('')+'</ul>' : '<span style="color:var(--text-dim)">None selected</span>';
+  const lobNames = state.lobs.map(id => {
+    const all = [...LOBS.insurance, ...LOBS.investments, ...LOBS.other];
+    const l = all.find(x => x.id === id);
+    return l ? l.name : id;
+  });
+  document.getElementById('reviewLobs').innerHTML = lobNames.length ? '<ul>'+lobNames.map(n=>`<li>${escapeHtml(n)}</li>`).join('')+'</ul>' : '<span style="color:var(--text-dim)">None selected</span>';
+  const allDesigs = [...state.designations, ...state.customDesignations];
+  const allMems = state.customMemberships;
+  let html = '';
+  if (allDesigs.length) html += '<strong>Designations:</strong><ul>'+allDesigs.map(d=>`<li>${escapeHtml(d)}</li>`).join('')+'</ul>';
+  if (allMems.length) html += '<strong>Memberships:</strong><ul>'+allMems.map(m=>`<li>${escapeHtml(m)}</li>`).join('')+'</ul>';
+  if (!html) html = '<span style="color:var(--text-dim)">None selected</span>';
+  document.getElementById('reviewDesignations').innerHTML = html;
+}
+
+/* ---------- markdown ---------- */
+function buildMarkdown() {
+  const i = state.identity;
+  const today = new Date().toISOString().slice(0,10);
+  const allRegs = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.investments, ...REGULATORS.insurance];
+  const regList = state.regulators.map(id => { const r = allRegs.find(x => x.id===id); return r ? `- ${r.name}` : ''; }).filter(Boolean).join('\n');
+  const provList = state.provinces.map(p => `- ${p}`).join('\n');
+  const allLobs = [...LOBS.insurance, ...LOBS.investments, ...LOBS.other];
+  const lobList = state.lobs.map(id => { const l = allLobs.find(x => x.id===id); return l ? `- ${l.name}` : ''; }).filter(Boolean).join('\n');
+  const desigList = [...state.designations, ...state.customDesignations].map(d => `- ${d}`).join('\n');
+  const memList = state.customMemberships.map(m => `- ${m}`).join('\n');
+  const ownerLine = i.name ? `\n**Owner:** ${i.name}${i.role?', '+i.role:''}` : '';
+  const practiceLine = i.practice ? `\n**Practice:** ${i.practice}` : '';
+
+  return `# My Compliance Context
+
+**Created:** ${today}${ownerLine}${practiceLine}
+
+## My regulators
+
+${regList || '_None selected._'}
+
+## My jurisdictions
+
+${provList || '_None selected._'}
+
+## My products and lines of business
+
+${lobList || '_None selected._'}
+
+${desigList ? `## My designations\n\n${desigList}\n\n` : ''}${memList ? `## My memberships\n\n${memList}\n\n` : ''}## How AI should use this file
+
+When generating any compliance-touching, regulatory, or client-facing content for me:
+- Apply the rules of the regulators above. Do not reference other regulators by default.
+- Match the jurisdiction context. When output applies across multiple provinces, flag where rules diverge.
+- Reference only products and lines of business I work in. When a recommendation falls outside this list, flag it before producing anything.
+- Honor my designations. Do not invent credentials I do not hold.
+- For anything time-sensitive (regulation changes, product features, rates), verify against a primary source before relying on AI's content.
+
+This file is loaded alongside my-ai-foundation.md and my-identity.md as system context.
+
+---
+*Generated by the Etc. Projects AI Training Program · Module 3 · ${today}*
+*This is a personal compliance context document, not legal, regulatory, or compliance advice.*
+`;
+}
+
+function downloadMarkdown() {
+  const md = buildMarkdown();
+  const name = (state.identity.name||'my').toLowerCase().split(/\s+/)[0].replace(/[^a-z0-9-]/g,'');
+  const filename = `${name||'my'}-compliance-context.md`;
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- drawer ---------- */
+const DEEP_CONTENT = {
+  'unit-1': {
+    title: 'The KYR domains, in depth',
+    intro: 'The seven domains map every place compliance shows up in your practice. Below: a one-line definition for each plus the primary regulator that governs it.',
+    watchouts: [
+      '<strong>Privacy.</strong> PIPEDA federally. Provincial PIPA in Alberta and BC. Law 25 in Quebec. Each has different consent, breach notification, and access requirements.',
+      '<strong>Cybersecurity.</strong> No single regulator. Standards come from your firm, your dealer or MGA, FINTRAC, and increasingly your clients via E&O renewals.',
+      '<strong>Device Management.</strong> Same as cybersecurity. The gap between policy and practice is often widest here, with devices used for work that were never inventoried.',
+      '<strong>Physical Security.</strong> Provincial and firm-level. Document storage and disposal are the most common failure points.',
+      '<strong>AML and FINTRAC.</strong> Mandatory for life insurance agents and most dealers. Includes know-your-client, suspicious transaction reporting, and PEP screening.',
+      '<strong>Licensing and Conduct.</strong> Provincial insurance councils and CIRO for investments. Suitability, disclosure, CE, and the line between licensed and unlicensed staff.',
+      '<strong>Four Pillars.</strong> Transparency, Consent, Confidentiality, Stewardship. The ethical floor under everything.'
+    ]
+  },
+  'unit-2': {
+    title: 'Regulator scope',
+    intro: 'Two specific patterns show up when AI is asked about regulators without specific context loaded.',
+    glossary: [
+      { term: 'Misrepresentation', def: 'AI describes a real regulator and gets a key detail wrong. The wrong threshold. The wrong scope. The wrong jurisdiction.', watch: 'A regulatory requirement cited with the wrong numeric threshold. A rule attributed to FINTRAC that belongs to CIRO. Provincial nuance applied to the federal rule.', do: "When AI describes anything specific about a regulator, check the detail against the regulator's primary source before using it." },
+      { term: 'Fabrication', def: 'AI invents a regulator entirely or attributes a rule to a body that does not exist.', watch: 'References to "the Canadian Insurance Regulatory Body" or similar plausible-sounding inventions. Acronyms you have not heard before.', do: 'If you cannot find the regulator on a primary source list, treat the reference as fabricated and remove it.' }
+    ]
+  },
+  'unit-3': {
+    title: 'Multi-jurisdictional work',
+    intro: 'Working across provinces multiplies the rules AI has to honor.',
+    watchouts: [
+      '<strong>Quebec gets handled separately.</strong> Law 25 has stronger consent and transparency requirements than PIPEDA. AI working with Quebec clients applies Quebec rules even when your home jurisdiction is elsewhere.',
+      '<strong>Alberta and BC get handled separately for privacy.</strong> Both have their own PIPA. The differences are usually subtle and matter for breach notification and consent.',
+      '<strong>Insurance licensing stays provincial.</strong> Being licensed in Ontario does not let you sell into Alberta. AI should never recommend cross-border activity without flagging the licensing question.'
+    ]
+  },
+  'unit-4': {
+    title: 'Product accuracy',
+    intro: 'Most AI errors with financial products are misrepresentations. The product is real, the description is wrong.',
+    watchouts: [
+      '<strong>Segregated funds sit on the insurance side of the practice.</strong> If your file lists segregated funds and not investments, AI should not pitch them as a securities solution.',
+      '<strong>Estate planning describes an outcome, not a stand-alone line of business.</strong> Several products and services contribute to it. AI sometimes treats estate planning as its own offering. Worth flagging when it appears in output.',
+      '<strong>Final expense insurance lives under life.</strong> It is a permanent life policy with a small face amount. Some AI tools treat it as its own category.',
+      '<strong>Group benefits get governed differently from individual.</strong> AI should not blend group disclosure rules with individual ones.'
+    ]
+  },
+  'unit-5': {
+    title: 'How AI uses this file',
+    intro: 'A short walkthrough of what happens once you drop my-compliance-context.md into ChatGPT or Claude as system context.',
+    watchouts: [
+      '<strong>Regulators set the lane.</strong> AI uses the regulator list to constrain language and references. When a regulator is not on the list, AI should not invoke it as authority.',
+      '<strong>Jurisdictions trigger overrides.</strong> Quebec presence triggers Law 25 language. Multiple provinces trigger comparison flags.',
+      '<strong>Products bound recommendations.</strong> AI does not propose solutions outside what you sell. When a client need exceeds your products, AI flags the gap rather than inventing a product to fill it.',
+      '<strong>Designations shape attribution.</strong> AI describes you accurately. It does not invent credentials.',
+      '<strong>Reload at the start of every new session.</strong> Files do not persist across separate AI sessions. Build the habit.'
+    ]
+  }
+};
+
+function renderDrawer(unitId) {
+  const c = DEEP_CONTENT[unitId];
+  if (!c) return false;
+  document.getElementById('drawerTitle').textContent = c.title;
+  let html = '';
+  if (c.intro) html += `<p class="drawer-intro">${c.intro}</p>`;
+  if (c.glossary && c.glossary.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Terms</div>';
+    c.glossary.forEach(g => {
+      html += `<div class="glossary-entry"><h4>${escapeHtml(g.term)}</h4><p class="def">${escapeHtml(g.def)}</p>`;
+      if (g.watch) html += `<p class="watch"><strong>Watch for:</strong> ${escapeHtml(g.watch)}</p>`;
+      if (g.do) html += `<p class="do"><strong>What to do:</strong> ${escapeHtml(g.do)}</p>`;
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  if (c.watchouts && c.watchouts.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">What to watch for</div>';
+    c.watchouts.forEach(w => { html += `<div class="watchout-item">${w}</div>`; });
+    html += '</div>';
+  }
+  document.getElementById('drawerBody').innerHTML = html;
+  document.getElementById('drawerBody').scrollTop = 0;
+  return true;
+}
+function openDrawer(id) { if (!renderDrawer(id)) return; document.getElementById('deepDrawer').classList.add('open'); document.getElementById('drawerBackdrop').classList.add('open'); document.body.style.overflow = 'hidden'; state.seenDeep[id]=true; save(); }
+function closeDrawer() { document.getElementById('deepDrawer').classList.remove('open'); document.getElementById('drawerBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
+
+function bindButtons() {
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); goTo(el.getAttribute('data-go')); }));
+  document.querySelectorAll('[data-deep]').forEach(el => el.addEventListener('click', () => openDrawer(el.getAttribute('data-deep'))));
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && document.getElementById('deepDrawer').classList.contains('open')) closeDrawer(); });
+
+  document.getElementById('addDesignationBtn').addEventListener('click', () => {
+    const inp = document.getElementById('customDesignation');
+    const v = inp.value.trim();
+    if (v) { state.customDesignations.push(v); inp.value = ''; save(); renderDesignations(); }
+  });
+  document.getElementById('addMembershipBtn').addEventListener('click', () => {
+    const inp = document.getElementById('customMembership');
+    const v = inp.value.trim();
+    if (v) { state.customMemberships.push(v); inp.value = ''; save(); renderDesignations(); }
+  });
+  ['customDesignation','customMembership'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); document.getElementById(id==='customDesignation'?'addDesignationBtn':'addMembershipBtn').click(); }
+    });
+  });
+
+  document.getElementById('generateBtn').addEventListener('click', () => { state.completedAt = new Date().toISOString(); save(); downloadMarkdown(); goTo('success'); });
+  document.getElementById('downloadAgainBtn').addEventListener('click', downloadMarkdown);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+}
+
+load(); bindButtons(); render();
+</script>
+</body>
+</html>
