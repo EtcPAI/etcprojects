@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My AI Foundation | AI Training Program | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#04253a;--navy-mid:#0a3a55;--navy-deep:#021724;--orange:#f0640e;--orange-hover:#d65709;--orange-soft:rgba(240,100,14,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#5BC2C7;--teal-soft:rgba(91,194,199,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--card-hover:rgba(255,255,255,.07);--radius:14px;--shadow:0 2px 20px rgba(0,0,0,.28);--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+em,.em{font-style:italic;color:var(--accent);font-weight:900}
+button{font-family:inherit}
+.site-header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 44px;background:rgba(4,37,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);gap:24px}
+.logo{display:inline-flex;flex-direction:column;background:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+.page-badge{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);padding:6px 14px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px;white-space:nowrap}
+.progress-track{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-bar{height:100%;width:0%;background:var(--accent);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+.hero{position:relative;padding:64px 44px 56px;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%)}
+.hero::before{content:'';position:absolute;right:-10%;top:-20%;width:560px;height:560px;background:radial-gradient(circle,rgba(240,100,14,.08),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:36px}}
+.eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:18px;padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance;color:var(--white);margin-bottom:18px}
+.hero .tagline{display:inline-block;font-family:'Manrope',sans-serif;font-weight:800;font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--accent);letter-spacing:.01em;margin-bottom:22px;padding:6px 0;border-bottom:2px solid rgba(240,100,14,.4)}
+.hero .lede{font-size:17px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;font-weight:500;max-width:560px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:18px;padding-top:24px;border-top:1px solid var(--border)}
+.hero-stat-val{font-family:'Manrope',sans-serif;font-weight:900;font-size:24px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.hero-stat-label{font-size:11px;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px}
+.hero-side{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:18px;padding:28px 28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.hero-side::before{content:'';position:absolute;top:-1px;left:24px;right:24px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.hero-side-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.hero-side-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--white);letter-spacing:-.01em;line-height:1.25;margin-bottom:14px}
+.hero-side-desc{font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:16px;font-weight:500}
+
+.container{max-width:880px;margin:0 auto;padding:48px 44px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:44px 48px;margin-bottom:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative}
+.card::before{content:'';position:absolute;top:-1px;left:36px;right:36px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+@media(max-width:640px){.card{padding:32px 26px}.card::before{left:22px;right:22px}}
+.unit-num{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:5px 12px;background:var(--accent-soft);border:1px solid rgba(240,100,14,.3);border-radius:999px}
+.unit-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(26px,3.2vw,36px);line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.unit-title .em{color:var(--accent)}
+.unit-intro{font-size:16px;color:var(--text-muted);margin-bottom:28px;line-height:1.6;font-weight:500;max-width:680px}
+
+.audio-wrap{margin-bottom:30px}
+.audio-placeholder{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.22);border-radius:12px}
+.audio-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.audio-placeholder-icon svg{width:16px;height:16px}
+.audio-placeholder-body{flex:1;min-width:0}
+.audio-placeholder-title{font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:700;color:var(--white);line-height:1.3}
+.audio-placeholder-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.lesson{font-size:15.5px;line-height:1.75;color:var(--text-muted)}
+.lesson h3{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:800;margin:28px 0 10px;color:var(--white);letter-spacing:-.005em}
+.lesson h4{font-family:'Manrope',sans-serif;font-size:.98rem;font-weight:800;margin:22px 0 8px;color:var(--white);letter-spacing:-.005em}
+.lesson p{margin-bottom:14px}
+.lesson ul{margin:8px 0 18px 22px}
+.lesson li{margin-bottom:10px;color:var(--text-muted)}
+.lesson li::marker{color:var(--accent)}
+.lesson strong{color:var(--white);font-weight:700}
+.lesson a{color:var(--accent)}
+
+/* CALLOUT PALETTE */
+.callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
+.role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
+.role-nod strong{color:var(--status-warn);font-weight:700}
+
+/* PULL QUOTE */
+.pull-quote{margin:24px 0;padding:22px 26px 22px 32px;border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(240,100,14,.06) 0%,rgba(240,100,14,0) 80%);border-radius:0 12px 12px 0;font-family:'Manrope',sans-serif;font-style:italic;font-weight:700;font-size:17px;line-height:1.5;color:var(--white);letter-spacing:-.005em}
+
+/* WORKED EXAMPLE */
+.worked-example{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:22px 0;position:relative}
+.worked-example::before{content:'WORKED EXAMPLE';position:absolute;top:-9px;left:18px;font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent);background:var(--navy);padding:0 10px}
+.worked-example h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:var(--white);margin:4px 0 10px;letter-spacing:-.005em}
+.worked-example p{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
+.worked-example p:last-child{margin-bottom:0}
+
+/* BEFORE / AFTER */
+.before-after{margin:22px 0}
+.before-after-prompt{font-size:13.5px;color:var(--text-muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;line-height:1.55}
+.before-after-prompt strong{color:var(--white);font-weight:700;display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;color:var(--accent)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:740px){.ba-grid{grid-template-columns:1fr}}
+.ba-card{border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.ba-card-bad{background:rgba(208,106,78,.05);border-color:rgba(208,106,78,.25);border-left:3px solid var(--status-alert)}
+.ba-card-good{background:rgba(193,225,167,.05);border-color:rgba(193,225,167,.22);border-left:3px solid var(--status-complete)}
+.ba-card-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ba-card-bad .ba-card-label{color:var(--status-alert)}
+.ba-card-good .ba-card-label{color:var(--status-complete)}
+.ba-card-body{font-size:13.5px;line-height:1.6;color:var(--text-muted);white-space:pre-line}
+.ba-card-body em{font-style:italic;color:var(--text-dim);font-weight:500}
+.ba-takeaway{margin-top:14px;font-size:13.5px;color:var(--text-muted);line-height:1.6;padding:12px 18px;background:rgba(255,255,255,.03);border-radius:8px}
+.ba-takeaway strong{color:var(--white);font-weight:700}
+
+/* GROUND-RULES PICKER (UNIT 4) */
+.section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:22px 0 10px}
+.section-label:first-child{margin-top:0}
+.starter-rules{display:flex;flex-direction:column;gap:10px;margin:14px 0 22px}
+.rule-card{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);transition:border-color .15s,background .15s}
+.rule-card.selected{border-color:var(--accent);background:var(--accent-soft)}
+.rule-card input[type=checkbox]{accent-color:var(--accent);width:18px;height:18px;cursor:pointer;margin-top:2px;flex-shrink:0}
+.rule-body{flex:1;min-width:0}
+.rule-text{font-size:14.5px;font-weight:600;color:var(--text-muted);line-height:1.5;cursor:pointer}
+.rule-card.selected .rule-text{color:var(--white)}
+.rule-editor{margin-top:8px;display:none}
+.rule-card.editing .rule-editor{display:block}
+.rule-card.editing .rule-text{display:none}
+.rule-editor textarea{width:100%;padding:10px 12px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500;line-height:1.5;resize:vertical;min-height:60px}
+.rule-editor textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+.rule-original{font-size:12px;color:var(--text-faint);margin-top:6px;line-height:1.5;font-style:italic}
+.rule-original strong{color:var(--text-dim);font-weight:700;font-style:normal;text-transform:uppercase;font-size:10px;letter-spacing:1.2px;margin-right:6px}
+.rule-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.rule-action{background:none;border:none;color:var(--accent);font-family:'Manrope',sans-serif;font-size:11.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .15s}
+.rule-action:hover{background:var(--accent-soft)}
+.rule-action.muted{color:var(--text-dim)}
+.rule-action.muted:hover{color:var(--white);background:rgba(255,255,255,.06)}
+.rule-action.danger{color:var(--status-alert)}
+.rule-action.danger:hover{background:rgba(208,106,78,.1)}
+
+/* CUSTOM RULE FORM */
+.custom-rule-form{background:rgba(255,255,255,.04);border:1px dashed var(--border-strong);border-radius:12px;padding:18px 22px;margin-top:14px}
+.custom-rule-form h4{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.custom-rule-form textarea{width:100%;padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);outline:none;font-weight:500;line-height:1.5;resize:vertical;min-height:64px}
+.custom-rule-form textarea::placeholder{color:var(--text-faint)}
+.custom-rule-form textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+.suggest-share{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:10px 14px;background:var(--teal-soft);border:1px solid rgba(91,194,199,.18);border-radius:8px;cursor:pointer}
+.suggest-share input{accent-color:var(--teal);width:16px;height:16px;cursor:pointer;margin-top:2px;flex-shrink:0}
+.suggest-share-body{flex:1;font-size:13px;line-height:1.5;color:var(--text-muted)}
+.suggest-share-body strong{color:var(--teal);font-weight:700;display:block;font-size:11.5px;letter-spacing:.04em;margin-bottom:2px}
+.custom-rule-form-actions{display:flex;justify-content:flex-end;margin-top:12px}
+.btn-add-rule{background:var(--accent);color:var(--navy);border:none;padding:10px 20px;border-radius:8px;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:.02em}
+.btn-add-rule:hover{background:var(--accent-hover)}
+.btn-add-rule:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+
+/* CUSTOM RULES LIST */
+.custom-rules-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.custom-rule-item{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;border:1px solid var(--accent);background:var(--accent-soft);border-radius:10px}
+.custom-rule-item-body{flex:1;min-width:0}
+.custom-rule-item-text{font-size:14.5px;font-weight:600;color:var(--white);line-height:1.5}
+.custom-rule-item-tag{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--teal);background:var(--teal-soft);padding:2px 10px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase;border:1px solid rgba(91,194,199,.2)}
+.custom-rule-item-rm{background:none;border:none;color:var(--status-alert);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+.custom-rule-item-rm:hover{background:rgba(208,106,78,.1)}
+
+/* VALIDATION BAR */
+.validation-bar{margin-top:18px;padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.5;font-weight:600;display:flex;align-items:center;gap:10px}
+.validation-bar.warn{background:rgba(208,106,78,.08);border:1px solid rgba(208,106,78,.25);color:var(--status-alert)}
+.validation-bar.ok{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.2);color:var(--status-complete)}
+.validation-bar.soft{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.22);color:var(--status-warn)}
+
+/* GLOSSARY/PRIMARY-SOURCE LIST (drawer) */
+.glossary-entry{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.glossary-entry h4{font-family:'Manrope',sans-serif;font-size:14.5px;font-weight:800;color:var(--white);margin-bottom:8px}
+.glossary-entry .def{font-size:13.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+.glossary-entry .watch,.glossary-entry .do{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:6px}
+.glossary-entry .watch strong,.glossary-entry .do strong{color:var(--white);font-weight:700}
+.source-item{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:8px;font-size:13.5px;line-height:1.55}
+.source-item strong{color:var(--white);display:block;font-weight:700;margin-bottom:4px;font-size:14px}
+.source-item p{color:var(--text-muted);margin:0}
+.watchout-item{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;padding-left:18px;position:relative}
+.watchout-item::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.watchout-item strong{color:var(--white);font-weight:700}
+.drawer-pattern-note{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:14px 20px;margin-top:18px;font-size:13.5px;color:var(--text-muted);line-height:1.6}
+.drawer-pattern-note strong{color:var(--status-complete);font-weight:700}
+
+/* DEEP TRIGGER + DRAWER */
+.deep-trigger{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:11px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:999px;color:var(--text);font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+.deep-trigger:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.deep-trigger::after{content:'\2192';margin-left:4px;transition:transform .2s;font-weight:700}
+.deep-trigger:hover::after{transform:translateX(3px)}
+
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);background:var(--navy-deep);border-left:1px solid var(--border-strong);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-deep) 100%);position:relative}
+.drawer-header::before{content:'';position:absolute;top:-1px;left:24px;right:80px;height:3px;background:var(--accent);border-radius:0 0 3px 3px}
+.drawer-eyebrow{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.drawer-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;line-height:1.2}
+.drawer-close{background:rgba(255,255,255,.08);border:1px solid var(--border-strong);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-family:inherit;flex-shrink:0;transition:all .15s;line-height:1;padding:0}
+.drawer-close:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.drawer-body{flex:1;overflow-y:auto;padding:24px 28px 36px}
+.drawer-intro{font-size:14.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.65}
+.drawer-section{margin-bottom:30px}
+.drawer-section-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* FORM */
+.field{margin-bottom:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.row2{grid-template-columns:1fr}}
+label.lbl{display:block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+label.lbl .req{color:var(--accent);margin-left:2px}
+label.lbl .opt{color:var(--text-faint);font-weight:500;text-transform:none;letter-spacing:.02em;margin-left:4px}
+input[type=text],select,textarea{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:8px;font-size:14.5px;font-family:'Manrope',sans-serif;color:var(--white);background:rgba(255,255,255,.06);transition:border-color .2s,background .2s;outline:none;font-weight:500}
+input::placeholder,textarea::placeholder{color:var(--text-faint)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select option{background:var(--navy);color:var(--white)}
+
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.02em;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-orange{background:var(--accent);color:var(--navy)}
+.btn-orange:hover{background:var(--accent-hover);color:var(--navy)}
+.btn-orange:disabled{background:rgba(240,100,14,.4);color:rgba(4,37,58,.5);cursor:not-allowed}
+.btn-orange::after{content:'\2192';transition:transform .2s;font-weight:700}
+.btn-orange:hover::after{transform:translateX(3px)}
+.btn-orange:disabled::after{display:none}
+.btn-back{background:transparent;color:var(--text-dim);font-weight:700;padding:13px 18px;letter-spacing:.02em}
+.btn-back:hover{color:var(--white)}
+.btn-back::before{content:'\2190';margin-right:6px;font-weight:700}
+
+.review-block{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:14px;position:relative}
+.review-block h4{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.review-block .review-content{font-size:14.5px;line-height:1.65;color:var(--text-muted)}
+.review-block .review-content strong{color:var(--white);font-weight:700}
+.review-block .review-content ul,.review-block .review-content ol{margin-left:22px;margin-top:8px;list-style:decimal}
+.review-block .review-content ul{list-style:disc}
+.review-block .review-content li{margin-bottom:6px;color:var(--text-muted)}
+.review-block .review-content li::marker{color:var(--accent)}
+.review-edit{font-size:11.5px;color:var(--accent);text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;float:right;padding:2px 8px;border-radius:6px}
+.review-edit:hover{background:var(--accent-soft)}
+
+.success-card{text-align:center;padding:60px 48px}
+.success-card .check{width:72px;height:72px;background:var(--accent);color:var(--navy);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin-bottom:22px;box-shadow:0 8px 24px rgba(240,100,14,.3)}
+.success-card h2{font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:14px}
+.success-card .success-lede{color:var(--text-muted);margin-bottom:18px;font-size:16px;line-height:1.65;max-width:520px;margin-left:auto;margin-right:auto}
+.success-card .next-up{font-size:14px;color:var(--text-muted);max-width:520px;margin:0 auto 8px}
+.success-card .next-up strong{color:var(--white);font-weight:700}
+
+.footer{max-width:880px;margin:0 auto;padding:0 44px 40px;text-align:center}
+.footer .reset{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;padding:10px 18px;border-radius:8px;letter-spacing:.02em;transition:all .15s}
+.footer .reset:hover{color:var(--status-alert);border-color:rgba(208,106,78,.4)}
+.disclaimer{font-size:11.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;font-weight:500}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#" style="text-decoration:none">
+    <span class="logo-mark">Etc.<span style="font-weight:300;opacity:.7"> Projects</span></span>
+    <span class="logo-sub">ai training program</span>
+  </a>
+  <span class="page-badge" id="headerBadge">Module 1 of 5</span>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<section id="step-welcome">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <span class="eyebrow">AI Training Program · Module 1</span>
+        <h1>My AI <span class="em">Foundation</span></h1>
+        <span class="tagline">the file that travels with you</span>
+        <p class="lede">Five short pieces. Together they build your AI Foundation, a single file you carry into any AI tool to keep it aligned with you, your practice, and your standards. Every later module builds on this file.</p>
+        <p class="lede" style="margin-bottom:8px">Read or listen. Both work. Your progress saves automatically.</p>
+
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">5</div><div class="hero-stat-label">Short Steps</div></div>
+          <div><div class="hero-stat-val">~30</div><div class="hero-stat-label">Minutes</div></div>
+          <div><div class="hero-stat-val">1</div><div class="hero-stat-label">File You Keep</div></div>
+        </div>
+
+        <div class="btn-row" style="justify-content:flex-start;margin-top:32px">
+          <button class="btn btn-orange" data-go="unit-1">Begin</button>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-side-label">Welcome from the Etc. Projects AI Steward</div>
+        <div class="hero-side-title">A quick orientation before you begin.</div>
+        <div class="hero-side-desc">Press play. About a minute. A walk-through of how the program works, what to expect from each step, and what you walk away with.</div>
+        <div class="audio-wrap" style="margin-bottom:0">
+          <div class="audio-placeholder" role="note">
+            <div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div>
+            <div class="audio-placeholder-body"><div class="audio-placeholder-title">Welcome to Module 1</div><div class="audio-placeholder-meta">≈ 1 min</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- UNIT 1 -->
+  <section class="card hidden" id="step-unit-1">
+    <span class="unit-num">Step 1 of 5</span>
+    <h2 class="unit-title">How AI <span class="em">actually</span> works</h2>
+    <p class="unit-intro">A reset before everything else. Most of what goes wrong with AI in advisory work traces back to a misread of how AI generates its output. Getting this clear first changes how every later step lands.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">How AI actually works</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>What AI does well</h3>
+      <p>AI is a pattern-matching tool trained on a large body of text. It generates responses that sound right based on patterns it has seen before. Used well, that makes it useful for:</p>
+      <ul>
+        <li>First drafts, summaries, rephrasing, and comparisons</li>
+        <li>Structuring information you already have</li>
+        <li>Thinking out loud, stress-testing ideas, and getting unstuck when a blank page is the obstacle</li>
+        <li>Producing a starting point quickly so you can spend your time on the parts that need judgment</li>
+      </ul>
+
+      <h3>Where you stay in the driver's seat</h3>
+      <p>A few situations show up often enough to plan for them on day one.</p>
+      <ul>
+        <li><strong>Anything regulatory.</strong> AI can sound compliant on a Canadian topic while citing the wrong regulator, the wrong threshold, or rules from another country. Tone of confidence carries no signal about accuracy.</li>
+        <li><strong>Anything client-specific.</strong> AI only knows what you tell it. When you do not bring the context, it fills the gap with patterns from somewhere else. The result reads plausible and is not yours.</li>
+        <li><strong>Anything factual you have not verified.</strong> AI is willing to produce a citation, a name, a statistic, or a procedure that sounds correct and has no source.</li>
+        <li><strong>Any decision that touches a client.</strong> AI can move you faster on drafts. Suitability, disclosure, conflict resolution, and the parts of advisory work that require professional judgment stay with you.</li>
+      </ul>
+
+      <div class="pull-quote">A useful frame for AI in advisory work: a sharp, fast assistant who needs supervision. Sometimes brilliant. Always supervised.</div>
+
+      <div class="worked-example">
+        <h4>A Licensed Assistant catches a fabrication</h4>
+        <p>Marcia is a Licensed Assistant. She uses ChatGPT to draft a short letter to a retired client explaining a recent change to RRIF withdrawal rules. The draft references "Section 146.3(2) of the Income Tax Act" as the section that governs the change. Marcia checks the section against the Department of Finance Canada website before sending the letter for advisor review. The section number is wrong. AI cited a section that exists but does not cover what the letter says it covers.</p>
+        <p>Marcia removes the citation, replaces it with plain language ("recent changes to RRIF rules announced by the Department of Finance"), and flags the source check for her advisor's review. The fabrication never reached the client. The habit that caught it — verify every specific citation against a primary source — is what every team member is building in this module.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Why this matters in Canadian financial services.</strong> AI tools can produce content that looks compliant and is not. Invented FINTRAC procedures. The wrong regulator named for a province. Fabricated AMF references. Language that violates your firm's disclosure standard. The supervisor on the output is you, every time. Build the habit on day one.
+      </div>
+
+      <div class="role-nod">
+        <strong>A note for Licensed Assistants and Admin:</strong> the rules in this module apply to your seat in the same way they apply to the advisor's. Always route AI-generated client-facing content through the licensed advisor before it leaves the practice.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-1">Go deeper on AI behavior</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="welcome">Back</button>
+      <button class="btn btn-orange" data-go="unit-2">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 2 -->
+  <section class="card hidden" id="step-unit-2">
+    <span class="unit-num">Step 2 of 5</span>
+    <h2 class="unit-title">The Four <span class="em">Pillars</span></h2>
+    <p class="unit-intro">Four ideas govern responsible use of AI in financial services. They show up as specific behaviors across your practice every day. Every ground rule, prompt, and team standard you build later traces back to these four.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">The Four Pillars</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>Transparency</h3>
+      <p>Clients know what tools you use, how their information is handled, and what happens to it. No surprises.</p>
+      <p><strong>What this looks like in practice:</strong> a disclosure conversation at onboarding, and again any time a new tool is introduced. If a meeting is being recorded or transcribed by AI, the client is told before the meeting starts.</p>
+
+      <h3>Consent</h3>
+      <p>Consent is an informed decision the client makes after they understand what is happening. A signature documents the decision. The conversation creates it.</p>
+      <p><strong>What this looks like in practice:</strong> a real option offered before AI tools are used in the client's meeting. The client knows they can decline or withdraw consent at any time. The decision is documented in the file. Withdrawal is respected and noted.</p>
+
+      <h3>Confidentiality</h3>
+      <p>Information shared in the advisory relationship stays protected. AI introduces new pathways for that information to travel. Understand them before you use them.</p>
+      <p><strong>What this looks like in practice:</strong> every AI tool used on client data is evaluated for data residency, access controls, and deletion capability before use. A written list of approved tools is maintained. Information is never pasted into a tool that has not been evaluated.</p>
+
+      <h3>Stewardship</h3>
+      <p>You take responsibility for every tool that touches client information. Stewardship means active oversight, with a documented process behind it.</p>
+      <p><strong>What this looks like in practice:</strong> a tool evaluation checklist used before adoption. Periodic review of tools in use. A process for retiring tools and deleting data when a tool is no longer used.</p>
+
+      <div class="callout">
+        <strong>Where each pillar fails most often.</strong> Transparency fails when clients learn about your AI use after the fact. Consent fails when it is collected as a checkbox rather than as a decision. Confidentiality fails when client data goes into a tool no one evaluated. Stewardship fails when a tool is adopted because a peer recommended it and never reviewed again.
+      </div>
+
+      <div class="pull-quote">The Four Pillars are the floor under every other choice you will make about AI. Every ground rule, every prompt, every team standard checks back against these four.</div>
+
+      <button class="deep-trigger" data-deep="unit-2">Go deeper on the Pillars in practice</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-1">Back</button>
+      <button class="btn btn-orange" data-go="unit-3">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 3 -->
+  <section class="card hidden" id="step-unit-3">
+    <span class="unit-num">Step 3 of 5</span>
+    <h2 class="unit-title">What you <span class="em">do</span> with AI, and why</h2>
+    <p class="unit-intro">Unit 1 covered how AI works. Unit 2 covered the Four Pillars that govern its use. This is where principle becomes practice. Five behaviors that turn the pillars into how you work day to day.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">What you do with AI, and why</div><div class="audio-placeholder-meta">≈ 1.5 min</div></div></div></div>
+
+    <div class="lesson">
+      <h3>1. Think before you act.</h3>
+      <p><strong>Why this matters.</strong> Every AI use touches a client decision or a piece of client work. The pause before pressing send is where careful use is built. Most AI failures come from skipping this moment.</p>
+      <p><strong>In practice.</strong> Ask whether the task is appropriate for AI before you start. Read the output before sending. When the answer involves a regulator, a number, or a client decision, verify before you trust.</p>
+
+      <h3>2. Protect what matters.</h3>
+      <p><strong>Why this matters.</strong> Confidentiality is the bedrock of advisory work. AI introduces new pathways for client information to travel. You have to understand them before you use them.</p>
+      <p><strong>In practice.</strong> Never paste client identifiers (full name, SIN, account numbers) into a public AI tool. Use only tools you have evaluated and approved. Keep a written record of which tools touched which information.</p>
+
+      <h3>3. Stay current.</h3>
+      <p><strong>Why this matters.</strong> Regulations change. Tools change. Defaults change. What was good practice last quarter is not always good practice this quarter. The information AI was trained on has a shelf life.</p>
+      <p><strong>In practice.</strong> Follow regulator updates from primary sources, not summaries. Watch for changes to your AI tools' capabilities and guidance. The Steward's Log from Etc. Projects delivers monthly updates from this program once you complete the modules. Apply them when they arrive.</p>
+
+      <h3>4. Speak up.</h3>
+      <p><strong>Why this matters.</strong> Mistakes get worse when they are hidden. Teams get smarter when what was tried gets shared. Silence is the cost of unlearned lessons.</p>
+      <p><strong>In practice.</strong> Report AI errors and near-misses to your team. Flag a tool that is not behaving the way you expected. Share what is working so others can build on it.</p>
+
+      <h3>5. Choose value over speed.</h3>
+      <p><strong>Why this matters.</strong> AI is fast. Fast is useful. Fast without judgment becomes a liability. AI works best as an accelerator for work you already know how to do. It does not replace the work that needs you in the seat.</p>
+      <p><strong>In practice.</strong> Use AI for drafts, summaries, and structuring information you already have. Reserve your time for client-facing judgment, suitability decisions, conflict resolution, and conversations only you can have.</p>
+
+      <div class="worked-example">
+        <h4>An Admin notices what AI invented</h4>
+        <p>Jordan runs operations for a three-advisor practice. Each quarter she pulls together a list of unresolved follow-ups from the previous quarter's client meeting notes. She tested an AI summarizer to see if it could speed up the work. The summary it produced was fast and clean. One line stood out: "Client expressed concerns about Quebec residency for tax purposes." Jordan did not remember any conversation along those lines, and the client lives in Ottawa. She checked the source notes. The line was not in any of them. AI invented it, plausibly, from a pattern it had seen in other contexts.</p>
+        <p>Jordan removed the line, switched back to her manual process for that quarter, and reported the near-miss at the next team stand-up. The team agreed AI summaries get a second pass against source notes before anything in them gets acted on. Speaking up works as the practice's earliest warning system. The team learns faster when near-misses get shared.</p>
+      </div>
+
+      <div class="callout">
+        <strong>What this unlocks.</strong> Client meetings that hold attention better because AI handles routine documentation. Follow-up that lands more consistently because AI tracks commitments. Compliance that holds up better because AI monitors deadlines. Service that lands more personal because the foundation file you are building today travels with you across every tool.
+      </div>
+
+      <div class="callout-teal">
+        <strong>You're not doing this alone.</strong> Once you have completed the modules, the Steward's Log delivers monthly updates from this program. Short, practical, and rooted in the same Four Pillars you are working with now. We watch the rules and the tools so your kit stays current.
+      </div>
+
+      <div class="role-nod">
+        <strong>For Lead Advisors:</strong> you set the example. When the team sees you pause before pressing send, the team pauses too. The standards in your seat travel through every other seat.<br><br>
+        <strong>For Associates, Licensed Assistants, and Admin:</strong> every behavior here belongs to your seat in the same way it belongs to the licensed advisor's. The work you catch before it leaves the practice is the work that never becomes a client issue.
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-3">Go deeper on what to watch for</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-2">Back</button>
+      <button class="btn btn-orange" data-go="unit-4">Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 4 -->
+  <section class="card hidden" id="step-unit-4">
+    <span class="unit-num">Step 4 of 5</span>
+    <h2 class="unit-title">Your <span class="em">ground rules</span></h2>
+    <p class="unit-intro">Pick three to five rules that govern how you personally use AI. These go in your foundation file. They are the rules you commit to. Three rules you keep beats twelve you forget.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your ground rules</div><div class="audio-placeholder-meta">≈ 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <p>Below are 12 starter rules, all rooted in the Four Pillars. Pick the ones that fit your practice. Edit the wording so it sounds like you. Add your own.</p>
+
+      <div class="callout">
+        <strong>What makes a ground rule worth keeping.</strong> A good rule is short, concrete, and written in your voice. It names the behavior. The principle stays implied. "I will never paste a client's SIN into a public AI tool" works because it names a specific action you can either do or not do. "I will respect confidentiality" leaves too much room for interpretation. Specific beats lofty.
+      </div>
+
+      <div class="section-label">The 12 starter ground rules</div>
+      <div class="starter-rules" id="starterRules"></div>
+
+      <div class="section-label">Add your own</div>
+      <div class="custom-rule-form">
+        <h4>New rule</h4>
+        <textarea id="customRuleText" placeholder="Write your rule. Short. Specific. Names the behavior. Example: 'I will never use AI on a client matter without first checking my compliance file.'"></textarea>
+        <label class="suggest-share">
+          <input type="checkbox" id="customRuleShare">
+          <div class="suggest-share-body">
+            <strong>Suggest this for the shared library</strong>
+            If you check this, your rule gets queued for Etc. Projects to review. Good ones become starter rules in a future Steward's Log update, with attribution to you and your practice if you'd like.
+          </div>
+        </label>
+        <div class="custom-rule-form-actions">
+          <button class="btn-add-rule" id="addCustomRuleBtn" type="button" disabled>Save rule</button>
+        </div>
+      </div>
+      <div class="custom-rules-list" id="customRulesList"></div>
+
+      <div class="validation-bar" id="validationBar"></div>
+
+      <button class="deep-trigger" data-deep="unit-4">Go deeper on what your rules guard against</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-3">Back</button>
+      <button class="btn btn-orange" data-go="unit-5" id="unit4Next" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- UNIT 5 -->
+  <section class="card hidden" id="step-unit-5">
+    <span class="unit-num">Step 5 of 5</span>
+    <h2 class="unit-title">Your <span class="em">name</span> on the file</h2>
+    <p class="unit-intro">Last step. Tell us who you are so the file knows whose foundation it is. Module 3 (My Compliance Context) goes deeper on practice details. For now, just the basics.</p>
+
+    <div class="audio-wrap"><div class="audio-placeholder" role="note"><div class="audio-placeholder-icon"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="6" width="2" height="4" rx="1"/><rect x="7" y="4" width="2" height="8" rx="1"/><rect x="11" y="6" width="2" height="4" rx="1"/></svg></div><div class="audio-placeholder-body"><div class="audio-placeholder-title">Your name on the file</div><div class="audio-placeholder-meta">&lt; 1 min</div></div></div></div>
+
+    <div class="lesson">
+      <div class="callout">
+        <strong>Why this section matters.</strong> When you load <code>my-ai-foundation.md</code> into ChatGPT or Claude as system context, the AI reads who you are first: name, role, jurisdiction, lines of business. That context shapes everything it generates next. Get it right and the AI writes for your seat. Skip it and the AI writes for no one in particular.
+      </div>
+
+      <h3>Before and after: what the file actually changes</h3>
+      <div class="before-after">
+        <div class="before-after-prompt">
+          <strong>The prompt</strong>
+          Draft a short follow-up email to a client about their RRIF withdrawal questions.
+        </div>
+        <div class="ba-grid">
+          <div class="ba-card ba-card-bad">
+            <div class="ba-card-label">Without a foundation file</div>
+            <div class="ba-card-body"><em>Dear Client,</em>
+
+<em>Thank you for our recent conversation regarding your RRIF withdrawal options. As we discussed, the IRS allows for several withdrawal strategies that can optimize your tax position, including the systematic withdrawal plan and lump-sum distribution methods.</em>
+
+<em>Please let me know if you'd like to schedule a follow-up to review these options in more detail.</em>
+
+<em>Best regards,
+[Advisor Name]</em></div>
+          </div>
+          <div class="ba-card ba-card-good">
+            <div class="ba-card-label">With your foundation loaded</div>
+            <div class="ba-card-body"><em>Hi [Client first name],</em>
+
+<em>Following up on our conversation about your RRIF. The minimum withdrawal for the year is set by your age and the value of the RRIF at the start of the year (CRA's RRIF minimum table). You have flexibility above the minimum, and we can talk through the tax implications of taking more than the minimum if that is what you want to consider.</em>
+
+<em>A note before you reply: please do not include any account numbers or SIN by email. Reach me by phone if you want to share account specifics, or use the secure portal.</em>
+
+<em>Talk soon,
+[Advisor Name]</em></div>
+          </div>
+        </div>
+        <div class="ba-takeaway"><strong>What changed:</strong> the IRS reference (US, wrong) became the CRA RRIF minimum table (Canadian, correct). The disclosure habit (no account numbers by email) is built in. The voice is closer to your own. The foundation file did that. This is what you get, every session, every tool.</div>
+      </div>
+
+      <h3>Your details</h3>
+      <div class="row2">
+        <div class="field">
+          <label class="lbl" for="f-name">Your name <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="First and last name">
+        </div>
+        <div class="field">
+          <label class="lbl" for="f-role">Your role <span class="req">*</span></label>
+          <select id="f-role">
+            <option value="">Select your role…</option>
+            <option value="Legacy Advisor">Legacy Advisor</option>
+            <option value="Lead Advisor">Lead Advisor</option>
+            <option value="Associate Advisor">Associate Advisor</option>
+            <option value="Licensed Assistant">Licensed Assistant</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label class="lbl" for="f-province">Province <span class="req">*</span></label>
+          <select id="f-province">
+            <option value="">Select your province or territory…</option>
+            <option>Alberta</option>
+            <option>British Columbia</option>
+            <option>Manitoba</option>
+            <option>New Brunswick</option>
+            <option>Newfoundland and Labrador</option>
+            <option>Northwest Territories</option>
+            <option>Nova Scotia</option>
+            <option>Nunavut</option>
+            <option>Ontario</option>
+            <option>Prince Edward Island</option>
+            <option>Quebec</option>
+            <option>Saskatchewan</option>
+            <option>Yukon</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl" for="f-practice">Practice or firm name <span class="opt">(optional)</span></label>
+          <input type="text" id="f-practice" placeholder="e.g. Smith Wealth Management">
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="f-lob">Lines of business you work in <span class="opt">(optional)</span></label>
+        <input type="text" id="f-lob" placeholder="e.g. life insurance, segregated funds, group benefits">
+      </div>
+
+      <button class="deep-trigger" data-deep="unit-5">Go deeper on how AI uses this file</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-4">Back</button>
+      <button class="btn btn-orange" data-go="review" id="unit5Next" disabled>Review and generate</button>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="card hidden" id="step-review">
+    <span class="unit-num">Almost done</span>
+    <h2 class="unit-title">Review your <span class="em">foundation</span></h2>
+    <p class="unit-intro">Quick look before we generate your file. Edit anything that needs adjusting.</p>
+
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-5">Edit</a><h4>Your identity</h4><div class="review-content" id="reviewIdentity"></div></div>
+    <div class="review-block"><a href="#" class="review-edit" data-go="unit-4">Edit</a><h4>Your ground rules</h4><div class="review-content" id="reviewRules"></div></div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" data-go="unit-5">Back</button>
+      <button class="btn btn-orange" id="generateBtn">Generate my-ai-foundation.md</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="card success-card hidden" id="step-success">
+    <div class="check">✓</div>
+    <h2>Your foundation is <span class="em">yours</span>.</h2>
+    <p class="success-lede">Your file has been downloaded. Drop it into any AI tool as system context to keep that AI aligned with you.</p>
+    <p class="next-up"><strong>What's next:</strong> Module 2, My Identity and Voice. So AI can sound like you.</p>
+    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <button class="reset" id="resetBtn">Start over from the beginning</button>
+  <p class="disclaimer">This training program is provided for guidance and planning only. It is not legal, regulatory, or compliance advice. © 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+</footer>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="deepDrawer" aria-hidden="true" role="dialog" tabindex="-1">
+  <div class="drawer-header">
+    <div><div class="drawer-eyebrow">Go deeper</div><div class="drawer-title" id="drawerTitle"></div></div>
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+const STORAGE_KEY = 'etc_module1_state';
+const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','unit-5','review','success'];
+
+const STARTER_RULES = [
+  { id: 'r1',  text: "I will never paste a client's full name, SIN, account numbers, or other identifiers into a public AI tool." },
+  { id: 'r2',  text: "I will tell clients when I am using AI to help draft something they receive." },
+  { id: 'r3',  text: "I will review every AI-generated output before it leaves my hands." },
+  { id: 'r4',  text: "I will keep a record of which AI tools I use and when." },
+  { id: 'r5',  text: "I will verify regulatory or compliance answers against primary sources before relying on them." },
+  { id: 'r6',  text: "I will treat client information with the same confidentiality whether it is typed into AI or written in a file." },
+  { id: 'r7',  text: "I will reserve client conversations that deserve a direct human voice for myself." },
+  { id: 'r8',  text: "I will report AI errors or near-misses to my team so we all learn." },
+  { id: 'r9',  text: "I will keep AI-generated drafts clearly marked until I have reviewed them." },
+  { id: 'r10', text: "I will avoid using AI for content I cannot explain or defend if asked." },
+  { id: 'r11', text: "I will check AI output against my Compliance Context (regulators, products, jurisdictions)." },
+  { id: 'r12', text: "I will follow the limits set in my Practice AI Kit." }
+];
+
+let state = {
+  step: 'welcome',
+  starterSelected: [],
+  starterEdits: {},
+  editingRuleId: null,
+  customRules: [],
+  identity: { name: '', role: '', province: '', practice: '', lob: '' },
+  completedAt: null,
+  seenDeep: {}
+};
+
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
+function load() {
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+}
+function reset() {
+  if (!confirm('This wipes everything you have entered and starts over. Continue?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function goTo(step) { if (!STEPS.includes(step)) return; state.step = step; save(); render(); }
+
+function render() {
+  STEPS.forEach(s => { const el = document.getElementById('step-'+s); if (el) el.classList.toggle('hidden', s !== state.step); });
+  const idx = STEPS.indexOf(state.step);
+  const pct = state.step === 'welcome' ? 0 : state.step === 'success' ? 100 : Math.round((idx/(STEPS.length-2))*100);
+  document.getElementById('progressBar').style.width = pct+'%';
+  const badge = document.getElementById('headerBadge');
+  if (state.step === 'welcome') badge.textContent = 'Module 1 of 5';
+  else if (state.step === 'success') badge.textContent = 'Complete';
+  else if (state.step === 'review') badge.textContent = 'Review';
+  else badge.textContent = `Step ${idx} of 5`;
+
+  if (state.step === 'unit-4') renderRules();
+  if (state.step === 'unit-5') hydrateIdentity();
+  if (state.step === 'review') renderReview();
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- UNIT 4: rules ---------- */
+function totalRuleCount() {
+  return state.starterSelected.length + state.customRules.length;
+}
+
+function renderRules() {
+  const wrap = document.getElementById('starterRules');
+  wrap.innerHTML = '';
+  STARTER_RULES.forEach(rule => {
+    const isSel = state.starterSelected.includes(rule.id);
+    const isEditing = state.editingRuleId === rule.id;
+    const editedText = state.starterEdits[rule.id];
+    const displayText = editedText || rule.text;
+    const isEdited = !!editedText && editedText !== rule.text;
+
+    const card = document.createElement('div');
+    card.className = 'rule-card' + (isSel ? ' selected' : '') + (isEditing ? ' editing' : '');
+    card.innerHTML = `
+      <input type="checkbox" ${isSel ? 'checked' : ''} aria-label="Select rule">
+      <div class="rule-body">
+        <div class="rule-text">${escapeHtml(displayText)}</div>
+        <div class="rule-editor">
+          <textarea>${escapeHtml(displayText)}</textarea>
+          ${isEdited ? `<div class="rule-original"><strong>Original:</strong> ${escapeHtml(rule.text)}</div>` : ''}
+        </div>
+        ${isSel ? `<div class="rule-actions">
+          ${isEditing
+            ? `<button class="rule-action" data-act="save">Save edit</button><button class="rule-action muted" data-act="cancel">Cancel</button>`
+            : `<button class="rule-action" data-act="edit">Edit wording</button>${isEdited ? `<button class="rule-action muted" data-act="reset">Reset to original</button>` : ''}`}
+        </div>` : ''}
+      </div>
+    `;
+
+    const cb = card.querySelector('input[type=checkbox]');
+    cb.addEventListener('change', e => {
+      if (e.target.checked) {
+        if (!state.starterSelected.includes(rule.id)) state.starterSelected.push(rule.id);
+      } else {
+        state.starterSelected = state.starterSelected.filter(x => x !== rule.id);
+        if (state.editingRuleId === rule.id) state.editingRuleId = null;
+      }
+      save(); renderRules();
+    });
+
+    card.querySelectorAll('.rule-action').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const act = btn.getAttribute('data-act');
+        if (act === 'edit') { state.editingRuleId = rule.id; save(); renderRules(); }
+        else if (act === 'cancel') { state.editingRuleId = null; save(); renderRules(); }
+        else if (act === 'save') {
+          const v = card.querySelector('textarea').value.trim();
+          if (v) {
+            if (v === rule.text) delete state.starterEdits[rule.id];
+            else state.starterEdits[rule.id] = v;
+          }
+          state.editingRuleId = null; save(); renderRules();
+        }
+        else if (act === 'reset') {
+          delete state.starterEdits[rule.id];
+          state.editingRuleId = null; save(); renderRules();
+        }
+      });
+    });
+
+    wrap.appendChild(card);
+  });
+
+  renderCustomRules();
+  updateValidation();
+  bindCustomRuleForm();
+}
+
+function renderCustomRules() {
+  const wrap = document.getElementById('customRulesList');
+  wrap.innerHTML = '';
+  state.customRules.forEach((r, idx) => {
+    const item = document.createElement('div');
+    item.className = 'custom-rule-item';
+    item.innerHTML = `
+      <div class="custom-rule-item-body">
+        <div class="custom-rule-item-text">${escapeHtml(r.text)}</div>
+        ${r.suggestShared ? `<span class="custom-rule-item-tag">Suggested for shared library</span>` : ''}
+      </div>
+      <button class="custom-rule-item-rm" type="button">Remove</button>
+    `;
+    item.querySelector('.custom-rule-item-rm').addEventListener('click', () => {
+      state.customRules.splice(idx, 1); save(); renderRules();
+    });
+    wrap.appendChild(item);
+  });
+}
+
+function bindCustomRuleForm() {
+  const ta = document.getElementById('customRuleText');
+  const share = document.getElementById('customRuleShare');
+  const btn = document.getElementById('addCustomRuleBtn');
+  if (!ta || ta.dataset.bound) { if (btn) btn.disabled = !(ta && ta.value.trim()); return; }
+  ta.dataset.bound = '1';
+  ta.addEventListener('input', () => { btn.disabled = !ta.value.trim(); });
+  btn.addEventListener('click', () => {
+    const v = ta.value.trim();
+    if (!v) return;
+    state.customRules.push({ id: 'c'+Date.now(), text: v, suggestShared: !!share.checked });
+    ta.value = ''; share.checked = false; btn.disabled = true;
+    save(); renderRules();
+  });
+}
+
+function updateValidation() {
+  const bar = document.getElementById('validationBar');
+  const next = document.getElementById('unit4Next');
+  const n = totalRuleCount();
+  let cls = 'warn', msg = '';
+  if (n === 0) { cls = 'warn'; msg = `Pick at least 3 rules to continue. You have 0.`; next.disabled = true; }
+  else if (n < 3) { cls = 'warn'; msg = `Pick at least 3 rules to continue. You have ${n}.`; next.disabled = true; }
+  else if (n <= 5) { cls = 'ok'; msg = `${n} rule${n===1?'':'s'} selected. Good range.`; next.disabled = false; }
+  else { cls = 'soft'; msg = `${n} rules selected. Three to five is the target. More is fine if you'll keep them.`; next.disabled = false; }
+  bar.className = 'validation-bar ' + cls;
+  bar.textContent = msg;
+}
+
+/* ---------- UNIT 5: identity ---------- */
+function hydrateIdentity() {
+  const i = state.identity;
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el && el.value !== v) el.value = v || ''; };
+  setVal('f-name', i.name); setVal('f-role', i.role); setVal('f-province', i.province);
+  setVal('f-practice', i.practice); setVal('f-lob', i.lob);
+  bindIdentity();
+  updateUnit5Next();
+}
+function bindIdentity() {
+  ['f-name','f-role','f-province','f-practice','f-lob'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || el.dataset.bound) return;
+    el.dataset.bound = '1';
+    el.addEventListener('input', captureIdentity);
+    el.addEventListener('change', captureIdentity);
+  });
+}
+function captureIdentity() {
+  state.identity = {
+    name: document.getElementById('f-name').value.trim(),
+    role: document.getElementById('f-role').value,
+    province: document.getElementById('f-province').value,
+    practice: document.getElementById('f-practice').value.trim(),
+    lob: document.getElementById('f-lob').value.trim()
+  };
+  save(); updateUnit5Next();
+}
+function updateUnit5Next() {
+  const i = state.identity;
+  document.getElementById('unit5Next').disabled = !(i.name && i.role && i.province);
+}
+
+/* ---------- REVIEW ---------- */
+function getActiveRules() {
+  const starters = STARTER_RULES
+    .filter(r => state.starterSelected.includes(r.id))
+    .map(r => state.starterEdits[r.id] || r.text);
+  const customs = state.customRules.map(r => r.text);
+  return starters.concat(customs);
+}
+
+function renderReview() {
+  const i = state.identity;
+  const idLines = [];
+  if (i.name) idLines.push(`<li><strong>Name:</strong> ${escapeHtml(i.name)}</li>`);
+  if (i.role) idLines.push(`<li><strong>Role:</strong> ${escapeHtml(i.role)}</li>`);
+  if (i.province) idLines.push(`<li><strong>Province:</strong> ${escapeHtml(i.province)}</li>`);
+  if (i.practice) idLines.push(`<li><strong>Practice:</strong> ${escapeHtml(i.practice)}</li>`);
+  if (i.lob) idLines.push(`<li><strong>Lines of business:</strong> ${escapeHtml(i.lob)}</li>`);
+  document.getElementById('reviewIdentity').innerHTML = idLines.length
+    ? `<ul style="list-style:none;margin-left:0">${idLines.join('')}</ul>`
+    : '<span style="color:var(--text-dim)">Nothing entered yet</span>';
+
+  const rules = getActiveRules();
+  document.getElementById('reviewRules').innerHTML = rules.length
+    ? '<ol>'+rules.map(r=>`<li>${escapeHtml(r)}</li>`).join('')+'</ol>'
+    : '<span style="color:var(--text-dim)">No rules selected</span>';
+}
+
+/* ---------- MARKDOWN ---------- */
+function buildMarkdown() {
+  const i = state.identity;
+  const today = new Date().toISOString().slice(0,10);
+  const rules = getActiveRules();
+  const rulesList = rules.length ? rules.map((r,idx)=>`${idx+1}. ${r}`).join('\n') : '_No rules selected._';
+  const practiceLine = i.practice ? `\n**Practice:** ${i.practice}` : '';
+  const lobLine = i.lob ? `\n**Lines of Business:** ${i.lob}` : '';
+
+  return `# My AI Foundation
+
+**Created:** ${today}
+**Owner:** ${i.name || '_not provided_'}
+**Role:** ${i.role || '_not provided_'}${practiceLine}
+**Province:** ${i.province || '_not provided_'}${lobLine}
+
+## How I work with AI
+
+I work with AI as an assistant, not as a substitute for my judgment. Five behaviors shape how I use it.
+
+- I think before I act
+- I protect what matters
+- I stay current
+- I speak up
+- I choose value over speed
+
+## The Four Pillars guide my work
+
+**Transparency.** Clients know what tools I use, how their information is handled, and what happens to it. No surprises.
+
+**Consent.** Consent is an informed decision the client makes after they understand what is happening. A signature documents the decision. The conversation creates it.
+
+**Confidentiality.** Information shared in the advisory relationship stays protected. AI introduces new pathways for that information to travel. I understand them before I use them.
+
+**Stewardship.** I take responsibility for every tool that touches client information. Stewardship means active oversight, with a documented process behind it.
+
+## My ground rules
+
+${rulesList}
+
+## What I will do next
+
+I will use this file as the system context whenever I work with AI tools, and I will build on it as I complete the next modules:
+
+- Module 2: My Identity and Voice
+- Module 3: My Compliance Context
+- Module 4: Practice Prompt Library
+- Module 5: Practice AI Kit
+
+---
+*Generated by the Etc. Projects AI Training Program · Module 1 · ${today}*
+*This is a personal foundation document, not legal, regulatory, or compliance advice.*
+`;
+}
+
+function downloadMarkdown() {
+  const md = buildMarkdown();
+  const name = (state.identity.name||'my').toLowerCase().split(/\s+/)[0].replace(/[^a-z0-9-]/g,'');
+  const filename = `${name||'my'}-ai-foundation.md`;
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- DRAWER ---------- */
+const DEEP_CONTENT = {
+  'unit-1': {
+    title: 'AI behavior in depth',
+    intro: 'These behaviors are normal and predictable. None of them mean the tool is broken. They mean the tool needs better direction. Keep this list nearby. When output looks off, sounds wrong, or does not do what you expected, find the term first, then act.',
+    glossary: [
+      { term: 'Hallucination', def: 'AI generates a fact, statistic, name, product detail, or citation that does not exist or is incorrect, presented with full confidence and no signal that it is uncertain.', watch: 'Numbers with no traceable source. Product features described incorrectly. Specific claims that sound plausible but cannot be verified when you look them up.', do: 'Verify every specific claim against what you know to be true. Remove anything you cannot confirm. Do not leave uncertain details in the draft with a plan to check later.' },
+      { term: 'Fabrication', def: 'A specific kind of hallucination where AI invents something entirely. A case, a person, an organization, a regulation, a quote.', watch: 'References to sources you cannot find. Names or organizations that do not appear in any search. Quotes attributed to people that cannot be located.', do: 'Treat any specific citation, name, or quote as unverified until you have confirmed it exists. If you cannot find it, remove it.' },
+      { term: 'Misrepresentation', def: 'AI describes something real (a product, a regulation, a process) and gets a key detail wrong. The thing exists. The description does not match reality.', watch: 'A product feature described almost correctly. A regulatory requirement cited with the wrong threshold or scope. A process described in a way that is close but not accurate.', do: 'When AI describes anything specific (a product, a rule, a process), check the detail against the actual source before using it.' },
+      { term: 'Confident uncertainty', def: 'AI does not hedge. When it does not know something, it produces the most plausible-sounding answer with the same tone it uses when it does know. There is no signal that distinguishes certain from uncertain output.', watch: 'Any claim involving a specific number, regulatory requirement, jurisdiction-specific rule, or product feature. All of these sound equally confident whether they are accurate or not.', do: 'Apply the same verification standard to everything specific regardless of how confident the output sounds. Confidence in the output gives you no information about accuracy.' },
+      { term: 'Non-factual padding', def: 'AI adds sentences, context, or filler that sounds reasonable and is not grounded in what you asked or what is known to be true. It fills space to produce a complete-looking response.', watch: 'Paragraphs that could apply to any practice. Generic statements about the industry. Observations that were not in your prompt and cannot be traced to anything real.', do: 'Read for sentences that are not doing any work. If a sentence could be removed without losing anything specific, remove it.' },
+      { term: 'Training data cutoff', def: 'AI was trained on data up to a certain date. It has no knowledge of events, regulation changes, product updates, or industry developments that occurred after that date.', watch: 'AI describing a regulation that has since been amended. AI referencing a product or rate that has changed. AI unaware of a recent regulatory development that is relevant to your question.', do: 'For anything time-sensitive (regulatory requirements, product features, rates, industry developments), verify against a current source. Do not assume AI information is current.' }
+    ],
+    patternNote: '<strong>The pattern.</strong> Most AI behaviors above trace to one of three sources. AI generated something without enough grounding to verify it. The session ran too long without resetting context. The prompt did not give AI enough specific information to work with. When output is off, check those three first before assuming the tool is the problem.'
+  },
+  'unit-2': {
+    title: 'The Pillars in practice',
+    intro: 'The Four Pillars show up as specific behaviors across your practice every day. Below: where each pillar fails when it is absent, and the primary regulators in Canadian financial services that govern the obligation.',
+    watchouts: [
+      '<strong>Transparency fails when:</strong> AI tools are used in client meetings without disclosure. Clients do not know their conversation was recorded or transcribed. Marketing material does not match how the practice operates day to day.',
+      '<strong>Consent fails when:</strong> consent is obtained as a checkbox rather than as a conversation. Clients do not know they can decline or withdraw consent. Consent is obtained once and never revisited.',
+      '<strong>Confidentiality fails when:</strong> AI tools are used on client data without knowing where data is stored, who can access it, or whether it can be deleted. Client information is shared across tools without tracking.',
+      '<strong>Stewardship fails when:</strong> new tools are adopted because they are popular, inexpensive, or recommended by a peer, without evaluation. Tools go unmonitored after deployment. No process exists for retiring a tool when it no longer meets the standard.'
+    ],
+    sources: [
+      { name: 'Office of the Privacy Commissioner of Canada (OPC)', desc: 'Administers PIPEDA, the federal private-sector privacy law that applies to most advisory practices.' },
+      { name: "Commission d'accès à l'information du Québec (CAI)", desc: 'Administers Quebec Law 25, with stronger consent and transparency requirements than PIPEDA.' },
+      { name: 'Office of the Information and Privacy Commissioner of Alberta (OIPC AB)', desc: "Administers Alberta's Personal Information Protection Act." },
+      { name: 'Office of the Information and Privacy Commissioner for British Columbia (OIPC BC)', desc: "Administers BC's Personal Information Protection Act." },
+      { name: 'FINTRAC', desc: 'Sets anti-money laundering and terrorist-financing reporting obligations for life insurance agents.' },
+      { name: 'CIRO (Canadian Investment Regulatory Organization)', desc: 'Sets conduct rules for investment dealer members, including supervision of technology that touches client information.' }
+    ],
+    patternNote: '<strong>Note.</strong> Verified URLs for each of these primary sources are maintained in the KYR (Know Your Risk) framework document. When you reach Module 3 (My Compliance Context), the regulators that apply to your specific practice get linked into your compliance file directly.'
+  },
+  'unit-3': {
+    title: 'What to watch for in your AI work',
+    intro: 'The five behaviors are the floor. Below: two specific patterns worth knowing about so you can spot them in your day to day, plus what good oversight looks like in a practice.',
+    glossary: [
+      { term: 'Tool variation', def: 'Different AI tools (Claude, ChatGPT, Copilot, Gemini) behave differently. The same prompt produces different output in different tools. Instructions that work in one tool may not produce the same result in another.', watch: 'Output that worked reliably in one tool starts producing different results when you switch tools. Standards that were consistent become inconsistent after a platform change.', do: 'When you change tools or add a new one, test your core prompts and instructions before using them for practice work. Do not assume behavior transfers automatically.' },
+      { term: 'Your own drift', def: 'You gradually stop reviewing output as carefully because earlier sessions produced good results. Trust built up over time leads to skipping the check that earned the trust.', watch: 'You catch yourself sending output you have not fully read. You stop verifying specific details because the last ten were fine. You rely on how the output looks rather than what it says.', do: 'Keep the review standard consistent regardless of recent output quality. A streak of good output does not change the probability of a bad one. Do the check every time.' }
+    ],
+    watchouts: [
+      '<strong>Good oversight in practice:</strong> a tool evaluation checklist used before adoption. A written list of approved tools. Periodic review of tools in use. A documented process for retiring a tool and deleting its data when it is no longer used.',
+      '<strong>Passive adoption in practice:</strong> a tool gets added because a peer mentioned it. No one wrote down why. No one reviewed it after the first month. When the tool is replaced, the data goes with the wind.'
+    ]
+  },
+  'unit-4': {
+    title: 'What your rules guard against',
+    intro: 'Ground rules work because they keep you from drifting into the failure modes AI tools produce by default. Below: the patterns your rules are designed to interrupt. Read them once. When something feels off in a real session, come back here.',
+    glossary: [
+      { term: 'Drift', def: 'Over the course of a conversation or across sessions, AI gradually moves away from the instructions, tone, and standards you established. It reverts toward its default patterns.', watch: 'Em dashes appearing in output after you loaded instructions that prohibit them. Generic tone creeping back in. Banned phrases returning. Responses becoming longer and more corporate-sounding.', do: 'Reload your foundation file and any other standards mid-conversation if drift is happening. Paste your instruction set again as a message to reset the session.' },
+      { term: 'Instruction decay', def: 'AI follows your instructions at the start of a conversation, then gradually stops applying them as the conversation gets longer. Related to drift, more specific to instructions than to tone.', watch: 'Rules you gave early in the conversation stop being applied later. Formatting changes. Things you said to avoid start appearing again.', do: 'For long working sessions, re-paste your core instructions midway through. Keep working sessions focused on one task type so they stay shorter.' },
+      { term: 'Over-compliance', def: 'AI agrees with everything you say, validates every idea, and avoids pushback even when pushback would be useful. It tells you what you want to hear rather than what is accurate.', watch: 'AI confirms your assumption without checking it. AI agrees a draft is ready when it has obvious problems. AI produces enthusiastic responses to weak input.', do: 'Ask AI to critique its own output. Ask specifically: "What is wrong with this?" or "What did I miss?" The pushback prompt produces more honest evaluation than asking for a review.' },
+      { term: 'Vague input', def: 'A prompt that does not give AI enough specific context produces generic output. AI fills the gaps with whatever is most common, which is usually not what you need.', watch: 'Output that could apply to any advisor, any client, any situation. No specificity to your practice, your client, or the actual task.', do: 'Before sending a prompt, check whether it includes who the client is (in general terms), what the context is, what the output is for, and what format you need.' },
+      { term: 'Missing context', def: 'AI produces output based on what you gave it. If the context is incomplete, the output reflects the gap.', watch: 'Output that is accurate to the input and misses something important you know and did not include. Summaries that feel thin. Letters that are generic where they should be specific.', do: 'Review your input before sending. Ask yourself: what does AI not know that would change this output? Add that to the prompt.' }
+    ]
+  },
+  'unit-5': {
+    title: 'How AI uses this file',
+    intro: 'A short walkthrough of what happens once you drop my-ai-foundation.md into ChatGPT or Claude as system context.',
+    watchouts: [
+      '<strong>Read first.</strong> When AI receives your file as system context, it reads through before generating anything. Your role, jurisdiction, lines of business, and ground rules shape the very first sentence it produces for you.',
+      '<strong>Reload at the start of every new session.</strong> Files do not persist across separate AI sessions. New chat, fresh load. Build the habit.',
+      '<strong>Pair with your identity file.</strong> my-ai-foundation.md is most effective alongside my-identity.md (the artifact from Module 2). Foundation gives AI the rules. Identity gives AI the voice. Both together produce work that sounds like you and respects your standards.',
+      '<strong>Update over time.</strong> Practice details change. Re-run this module annually, or any time your role, province, or lines of business change.'
+    ]
+  }
+};
+
+function renderDrawer(unitId) {
+  const c = DEEP_CONTENT[unitId];
+  if (!c) return false;
+  document.getElementById('drawerTitle').textContent = c.title;
+  let html = '';
+  if (c.intro) html += `<p class="drawer-intro">${c.intro}</p>`;
+  if (c.glossary && c.glossary.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Terms</div>';
+    c.glossary.forEach(g => {
+      html += `<div class="glossary-entry"><h4>${escapeHtml(g.term)}</h4><p class="def">${escapeHtml(g.def)}</p>`;
+      if (g.watch) html += `<p class="watch"><strong>Watch for:</strong> ${escapeHtml(g.watch)}</p>`;
+      if (g.do) html += `<p class="do"><strong>What to do:</strong> ${escapeHtml(g.do)}</p>`;
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+  if (c.watchouts && c.watchouts.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">What to watch for</div>';
+    c.watchouts.forEach(w => { html += `<div class="watchout-item">${w}</div>`; });
+    html += '</div>';
+  }
+  if (c.sources && c.sources.length) {
+    html += '<div class="drawer-section"><div class="drawer-section-label">Primary sources</div>';
+    c.sources.forEach(s => {
+      html += `<div class="source-item"><strong>${escapeHtml(s.name)}</strong><p>${escapeHtml(s.desc)}</p></div>`;
+    });
+    html += '</div>';
+  }
+  if (c.patternNote) html += `<div class="drawer-pattern-note">${c.patternNote}</div>`;
+  document.getElementById('drawerBody').innerHTML = html;
+  document.getElementById('drawerBody').scrollTop = 0;
+  return true;
+}
+function openDrawer(id) {
+  if (!renderDrawer(id)) return;
+  document.getElementById('deepDrawer').classList.add('open');
+  document.getElementById('drawerBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  state.seenDeep[id] = true; save();
+}
+function closeDrawer() {
+  document.getElementById('deepDrawer').classList.remove('open');
+  document.getElementById('drawerBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function bindButtons() {
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); goTo(el.getAttribute('data-go')); }));
+  document.querySelectorAll('[data-deep]').forEach(el => el.addEventListener('click', () => openDrawer(el.getAttribute('data-deep'))));
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && document.getElementById('deepDrawer').classList.contains('open')) closeDrawer(); });
+
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    state.completedAt = new Date().toISOString(); save();
+    downloadMarkdown(); goTo('success');
+  });
+  document.getElementById('downloadAgainBtn').addEventListener('click', downloadMarkdown);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+}
+
+load(); bindButtons(); render();
+</script>
+</body>
+</html>
