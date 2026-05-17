@@ -313,6 +313,9 @@ input:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
     <div class="section-label">Provincial privacy</div>
     <div class="check-grid" id="regsProvincialPrivacy"></div>
 
+    <div class="section-label">Provincial securities (CSA members)</div>
+    <div class="check-grid" id="regsProvincialSecurities"></div>
+
     <div class="section-label">Investments and dealer conduct</div>
     <div class="check-grid" id="regsInvestments"></div>
 
@@ -516,22 +519,37 @@ const STEPS = ['welcome','unit-1','unit-2','unit-3','unit-4','unit-5','review','
 
 const REGULATORS = {
   federal: [
-    { id: 'opc', name: 'Office of the Privacy Commissioner of Canada (OPC)', desc: 'Administers PIPEDA. Applies to most advisor practices.' },
-    { id: 'fintrac', name: 'FINTRAC', desc: 'AML and terrorist-financing reporting. Mandatory for life insurance agents.' }
+    { id: 'opc', name: 'Office of the Privacy Commissioner of Canada (OPC)', desc: 'Administers PIPEDA. Applies to all advisor practices.' },
+    { id: 'fintrac', name: 'FINTRAC', desc: 'AML and terrorist-financing reporting. Applies to life insurance agents and brokers, securities dealers, and most advisor practices.' },
+    { id: 'crtc-casl', name: 'CRTC (CASL)', desc: "Administers Canada's Anti-Spam Legislation. Applies to anyone sending commercial electronic messages to clients or prospects." },
+    { id: 'osfi', name: 'OSFI', desc: 'Office of the Superintendent of Financial Institutions. Federally regulated insurers, banks, trust and loan companies.' }
   ],
   provincialPrivacy: [
     { id: 'cai', name: 'Quebec CAI (Law 25)', desc: 'Stronger consent and transparency than PIPEDA.' },
     { id: 'oipc-ab', name: 'OIPC Alberta', desc: 'Alberta Personal Information Protection Act (PIPA).' },
     { id: 'oipc-bc', name: 'OIPC British Columbia', desc: 'BC Personal Information Protection Act (PIPA).' }
   ],
+  provincialSecurities: [
+    { id: 'bcsc', name: 'British Columbia Securities Commission (BCSC)', desc: 'BC securities regulator. CSA member.' },
+    { id: 'asc-sec', name: 'Alberta Securities Commission (ASC)', desc: 'Alberta securities regulator. CSA member.' },
+    { id: 'fcaa-sk', name: 'FCAA Saskatchewan', desc: 'Financial and Consumer Affairs Authority of Saskatchewan. CSA member.' },
+    { id: 'msc-mb', name: 'Manitoba Securities Commission (MSC)', desc: 'Manitoba securities regulator. CSA member.' },
+    { id: 'osc', name: 'Ontario Securities Commission (OSC)', desc: 'Ontario securities regulator. CSA member.' },
+    { id: 'amf-sec', name: 'AMF (Quebec, securities)', desc: 'Autorité des marchés financiers, securities side. CSA member.' },
+    { id: 'fcnb-sec', name: 'FCNB (New Brunswick, securities)', desc: 'Financial and Consumer Services Commission of New Brunswick. CSA member.' },
+    { id: 'nssc', name: 'Nova Scotia Securities Commission (NSSC)', desc: 'Nova Scotia securities regulator. CSA member.' }
+  ],
   investments: [
-    { id: 'ciro', name: 'CIRO', desc: 'Canadian Investment Regulatory Organization. Investment dealer conduct.' }
+    { id: 'ciro', name: 'CIRO', desc: 'Canadian Investment Regulatory Organization. Investment and mutual fund dealer conduct.' }
   ],
   insurance: [
     { id: 'aic', name: 'Alberta Insurance Council (AIC)', desc: 'Alberta life and accident and sickness conduct.' },
     { id: 'icobc', name: 'Insurance Council of BC (ICoBC)', desc: 'BC life and accident and sickness conduct.' },
-    { id: 'fsra', name: 'FSRA (Ontario)', desc: 'Financial Services Regulatory Authority of Ontario.' },
-    { id: 'amf-ins', name: 'AMF (Quebec, insurance)', desc: 'Autorité des marchés financiers, insurance side.' }
+    { id: 'icm', name: 'Insurance Council of Manitoba (ICM)', desc: 'Manitoba insurance agent and broker conduct.' },
+    { id: 'ics-sk', name: 'Insurance Councils of Saskatchewan (ICS)', desc: 'Saskatchewan life and general insurance councils.' },
+    { id: 'fsra', name: 'FSRA (Ontario)', desc: 'Financial Services Regulatory Authority of Ontario. Insurance, credit unions, mortgage brokers, pensions.' },
+    { id: 'amf-ins', name: 'AMF (Quebec, insurance)', desc: 'Autorité des marchés financiers, insurance side.' },
+    { id: 'fcnb-ins', name: 'FCNB (New Brunswick, insurance)', desc: 'Financial and Consumer Services Commission of New Brunswick, insurance side.' }
   ]
 };
 
@@ -671,6 +689,7 @@ function buildCheckGrid(containerId, items, stateKey, opts) {
 function renderRegs() {
   buildCheckGrid('regsFederal', REGULATORS.federal, 'regulators');
   buildCheckGrid('regsProvincialPrivacy', REGULATORS.provincialPrivacy, 'regulators');
+  buildCheckGrid('regsProvincialSecurities', REGULATORS.provincialSecurities, 'regulators');
   buildCheckGrid('regsInvestments', REGULATORS.investments, 'regulators');
   buildCheckGrid('regsInsurance', REGULATORS.insurance, 'regulators');
   updateUnit2Next();
@@ -736,7 +755,7 @@ function renderCustomList(containerId, list, stateKey) {
 /* ---------- review ---------- */
 function renderReview() {
   const regNames = state.regulators.map(id => {
-    const all = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.investments, ...REGULATORS.insurance];
+    const all = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.provincialSecurities, ...REGULATORS.investments, ...REGULATORS.insurance];
     const r = all.find(x => x.id === id);
     return r ? r.name : id;
   });
@@ -761,7 +780,7 @@ function renderReview() {
 function buildMarkdown() {
   const i = state.identity;
   const today = new Date().toISOString().slice(0,10);
-  const allRegs = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.investments, ...REGULATORS.insurance];
+  const allRegs = [...REGULATORS.federal, ...REGULATORS.provincialPrivacy, ...REGULATORS.provincialSecurities, ...REGULATORS.investments, ...REGULATORS.insurance];
   const regList = state.regulators.map(id => { const r = allRegs.find(x => x.id===id); return r ? `- ${r.name}` : ''; }).filter(Boolean).join('\n');
   const provList = state.provinces.map(p => `- ${p}`).join('\n');
   const allLobs = [...LOBS.insurance, ...LOBS.investments, ...LOBS.other];
