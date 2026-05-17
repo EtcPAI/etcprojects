@@ -120,11 +120,22 @@ button{font-family:inherit}
 /* CHIP PICKER */
 .chip-group{margin-bottom:18px}
 .chip-group-label{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
-.chip-grid{display:flex;flex-wrap:wrap;gap:8px}
+.chip-grid{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--border-strong);border-radius:999px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;color:var(--text-muted);background:rgba(255,255,255,.03);cursor:pointer;transition:all .15s;user-select:none}
 .chip:hover{border-color:rgba(255,255,255,.35);color:var(--white)}
 .chip.selected{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
 .chip input{display:none}
+.chip.custom{padding-right:6px}
+.chip.custom .chip-remove{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:4px;border:none;background:rgba(240,100,14,.18);color:var(--accent);border-radius:50%;font-size:12px;font-weight:700;line-height:1;cursor:pointer;padding:0;font-family:inherit;transition:background .15s}
+.chip.custom .chip-remove:hover{background:rgba(240,100,14,.32)}
+.chip-add-trigger{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border:1px dashed var(--border-strong);border-radius:999px;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:700;color:var(--text-dim);background:transparent;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.chip-add-trigger:hover{border-color:var(--accent);color:var(--accent);border-style:solid;background:var(--accent-soft)}
+.chip-add-form{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 12px;border:1px solid var(--accent);border-radius:999px;background:var(--accent-soft)}
+.chip-add-form input{border:none;outline:none;background:transparent;color:var(--white);font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;padding:4px 0;min-width:140px;width:160px}
+.chip-add-form input::placeholder{color:var(--text-faint);font-weight:500;font-style:italic}
+.chip-add-form button{border:none;background:var(--accent);color:var(--navy);font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip-add-form button.cancel{background:transparent;color:var(--text-dim);padding:6px 8px}
+.chip-add-form button.cancel:hover{color:var(--white)}
 
 /* VALIDATION BAR */
 .validation-bar{margin-top:18px;padding:14px 18px;border-radius:10px;font-size:13.5px;line-height:1.5;font-weight:600;display:flex;align-items:center;gap:10px}
@@ -539,6 +550,8 @@ let state = {
   sample1: '',
   sample2: '',
   voiceChips: [],
+  customChips: { tone: [], sentence: [], viewpoint: [], closing: [] },
+  addingChipIn: null,
   voiceNotes: '',
   values: '',
   commitments: '',
@@ -551,6 +564,9 @@ let state = {
 function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {} }
 function load() {
   try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e) {}
+  if (!state.customChips) state.customChips = { tone: [], sentence: [], viewpoint: [], closing: [] };
+  ['tone','sentence','viewpoint','closing'].forEach(k => { if (!Array.isArray(state.customChips[k])) state.customChips[k] = []; });
+  if (typeof state.addingChipIn === 'undefined') state.addingChipIn = null;
 }
 function loadM1() {
   try { const raw = localStorage.getItem(M1_KEY); return raw ? JSON.parse(raw) : null; } catch(e) { return null; }
@@ -628,6 +644,8 @@ function renderChips() {
     groupDiv.className = 'chip-group';
     groupDiv.innerHTML = `<div class="chip-group-label">${escapeHtml(group.label)}</div><div class="chip-grid" data-group="${key}"></div>`;
     const grid = groupDiv.querySelector('.chip-grid');
+
+    // Built-in chips
     group.items.forEach(item => {
       const isSel = state.voiceChips.includes(item);
       const chip = document.createElement('label');
@@ -640,8 +658,73 @@ function renderChips() {
       });
       grid.appendChild(chip);
     });
+
+    // Custom chips for this category
+    (state.customChips[key] || []).forEach((item, idx) => {
+      const isSel = state.voiceChips.includes(item);
+      const chip = document.createElement('label');
+      chip.className = 'chip custom' + (isSel ? ' selected' : '');
+      chip.innerHTML = `<input type="checkbox" ${isSel?'checked':''}>${escapeHtml(item)}<button type="button" class="chip-remove" aria-label="Remove" title="Remove">×</button>`;
+      chip.querySelector('input').addEventListener('change', e => {
+        if (e.target.checked && !state.voiceChips.includes(item)) state.voiceChips.push(item);
+        else if (!e.target.checked) state.voiceChips = state.voiceChips.filter(x => x !== item);
+        save(); renderChips(); updateUnit2Validation();
+      });
+      chip.querySelector('.chip-remove').addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        state.customChips[key] = state.customChips[key].filter(x => x !== item);
+        state.voiceChips = state.voiceChips.filter(x => x !== item);
+        save(); renderChips(); updateUnit2Validation();
+      });
+      grid.appendChild(chip);
+    });
+
+    // Add affordance: trigger or open form
+    if (state.addingChipIn === key) {
+      const form = document.createElement('div');
+      form.className = 'chip-add-form';
+      form.innerHTML = `<input type="text" placeholder="e.g. ${escapeHtml(addPlaceholderFor(key))}" maxlength="40"><button type="button">Add</button><button type="button" class="cancel">Cancel</button>`;
+      const input = form.querySelector('input');
+      const addBtn = form.querySelectorAll('button')[0];
+      const cancelBtn = form.querySelector('.cancel');
+      const commit = () => {
+        const v = input.value.trim();
+        if (!v) return;
+        if (!state.customChips[key].includes(v) && !CHIPS[key].items.includes(v)) {
+          state.customChips[key].push(v);
+        }
+        if (!state.voiceChips.includes(v)) state.voiceChips.push(v);
+        state.addingChipIn = null;
+        save(); renderChips(); updateUnit2Validation();
+      };
+      addBtn.addEventListener('click', commit);
+      cancelBtn.addEventListener('click', () => { state.addingChipIn = null; save(); renderChips(); });
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); commit(); }
+        else if (e.key === 'Escape') { e.preventDefault(); state.addingChipIn = null; save(); renderChips(); }
+      });
+      grid.appendChild(form);
+      setTimeout(() => input.focus(), 0);
+    } else {
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'chip-add-trigger';
+      trigger.textContent = '+ Add';
+      trigger.addEventListener('click', () => { state.addingChipIn = key; save(); renderChips(); });
+      grid.appendChild(trigger);
+    }
+
     wrap.appendChild(groupDiv);
   });
+}
+
+function addPlaceholderFor(key) {
+  return {
+    tone: 'gentle, no-nonsense, dry, reassuring',
+    sentence: 'long-form, fragments, list-heavy',
+    viewpoint: 'we-not-I, asks rhetorical questions, uses metaphors',
+    closing: 'short signoff, signs first name only, no salutation'
+  }[key] || 'your own';
 }
 function updateSampleMeta() {
   [1,2].forEach(n => {
