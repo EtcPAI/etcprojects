@@ -17,13 +17,14 @@ The first program is **AI Foundation** (5 modules, ~2.5 hours total). More progr
 
 ```
 ppl/
+  index.html                    Landing page for the AI training program
   programs/
     ai-foundation/              The AI Foundation program (5 modules)
       m1-foundation.html        Module 1 — My AI Foundation
       m2-identity.html          Module 2 — My Identity and Voice
       m3-compliance.html        Module 3 — My Compliance Context
       m4-prompts.html           Module 4 — Practice Prompt Library (shared)
-      m5-aikit.html             Module 5 — Practice AI Kit (shared)
+      m5-aikit.html             Module 5 — AI Practice Blueprint (shared)
     {next-program}/             Future programs follow same pattern
   shared/                       Future: extracted brand tokens + components
   README.md                     This file

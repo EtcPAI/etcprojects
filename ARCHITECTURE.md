@@ -137,7 +137,7 @@ Public bucket for v1. Switch to private + signed URLs when license gating is enf
 {user-first-name}-identity.md          (Module 2)
 {user-first-name}-compliance-context.md (Module 3)
 practice-prompt-library.md             (Module 4 — shared)
-{practice-slug}-ai-kit.md              (Module 5 — shared)
+{practice-slug}-ai-practice-blueprint.md  (Module 5 — shared)
 ```
 
 ---
@@ -166,16 +166,15 @@ practice-prompt-library.md             (Module 4 — shared)
 
 ---
 
-## Open naming question
+## Naming decisions (resolved)
 
-**"AI Kit" terminology.**
+- **Command Center tool** "AI Kit Builder" → **"AI Intelligence Builder"**
+- **Module 5 artifact** "Practice AI Kit" → **"AI Practice Blueprint"**
+- **Approval terminology** "ratify / ratification" → **"approve / approval"**
 
-- **Command Center tool** "AI Kit Builder" → renamed to **"AI Intelligence Builder"** *(confirmed)*
-- **Module 5 produces an artifact called "Practice AI Kit"** *(unresolved)*
+Module IDs (`m5-aikit`, etc.) and the `STORAGE_KEY` (`etc_module5_state`) are stable and do not change with display renames. Filenames on disk likewise stay as the legacy short form so URLs and code references don't break.
 
-These are different things — the Command Center tool helps build an AI Kit for a client engagement; the Module 5 artifact is the team-level standards document. They can coexist with different names, or both rename together.
-
-**Default until confirmed otherwise:** Module 5 artifact stays as "Practice AI Kit" because the training narrative leans on the metaphor of a small package of standards the team agrees to. Rename to "Practice AI Intelligence Standards" or similar if you want consistency.
+The downloaded artifact filename is `{practice-slug}-ai-practice-blueprint.md`.
 
 ---
 

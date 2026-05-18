@@ -106,7 +106,7 @@ The .md generator stays client-side. No reason to round-trip through the server 
 
 ## Open questions to surface to the team
 
-1. **"Practice AI Kit" renaming.** Command Center's "AI Kit Builder" → "AI Intelligence Builder" is confirmed. M5's artifact "Practice AI Kit" is unresolved. Default: keep as-is.
+1. **Naming (resolved).** Command Center tool: "AI Kit Builder" → "AI Intelligence Builder." M5 artifact: "Practice AI Kit" → "AI Practice Blueprint." Approval terminology: "ratify" → "approve." Module IDs and storage keys stay on the legacy names — only display copy and the downloaded artifact filename change.
 2. **Audio hosting.** Plan is Supabase Storage public bucket → private + signed URLs when license gating is enforced. Bucket created? MP3s recorded?
 3. **Framework choice for PPL.** Default: Next.js + App Router. Confirm before scaffolding.
 4. **CI/CD.** Vercel auto-deploy on push to main, with preview deploys for PRs. Anything else?

@@ -155,7 +155,7 @@
 
 These do not block setup, but pin them down before the framework migration is done:
 
-1. **Module 5 artifact rename** — "Practice AI Kit" stays or changes to match the Command Center's "AI Intelligence Builder" naming? Default: stays.
+1. ~~**Module 5 artifact rename**~~ — *resolved.* "Practice AI Kit" → "AI Practice Blueprint." Applied across M5, M1, M4 references. Filename: `{practice-slug}-ai-practice-blueprint.md`.
 2. **Audio player UI** — native browser controls + light CSS styling, or custom branded player (~100 lines of JS)? Default: custom branded.
 3. **Module reorderability** — can a team take M3 before M2? Default: linear, no skipping.
 4. **Completion certificates** — issue them per module, per program, or not at all? Default: per program (the AI Foundation Certificate after M1-M5 are complete).

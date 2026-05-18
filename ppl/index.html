@@ -1,0 +1,1749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Training Program for Canadian financial advisors and their teams. Etc. Projects</title>
+<meta name="description" content="A 5-module program that gives your practice a working set of files so AI keeps its hands inside the Canadian regulatory lines and writes in your voice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Base: deep indigo */
+    --navy: #0D0826;
+    --navy-mid: #1A1245;
+    --navy-deep: #070321;
+    /* Primary accent (was orange) → MAGENTA */
+    --orange: #E63E9F;
+    --orange-hover: #CE2D8C;
+    --orange-soft: rgba(230, 62, 159, .14);
+    --orange-line: rgba(230, 62, 159, .32);
+    /* Secondary accent (was teal) → INDIGO */
+    --teal: #7A6BFF;
+    --teal-soft: rgba(122, 107, 255, .12);
+    --teal-line: rgba(122, 107, 255, .32);
+    /* Brand gradient drawn from the reference */
+    --brand-grad: linear-gradient(135deg, #3E40A1 0%, #7A3998 50%, #C1338E 100%);
+    --brand-grad-soft: linear-gradient(135deg, rgba(62, 64, 161, .22) 0%, rgba(122, 57, 152, .18) 50%, rgba(193, 51, 142, .22) 100%);
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, .80);
+    --dim: rgba(255, 255, 255, .58);
+    --faint: rgba(255, 255, 255, .40);
+    --card-bg: rgba(255, 255, 255, .04);
+    --card-bg-strong: rgba(255, 255, 255, .07);
+    --card-line: rgba(255, 255, 255, .10);
+    --card-line-strong: rgba(255, 255, 255, .18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--navy);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Ambient gradient field that drifts behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(60% 50% at 10% 12%, rgba(62, 64, 161, .35), transparent 70%),
+      radial-gradient(55% 45% at 90% 8%, rgba(122, 57, 152, .28), transparent 70%),
+      radial-gradient(65% 55% at 78% 78%, rgba(193, 51, 142, .26), transparent 70%),
+      radial-gradient(45% 40% at 18% 90%, rgba(62, 64, 161, .20), transparent 70%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 45%, var(--navy-mid) 100%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .em {
+    font-style: italic;
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  .em-teal {
+    font-style: italic;
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ---------- Header ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    background: rgba(7, 3, 33, .72);
+    border-bottom: 1px solid var(--card-line);
+  }
+
+  .header-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    background: #fff;
+    color: var(--navy-deep);
+    padding: 10px 16px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+  }
+
+  .logo .dot {
+    width: 10px; height: 10px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(230, 62, 159, .15);
+  }
+
+  .logo small {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--navy-mid);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .pill {
+    background: var(--brand-grad);
+    color: #ffffff;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Layout helpers ---------- */
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 56px 0;
+    position: relative;
+  }
+
+  /* Subtle gradient hairline between sections */
+  section + section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1240px, calc(100% - 64px));
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, .06) 18%,
+      rgba(230, 62, 159, .45) 50%,
+      rgba(255, 255, 255, .06) 82%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  /* Tiny diamond accent at the midpoint of the hairline */
+  section + section::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    background: var(--brand-grad);
+    border-radius: 1px;
+    box-shadow: 0 0 14px rgba(230, 62, 159, .55);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    padding: 7px 14px;
+    background: var(--orange-soft);
+    color: var(--orange);
+    border: 1px solid var(--orange-line);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .eyebrow.teal {
+    background: var(--teal-soft);
+    color: var(--teal);
+    border-color: var(--teal-line);
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: clamp(38px, 5.8vw, 76px); }
+  h2 { font-size: clamp(30px, 4vw, 52px); }
+  h3 { font-size: clamp(22px, 2.2vw, 28px); }
+  h4 { font-size: 18px; line-height: 1.2; }
+
+  p { text-wrap: pretty; }
+
+  .lede {
+    font-size: clamp(17px, 1.45vw, 20px);
+    line-height: 1.55;
+    color: var(--muted);
+    font-weight: 500;
+    max-width: 56ch;
+  }
+
+  .hero-copy {
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .hero-copy .lede {
+    margin-bottom: 0;
+  }
+  .hero-copy .lede:first-child {
+    font-size: clamp(18px, 1.5vw, 21px);
+    color: var(--text);
+  }
+  .hero-copy .lede:not(:first-child) {
+    font-size: clamp(15px, 1.15vw, 17px);
+    color: var(--dim);
+  }
+
+  .hero-pullquote {
+    margin: 6px 0 0;
+    padding: 14px 0 14px 20px;
+    border-left: 3px solid transparent;
+    border-image: linear-gradient(180deg, #3E40A1, #7A3998, #C1338E) 1;
+    font-family: 'Manrope', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-wrap: balance;
+    max-width: 52ch;
+  }
+  .hero-pullquote .em {
+    font-style: italic;
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 56px 0 72px;
+    position: relative;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .hero h1 {
+    margin: 18px 0 26px;
+  }
+
+  .hero .lede {
+    margin-bottom: 36px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+
+  .btn-primary {
+    background: var(--brand-grad);
+    color: #ffffff;
+    box-shadow: 0 10px 30px -10px rgba(193, 51, 142, .55), 0 0 0 1px rgba(255, 255, 255, .06) inset;
+    position: relative;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 36px -8px rgba(193, 51, 142, .7), 0 0 0 1px rgba(255, 255, 255, .1) inset;
+    filter: brightness(1.06);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--card-line-strong);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, .35);
+    background: rgba(255, 255, 255, .04);
+  }
+
+  .btn .arrow {
+    width: 16px; height: 16px;
+    transition: transform .15s ease;
+  }
+
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 38px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-line);
+  }
+
+  .hero-meta .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px 22px 4px 0;
+    margin-right: 22px;
+    border-right: 1px solid var(--card-line);
+    min-width: 0;
+  }
+  .hero-meta .stat:last-child {
+    border-right: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  .hero-meta .stat .k {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .hero-meta .stat .v {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--dim);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 720px) {
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .hero-meta .stat {
+      padding: 0 14px 0 0;
+      margin-right: 14px;
+    }
+  }
+  @media (max-width: 480px) {
+    .hero-meta { grid-template-columns: 1fr; gap: 14px; }
+    .hero-meta .stat {
+      border-right: 0;
+      padding: 0 0 14px 0;
+      margin-right: 0;
+      border-bottom: 1px solid var(--card-line);
+    }
+    .hero-meta .stat:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  /* Side card with audio welcome + at-a-glance */
+  .side-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .side-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  .side-card-inner {
+    padding: 36px 36px 32px;
+  }
+
+  .side-card .label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+  }
+
+  .audio-card {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--card-line);
+    border-radius: 14px;
+    padding: 18px 18px 18px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+
+  .audio-card:hover {
+    border-color: var(--orange-line);
+    background: rgba(230, 62, 159, .05);
+  }
+
+  .play {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--brand-grad);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .play svg { width: 16px; height: 16px; }
+
+  .audio-meta { flex: 1; min-width: 0; }
+  .audio-meta .t { font-weight: 800; font-size: 14px; letter-spacing: -0.01em; }
+  .audio-meta .d {
+    color: var(--dim);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 3px;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .audio-meta .d .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--faint); }
+
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 22px;
+  }
+  .waveform span {
+    display: block;
+    width: 2px;
+    background: linear-gradient(180deg, #7A6BFF, var(--orange));
+    border-radius: 1px;
+    opacity: .8;
+  }
+
+  .ataglance {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 22px;
+  }
+  .ag-row.works-with {
+    grid-column: 1 / -1;
+  }
+
+  .ag-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ag-row .k {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .ag-row .v {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Section header pattern ---------- */
+  .section-head {
+    max-width: 760px;
+    margin-bottom: 48px;
+  }
+
+  .section-head p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-top: 18px;
+  }
+
+  .section-head .section-subtitle {
+    color: var(--dim);
+    font-size: clamp(14px, 1.1vw, 17px);
+    line-height: 1.4;
+    margin-top: 14px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (max-width: 640px) {
+    .section-head .section-subtitle {
+      white-space: normal;
+      font-size: 14px;
+    }
+  }
+
+  /* ---------- Why this exists (friction list) ---------- */
+  .friction-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .friction {
+    padding: 26px 24px 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    position: relative;
+  }
+
+  .friction .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .friction h4 {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .friction p {
+    font-size: 14px;
+    color: var(--dim);
+    line-height: 1.55;
+  }
+
+  .fix-line {
+    padding: 28px 32px;
+    background: linear-gradient(90deg, rgba(62, 64, 161, .18) 0%, rgba(122, 57, 152, .14) 50%, rgba(193, 51, 142, .20) 100%);
+    border: 1px solid var(--orange-line);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .fix-line .badge {
+    background: var(--brand-grad);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .fix-line p {
+    flex: 1;
+    min-width: 280px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .fix-line .fix-line-copy {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .fix-line .fix-line-copy p {
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+  .fix-line .fix-line-copy p:last-child {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---------- Artifacts (what you walk away with) ---------- */
+  .artifacts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .artifact {
+    padding: 28px 26px 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+
+  .artifact::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  .artifact.steward::before { background: var(--orange); }
+
+  .artifact:hover {
+    border-color: var(--card-line-strong);
+    transform: translateY(-2px);
+  }
+
+  .artifact .filename {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--orange);
+    background: var(--orange-soft);
+    border: 1px solid var(--orange-line);
+    border-radius: 6px;
+    padding: 4px 9px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .artifact.steward .filename {
+    color: var(--orange);
+    background: var(--orange-soft);
+    border-color: var(--orange-line);
+  }
+
+  .artifact h4 {
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+
+  .artifact p {
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ---------- Modules at a glance ---------- */
+  .modules {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .module {
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 18px;
+    padding: 30px 24px 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+
+  .module::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 18px 18px 0 0;
+  }
+
+  .module:hover {
+    transform: translateY(-3px);
+    border-color: var(--orange-line);
+    background: var(--card-bg-strong);
+  }
+
+  .module .mod-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .module h3 {
+    font-size: 21px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .module .builds {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  .module .file {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+
+  .module .stats {
+    border-top: 1px solid var(--card-line);
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .module .stat {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .module .stat .sk {
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  .module .stat .sv {
+    color: var(--text);
+    font-weight: 700;
+    text-align: right;
+  }
+
+  /* ---------- Before / After ---------- */
+  .compare {
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid var(--card-line);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .compare-head {
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--card-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .compare-head .scenario {
+    color: var(--dim);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .compare-head .scenario b {
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .toggle {
+    display: inline-flex;
+    background: rgba(0, 0, 0, .28);
+    border: 1px solid var(--card-line);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .toggle button {
+    background: transparent;
+    border: 0;
+    color: var(--dim);
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+  .toggle button.active {
+    background: var(--orange);
+    color: #ffffff;
+  }
+  .toggle button.active.teal-active { background: var(--teal); color: #ffffff; }
+
+  .compare-body {
+    padding: 36px 40px 44px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .compare-state {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .compare-state .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .compare-state .tag.bad { background: rgba(244, 90, 90, .10); color: #FF8E8E; border: 1px solid rgba(244, 90, 90, .28); }
+  .compare-state .tag.good { background: var(--teal-soft); color: var(--teal); border: 1px solid var(--teal-line); }
+  .compare-state .tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .compare-state .tag.bad .dot { background: #FF8E8E; }
+  .compare-state .tag.good .dot { background: var(--teal); }
+
+  .compare-state h4 {
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .compare-state p {
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .compare-state ul {
+    list-style: none;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .compare-state li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .compare-state li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 8px; height: 1.5px;
+    background: var(--faint);
+  }
+  .compare-state.has-good li::before { background: var(--teal); }
+
+  /* Email mock */
+  .email-mock {
+    background: #fff;
+    color: #1a1a1a;
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  }
+  .email-head {
+    background: #F4F4F5;
+    padding: 14px 20px;
+    border-bottom: 1px solid #E5E5E7;
+    font-size: 12px;
+  }
+  .email-head .row {
+    display: flex;
+    gap: 8px;
+    padding: 2px 0;
+    color: #6B7280;
+  }
+  .email-head .row b {
+    color: #1a1a1a;
+    font-weight: 700;
+    min-width: 50px;
+  }
+  .email-body {
+    padding: 22px 24px 26px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+  .email-body p { margin-bottom: 12px; }
+  .email-body p:last-child { margin-bottom: 0; }
+  .hl-bad {
+    background: rgba(244, 90, 90, .22);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  .hl-good {
+    background: rgba(122, 107, 255, .28);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  /* ---------- Audience blocks ---------- */
+  .audience {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .role {
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    padding: 30px 26px 32px;
+    position: relative;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .role:hover {
+    border-color: var(--orange-line);
+    transform: translateY(-2px);
+  }
+
+  .role .icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: var(--orange-soft);
+    border: 1px solid var(--orange-line);
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .role .icon svg { width: 20px; height: 20px; }
+
+  .role h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .role .work {
+    color: var(--dim);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .role .gives {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    border-top: 1px solid var(--card-line);
+    padding-top: 14px;
+  }
+  .role .gives b {
+    color: var(--orange);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ---------- How a team works through this ---------- */
+  .team-flow {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .price-card {
+    background: linear-gradient(165deg, rgba(62, 64, 161, .18) 0%, rgba(122, 57, 152, .12) 45%, rgba(193, 51, 142, .14) 100%);
+    border: 1px solid var(--orange-line);
+    border-radius: 20px;
+    padding: 40px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -40px -40px auto;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(230, 62, 159, .30), transparent 70%);
+    pointer-events: none;
+  }
+
+  .price-card .label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .price {
+    font-size: 76px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .price-unit {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .price-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+
+  .price-list {
+    list-style: none;
+    border-top: 1px solid var(--orange-line);
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .price-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .price-list li svg {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    margin-top: 2px;
+    color: var(--orange);
+  }
+  .price-list b { color: var(--text); font-weight: 800; }
+
+  .flow-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 20px;
+    padding: 40px 36px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flow-card h3 {
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--card-line);
+  }
+  .flow-step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .flow-step:first-child { padding-top: 0; }
+
+  .flow-step .n {
+    font-family: 'JetBrains Mono', monospace;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(122, 107, 255, .12);
+    border: 1px solid var(--teal-line);
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .flow-step .t {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .flow-step .t b { color: var(--text); font-weight: 800; }
+
+  /* ---------- What you don't need to bring ---------- */
+  .no-need {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .nn {
+    padding: 24px 24px 26px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    border-radius: 14px;
+  }
+  .nn .x {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-decoration: line-through;
+  }
+  .nn h4 {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .nn p {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final {
+    background:
+      linear-gradient(135deg, rgba(62, 64, 161, .22) 0%, rgba(122, 57, 152, .14) 50%, rgba(193, 51, 142, .22) 100%),
+      linear-gradient(135deg, var(--navy-mid), var(--navy-deep));
+    border: 1px solid var(--card-line);
+    border-radius: 22px;
+    padding: 64px 56px;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+  }
+  .final::before {
+    content: "";
+    position: absolute;
+    inset: -120px -120px auto auto;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(230, 62, 159, .38), transparent 65%);
+    pointer-events: none;
+  }
+  .final::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -120px -120px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(62, 64, 161, .32), transparent 65%);
+    pointer-events: none;
+  }
+
+  .final-inner {
+    position: relative;
+    max-width: 760px;
+  }
+  .final h2 {
+    margin-bottom: 18px;
+  }
+  .final p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+    max-width: 56ch;
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    border-top: 1px solid var(--card-line);
+    padding: 40px 0 48px;
+    margin-top: 40px;
+  }
+  .footer-inner {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: var(--dim);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .footer-inner .disclaimer {
+    max-width: 640px;
+  }
+  .footer-inner .copy {
+    font-weight: 600;
+    color: var(--faint);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1080px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .friction-grid { grid-template-columns: repeat(2, 1fr); }
+    .artifacts { grid-template-columns: repeat(2, 1fr); }
+    .modules { grid-template-columns: repeat(2, 1fr); }
+    .audience { grid-template-columns: repeat(2, 1fr); }
+    .team-flow { grid-template-columns: 1fr; }
+    .no-need { grid-template-columns: repeat(2, 1fr); }
+    .compare-body { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 44px 0; }
+    section + section::before { width: calc(100% - 32px); }
+    .container { padding: 0 22px; }
+    .header-inner { padding: 12px 22px; }
+    .hero { padding: 44px 0 56px; }
+    .side-card-inner { padding: 28px 26px; }
+    .friction-grid, .artifacts, .modules, .audience, .no-need {
+      grid-template-columns: 1fr;
+    }
+    .price-card, .flow-card { padding: 32px 26px; }
+    .final { padding: 44px 28px; }
+    .compare-head { padding: 22px 22px 18px; }
+    .compare-body { padding: 28px 22px 32px; }
+    .ataglance { grid-template-columns: 1fr; }
+  }
+
+  /* Focus states */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  /* Tiny entrance animation */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .rise {
+    opacity: 0;
+    animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(.35); }
+    50%      { transform: scaleY(1); }
+  }
+  .audio-card .waveform span {
+    animation: wave 1.4s ease-in-out infinite;
+    transform-origin: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== HEADER ============== -->
+<header class="site">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="dot" aria-hidden="true"></span>
+      <span>
+        Etc. Projects
+        <small>Practice Performance Lab</small>
+      </span>
+    </div>
+    <span class="pill">AI Training Program</span>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="rise">
+      <span class="eyebrow">Practice Performance Lab // Program 05</span>
+      <h1>Put AI to work in your practice <span class="em">in your voice</span>.</h1>
+      <div class="hero-copy">
+        <p class="lede">
+          AI is quickly becoming part of everyday work across almost every system, platform, and process your team uses. The challenge is that most people are expected to use it without clear direction, practical training, or agreed-upon standards.
+        </p>
+        <p class="hero-pullquote">
+          Instead of everyone figuring it out on their own, this program gives your team a <span class="em">shared starting point</span>.
+        </p>
+      </div>
+      <div class="cta-row">
+        <!-- CTA destination is wired in production. -->
+        <a class="btn btn-primary" href="modules/module-1-foundation.html">
+          Begin the program
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-secondary" href="#modules">
+          See what you build
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="stat">
+          <span class="k">5 modules</span>
+          <span class="v">Work in Practice</span>
+        </div>
+        <div class="stat">
+          <span class="k">$299 / year</span>
+          <span class="v">Whole team. No add-ons</span>
+        </div>
+        <div class="stat">
+          <span class="k">Canadian</span>
+          <span class="v">Built for this market</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side-card rise" style="animation-delay:.12s">
+      <div class="side-card-inner">
+        <div class="label">Start here</div>
+
+        <div class="audio-card" role="button" tabindex="0" aria-label="Play welcome message">
+          <div class="play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="audio-meta">
+            <div class="t">A welcome from your trainer</div>
+            <div class="d">
+              <span>Audio</span>
+              <span class="sep"></span>
+              <span>2 min 14 sec</span>
+              <span class="sep"></span>
+              <span>What to expect</span>
+            </div>
+          </div>
+          <div class="waveform" aria-hidden="true">
+            <span style="height:40%; animation-delay:0s"></span>
+            <span style="height:80%; animation-delay:.1s"></span>
+            <span style="height:55%; animation-delay:.2s"></span>
+            <span style="height:95%; animation-delay:.3s"></span>
+            <span style="height:65%; animation-delay:.4s"></span>
+            <span style="height:35%; animation-delay:.5s"></span>
+            <span style="height:75%; animation-delay:.6s"></span>
+            <span style="height:50%; animation-delay:.7s"></span>
+            <span style="height:90%; animation-delay:.8s"></span>
+            <span style="height:45%; animation-delay:.9s"></span>
+          </div>
+        </div>
+
+        <div class="ataglance">
+          <div class="ag-row">
+            <span class="k">Time per person</span>
+            <span class="v">2 to 3 hours</span>
+          </div>
+          <div class="ag-row">
+            <span class="k">License</span>
+            <span class="v">$299 / year</span>
+          </div>
+          <div class="ag-row">
+            <span class="k">Modules</span>
+            <span class="v">5 + Steward's Log</span>
+          </div>
+          <div class="ag-row works-with">
+            <span class="k">Works with</span>
+            <span class="v">ChatGPT, Claude, Copilot, Gemini and AI-native platforms like Laylah CRM, Continuum, and Friedmann</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============== WHY THIS EXISTS ============== -->
+<section id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Purpose</span>
+      <h2>Problems advisory teams are <span class="em">already catching</span> AI making.</h2>
+      <p>
+        AI is showing up in client communication, marketing, meeting notes, workflows, and everyday operations across advisory practices. The priority is ensuring AI operates with the right business context, follows your standards, and stays within clearly defined boundaries.
+      </p>
+    </div>
+
+    <div class="friction-grid">
+      <article class="friction">
+        <span class="num">// 01</span>
+        <h4>It sounds correct when it is not.</h4>
+        <p>AI is designed to be helpful and agreeable, not accurate. The wording is polished. The response sounds confident. The reasoning can still be wrong, incomplete, or unsupported. The team catches it during review and loses the time they were trying to save.</p>
+      </article>
+      <article class="friction">
+        <span class="num">// 02</span>
+        <h4>It references rules, sources, or information that do not apply.</h4>
+        <p>AI can confidently generate inaccurate statistics, non-existent sources, or regulatory language that does not apply to your licenses, products, or jurisdiction.</p>
+      </article>
+      <article class="friction">
+        <span class="num">// 03</span>
+        <h4>It does not sound like your firm.</h4>
+        <p>The draft feels generic, impersonal, and disconnected from the way your team actually communicates with clients or represents your firm and its voice.</p>
+      </article>
+      <article class="friction">
+        <span class="num">// 04</span>
+        <h4>It crosses into work that requires licensed judgment.</h4>
+        <p>Without clear boundaries, AI will continue answering questions it should not be handling independently.</p>
+      </article>
+    </div>
+
+    <div class="fix-line">
+      <span class="badge">What this program does</span>
+      <div class="fix-line-copy">
+        <p>
+          This program helps your team build an AI Practice Blueprint: a practical framework that gives your AI tools clearer direction, stronger boundaries, and better business context before work even begins.
+        </p>
+        <p>
+          The result is more consistent communication, stronger operational alignment, reduced risk, and AI output that better reflects how your firm actually works.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHAT YOU WALK AWAY WITH ============== -->
+<section id="artifacts">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What you walk away with</span>
+      <h2>Six working files that <span class="em">immediately change</span> how your AI behaves.</h2>
+      <p>
+        The first three are personal. Every team member has their own. The fourth and fifth become shared team standards. The sixth continues evolving with monthly AI Stewardship updates from Etc. Projects.
+      </p>
+    </div>
+
+    <div class="artifacts">
+      <article class="artifact">
+        <span class="filename">my-ai-foundation.md</span>
+        <h4>Your AI starting point.</h4>
+        <p>Your Four Pillars, priorities, and personal operating rules loaded into every session from the start.</p>
+      </article>
+      <article class="artifact">
+        <span class="filename">my-identity.md</span>
+        <h4>Your voice, tone, and communication style.</h4>
+        <p>AI drafts sound more like your firm and less like generic internet content.</p>
+      </article>
+      <article class="artifact">
+        <span class="filename">my-compliance-context.md</span>
+        <h4>Your Canadian regulatory and licensing context.</h4>
+        <p>Your regulators, jurisdictions, products, and designations understood before AI generates a single draft.</p>
+      </article>
+      <article class="artifact">
+        <span class="filename">practice-prompt-library.md</span>
+        <h4>Your team's tested prompts.</h4>
+        <p>Shared prompts for meeting notes, follow-up, summaries, and client communication. One consistent standard across the practice.</p>
+      </article>
+      <article class="artifact">
+        <span class="filename">ai-practice-blueprint.md</span>
+        <h4>Your team's AI operating framework.</h4>
+        <p>Boundaries, escalation rules, approved use cases, review expectations, and team standards documented in one place.</p>
+      </article>
+      <article class="artifact steward">
+        <span class="filename">ai-stewardship-log.md · monthly</span>
+        <h4>Your ongoing AI Stewardship updates.</h4>
+        <p>Regulatory changes, evolving risks, workflow improvements, and AI updates translated into practical guidance your team can actually use.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MODULES ============== -->
+<section id="modules">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The implementation process</span>
+      <h2>The <span class="em">implementation</span> process.</h2>
+      <p>
+        A guided rollout that helps each team member build their own AI context before the practice brings everything together into one aligned approach.
+      </p>
+    </div>
+
+    <div class="modules">
+
+      <article class="module">
+        <span class="mod-num">// Module 01</span>
+        <h3>My AI Foundation</h3>
+        <p class="builds">You write down what AI actually does in your practice, the Four Pillars, the five behaviors that turn them into practice, and your three to five personal ground rules.</p>
+        <div class="file">my-ai-foundation.md</div>
+        <div class="stats">
+          <div class="stat"><span class="sk">Time</span><span class="sv">~30 min</span></div>
+          <div class="stat"><span class="sk">Type</span><span class="sv">Personal</span></div>
+          <div class="stat"><span class="sk">For</span><span class="sv">Everyone</span></div>
+        </div>
+      </article>
+
+      <article class="module">
+        <span class="mod-num">// Module 02</span>
+        <h3>My Identity and Voice</h3>
+        <p class="builds">Two writing samples, four to seven voice characteristics, your values, and the commitments you make to clients. Loads alongside your foundation file.</p>
+        <div class="file">my-identity.md</div>
+        <div class="stats">
+          <div class="stat"><span class="sk">Time</span><span class="sv">~20 min</span></div>
+          <div class="stat"><span class="sk">Type</span><span class="sv">Personal</span></div>
+          <div class="stat"><span class="sk">For</span><span class="sv">Everyone</span></div>
+        </div>
+      </article>
+
+      <article class="module">
+        <span class="mod-num">// Module 03</span>
+        <h3>My Compliance Context</h3>
+        <p class="builds">The regulators, jurisdictions, products, and designations specific to the work you do. Loads with foundation and identity so every draft starts inside the right lines.</p>
+        <div class="file">my-compliance-context.md</div>
+        <div class="stats">
+          <div class="stat"><span class="sk">Time</span><span class="sv">~25 min</span></div>
+          <div class="stat"><span class="sk">Type</span><span class="sv">Personal</span></div>
+          <div class="stat"><span class="sk">For</span><span class="sv">Everyone</span></div>
+        </div>
+      </article>
+
+      <article class="module">
+        <span class="mod-num">// Module 04</span>
+        <h3>Practice Prompt Library</h3>
+        <p class="builds">Five working prompts the whole team uses. Client follow-up, meeting note synthesis, compliance touch-point check, document drafting, research summary. The team adds their own.</p>
+        <div class="file">practice-prompt-library.md</div>
+        <div class="stats">
+          <div class="stat"><span class="sk">Time</span><span class="sv">~30 min</span></div>
+          <div class="stat"><span class="sk">Type</span><span class="sv">Team, shared</span></div>
+          <div class="stat"><span class="sk">For</span><span class="sv">Lead + team</span></div>
+        </div>
+      </article>
+
+      <article class="module">
+        <span class="mod-num">// Module 05</span>
+        <h3>AI Practice Blueprint</h3>
+        <p class="builds">Escalation rules, a do-not-AI list, team voice with role adjustments, and a approved roster. The practice's agreed operating standard for AI.</p>
+        <div class="file">ai-practice-blueprint.md</div>
+        <div class="stats">
+          <div class="stat"><span class="sk">Time</span><span class="sv">~30 min to draft</span></div>
+          <div class="stat"><span class="sk">Type</span><span class="sv">Team, approved</span></div>
+          <div class="stat"><span class="sk">For</span><span class="sv">Lead + team</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHO THIS IS FOR ============== -->
+<section id="audience">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Who this is for</span>
+      <h2>Built for the whole practice, with <span class="em-teal">specific work for each seat</span>.</h2>
+      <p>
+        Every role in the practice touches AI differently. The program speaks to each of them, and the team-level files keep the work consistent across seats.
+      </p>
+    </div>
+
+    <div class="audience">
+      <article class="role">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l4-1 11-11a2.83 2.83 0 0 0-4-4L3 16v5z"/><path d="M14 6l4 4"/></svg>
+        </div>
+        <h4>Lead Advisor</h4>
+        <p class="work">You set the standard. You sign the disclosures. You answer to regulators and to clients who have trusted you for a decade.</p>
+        <div class="gives"><b>What the program gives you</b>The Blueprint your team works to, in your voice, with the boundaries you set.</div>
+      </article>
+
+      <article class="role">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+        </div>
+        <h4>Associate Advisor</h4>
+        <p class="work">You produce most of the client-facing drafts. Speed without rework is the difference between a clean week and a messy one.</p>
+        <div class="gives"><b>What the program gives you</b>First drafts that sound like the Lead and respect the boundaries already set.</div>
+      </article>
+
+      <article class="role">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 22c0-4 3-7 7-7s7 3 7 7"/></svg>
+        </div>
+        <h4>Licensed Assistant &amp; Admin</h4>
+        <p class="work">You work across several advisors' files, voices, and meeting notes. The wrong tone in the wrong inbox is a hard mistake to walk back.</p>
+        <div class="gives"><b>What the program gives you</b>Role-aware voice on every draft. The Blueprint handles the switching for you.</div>
+      </article>
+
+      <article class="role">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        </div>
+        <h4>Legacy Advisor</h4>
+        <p class="work">You are thinking about succession. The book, the voice, and the working habits all need to land with the advisor who comes next.</p>
+        <div class="gives"><b>What the program gives you</b>A written voice and operating standard your successor can actually inherit.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW A TEAM WORKS THROUGH THIS ============== -->
+<section id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How a team works through it</span>
+      <h2>One license. <span class="em">Everyone registers.</span></h2>
+      <p class="section-subtitle">On-demand, in-context, aligned, team-wide training.</p>
+    </div>
+
+    <div class="team-flow">
+      <div class="price-card">
+        <div class="label">Team license</div>
+        <div class="price-row">
+          <span class="price">$299</span>
+          <span class="price-unit">CAD / year</span>
+        </div>
+        <p class="price-sub">Annual license. Covers every team member. No per-seat add-on.</p>
+        <ul class="price-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><b>Lead Advisor or Admin purchases.</b> One invoice, billed annually.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><b>Every member registers individually</b> against the license. Each person builds their own personal files.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><b>Roughly 2 to 3 hours of work</b> per person across the five modules. Pace it across a week or a quarter.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><b>Steward's Log included</b> for the life of the practice's enrollment. Monthly. Practical.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flow-card">
+        <h3>How the work splits across the team.</h3>
+        <div class="flow-step">
+          <div class="n">01</div>
+          <div class="t"><b>Modules 1 to 3 are personal.</b> Each member of the practice builds their own foundation, voice, and compliance files. They load alongside each other in your AI tool of choice.</div>
+        </div>
+        <div class="flow-step">
+          <div class="n">02</div>
+          <div class="t"><b>Module 4 is shared.</b> The Lead Advisor or Admin drafts the practice prompt library. The team tests the prompts on real client work that week.</div>
+        </div>
+        <div class="flow-step">
+          <div class="n">03</div>
+          <div class="t"><b>Module 5 is approved.</b> The team meets once to walk the AI Practice Blueprint. Escalation rules, do-not-AI list, and the roster are agreed and signed.</div>
+        </div>
+        <div class="flow-step">
+          <div class="n">04</div>
+          <div class="t"><b>The Steward's Log lands monthly.</b> Regulation and tool changes get folded back into the Blueprint. The work does not end at module five.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section id="begin">
+  <div class="container">
+    <div class="final">
+      <div class="final-inner">
+        <span class="eyebrow">Ready when you are</span>
+        <h2>Get the AI in your practice working <span class="em">in your voice</span>, inside <span class="em">your lines</span>.</h2>
+        <p>
+          One license for the practice. Five files. Roughly two to three hours of work per person. By the end of module five your team is operating off the same Blueprint, and the drafts coming back from your AI tools start sounding like the people who actually do the work.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="modules/module-1-foundation.html">
+            Begin the program
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="#modules">Review the modules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site">
+  <div class="container footer-inner">
+    <p class="disclaimer">
+      This program is intended for education, operational planning, and internal AI governance support within advisory practices. It is not legal, regulatory, privacy, tax, compliance, or professional advice. Each practice remains responsible for ensuring its own policies, procedures, AI use, supervision, disclosures, and workflows align with the requirements of its licensing body, dealer, MGA, carrier, regulator, province, and jurisdiction.
+    </p>
+    <p class="copy">© 2026 49Maple Inc. o/a Etc. Projects. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Audio card placeholder click feedback
+  document.querySelectorAll('.audio-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const play = card.querySelector('.play svg');
+      play.style.transform = play.style.transform ? '' : 'scale(.85)';
+      setTimeout(() => { play.style.transform = ''; }, 160);
+    });
+  });
+</script>
+
+</body>
+</html>
