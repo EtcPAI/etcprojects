@@ -1,0 +1,188 @@
+# Architecture
+
+> **Source of truth for repo, infrastructure, and naming conventions across the Etc. Projects ecosystem.**
+> Last updated: 2026-05-18
+
+---
+
+## The five-line summary
+
+- **Products** live in the `EtcPAI` GitHub org. Client work lives in `EtcPAI-Clients`.
+- One shared Supabase project (`etcpai-production`) holds auth, users, licenses, and product-specific data for everything Etc. Projects sells.
+- Each client gets their own Supabase project for data isolation and clean handover.
+- Products are integrated via shared auth + simple cross-product links, not embedded iframes or tight coupling.
+- All training content (AI Foundation + future micro-modules) lives in PPL at `learn.practiceperformancelab.com`.
+
+---
+
+## Repos
+
+### EtcPAI org — products we own and sell
+
+| Repo | Domain | Purpose |
+|---|---|---|
+| `etc-tools` | `app.etcprojectsai.com` | Command Center + transformation tools (Practice Profile Builder, AI Intelligence Builder, Compliance Profile, Campaign Builder, Skills Library, Admin) |
+| `ppl` | `learn.practiceperformancelab.com` | **NEW.** Practice Performance Lab. Houses all training programs starting with AI Foundation (Modules 1-5) |
+| `etcprojects` | `etcprojects.com` | Main marketing site for Etc. Projects |
+| `49maple` | `49maple.com` | Parent company website |
+| `living-my-plan` | `livingmyplan.com` | Client service pages |
+| `etc-design` *(future)* | n/a | Shared brand tokens + component library. Extract when 3+ repos are copy-pasting the same components |
+
+### EtcPAI-Clients org — client commissioned work
+
+| Repo | Domain | Purpose |
+|---|---|---|
+| `client-mountainstrong` | `mountainstrongfinancial.com` (or theirs) | Mountain Strong Financial website + assets |
+| `client-{slug}` | per-client | Future client work, one repo each |
+
+**Naming convention for client repos:** `client-{shortname}`, lowercase, no spaces. The `client-` prefix is redundant inside the org but useful when repos sit alongside product repos in a local folder.
+
+---
+
+## Infrastructure
+
+### Supabase projects
+
+| Project | Used by | Holds |
+|---|---|---|
+| `etcpai-production` | `etc-tools`, `ppl` | Auth (magic link), users, practices, licenses, AI Kits, Practice Profiles, training progress, completions |
+| `etcpai-staging` *(optional)* | `etc-tools`, `ppl` | Mirror of production for QA |
+| `client-mountainstrong` | `client-mountainstrong` | Their data only. Independent billing. Handover-ready. |
+| `client-{slug}` | corresponding client repo | Same isolation pattern |
+
+**Auth integration:** `etc-tools` and `ppl` share the same Supabase project, which means a user logged in to one is logged in to the other automatically. The cross-product link from Command Center to PPL is a simple `<a href>` — no SSO handshake required.
+
+### Vercel
+
+| Team | Projects |
+|---|---|
+| EtcPAI | etc-tools, ppl, etcprojects, 49maple, living-my-plan |
+| EtcPAI-Clients | client-mountainstrong, future clients |
+
+Custom domains live in their corresponding Vercel project. DNS is wherever your registrar lives.
+
+---
+
+## Domains and routing
+
+```
+practiceperformancelab.com         marketing / sales / pricing
+learn.practiceperformancelab.com   PPL — the LMS app (login-gated)
+app.etcprojectsai.com              etc-tools — Command Center + transformation tools
+etcprojects.com                    Etc. Projects main marketing site
+49maple.com                        parent company site
+livingmyplan.com                   client service pages
+mountainstrongfinancial.com        client site (Mountain Strong)
+```
+
+---
+
+## Naming and storage conventions
+
+### Training content hierarchy
+
+```
+program  →  module  →  unit  →  asset
+```
+
+### Stable IDs (never renamed once shipped)
+
+```
+program:   ai-foundation
+module:    m1-foundation, m2-identity, m3-compliance, m4-prompts, m5-aikit
+unit:      welcome, unit-1, unit-2, unit-3, unit-4, unit-5
+```
+
+Display titles can change. IDs cannot. URLs depend on IDs.
+
+### File paths in PPL repo
+
+```
+ppl/
+  programs/
+    ai-foundation/
+      m1-foundation.html
+      m2-identity.html
+      m3-compliance.html
+      m4-prompts.html
+      m5-aikit.html
+    {next-program}/
+      ...
+  shared/
+    etc-design.css          (extract from inline styles when convenient)
+    etc-audio-player.js     (when audio is wired)
+  index.html                (program directory / dashboard)
+  README.md
+```
+
+### Supabase Storage bucket layout
+
+```
+training-audio/{program}/{module}/{unit}.mp3
+  e.g. training-audio/ai-foundation/m1-foundation/welcome.mp3
+
+training-video/{program}/{module}/{unit}.mp4
+  e.g. training-video/ai-foundation/m3-compliance/unit-2.mp4
+
+training-assets/{program}/{module}/{filename}.{ext}
+  e.g. training-assets/ai-foundation/m4-prompts/prompt-library-template.pdf
+```
+
+Public bucket for v1. Switch to private + signed URLs when license gating is enforced.
+
+### Module artifact .md filenames (generated by the modules for the user to download)
+
+```
+{user-first-name}-ai-foundation.md     (Module 1)
+{user-first-name}-identity.md          (Module 2)
+{user-first-name}-compliance-context.md (Module 3)
+practice-prompt-library.md             (Module 4 — shared)
+{practice-slug}-ai-kit.md              (Module 5 — shared)
+```
+
+---
+
+## Integration points between products
+
+### Command Center → PPL
+
+- Command Center (in `etc-tools`) has a "Training" or "Practice Performance Lab" card on its dashboard.
+- Clicking opens `learn.practiceperformancelab.com` in a new tab.
+- Since both apps share `etcpai-production` Supabase, the user lands already authenticated.
+- No iframe, no embed, no SDK. Just a link.
+
+### Practice Profile → AI training auto-prefill (suite subscribers)
+
+- Module 3 references "auto-prefilled from Practice Profile if the user has the full Etc. Projects suite."
+- When PPL loads a module for a user who has a Practice Profile in `etcpai-production`, M3's regulator/jurisdiction/products/designations pickers prefill from that row.
+- Standalone PPL buyers (no Practice Profile) see empty forms and fill them once.
+- Implementation: PPL queries `etcpai-production.practice_profile` on M3 load, keyed by user id.
+
+### License gating
+
+- A row in `etcpai-production.licenses` per purchase, with `product` ('ai-foundation' | 'etc-tools-suite' | 'ppl-all-access' | etc.).
+- PPL checks the licenses table on app entry. No license → redirect to `practiceperformancelab.com/buy`.
+- Team purchases create one parent license + one row per registered team member (against the team license_id).
+
+---
+
+## Open naming question
+
+**"AI Kit" terminology.**
+
+- **Command Center tool** "AI Kit Builder" → renamed to **"AI Intelligence Builder"** *(confirmed)*
+- **Module 5 produces an artifact called "Practice AI Kit"** *(unresolved)*
+
+These are different things — the Command Center tool helps build an AI Kit for a client engagement; the Module 5 artifact is the team-level standards document. They can coexist with different names, or both rename together.
+
+**Default until confirmed otherwise:** Module 5 artifact stays as "Practice AI Kit" because the training narrative leans on the metaphor of a small package of standards the team agrees to. Rename to "Practice AI Intelligence Standards" or similar if you want consistency.
+
+---
+
+## Dev onboarding
+
+See `DEV-ONBOARDING.md` at the repo root.
+
+## One-time setup checklist
+
+See `migrations/setup-checklist.md` for the ordered list of GitHub/Supabase/Vercel steps required to stand up the new structure.
