@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0D0826;--navy-mid:#1A1245;--navy-deep:#070321;--orange:#E63E9F;--orange-hover:#CE2D8C;--orange-soft:rgba(230,62,159,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#7A6BFF;--teal-soft:rgba(122,107,255,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--radius:14px;--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
+:root{--navy:#0D0826;--navy-mid:#1A1245;--navy-deep:#070321;--orange:#E63E9F;--orange-hover:#CE2D8C;--orange-soft:rgba(230,62,159,.14);--accent:var(--orange);--accent-hover:var(--orange-hover);--accent-soft:var(--orange-soft);--teal:#C1E1A7;--teal-soft:rgba(193,225,167,.10);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--radius:14px;--status-complete:#C1E1A7;--status-warn:#EFBC75;--status-alert:#D06A4E}
 html{scroll-behavior:smooth}
 body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
 em,.em{font-style:italic;color:var(--accent);font-weight:900}
@@ -67,7 +67,7 @@ button{font-family:inherit}
 /* CALLOUTS */
 .callout{background:rgba(193,225,167,.06);border:1px solid rgba(193,225,167,.15);border-left:3px solid var(--status-complete);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
 .callout strong{color:var(--status-complete);font-weight:700;letter-spacing:.02em}
-.callout-teal{background:var(--teal-soft);border:1px solid rgba(122,107,255,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
+.callout-teal{background:var(--teal-soft);border:1px solid rgba(193,225,167,.18);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 22px;margin:18px 0;font-size:14px;color:var(--text-muted);line-height:1.6}
 .callout-teal strong{color:var(--teal);font-weight:700;letter-spacing:.02em}
 .role-nod{background:rgba(239,188,117,.06);border:1px solid rgba(239,188,117,.18);border-left:3px solid var(--status-warn);border-radius:0 10px 10px 0;padding:16px 22px;margin-top:22px;font-size:14px;color:var(--text-muted);line-height:1.65}
 .role-nod strong{color:var(--status-warn);font-weight:700}
@@ -469,7 +469,7 @@ Constraints: Honor my-ai-foundation.md, my-identity.md, and my-compliance-contex
     <h2>Your library is <span class="em">started</span>.</h2>
     <p class="success-lede">Your file has been downloaded. Share it with your team. As prompts get tested and refined, regenerate the file and re-share.</p>
     <p class="next-up"><strong>What's next:</strong> Module 5, AI Practice Blueprint. The team-level standards every team member operates by.</p>
-    <div class="btn-row" style="justify-content:center;margin-top:24px"><button class="btn btn-orange" id="downloadAgainBtn">Download again</button></div>
+    <div class="btn-row" style="justify-content:center;margin-top:24px;gap:12px;flex-wrap:wrap"><a class="btn btn-orange" href="m5-aikit.html">Start Module 5 →</a><button class="btn btn-back" id="downloadAgainBtn">Download again</button></div>
   </section>
 
 </div>

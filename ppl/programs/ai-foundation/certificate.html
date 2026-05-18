@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate of Completion | AI Foundation | Etc. Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D0826;--navy-mid:#1A1245;--navy-deep:#070321;--accent:#E63E9F;--accent-hover:#CE2D8C;--accent-soft:rgba(230,62,159,.14);--brand-grad:linear-gradient(135deg,#3E40A1 0%,#7A3998 50%,#C1338E 100%);--white:#ffffff;--text:#ffffff;--text-muted:rgba(255,255,255,.80);--text-dim:rgba(255,255,255,.58);--text-faint:rgba(255,255,255,.40);--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.20);--card:rgba(255,255,255,.04);--status-complete:#C1E1A7;--status-alert:#D06A4E}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text);background:var(--navy);line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:500;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(60% 50% at 10% 12%,rgba(62,64,161,.35),transparent 70%),radial-gradient(55% 45% at 90% 8%,rgba(122,57,152,.28),transparent 70%),radial-gradient(65% 55% at 78% 78%,rgba(193,51,142,.26),transparent 70%),radial-gradient(45% 40% at 18% 90%,rgba(62,64,161,.20),transparent 70%),linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 45%,var(--navy-mid) 100%);z-index:-1;pointer-events:none}
+
+.page{max-width:920px;margin:0 auto;padding:48px 32px 80px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;gap:12px;flex-wrap:wrap}
+.back-link{font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;color:var(--text-dim);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--white)}
+.back-link::before{content:'\2190';font-weight:700}
+.toolbar-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:none;border-radius:8px;font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:transform .15s,background .15s;text-decoration:none}
+.btn-primary{background:var(--accent);color:var(--navy)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border-strong)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Certificate */
+.cert{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border-strong);border-radius:20px;padding:64px 56px;text-align:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
+.cert::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--brand-grad)}
+.cert::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--brand-grad)}
+@media(max-width:640px){.cert{padding:44px 28px}}
+
+.cert-logo{display:inline-flex;flex-direction:column;background:#fff;padding:10px 20px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.15);margin-bottom:32px}
+.cert-logo-mark{font-family:'Manrope',sans-serif;font-weight:900;font-size:18px;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.cert-logo-sub{font-family:'Manrope',sans-serif;font-weight:500;font-size:9px;color:var(--navy);opacity:.7;line-height:1;margin-top:3px;letter-spacing:.04em;text-transform:lowercase}
+
+.cert-eyebrow{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--accent);padding:7px 16px;background:var(--accent-soft);border:1px solid rgba(230,62,159,.3);border-radius:999px;margin-bottom:24px}
+.cert-title{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-.02em;color:var(--white);margin-bottom:14px}
+.cert-program{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--text-muted);font-style:italic;margin-bottom:48px}
+
+.cert-presented{font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:18px}
+.cert-name{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(36px,5.5vw,60px);line-height:1.05;letter-spacing:-.02em;color:var(--accent);margin-bottom:14px;padding-bottom:18px;border-bottom:2px solid var(--accent);display:inline-block;min-width:60%}
+.cert-role-practice{font-size:15px;color:var(--text-muted);margin-bottom:36px;font-weight:500}
+.cert-role-practice strong{color:var(--white);font-weight:700}
+
+.cert-statement{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:640px;margin:0 auto 40px;font-weight:500}
+.cert-statement strong{color:var(--white);font-weight:700}
+
+/* Audit panel */
+.cert-audit{background:rgba(193,225,167,.05);border:1px solid rgba(193,225,167,.18);border-radius:12px;padding:24px 28px;margin:0 auto 36px;max-width:560px;text-align:left}
+.cert-audit-title{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--status-complete);margin-bottom:14px;text-align:center}
+.cert-audit ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.cert-audit li{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--text-muted);line-height:1.4}
+.cert-audit .tick{width:18px;height:18px;border-radius:50%;background:var(--status-complete);color:var(--navy);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+.cert-audit .module-name{font-weight:600;color:var(--white)}
+.cert-audit .module-date{color:var(--text-dim);font-size:12px;margin-left:auto;font-variant-numeric:tabular-nums}
+
+.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap}
+.cert-footer-block{text-align:left;flex:1;min-width:180px}
+.cert-footer-label{font-family:'Manrope',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.cert-footer-value{font-size:15px;color:var(--white);font-weight:700;font-variant-numeric:tabular-nums}
+.cert-footer-block.right{text-align:right}
+.cert-issued{font-family:'Manrope',sans-serif;font-style:italic;color:var(--text-muted);font-size:13.5px;line-height:1.5}
+.cert-issued strong{color:var(--white);font-weight:800;font-style:normal}
+
+/* Incomplete state */
+.incomplete-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;padding:48px 44px;text-align:center}
+.incomplete-card h2{font-family:'Manrope',sans-serif;font-size:clamp(26px,3.5vw,36px);font-weight:900;letter-spacing:-.02em;color:var(--white);margin-bottom:14px;line-height:1.15}
+.incomplete-card .em{font-style:italic;color:var(--accent);font-weight:900}
+.incomplete-card .lede{font-size:16px;color:var(--text-muted);max-width:520px;margin:0 auto 28px;line-height:1.65}
+.incomplete-list{list-style:none;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:10px;text-align:left}
+.incomplete-item{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);transition:all .15s}
+.incomplete-item.done{border-color:rgba(193,225,167,.3);background:rgba(193,225,167,.06)}
+.incomplete-item .marker{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.incomplete-item.done .marker{background:var(--status-complete);color:var(--navy)}
+.incomplete-item.todo .marker{background:rgba(255,255,255,.08);color:var(--text-dim);border:1px dashed var(--border-strong)}
+.incomplete-item-name{flex:1;font-size:14px;color:var(--text-muted);font-weight:600}
+.incomplete-item.done .incomplete-item-name{color:var(--white)}
+.incomplete-item a{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:6px 12px;border:1px solid rgba(230,62,159,.3);border-radius:999px}
+.incomplete-item a:hover{background:var(--accent-soft)}
+
+@media print{
+  body{background:#fff;color:#0D0826}
+  body::before{display:none}
+  .toolbar{display:none}
+  .page{padding:0;max-width:none}
+  .cert{background:#fff;border:2px solid #0D0826;border-radius:0;padding:48px;page-break-inside:avoid;backdrop-filter:none}
+  .cert::before,.cert::after{background:linear-gradient(135deg,#3E40A1 0%,#7A3998 50%,#C1338E 100%)}
+  .cert-logo{box-shadow:none;border:1px solid #ddd}
+  .cert-title,.cert-name,.cert-footer-value{color:#0D0826}
+  .cert-program{color:#444}
+  .cert-statement,.cert-role-practice{color:#222}
+  .cert-presented,.cert-footer-label{color:#555}
+  .cert-eyebrow{color:#C1338E;background:rgba(193,51,142,.08);border-color:rgba(193,51,142,.3)}
+  .cert-name{color:#C1338E;border-bottom-color:#C1338E}
+  .cert-audit{background:rgba(0,0,0,.02);border-color:#ccc;color:#222}
+  .cert-audit-title{color:#3e7a3e}
+  .cert-audit li,.cert-audit .module-name{color:#0D0826}
+  .cert-audit .module-date{color:#555}
+  .cert-audit .tick{background:#3e7a3e;color:#fff}
+  .cert-footer{border-top-color:#ccc}
+  .cert-issued{color:#444}
+  .cert-issued strong{color:#0D0826}
+}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="toolbar">
+    <a class="back-link" href="m5-aikit.html">Back to Module 5</a>
+    <div class="toolbar-actions" id="toolbarActions"></div>
+  </div>
+
+  <!-- Certificate (shown when all 5 modules complete) -->
+  <section class="cert hidden" id="cert">
+    <div class="cert-logo">
+      <span class="cert-logo-mark">Etc. <span style="font-weight:300;opacity:.7">Projects</span></span>
+      <span class="cert-logo-sub">ai training program</span>
+    </div>
+    <span class="cert-eyebrow">Practice Performance Lab</span>
+    <h1 class="cert-title">Certificate of <span style="font-style:italic;color:var(--accent)">Completion</span></h1>
+    <p class="cert-program">AI Training Program · AI Foundation</p>
+
+    <p class="cert-presented">Presented to</p>
+    <div class="cert-name" id="certName">—</div>
+    <p class="cert-role-practice" id="certRolePractice"></p>
+
+    <p class="cert-statement">
+      For successfully completing the five-module AI Foundation program, building a personal foundation file, identity and voice file, compliance context, prompt library, and AI Practice Blueprint, and committing to the responsible use of AI in Canadian financial services practice.
+    </p>
+
+    <div class="cert-audit">
+      <div class="cert-audit-title">Completion Audit · all five modules verified</div>
+      <ul id="auditList"></ul>
+    </div>
+
+    <div class="cert-footer">
+      <div class="cert-footer-block">
+        <div class="cert-footer-label">Date completed</div>
+        <div class="cert-footer-value" id="certDate">—</div>
+      </div>
+      <div class="cert-footer-block right">
+        <div class="cert-footer-label">Issued by</div>
+        <div class="cert-issued"><strong>Etc. Projects</strong><br>Practice Performance Lab</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Incomplete state (shown when modules missing) -->
+  <section class="incomplete-card hidden" id="incomplete">
+    <h2>Almost <span class="em">there</span>.</h2>
+    <p class="lede">Your certificate is unlocked when you've completed all five modules. Here's where you are.</p>
+    <ul class="incomplete-list" id="incompleteList"></ul>
+  </section>
+
+</div>
+
+<script>
+const MODULES = [
+  { storageKey: 'etc_module1_state', id: 'm1-foundation', name: 'Module 1 — My AI Foundation', file: 'm1-foundation.html' },
+  { storageKey: 'etc_module2_state', id: 'm2-identity',   name: 'Module 2 — My Identity and Voice', file: 'm2-identity.html' },
+  { storageKey: 'etc_module3_state', id: 'm3-compliance', name: 'Module 3 — My Compliance Context', file: 'm3-compliance.html' },
+  { storageKey: 'etc_module4_state', id: 'm4-prompts',    name: 'Module 4 — Practice Prompt Library', file: 'm4-prompts.html' },
+  { storageKey: 'etc_module5_state', id: 'm5-aikit',      name: 'Module 5 — AI Practice Blueprint', file: 'm5-aikit.html' }
+];
+
+function loadState(key) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; } catch(e) { return null; }
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch(e) { return iso.slice(0,10); }
+}
+
+function audit() {
+  const results = MODULES.map(m => {
+    const s = loadState(m.storageKey);
+    return {
+      ...m,
+      state: s,
+      complete: !!(s && s.completedAt),
+      completedAt: s && s.completedAt ? s.completedAt : null
+    };
+  });
+  return results;
+}
+
+function getIdentity(results) {
+  // Prefer M2 (most recent identity capture), fall back to M1
+  const order = ['etc_module2_state','etc_module1_state','etc_module3_state','etc_module5_state'];
+  for (const key of order) {
+    const s = loadState(key);
+    if (s && s.identity && (s.identity.name || s.identity.role)) return s.identity;
+  }
+  return { name: '', role: '', practice: '' };
+}
+
+function render() {
+  const results = audit();
+  const allDone = results.every(r => r.complete);
+
+  if (allDone) renderCertificate(results);
+  else renderIncomplete(results);
+}
+
+function renderCertificate(results) {
+  document.getElementById('cert').classList.remove('hidden');
+  document.getElementById('incomplete').classList.add('hidden');
+
+  const identity = getIdentity(results);
+  document.getElementById('certName').textContent = identity.name || 'Your Name';
+
+  const rp = [];
+  if (identity.role) rp.push(escapeHtml(identity.role));
+  if (identity.practice) rp.push(escapeHtml(identity.practice));
+  document.getElementById('certRolePractice').innerHTML = rp.length
+    ? rp.join(' · ')
+    : '';
+
+  // Latest completedAt across modules
+  const latest = results
+    .map(r => r.completedAt)
+    .filter(Boolean)
+    .sort()
+    .pop();
+  document.getElementById('certDate').textContent = formatDate(latest);
+
+  // Audit list
+  const auditList = document.getElementById('auditList');
+  auditList.innerHTML = results.map(r => `
+    <li>
+      <span class="tick">✓</span>
+      <span class="module-name">${escapeHtml(r.name)}</span>
+      <span class="module-date">${formatDate(r.completedAt)}</span>
+    </li>
+  `).join('');
+
+  // Toolbar actions
+  document.getElementById('toolbarActions').innerHTML = `
+    <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    <button class="btn btn-secondary" onclick="emailCertificate()">Email me a copy</button>
+  `;
+}
+
+function renderIncomplete(results) {
+  document.getElementById('cert').classList.add('hidden');
+  document.getElementById('incomplete').classList.remove('hidden');
+
+  document.getElementById('incompleteList').innerHTML = results.map(r => `
+    <li class="incomplete-item ${r.complete ? 'done' : 'todo'}">
+      <span class="marker">${r.complete ? '✓' : ''}</span>
+      <span class="incomplete-item-name">${escapeHtml(r.name)}</span>
+      ${r.complete
+        ? `<span style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;font-weight:700">${formatDate(r.completedAt)}</span>`
+        : `<a href="${r.file}">${loadState(r.storageKey) ? 'Resume' : 'Start'}</a>`}
+    </li>
+  `).join('');
+
+  document.getElementById('toolbarActions').innerHTML = '';
+}
+
+function emailCertificate() {
+  const identity = getIdentity(audit());
+  const subject = encodeURIComponent('My AI Foundation Certificate of Completion');
+  const body = encodeURIComponent(
+    `Here is the certificate URL: ${window.location.href}\n\n` +
+    `Owner: ${identity.name || ''}${identity.role ? ', '+identity.role : ''}\n` +
+    `${identity.practice ? 'Practice: '+identity.practice+'\n' : ''}` +
+    `\nTo save a PDF copy, open the URL above and choose Print → Save as PDF.`
+  );
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+render();
+</script>
+</body>
+</html>
