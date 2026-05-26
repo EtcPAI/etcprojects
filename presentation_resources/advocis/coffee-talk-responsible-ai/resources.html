@@ -560,23 +560,25 @@
     border-top: 1px solid oklch(34% 0.020 265);
     padding-top: 28px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
-  .colophon .connect-row { display: flex; flex-direction: column; gap: 6px; }
+  .colophon .connect-row { display: flex; flex-direction: column; gap: 4px; }
   .colophon .connect-row .k {
     font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: oklch(65% 0.015 265);
   }
   .colophon .connect-row a {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 22px;
+    font-size: 14px;
     color: var(--copper-2);
     border-bottom: 1px solid oklch(34% 0.020 265);
     width: max-content;
+    max-width: 100%;
+    word-break: break-word;
   }
   .colophon .connect-row a:hover { color: var(--cream); border-bottom-color: var(--copper-2); }
 
@@ -974,6 +976,11 @@
       <div class="connect-row">
         <span class="k">Practice Performance Lab</span>
         <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener">app.etcprojectsai.com</a>
+      </div>
+      <div class="connect-row">
+        <span class="k">Presentation</span>
+        <a href="deck.html">View the deck</a>
+        <a href="files/Coffee-Talk-Deck.pdf" download="Coffee-Talk-Deck.pdf">Download PDF</a>
       </div>
       <div class="connect-row">
         <span class="k">Contact</span>

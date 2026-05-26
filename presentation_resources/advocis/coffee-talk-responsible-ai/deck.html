@@ -1106,26 +1106,27 @@
 
   .closing-connect {
     border-top: 1px solid var(--rule);
-    padding-top: 28px;
+    padding-top: 24px;
     display: grid;
     grid-template-columns: repeat(3, auto);
-    gap: 56px;
+    gap: 40px;
     align-items: baseline;
   }
-  .closing-connect .cc-row { display: flex; flex-direction: column; gap: 6px; }
+  .closing-connect .cc-row { display: flex; flex-direction: column; gap: 4px; }
   .closing-connect .cc-k {
     font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
-    font-size: 18px;
+    font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .closing-connect a {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 28px;
+    font-size: 18px;
     color: var(--ink);
     text-decoration: none;
     border-bottom: 1px solid var(--copper);
+    width: max-content;
   }
 
   /* small ornamental SVG coffee ring */
@@ -1751,6 +1752,10 @@
                 <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener">app.etcprojectsai.com</a>
               </div>
               <div class="cc-row">
+                <span class="cc-k">Download deck</span>
+                <a href="files/Coffee-Talk-Deck.pdf" download="Coffee-Talk-Deck.pdf">Coffee-Talk-Deck.pdf</a>
+              </div>
+              <div class="cc-row" style="grid-column: 1 / -1;">
                 <span class="cc-k">Contact</span>
                 <a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a>
               </div>
