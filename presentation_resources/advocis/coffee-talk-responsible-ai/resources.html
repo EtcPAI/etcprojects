@@ -50,54 +50,64 @@
 
   /* —— hero —— */
   .hero {
-    padding: 110px 0 90px;
-    background:
-      radial-gradient(80% 60% at 18% 0%, oklch(56% 0.17 145) 0%, transparent 60%),
-      radial-gradient(70% 55% at 95% 100%, oklch(42% 0.16 145) 0%, transparent 55%),
-      linear-gradient(180deg, var(--copper) 0%, oklch(42% 0.16 145) 100%);
-    color: var(--cream);
+    padding: 100px 0 80px;
+    border-bottom: 1px solid var(--rule);
     position: relative;
     overflow: hidden;
   }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(oklch(100% 0 0 / 0.05) 1px, transparent 1px);
-    background-size: 4px 4px;
+  .hero .hero-numeral {
+    position: absolute;
+    right: clamp(-30px, -2vw, 0px);
+    top: 24px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(180px, 28vw, 460px);
+    color: var(--copper);
+    opacity: 0.06;
+    line-height: 0.85;
     pointer-events: none;
+    user-select: none;
+    z-index: 0;
   }
-  .hero > * { position: relative; }
+  .hero > .wrap { position: relative; z-index: 1; }
   .hero .eyebrow {
     font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
     font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--copper-2);
+    color: var(--copper);
     margin-bottom: 28px;
   }
   .hero h1 {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: clamp(48px, 6vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
     margin: 0;
-    color: var(--cream);
+    color: var(--ink);
   }
-  .hero h1 .em { font-style: italic; color: var(--copper-2); font-weight: 700; }
+  .hero h1 .em {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--copper);
+    letter-spacing: -0.015em;
+  }
   .hero h1 .todos {
     display: block;
     font-size: 0.5em;
     font-weight: 400;
     margin-top: 18px;
-    color: oklch(92% 0.020 145);
+    color: var(--ink);
   }
   .hero .dek {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: clamp(18px, 1.6vw, 28px);
     line-height: 1.35;
-    color: oklch(88% 0.030 145);
+    color: var(--muted);
     margin-top: 32px;
     max-width: 880px;
   }
@@ -106,7 +116,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    border-top: 1px solid oklch(100% 0 0 / 0.18);
+    border-top: 1px solid var(--rule);
     padding-top: 28px;
   }
   .meta .k {
@@ -114,13 +124,16 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: oklch(85% 0.030 145);
+    color: var(--muted);
   }
   .meta .v {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 26px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(18px, 1.4vw, 22px);
+    color: var(--ink);
     margin-top: 4px;
-    color: var(--cream);
+    line-height: 1.2;
   }
 
   /* —— TOC —— */
@@ -242,14 +255,13 @@
     gap: 24px;
   }
   .qcard {
-    background: linear-gradient(180deg, oklch(97% 0.020 145) 0%, var(--paper) 100%);
-    border-top: 3px solid var(--copper);
+    background: var(--paper);
+    border-top: 2px solid var(--copper);
     padding: 32px 28px 32px;
     display: flex;
     flex-direction: column;
     gap: 16px;
     min-height: 320px;
-    box-shadow: 0 1px 0 oklch(0% 0 0 / 0.03), 0 12px 24px -16px oklch(48% 0.17 145 / 0.18);
   }
   .qcard .num {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -280,9 +292,9 @@
   .verdict {
     margin-top: 36px;
     padding: 28px 32px;
-    border: 1px solid oklch(80% 0.06 145);
+    border: 1px solid var(--rule);
     border-left: 4px solid var(--copper);
-    background: oklch(96% 0.025 145);
+    background: var(--cream-2);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -292,7 +304,7 @@
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--muted);
   }
   .verdict .b {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -471,10 +483,9 @@
     gap: 32px;
   }
   .cl-col {
-    background: linear-gradient(180deg, oklch(97% 0.020 145) 0%, var(--paper) 100%);
-    border-top: 3px solid var(--copper);
+    background: var(--paper);
+    border-top: 2px solid var(--copper);
     padding: 32px 32px 36px;
-    box-shadow: 0 1px 0 oklch(0% 0 0 / 0.03), 0 12px 24px -16px oklch(48% 0.17 145 / 0.18);
   }
   .cl-col .h {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -738,6 +749,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-numeral" aria-hidden="true">i.</div>
   <div class="wrap">
     <div class="eyebrow">Companion Resource Page · Volume 01</div>
     <h1><span class="em">Now what?</span><span class="todos">To-do&rsquo;s after the conversation.</span></h1>
