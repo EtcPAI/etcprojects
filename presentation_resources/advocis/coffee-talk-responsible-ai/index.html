@@ -726,8 +726,8 @@ img { display: block; max-width: 100%; }
 /* ── Resources grid ─────────────────────────────────────── */
 .resources {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
 }
 .r-card {
   background: var(--paper);
@@ -1027,7 +1027,7 @@ footer {
   .lens:not(:first-child) { padding-left: 0; }
   .deck-feature { grid-template-columns: 1fr; gap: 48px; }
   .deck-thumbs-grid { grid-template-columns: repeat(2, 1fr); }
-  .resources { grid-template-columns: 1fr; gap: 24px; }
+  .resources { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .how { grid-template-columns: repeat(2, 1fr); }
   .pull-inner { grid-template-columns: 1fr; gap: 24px; }
   .pull-mark { font-size: 140px; }
@@ -1040,6 +1040,7 @@ footer {
 @media (max-width: 600px) {
   .hero-grid { grid-template-columns: 1fr; gap: 20px; }
   .how { grid-template-columns: 1fr; }
+  .resources { grid-template-columns: 1fr; gap: 20px; }
   .hero-meta { flex-wrap: wrap; gap: 12px; }
   .toprail-inner { padding: 12px 20px; }
   :root { --gutter: 22px; }
@@ -1240,7 +1241,7 @@ footer {
         <div class="h-eyebrow">§ Take-home Resources</div>
         <h2 class="h-title">The take-home <span class="em">tools.</span></h2>
       </div>
-      <div class="h-deck">Three printable one-pagers. Pin them up, mark them up, take them to the team, make them your own.</div>
+      <div class="h-deck">Four printable one-pagers. Pin them up, mark them up, take them to the team, make them your own.</div>
     </div>
 
     <div class="resources">
@@ -1257,7 +1258,7 @@ footer {
           <p class="r-desc">Rod's framework on a single page. The three questions to ask before any new AI or technology tool enters your practice.</p>
           <div class="r-foot">
             <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
-            <span class="r-meta">01 of III</span>
+            <span class="r-meta">01 of IV</span>
           </div>
         </div>
       </a>
@@ -1274,7 +1275,7 @@ footer {
           <p class="r-desc">A script you can borrow word-for-word, with the three pieces that make consent count: name the tool, offer a real choice, record the answer.</p>
           <div class="r-foot">
             <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
-            <span class="r-meta">02 of III</span>
+            <span class="r-meta">02 of IV</span>
           </div>
         </div>
       </a>
@@ -1291,7 +1292,24 @@ footer {
           <p class="r-desc">Three things on the table before any AI tool enters your practice. A documented policy, a consent framework, and a training plan.</p>
           <div class="r-foot">
             <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
-            <span class="r-meta">03 of III</span>
+            <span class="r-meta">03 of IV</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card reveal" href="files/04-The-AI-Taxonomy.pdf" download="04-The-AI-Taxonomy.pdf">
+        <div class="r-thumb">
+          <div class="r-num">iv.</div>
+          <div class="r-stamp">PDF · 1 page</div>
+          <img src="assets/resource-04.jpg" alt="Preview of The AI Taxonomy worksheet" loading="lazy">
+        </div>
+        <div class="r-body">
+          <div class="r-eyebrow">The Operational Lens · Kelly Gustafson</div>
+          <h3 class="r-title">The AI <span class="em">Taxonomy</span>.</h3>
+          <p class="r-desc">Kelly's worksheet. Place every AI tool your practice uses, or is considering, into one of four categories. The category sets the risk profile, the governance requirement, and the conversation you need to have.</p>
+          <div class="r-foot">
+            <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
+            <span class="r-meta">04 of IV</span>
           </div>
         </div>
       </a>
