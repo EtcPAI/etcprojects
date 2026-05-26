@@ -555,8 +555,33 @@
     color: oklch(75% 0.018 265);
     margin-top: 2px;
   }
+  .colophon .connect {
+    margin-top: 56px;
+    border-top: 1px solid oklch(34% 0.020 265);
+    padding-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .colophon .connect-row { display: flex; flex-direction: column; gap: 6px; }
+  .colophon .connect-row .k {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: oklch(65% 0.015 265);
+  }
+  .colophon .connect-row a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    color: var(--copper-2);
+    border-bottom: 1px solid oklch(34% 0.020 265);
+    width: max-content;
+  }
+  .colophon .connect-row a:hover { color: var(--cream); border-bottom-color: var(--copper-2); }
+
   .colophon .legal {
-    margin-top: 80px;
+    margin-top: 56px;
     border-top: 1px solid oklch(34% 0.020 265);
     padding-top: 24px;
     font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
@@ -675,7 +700,7 @@
   @media (max-width: 900px) {
     .wrap { padding: 0 24px; }
     .toc ol { grid-template-columns: 1fr; }
-    .qcards, .tax-worksheet, .tax-fill-grid, .scripts, .checklist, .colophon .row, .verdict, .hero .meta { grid-template-columns: 1fr; }
+    .qcards, .tax-worksheet, .tax-fill-grid, .scripts, .checklist, .colophon .row, .colophon .connect, .verdict, .hero .meta { grid-template-columns: 1fr; }
     .tax-col { border-right: none; border-bottom: 1px solid var(--rule); }
     .chap-head { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -939,6 +964,20 @@
         <div class="speaker"><span class="n">i.</span><span class="t">Rod Burylo<small>Ethics Champion · Practice Performance Lab</small></span></div>
         <div class="speaker"><span class="n">ii.</span><span class="t">Kelly Gustafson<small>Founder · Etc. Projects &amp; Practice Performance Lab</small></span></div>
         <div class="speaker"><span class="n">iii.</span><span class="t">Joseph ven der Buhs<small>Licensed Canadian financial advisor</small></span></div>
+      </div>
+    </div>
+    <div class="connect">
+      <div class="connect-row">
+        <span class="k">Website</span>
+        <a href="https://etcprojects.com" target="_blank" rel="noopener">etcprojects.com</a>
+      </div>
+      <div class="connect-row">
+        <span class="k">Practice Performance Lab</span>
+        <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener">app.etcprojectsai.com</a>
+      </div>
+      <div class="connect-row">
+        <span class="k">Contact</span>
+        <a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a>
       </div>
     </div>
     <div class="legal">

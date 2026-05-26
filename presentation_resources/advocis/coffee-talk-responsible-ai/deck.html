@@ -1104,6 +1104,30 @@
     margin-top: 6px;
   }
 
+  .closing-connect {
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 56px;
+    align-items: baseline;
+  }
+  .closing-connect .cc-row { display: flex; flex-direction: column; gap: 6px; }
+  .closing-connect .cc-k {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .closing-connect a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--copper);
+  }
+
   /* small ornamental SVG coffee ring */
   .ring {
     position: absolute;
@@ -1712,9 +1736,25 @@
             <div class="closing-headline">Continue<br/>the <span class="em">conversation.</span></div>
             <div class="slide-dek" style="margin-top: 36px;">A companion resource page with frameworks, scripts, and starting points from today's three lenses. Built for the week after the talk, not just the room you're in.</div>
           </div>
-          <div style="display: flex; align-items: baseline; gap: 28px; font-family:'JetBrains Mono', Menlo, Consolas, monospace; font-size: 24px; letter-spacing:.14em; text-transform:uppercase; color: var(--muted);">
-            <span style="color: var(--copper);">→</span>
-            <a href="resources.html" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper);">Resources.html · the added-value page</a>
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: flex; align-items: baseline; gap: 28px; font-family:'JetBrains Mono', Menlo, Consolas, monospace; font-size: 24px; letter-spacing:.14em; text-transform:uppercase; color: var(--muted);">
+              <span style="color: var(--copper);">→</span>
+              <a href="resources.html" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper);">Resources.html · the added-value page</a>
+            </div>
+            <div class="closing-connect">
+              <div class="cc-row">
+                <span class="cc-k">Website</span>
+                <a href="https://etcprojects.com" target="_blank" rel="noopener">etcprojects.com</a>
+              </div>
+              <div class="cc-row">
+                <span class="cc-k">Practice Performance Lab</span>
+                <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener">app.etcprojectsai.com</a>
+              </div>
+              <div class="cc-row">
+                <span class="cc-k">Contact</span>
+                <a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="closing-right">
