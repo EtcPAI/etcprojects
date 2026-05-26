@@ -1,0 +1,1759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Advocis Coffee Talk · Responsible Tech &amp; AI Adoption</title>
+<style>
+  :root {
+    /* palette */
+    --cream:    oklch(96.5% 0.008 90);
+    --cream-2:  oklch(93% 0.010 90);
+    --paper:    oklch(99% 0.005 90);
+    --espresso: oklch(20% 0.022 265);
+    --espresso-2: oklch(26% 0.024 265);
+    --ink:      oklch(20% 0.020 265);
+    --muted:    oklch(48% 0.018 265);
+    --rule:     oklch(86% 0.008 90);
+    --copper:   oklch(48% 0.17 145);
+    --copper-2: oklch(68% 0.16 145);
+    --sage:     oklch(60% 0.10 175);
+
+    /* type scale (1920x1080) */
+    --type-hero:     180px;
+    --type-display:  120px;
+    --type-title:    80px;
+    --type-subtitle: 44px;
+    --type-body:     32px;
+    --type-lead:     38px;
+    --type-small:    24px;
+    --type-meta:     24px;
+
+    /* spacing */
+    --pad-top:    100px;
+    --pad-bottom: 100px;
+    --pad-x:      120px;
+    --gap-title:  48px;
+    --gap-item:   28px;
+  }
+
+  html, body { background: #111; }
+
+  /* slide base */
+  .slide {
+    box-sizing: border-box;
+    width: 100%; height: 100%;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide.dark { background: var(--espresso); color: var(--cream); }
+  .slide.paper { background: var(--paper); }
+
+  /* common chrome */
+  .topbar {
+    position: absolute;
+    top: 48px; left: var(--pad-x); right: var(--pad-x);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .slide.dark .topbar { color: oklch(72% 0.015 265); }
+  .topbar .dot { width: 8px; height: 8px; background: var(--copper); border-radius: 50%; display: inline-block; margin: 0 12px 4px; vertical-align: middle; }
+
+  .footbar { display: none; }
+  .footbar-disabled {
+    position: absolute;
+    bottom: 48px; left: var(--pad-x); right: var(--pad-x);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .slide.dark .footbar { color: oklch(72% 0.015 265); }
+
+  /* roman-numeral-italic */
+  .lens-num, .q-num, .tt-card .ix, .divider .num, .impact-num,
+  .closing-headline .em {
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-style: italic !important;
+  }
+
+  /* emphasis-italic-rule */
+  em, .em, .ital, [style*="italic"] { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+
+  /* typography */
+  .serif { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; letter-spacing: -0.005em; }
+  .ital { font-style: italic; }
+  h1, h2, h3, h4, p { margin: 0; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 500;
+  }
+  .title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: var(--type-title);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+  }
+  .subtitle {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: var(--type-subtitle);
+    line-height: 1.1;
+    color: var(--muted);
+  }
+  .lead {
+    font-size: var(--type-lead);
+    line-height: 1.35;
+    max-width: 1300px;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .slide.dark .lead, .slide.dark p { color: var(--cream); }
+  .slide.dark .subtitle { color: oklch(78% 0.02 60); }
+  .body { font-size: var(--type-body); line-height: 1.45; color: var(--ink); text-wrap: pretty; }
+  .slide.dark .body { color: oklch(90% 0.012 265); }
+
+  .rule { height: 1px; background: var(--rule); width: 100%; }
+  .slide.dark .rule { background: oklch(34% 0.020 265); }
+
+  /* —— SLIDE 1 — COVER —— */
+  .cover-speakers {
+    margin-top: auto;
+    padding-top: 56px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px;
+  }
+  .cover-speaker {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .cover-speaker .cs-num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 80px;
+    line-height: 0.9;
+    color: var(--copper);
+  }
+  .cover-speaker .cs-lens {
+    display: block;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .cover-speaker .cs-name {
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 48px;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .cover-speaker .cs-which {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* —— SLIDE 1 — COVER (legacy) —— */
+  .cover { padding: 0; }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    width: 100%; height: 100%;
+  }
+  .cover-left {
+    background: var(--espresso);
+    color: var(--cream);
+    padding: var(--pad-top) 90px var(--pad-bottom) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cover-meta {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper-2);
+  }
+  .cover-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 168px;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+  .cover-title .em { font-style: italic; color: var(--copper-2); }
+  .cover-sub {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.15;
+    color: oklch(82% 0.018 265);
+    max-width: 720px;
+  }
+  .cover-foot {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.08em;
+    color: oklch(75% 0.018 265);
+    text-transform: uppercase;
+  }
+  .cover-right {
+    background: var(--cream);
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom) 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .cup {
+    width: 460px; height: 460px;
+    position: absolute;
+    right: var(--pad-x); top: 50%;
+    transform: translateY(-50%);
+  }
+  .speakers-stack { display: flex; flex-direction: column; gap: 36px; max-width: 560px; }
+  .speaker-card {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .speaker-card .num {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    color: var(--copper);
+    letter-spacing: 0.06em;
+  }
+  .speaker-card .name {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 56px;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+  .speaker-card .lens {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .ticket {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .ticket .k {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ticket .v {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    margin-top: 6px;
+  }
+
+  /* —— PREMISE —— */
+  .premise-foot {
+    margin-top: auto;
+    padding-top: 56px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+  }
+  .premise-col {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .premise-tag {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--copper);
+  }
+  .premise-col p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 640px;
+  }
+  .premise-col p em { color: var(--copper); }
+
+  /* —— PREMISE (legacy) —— */
+  .premise-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .pull-quote {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 96px;
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+  }
+  .pull-quote .ital { color: var(--copper); }
+  .premise-body { font-size: var(--type-lead); line-height: 1.4; color: var(--muted); max-width: 620px; }
+  .premise-body p + p { margin-top: 24px; }
+
+  /* —— THREE LENSES —— */
+  .lenses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    flex: 1;
+  }
+  .lens-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .lens-card .lens-num {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 88px;
+    color: var(--copper);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .lens-card .lens-label {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .lens-card .lens-name {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .lens-card .lens-which {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 34px;
+    margin-top: 8px;
+    color: var(--copper);
+  }
+  .lens-card .lens-desc {
+    margin-top: 32px;
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .lens-card .lens-line { height: 1px; background: var(--rule); margin: 28px 0; }
+
+  /* —— FLOW / TIMELINE —— */
+  .flow {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 80px;
+    margin-top: 50px;
+    align-items: start;
+  }
+  .flow-rows { display: flex; flex-direction: column; }
+  .flow-row {
+    display: grid;
+    grid-template-columns: 220px 240px 1fr;
+    gap: 48px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .flow-row:last-child { border-bottom: none; }
+  .flow-time {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 30px;
+    color: var(--copper);
+    letter-spacing: 0.02em;
+  }
+  .flow-speaker {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    letter-spacing: -0.01em;
+  }
+  .flow-focus {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--muted);
+    line-height: 1.25;
+  }
+  .flow-aside {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--muted);
+    max-width: 220px;
+  }
+
+  /* —— SECTION DIVIDERS —— */
+  .divider {
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    background: var(--cream);
+    color: var(--ink);
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .divider .num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 200px;
+    line-height: 0.85;
+    color: var(--copper);
+    letter-spacing: -0.04em;
+  }
+  .divider .num-row {
+    display: none;
+  }
+  .divider .left {
+    display: flex;
+    align-items: baseline;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .divider .slide-title {
+    font-size: 96px;
+    line-height: 1.0;
+    flex: 1 1 auto;
+    font-weight: 700;
+  }
+  .divider .slide-title .em { font-weight: 700; }
+  .divider .of {
+    display: none;
+  }
+  .divider .lens-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 140px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-top: 0;
+  }
+  .divider .lens-title .em { font-style: italic; color: var(--copper); }
+  .divider .right {
+    border-left: 1px solid var(--rule);
+    padding-left: 64px;
+  }
+  .divider .speaker-tag {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .divider .speaker-name {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 88px;
+    line-height: 1;
+    margin-top: 16px;
+    letter-spacing: -0.015em;
+  }
+  .divider .speaker-bio {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    margin-top: 28px;
+    color: var(--muted);
+    max-width: 540px;
+  }
+  .divider .timecode {
+    margin-top: 56px;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  /* —— content slide layouts —— */
+  .header-block { display: flex; flex-direction: column; gap: 14px; }
+  .slide-eyebrow {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: var(--type-meta);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .slide-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: var(--type-title);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .slide-title .em { font-style: italic; color: var(--copper); }
+  .slide-dek {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: var(--type-subtitle);
+    line-height: 1.2;
+    color: var(--muted);
+    max-width: 1400px;
+    margin-top: 16px;
+  }
+
+  /* — Commitments grid — */
+  .commit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 70px;
+  }
+  .commit-card {
+    background: var(--paper);
+    border-top: 2px solid var(--copper);
+    padding: 36px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 360px;
+  }
+  .commit-card .ix {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+  .commit-card .word {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  .commit-card .word .ital { font-weight: 700; }
+  .commit-card .word .ital { color: var(--copper); }
+  .commit-card .gloss {
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--muted);
+    margin-top: auto;
+  }
+
+  /* — Ethics vs Compliance — */
+  .ec-split {
+    margin-top: 60px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .ec-col {
+    padding: 48px 56px 48px 0;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .ec-col:last-child {
+    border-right: none;
+    padding: 48px 0 48px 56px;
+  }
+  .ec-col .ec-label {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ec-col.you .ec-label { color: var(--copper); }
+  .ec-col .ec-word {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 120px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .ec-col.you .ec-word { color: var(--copper); }
+  .ec-col .ec-def {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1.25;
+    color: var(--ink);
+    max-width: 600px;
+  }
+  .ec-col .ec-ex {
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 40px;
+    max-width: 620px;
+  }
+  .ec-col .ec-ex strong { color: var(--ink); font-weight: 500; }
+
+  /* — Questions — */
+  .questions {
+    margin-top: 70px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .q-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 56px;
+    align-items: start;
+    padding: 44px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .q-row:last-child { border-bottom: 1px solid var(--rule); }
+  .q-num {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 84px;
+    line-height: 1;
+    color: var(--copper);
+  }
+  .q-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 1400px;
+  }
+  .q-text .em { font-style: italic; color: var(--copper); }
+
+  /* — Scenario slide — */
+  .scenario {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 100px;
+    margin-top: 50px;
+    align-items: stretch;
+  }
+  .scenario-left {
+    display: flex; flex-direction: column; gap: 28px;
+    border-right: 1px solid oklch(34% 0.020 265);
+    padding-right: 80px;
+  }
+  .scenario-left .tag {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .scenario-left .setup {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 56px;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .scenario-left .setup .em { font-style: italic; color: var(--copper); }
+  .scenario-right { display: flex; flex-direction: column; justify-content: center; gap: 36px; }
+  .scenario-q {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 88px;
+    line-height: 1.0;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .scenario-q::before { content: '"'; color: var(--copper); font-size: 1.2em; line-height: 0; vertical-align: -0.2em; margin-right: 0.1em; }
+  .scenario-q::after { content: '"'; color: var(--copper); }
+  .scenario-prompt {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 34px;
+    line-height: 1.35;
+    color: var(--muted);
+    max-width: 720px;
+  }
+  .scenario-prompt strong { color: var(--copper); font-weight: 400; font-style: italic; }
+
+  /* — PPT (People Process Technology) — */
+  .ppt {
+    margin-top: 70px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .ppt-col {
+    padding: 56px 48px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+  .ppt-col:last-child { border-right: none; }
+  .ppt-col .step {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .ppt-col .step .accent { color: var(--copper); }
+  .ppt-col .word {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .ppt-col .word .em { font-style: italic; color: var(--copper); }
+  .ppt-col .gloss {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--muted);
+  }
+  .ppt-col .desc {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .ppt-foot {
+    margin-top: auto;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1.25;
+    color: var(--muted);
+    width: 100%;
+    text-wrap: balance;
+  }
+
+  /* — Taxonomy — */
+  .tax {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    flex: 1;
+  }
+  .tax-card {
+    background: var(--paper);
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    border-top: 2px solid var(--copper);
+  }
+  .tax-card .ix {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--copper);
+  }
+  .tax-card .head {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .tax-card .ex {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .tax-card .desc {
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-top: 8px;
+  }
+  .tax-card .risk {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .risk-meter { display: inline-flex; gap: 4px; }
+  .risk-meter span { width: 10px; height: 14px; background: oklch(88% 0.010 90); }
+  .risk-meter span.on { background: var(--copper); }
+
+  /* — Before deployment 3 things — */
+  .three-things {
+    margin-top: 70px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .tt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+  }
+  .tt-card .ix {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 240px;
+    line-height: 0.8;
+    color: var(--copper);
+    letter-spacing: -0.04em;
+  }
+  .tt-card .head {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+  .tt-card .desc {
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 460px;
+  }
+
+  /* — Week in adoption — */
+  .week {
+    margin-top: 60px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .day-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .day-head {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+  }
+  .day-head .d {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.14em;
+    color: var(--copper);
+  }
+  .day-head .name {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    margin-top: 6px;
+  }
+  .task {
+    background: var(--paper);
+    padding: 18px 18px 20px;
+    border-left: 2px solid var(--copper);
+    font-size: 24px;
+    line-height: 1.35;
+  }
+  .task .when {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .task .what { color: var(--ink); }
+  .task .what .em { font-style: italic; color: var(--copper); }
+
+  /* — Client impact — */
+  .impact-grid {
+    margin-top: 60px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 56px 96px;
+  }
+  .impact {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .impact-num {
+    font-size: 120px;
+    line-height: 0.85;
+    color: var(--copper);
+    letter-spacing: -0.03em;
+  }
+  .impact-stat {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .impact .label {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .impact .desc {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 26px;
+    line-height: 1.4;
+    margin-top: 10px;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .impact .desc .em { color: var(--copper); }
+
+  /* — Consent conversation — */
+  .consent {
+    margin-top: 50px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 80px;
+  }
+  .consent-script {
+    background: var(--paper);
+    padding: 56px 56px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    border-left: 3px solid var(--copper);
+    position: relative;
+  }
+  .consent-script .tag {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.16em;
+    color: var(--copper);
+    text-transform: uppercase;
+  }
+  .consent-script .quote {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .consent-script .quote::before { content: '"'; color: var(--copper); margin-right: 0.1em; }
+  .consent-script .quote::after { content: '"'; color: var(--copper); }
+  .consent-notes { display: flex; flex-direction: column; gap: 32px; padding-top: 12px; }
+  .consent-note .h {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 38px;
+    color: var(--copper);
+    line-height: 1.1;
+  }
+  .consent-note .b {
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-top: 8px;
+    max-width: 620px;
+  }
+
+  /* — Q&A slide — */
+  .qa-grid {
+    margin-top: 70px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 100px;
+    row-gap: 44px;
+  }
+  .qa-item {
+    border-top: 1px solid var(--rule);
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .qa-q {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1.2;
+    color: var(--copper);
+  }
+  .qa-a {
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .qa-a strong { color: var(--ink); font-weight: 500; }
+
+  /* — Closing — */
+  .closing-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    width: 100%; height: 100%;
+  }
+  .closing-left {
+    background: var(--cream);
+    padding: 80px 90px 80px var(--pad-x);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .closing-headline {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 96px;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+  .closing-headline .em { font-style: italic; color: var(--copper); font-weight: 700; }
+  .closing-right {
+    background: var(--espresso);
+    color: var(--cream);
+    padding: 80px var(--pad-x) 80px 90px;
+    display: flex; flex-direction: column; gap: 24px; justify-content: center;
+  }
+  .closing-right .label {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper-2);
+  }
+  .resource-row {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-top: 1px solid oklch(34% 0.020 265);
+  }
+  .resource-row:last-of-type { border-bottom: 1px solid oklch(34% 0.020 265); }
+  .resource-row .n {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--copper-2);
+  }
+  .resource-row .t {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    line-height: 1.05;
+  }
+  .resource-row .d {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 24px;
+    color: oklch(78% 0.018 265);
+    margin-top: 6px;
+  }
+
+  /* small ornamental SVG coffee ring */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--copper);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* paper texture */
+  .paper-bg {
+    background-image:
+      radial-gradient(oklch(0% 0 0 / 0.025) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+</style>
+<script src="deck-stage.js"></script>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ============ 1 · COVER ============ -->
+  <section data-label="01 Cover">
+    <div class="slide">
+      <div class="topbar"><span>Advocis Coffee Talk · June 2026 · 60 Minutes</span><span>Vol. 01</span></div>
+      <div class="header-block" style="margin-top: 40px;">
+        <div class="slide-eyebrow">A conversation in three movements</div>
+        <h1 class="slide-title" style="font-size: 156px; line-height: 1.05; max-width: 1600px;">Responsible <span class="em">Tech &amp; AI</span><br/>Adoption.</h1>
+        <p class="slide-dek" style="margin-top: 32px; max-width: 1300px;">An ethical, operational, and practical conversation for Canadian advisory practices.</p>
+      </div>
+      <div class="cover-speakers">
+        <div class="cover-speaker">
+          <span class="cs-num">i.</span>
+          <div>
+            <span class="cs-lens">The Ethical Lens</span>
+            <span class="cs-name">Rod Burylo</span>
+            <span class="cs-which">on the commitments already made.</span>
+          </div>
+        </div>
+        <div class="cover-speaker">
+          <span class="cs-num">ii.</span>
+          <div>
+            <span class="cs-lens">The Operational Lens</span>
+            <span class="cs-name">Kelly Gustafson</span>
+            <span class="cs-which">on turning obligations into systems.</span>
+          </div>
+        </div>
+        <div class="cover-speaker">
+          <span class="cs-num">iii.</span>
+          <div>
+            <span class="cs-lens">The Practical Lens</span>
+            <span class="cs-name">Joe</span>
+            <span class="cs-which">on what changes for the client.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · THE PREMISE ============ -->
+  <section data-label="02 The Premise">
+    <div class="slide">
+      <div class="topbar"><span>§ Premise</span><span>02 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">The premise</div>
+        <h2 class="slide-title" style="font-size: 132px; line-height: 0.95; max-width: 1700px; margin-top: 8px;">AI is moving faster than most advisory practices can <span class="em">keep up with.</span></h2>
+      </div>
+      <div class="premise-foot">
+        <div class="premise-col">
+          <div class="premise-tag">i.</div>
+          <p>Tools are being adopted before anyone has asked whether they <em>should</em> be, how they should be implemented, or what they actually change for the client.</p>
+        </div>
+        <div class="premise-col">
+          <div class="premise-tag">ii.</div>
+          <p>That gap between capability and readiness is a vulnerable space. Today, we sit inside it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · THREE LENSES ============ -->
+  <section data-label="03 Three Lenses">
+    <div class="slide">
+      <div class="topbar"><span>§ The Format</span><span>02 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Three lenses · one conversation</div>
+        <h2 class="slide-title">Each perspective <span class="em">sharpens</span> the others.</h2>
+      </div>
+      <div class="lenses">
+        <div class="lens-card">
+          <div class="lens-num">i.</div>
+          <div class="lens-label">The Ethical Lens</div>
+          <div class="lens-name">Rod Burylo</div>
+          <div class="lens-which">on what we owe.</div>
+          <div class="lens-line"></div>
+          <div class="lens-desc">The professional obligations and commitments advisors already carry, and the questions to ask before any tool gets used.</div>
+        </div>
+        <div class="lens-card">
+          <div class="lens-num">ii.</div>
+          <div class="lens-label">The Operational Lens</div>
+          <div class="lens-name">Kelly Gustafson</div>
+          <div class="lens-which">on how it gets built.</div>
+          <div class="lens-line"></div>
+          <div class="lens-desc">How obligations become workflows, policies, and trained systems. What needs to exist before a tool goes live.</div>
+        </div>
+        <div class="lens-card">
+          <div class="lens-num">iii.</div>
+          <div class="lens-label">The Practical Lens</div>
+          <div class="lens-name">Joe</div>
+          <div class="lens-which">on what reaches the client.</div>
+          <div class="lens-line"></div>
+          <div class="lens-desc">Translating new tools and processes into realized client value. What daily use looks like, and what changes for your business and your clients.</div>
+        </div>
+      </div>
+      <div class="footbar"><span>Rod identifies → Kelly implements → Joe delivers</span><span>The interplay is the point</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · THE HOUR AHEAD ============ -->
+  <section data-label="04 The Hour Ahead">
+    <div class="slide paper">
+      <div class="topbar"><span>§ Conversation Flow</span><span>03 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">The next sixty minutes</div>
+        <h2 class="slide-title">The hour <span class="em">ahead.</span></h2>
+      </div>
+      <div class="flow">
+        <div class="flow-aside">From ethics &amp; obligation to implementation to lived practice.</div>
+        <div class="flow-rows">
+          <div class="flow-row">
+            <div class="flow-time">0:03–0:18</div>
+            <div class="flow-speaker">Rod Burylo</div>
+            <div class="flow-focus">The Ethical Lens. Obligations, consent, trust, the questions before the tool.</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-time">0:18–0:33</div>
+            <div class="flow-speaker">Kelly Gustafson</div>
+            <div class="flow-focus">The Operational Lens. Implementation, governance, People · Process · Technology, the AI Taxonomy.</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-time">0:33–0:45</div>
+            <div class="flow-speaker">Joe</div>
+            <div class="flow-focus">The Practical Lens. Daily use, client value, what adoption looks like on the ground.</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-time">0:45–1:00</div>
+            <div class="flow-speaker">All three + you</div>
+            <div class="flow-focus">Open discussion and audience Q&amp;A.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footbar"><span>Coffee Talk · June 2026</span><span>60 minutes</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · § ETHICAL LENS ============ -->
+  <section data-label="05 Section · Ethical">
+    <div class="slide divider">
+      <div class="left">
+        <div class="num">i.</div>
+        <h2 class="slide-title">The <span class="em">Ethical</span> Lens.</h2>
+      </div>
+      <div class="right">
+        <div class="speaker-tag">In conversation with</div>
+        <div class="speaker-name">Rod Burylo</div>
+        <div class="speaker-bio">Ethics Champion, Practice Performance Lab. Three decades in financial services. Rod teaches that professional ethics come from commitments advisors have already made, not rules imposed on them.</div>
+        <div class="timecode">0:03–0:18 · 15 minutes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · COMMITMENTS ALREADY MADE ============ -->
+  <section data-label="06 Commitments">
+    <div class="slide">
+      <div class="topbar"><span>§ i · Ethical Lens</span><span>05 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Before the tool, the promise</div>
+        <h2 class="slide-title">Commitments <span class="em">already made.</span></h2>
+        <p class="slide-dek">Promises don't change because a new tool showed up. They precede it, and they outlast it.</p>
+      </div>
+      <div class="commit-grid">
+        <div class="commit-card">
+          <span class="ix">i.</span>
+          <span class="word"><span class="ital">Consent</span></span>
+          <span class="gloss">A real choice, freely given. Not a checkbox at the bottom of a form.</span>
+        </div>
+        <div class="commit-card">
+          <span class="ix">ii.</span>
+          <span class="word"><span class="ital">Confidentiality</span></span>
+          <span class="gloss">What a client tells you stays where they expect it to stay.</span>
+        </div>
+        <div class="commit-card">
+          <span class="ix">iii.</span>
+          <span class="word"><span class="ital">Transparency</span></span>
+          <span class="gloss">If they saw exactly how the tool handles their information, would they be comfortable?</span>
+        </div>
+        <div class="commit-card">
+          <span class="ix">iv.</span>
+          <span class="word"><span class="ital">Judgment</span></span>
+          <span class="gloss">The professional in the room is still you. The tool does not get to inherit the relationship.</span>
+        </div>
+      </div>
+      <div class="footbar"><span>Rod Burylo</span><span>The four standing promises</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · ETHICS vs COMPLIANCE ============ -->
+  <section data-label="07 Ethics vs Compliance">
+    <div class="slide paper">
+      <div class="topbar"><span>§ i · Ethical Lens</span><span>06 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Two words. Often confused.</div>
+        <h2 class="slide-title">Ethics <span class="em">vs.</span> Compliance.</h2>
+      </div>
+      <div class="ec-split">
+        <div class="ec-col">
+          <div class="ec-label">Compliance</div>
+          <div class="ec-word">What you <em>have</em> to do.</div>
+          <div class="ec-def">A consent checkbox at the bottom of a form. A policy you signed. The minimum that keeps the file closed.</div>
+          <div class="ec-ex"><strong>Example.</strong> A line in the engagement letter that mentions "third-party tools may be used in the course of service."</div>
+        </div>
+        <div class="ec-col you">
+          <div class="ec-label">Ethics</div>
+          <div class="ec-word">What you <em>should</em> do.</div>
+          <div class="ec-def">Explaining to your client exactly what an AI tool will do with their words, and respecting their answer when they say no.</div>
+          <div class="ec-ex"><strong>Example.</strong> "Before we begin, I use a tool that transcribes our conversation so I can stay present with you. Here's what it captures and where it lives. Are you comfortable with that?"</div>
+        </div>
+      </div>
+      <div class="footbar"><span>The gap between them</span><span>is where trust is built, or lost.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · THREE QUESTIONS ============ -->
+  <section data-label="08 Three Questions">
+    <div class="slide">
+      <div class="topbar"><span>§ i · Ethical Lens</span><span>07 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Rod's framework · ask before adoption</div>
+        <h2 class="slide-title">Three questions before <span class="em">any</span> tool.</h2>
+      </div>
+      <div class="questions">
+        <div class="q-row">
+          <div class="q-num">i.</div>
+          <div class="q-text">Does this honor the <span class="em">commitments</span> I've already made to my client?</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">ii.</div>
+          <div class="q-text">Can I <span class="em">explain</span> how this tool handles their information, clearly, in my own words?</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">iii.</div>
+          <div class="q-text">Would my client feel <span class="em">comfortable</span> if they saw exactly how their data was being used?</div>
+        </div>
+      </div>
+      <div class="footbar"><span>If any answer is no</span><span>the tool isn't ready for your practice.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 9 · SCENARIO · CHATGPT EMAILS ============ -->
+  <section data-label="09 Scenario · Email">
+    <div class="slide paper">
+      <div class="topbar"><span>§ i · Ethical Lens · scenario</span><span>08 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">A six-month story</div>
+        <h2 class="slide-title">An advisor &amp; an <span class="em">undisclosed</span> assistant.</h2>
+      </div>
+      <div class="scenario">
+        <div class="scenario-left">
+          <div class="tag">The setup</div>
+          <div class="setup">An advisor has been using ChatGPT to draft client emails for <span class="em">six months.</span><br/><br/>No disclosure. No review protocol. No conversation.</div>
+        </div>
+        <div class="scenario-right">
+          <div class="tag" style="font-family:'JetBrains Mono', Menlo, Consolas, monospace; font-size: 24px; letter-spacing:.18em; color:var(--copper); text-transform:uppercase;">Then, in a review meeting.</div>
+          <div class="scenario-q">Did you write this yourself?</div>
+          <div class="scenario-prompt">What happens next? What does <strong>honesty</strong> look like in that moment? What is the cost of not having had this conversation <strong>earlier?</strong></div>
+        </div>
+      </div>
+      <div class="footbar"><span>Rod Burylo</span><span>The price of an unspoken practice</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 10 · § OPERATIONAL LENS ============ -->
+  <section data-label="10 Section · Operational">
+    <div class="slide divider">
+      <div class="left">
+        <div class="num">ii.</div>
+        <h2 class="slide-title">The <span class="em">Operational</span> Lens.</h2>
+      </div>
+      <div class="right">
+        <div class="speaker-tag">In conversation with</div>
+        <div class="speaker-name">Kelly Gustafson</div>
+        <div class="speaker-bio">28 years in financial services. Two decades in business development, practice transformation, and technology adoption. Founder, Etc. Projects &amp; Practice Performance Lab.</div>
+        <div class="timecode">0:18–0:33 · 15 minutes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 · PEOPLE PROCESS TECHNOLOGY ============ -->
+  <section data-label="11 People Process Technology">
+    <div class="slide">
+      <div class="topbar"><span>§ ii · Operational Lens</span><span>10 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">The order matters</div>
+        <h2 class="slide-title">People. Process. <span class="em">Then</span> technology.</h2>
+      </div>
+      <div class="ppt">
+        <div class="ppt-col">
+          <span class="step"><span class="accent">01 ·</span> First</span>
+          <div class="word"><span class="em">People.</span></div>
+          <div class="gloss">Who is doing what.</div>
+          <div class="desc">Roles, responsibilities, accountability. Every person on the team who will touch the tool, not just the advisor whose name is on the door.</div>
+        </div>
+        <div class="ppt-col">
+          <span class="step"><span class="accent">02 ·</span> Second</span>
+          <div class="word"><span class="em">Process.</span></div>
+          <div class="gloss">How the work flows.</div>
+          <div class="desc">Workflows, protocols, the documented sequence from intake to file. Where the tool fits in, and the guardrails when it does.</div>
+        </div>
+        <div class="ppt-col">
+          <span class="step"><span class="accent">03 ·</span> Third</span>
+          <div class="word"><span class="em">Technology.</span></div>
+          <div class="gloss">What you actually buy.</div>
+          <div class="desc">The tool itself. Easy to procure, easy to install. The last decision, never the first.</div>
+        </div>
+      </div>
+      <div class="ppt-foot">Every technology failure has followed the same sequence: <em>the tool arrived before the roles were defined.</em></div>
+      <div class="footbar"><span>Kelly Gustafson</span><span>The order is the lesson</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 12 · AI TAXONOMY ============ -->
+  <section data-label="12 AI Taxonomy">
+    <div class="slide paper">
+      <div class="topbar"><span>§ ii · Operational Lens</span><span>11 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">A vocabulary for evaluation</div>
+        <h2 class="slide-title">The AI <span class="em">Taxonomy.</span></h2>
+        <p class="slide-dek">Four categories. Different capabilities, different limitations, different risk. Treating them all the same is where practices get into trouble.</p>
+      </div>
+      <div class="tax">
+        <div class="tax-card">
+          <span class="ix">i.</span>
+          <span class="head">General Purpose</span>
+          <span class="ex">ChatGPT · Copilot · Gemini · Claude</span>
+          <span class="desc">Broad, public-facing models. Powerful and unbounded, which is exactly the problem with regulated information.</span>
+          <div class="risk"><span>Risk profile</span><span class="risk-meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span></div>
+        </div>
+        <div class="tax-card">
+          <span class="ix">ii.</span>
+          <span class="head">Bolt-On</span>
+          <span class="ex">AI inside the tools you already use</span>
+          <span class="desc">Features added to your CRM, email, or document suite. The risk profile depends on what the vendor does with the data.</span>
+          <div class="risk"><span>Risk profile</span><span class="risk-meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span></div>
+        </div>
+        <div class="tax-card">
+          <span class="ix">iii.</span>
+          <span class="head">Function-Specific</span>
+          <span class="ex">Note-takers · transcription · summarization</span>
+          <span class="desc">Built for one job and good at it. Narrower surface area, narrower risk, when configured and consented properly.</span>
+          <div class="risk"><span>Risk profile</span><span class="risk-meter"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></div>
+        </div>
+        <div class="tax-card">
+          <span class="ix">iv.</span>
+          <span class="head">FS-Specific</span>
+          <span class="ex">Canadian compliance-aware advisor platforms</span>
+          <span class="desc">Built for advisors with the rails baked in. Canadian residency, retention, audit trail. The category to grow into.</span>
+          <div class="risk"><span>Risk profile</span><span class="risk-meter"><span class="on"></span><span></span><span></span><span></span><span></span></span></div>
+        </div>
+      </div>
+      <div class="footbar"><span>Risk is shaped by category</span><span>Not by enthusiasm</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 13 · BEFORE DEPLOYMENT ============ -->
+  <section data-label="13 Before Deployment">
+    <div class="slide">
+      <div class="topbar"><span>§ ii · Operational Lens</span><span>12 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Governance before deployment</div>
+        <h2 class="slide-title">Three things on the table <span class="em">before</span> the tool goes live.</h2>
+      </div>
+      <div class="three-things">
+        <div class="tt-card">
+          <div class="ix">i.</div>
+          <div class="head">A documented policy.</div>
+          <div class="desc">What is permitted, what is not, what gets reviewed, and by whom. Written down, so it can be trained, referenced, and updated.</div>
+        </div>
+        <div class="tt-card">
+          <div class="ix">ii.</div>
+          <div class="head">A consent framework.</div>
+          <div class="desc">A repeatable conversation, not a one-off. Plain language, recorded answer, opt-out path. Built into the client experience.</div>
+        </div>
+        <div class="tt-card">
+          <div class="ix">iii.</div>
+          <div class="head">A training plan.</div>
+          <div class="desc">For every team member who touches the tool. The advisor's understanding does not transfer by osmosis to the assistant.</div>
+        </div>
+      </div>
+      <div class="footbar"><span>It sounds like a lot of work.</span><span>It's less work than cleaning up after.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 14 · SCENARIO · 200 TRANSCRIPTS ============ -->
+  <section data-label="14 Scenario · Transcripts">
+    <div class="slide paper">
+      <div class="topbar"><span>§ ii · Operational Lens · scenario</span><span>13 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Implementation without governance</div>
+        <h2 class="slide-title">Three months. <span class="em">Two hundred</span> transcripts.</h2>
+      </div>
+      <div class="scenario">
+        <div class="scenario-left">
+          <div class="tag">The setup</div>
+          <div class="setup">A practice adopts an AI note-taker. The lead advisor signs up Monday, uses it Tuesday, mentions it to the team on Friday.<br/><br/>No consent script. No review protocol. No discussion of what should <span class="em">never</span> be recorded.</div>
+        </div>
+        <div class="scenario-right">
+          <div class="tag" style="font-family:'JetBrains Mono', Menlo, Consolas, monospace; font-size: 24px; letter-spacing:.18em; color:var(--copper); text-transform:uppercase;">Twelve weeks later.</div>
+          <div class="scenario-q" style="font-size: 76px;">200 transcripts containing health information, family disputes, and third-party details.</div>
+          <div class="scenario-prompt">That is what implementation <strong>without governance</strong> looks like. It rarely begins as a crisis. It begins as a free trial.</div>
+        </div>
+      </div>
+      <div class="footbar"><span>Kelly Gustafson</span><span>The unseen liability of "just trying it"</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 15 · § PRACTICAL LENS ============ -->
+  <section data-label="15 Section · Practical">
+    <div class="slide divider">
+      <div class="left">
+        <div class="num">iii.</div>
+        <h2 class="slide-title">The <span class="em">Practical</span> Lens.</h2>
+      </div>
+      <div class="right">
+        <div class="speaker-tag">In conversation with</div>
+        <div class="speaker-name">Joe</div>
+        <div class="speaker-bio">A licensed Canadian financial advisor integrating AI and technology tools into a working practice. Joe speaks from the seat. What it looks like on a Tuesday afternoon, with a real client across the table.</div>
+        <div class="timecode">0:33–0:45 · 12 minutes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 16 · A WEEK IN ADOPTION ============ -->
+  <section data-label="16 A Week in Adoption">
+    <div class="slide">
+      <div class="topbar"><span>§ iii · Practical Lens</span><span>15 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">From the advisor's seat</div>
+        <h2 class="slide-title">A <span class="em">week</span> in adoption.</h2>
+      </div>
+      <div class="week">
+        <div class="day-col">
+          <div class="day-head"><div class="d">Mon · 01</div><div class="name">Monday</div></div>
+          <div class="task"><span class="when">07:30 · prep</span><span class="what"><span class="em">Meeting brief</span> assembled from CRM, last review notes, and recent file activity.</span></div>
+          <div class="task"><span class="when">11:00 · meeting</span><span class="what">Note-taker captures transcript with <span class="em">consent on record.</span></span></div>
+        </div>
+        <div class="day-col">
+          <div class="day-head"><div class="d">Tue · 02</div><div class="name">Tuesday</div></div>
+          <div class="task"><span class="when">09:00 · follow-up</span><span class="what"><span class="em">Same-day</span> recap email drafted from transcript. Reviewed. Sent.</span></div>
+          <div class="task"><span class="when">14:00 · planning</span><span class="what">Action items added to CRM workflow with the team.</span></div>
+        </div>
+        <div class="day-col">
+          <div class="day-head"><div class="d">Wed · 03</div><div class="name">Wednesday</div></div>
+          <div class="task"><span class="when">10:00 · onboarding</span><span class="what">New-client intake. Consent script delivered <span class="em">in plain language.</span></span></div>
+          <div class="task"><span class="when">15:30 · research</span><span class="what">Market commentary summarized for the next two reviews.</span></div>
+        </div>
+        <div class="day-col">
+          <div class="day-head"><div class="d">Thu · 04</div><div class="name">Thursday</div></div>
+          <div class="task"><span class="when">08:30 · team</span><span class="what">15-min huddle: <span class="em">what worked, what didn't,</span> what to change.</span></div>
+          <div class="task"><span class="when">13:00 · review</span><span class="what">Joint review with assistant. Three transcripts audited together.</span></div>
+        </div>
+        <div class="day-col">
+          <div class="day-head"><div class="d">Fri · 05</div><div class="name">Friday</div></div>
+          <div class="task"><span class="when">10:00 · housekeeping</span><span class="what">Retention check. Tag, file, delete what shouldn't have been kept.</span></div>
+          <div class="task"><span class="when">16:00 · reflect</span><span class="what">One tool added. One tool reconsidered. <span class="em">Notes for next week.</span></span></div>
+        </div>
+      </div>
+      <div class="footbar"><span>Joe</span><span>The rhythm of a governed practice</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 17 · WHAT CHANGES FOR THE CLIENT ============ -->
+  <section data-label="17 Client Impact">
+    <div class="slide paper">
+      <div class="topbar"><span>§ iii · Practical Lens</span><span>16 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">Clients don't care about the tool</div>
+        <h2 class="slide-title">They care about <span class="em">the service.</span></h2>
+        <p class="slide-dek">What's different on the other side of the table when an advisor does this work properly.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact">
+          <div class="impact-num">i.</div>
+          <div>
+            <div class="impact-stat">Same-day follow-up.</div>
+            <div class="label">Follow-up</div>
+            <div class="desc">A recap of decisions and next steps lands in the inbox <span class="em">before the day ends.</span> Not next week.</div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-num">ii.</div>
+          <div>
+            <div class="impact-stat">Full presence.</div>
+            <div class="label">In the room</div>
+            <div class="desc">Eyes on the client, not on a notepad. The conversation stays <span class="em">a conversation.</span></div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-num">iii.</div>
+          <div>
+            <div class="impact-stat">Total capture.</div>
+            <div class="label">Documentation</div>
+            <div class="desc">What was said is captured accurately, and the things you would have missed in manual notes are <span class="em">still there.</span></div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-num">iv.</div>
+          <div>
+            <div class="impact-stat">Twice prepared.</div>
+            <div class="label">The next meeting</div>
+            <div class="desc">A pre-read assembled from the prior conversation. You walk in <span class="em">already remembering.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footbar"><span>Joe</span><span>Tools translate into trust</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 18 · CONSENT CONVERSATION ============ -->
+  <section data-label="18 Consent Conversation">
+    <div class="slide">
+      <div class="topbar"><span>§ iii · Practical Lens</span><span>17 / 20</span></div>
+      <div class="header-block">
+        <div class="slide-eyebrow">A script you can borrow</div>
+        <h2 class="slide-title">The <span class="em">consent</span> conversation.</h2>
+      </div>
+      <div class="consent">
+        <div class="consent-script">
+          <span class="tag">A version Joe uses</span>
+          <div class="quote">Before we start, I want to mention something. I use a tool that records and transcribes our meeting so I can stay present with you and follow up faster. It's stored securely on our side, only I and my team see it, and you can ask me to turn it off at any moment. Are you comfortable if we use it today?</div>
+        </div>
+        <div class="consent-notes">
+          <div class="consent-note">
+            <div class="h">Name the tool.</div>
+            <div class="b">Not "some AI." Tell them what it does in plain words. Record. Transcribe. Summarize.</div>
+          </div>
+          <div class="consent-note">
+            <div class="h">Offer a real choice.</div>
+            <div class="b">Mean it. If they say no, the tool stays off, and the relationship is better for it.</div>
+          </div>
+          <div class="consent-note">
+            <div class="h">Record the answer.</div>
+            <div class="b">A line in the CRM. A signed acknowledgment for first use. Repeat at material changes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footbar"><span>Joe</span><span>It's awkward the first time. Then it isn't.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 19 · § OPEN DISCUSSION ============ -->
+  <section data-label="19 Open Discussion">
+    <div class="slide">
+      <div class="topbar"><span>§ Open Discussion</span><span>18 / 20</span></div>
+      <div class="header-block" style="gap: 28px;">
+        <div class="slide-eyebrow">0:45–1:00 · Audience Q&amp;A</div>
+        <h2 class="slide-title" style="font-size: 132px; line-height: 1.0;">Bring us your <span class="em">questions.</span></h2>
+      </div>
+      <div class="qa-grid">
+        <div class="qa-item">
+          <div class="qa-q">What AI tool should I start with?</div>
+          <div class="qa-a">A practical answer with the AI Taxonomy as the frame, a check against your ethical commitments, and one place to begin.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">How do I get consent without making it awkward?</div>
+          <div class="qa-a">The obligation, the script structure, and what the conversation actually sounds like in a real meeting.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">My dealer hasn't given me any AI guidance. Now what?</div>
+          <div class="qa-a">Request guidance in writing, store the response, and build your own governance while you wait. Your obligations exist regardless of what arrives from above.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">I've been using AI for months with no policy. Am I in trouble?</div>
+          <div class="qa-a">You have an opportunity to get it right from here. Audit what's in use, by whom, for what, and build from there.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">How do I get my team on board?</div>
+          <div class="qa-a">Train together, share boundaries, and make adoption a team project. A safe space to experiment matters as much as the policy itself.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">Your question.</div>
+          <div class="qa-a">The one we haven't anticipated. We'd rather hear it now than after the room clears.</div>
+        </div>
+      </div>
+      <div class="footbar"><span></span><span>Rod · Kelly · Joe</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 20 · CLOSING / RESOURCES ============ -->
+  <section data-label="20 Continue the Conversation">
+    <div class="slide" style="padding: 0;">
+      <div class="closing-grid">
+        <div class="closing-left">
+          <div class="slide-eyebrow">Take it with you</div>
+          <div>
+            <div class="closing-headline">Continue<br/>the <span class="em">conversation.</span></div>
+            <div class="slide-dek" style="margin-top: 36px;">A companion resource page with frameworks, scripts, and starting points from today's three lenses. Built for the week after the talk, not just the room you're in.</div>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 28px; font-family:'JetBrains Mono', Menlo, Consolas, monospace; font-size: 24px; letter-spacing:.14em; text-transform:uppercase; color: var(--muted);">
+            <span style="color: var(--copper);">→</span>
+            <a href="resources.html" style="color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper);">Resources.html · the added-value page</a>
+          </div>
+        </div>
+        <div class="closing-right">
+          <div class="label">What's on the resource page</div>
+          <div class="resource-row">
+            <div class="n">i.</div>
+            <div>
+              <div class="t">The Three Questions, as a one-pager.</div>
+              <div class="d">Rod's framework, printable, designed to live next to the screen.</div>
+            </div>
+          </div>
+          <div class="resource-row">
+            <div class="n">ii.</div>
+            <div>
+              <div class="t">The AI Taxonomy worksheet.</div>
+              <div class="d">A practice can place every tool it uses into one of four boxes, and see the risk profile of its stack at a glance.</div>
+            </div>
+          </div>
+          <div class="resource-row">
+            <div class="n">iii.</div>
+            <div>
+              <div class="t">A consent script you can borrow.</div>
+              <div class="d">The version Joe uses, plus two alternates for different meeting contexts.</div>
+            </div>
+          </div>
+          <div class="resource-row">
+            <div class="n">iv.</div>
+            <div>
+              <div class="t">A pre-deployment governance checklist.</div>
+              <div class="d">Policy, consent framework, training plan. The three things on the table before the tool goes live.</div>
+            </div>
+          </div>
+          <div style="margin-top: 16px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: italic; font-size: 26px; color: oklch(80% 0.018 265); max-width: 540px;">Thank you for sitting with us. Rod, Kelly &amp; Joe.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+</body>
+</html>

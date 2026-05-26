@@ -1,0 +1,1350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Responsible Tech &amp; AI Adoption · Advocis Coffee Talk · Take-home Resources</title>
+<meta name="description" content="Three lenses. Sixty minutes. Take-home resources from the Advocis Coffee Talk on responsible AI adoption in Canadian advisory practices." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Responsible Tech & AI Adoption · Coffee Talk landing
+   Aligned to the deck:
+     - Helvetica Neue / Helvetica / Arial for display + body
+     - Fraunces serif italic for emphasis (matches PDFs)
+     - JetBrains Mono for tags + meta
+     - Cream paper, espresso ink, copper-green accent
+   ============================================================ */
+
+:root {
+  --cream:      oklch(96.5% 0.008 90);
+  --cream-2:    oklch(93% 0.010 90);
+  --cream-3:    oklch(90% 0.012 90);
+  --paper:      oklch(99% 0.005 90);
+  --espresso:   oklch(20% 0.022 265);
+  --espresso-2: oklch(26% 0.024 265);
+  --ink:        oklch(20% 0.020 265);
+  --ink-soft:   oklch(34% 0.020 265);
+  --muted:      oklch(48% 0.018 265);
+  --muted-2:    oklch(60% 0.018 265);
+  --rule:       oklch(86% 0.008 90);
+  --rule-dark:  oklch(34% 0.020 265);
+  --copper:     oklch(48% 0.17 145);  /* deep green from deck */
+  --copper-2:   oklch(60% 0.17 145);  /* on espresso */
+  --copper-3:   oklch(72% 0.16 145);
+
+  --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --gutter: clamp(24px, 5vw, 96px);
+  --max: 1440px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── shared atoms ───────────────────────────────────────── */
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mono.accent { color: var(--copper); }
+.mono.cream  { color: oklch(78% 0.018 60); }
+
+.em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+}
+
+.rule { height: 1px; background: var(--rule); width: 100%; }
+.rule-dark { background: var(--rule-dark); }
+
+/* ── Top rail ───────────────────────────────────────────── */
+.toprail {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in oklab, var(--cream) 92%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.toprail-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.toprail-left { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 600; }
+.toprail-left .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper); display: inline-block; }
+.toprail-left .sep { color: var(--muted); font-weight: 400; }
+.toprail-nav { display: flex; gap: 28px; color: var(--muted); }
+.toprail-nav a { transition: color .2s; }
+.toprail-nav a:hover { color: var(--copper); }
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 80px var(--gutter) 96px;
+  overflow: hidden;
+}
+.hero-inner { max-width: var(--max); margin: 0 auto; position: relative; }
+
+.hero-meta {
+  display: flex; align-items: center; gap: 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 56px;
+}
+.hero-meta .pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--copper);
+  font-weight: 600;
+}
+.hero-meta .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper); }
+.hero-meta .sep { color: var(--rule); }
+
+.hero-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(52px, 8vw, 124px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 14ch;
+}
+.hero-title .em {
+  display: inline;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+  letter-spacing: -0.015em;
+}
+
+.hero-sub {
+  margin-top: 40px;
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--muted);
+  max-width: none;
+}
+
+/* Decorative oversized roman numeral */
+.hero-numeral {
+  position: absolute;
+  right: clamp(-40px, -3vw, 0px);
+  top: 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(180px, 28vw, 460px);
+  color: var(--copper);
+  opacity: 0.06;
+  line-height: 0.85;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.hero-grid {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.hero-cell { display: flex; flex-direction: column; gap: 6px; }
+.hero-cell .k {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-cell .v {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(18px, 1.4vw, 22px);
+  color: var(--ink);
+  line-height: 1.2;
+}
+.hero-cell .v .who {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(20px, 1.6vw, 26px);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ── Marquee strip ──────────────────────────────────────── */
+.strip {
+  background: var(--espresso);
+  color: var(--cream);
+  padding: 18px 0;
+  border-top: 1px solid var(--espresso-2);
+  border-bottom: 1px solid var(--espresso-2);
+  overflow: hidden;
+  position: relative;
+}
+.strip-track {
+  display: flex;
+  gap: 56px;
+  white-space: nowrap;
+  animation: marquee 48s linear infinite;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.strip-track span { display: inline-flex; align-items: center; gap: 56px; color: oklch(80% 0.02 60); }
+.strip-track span::after { content: '·'; color: var(--copper-2); }
+.strip-track em {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  font-size: 15px;
+  color: var(--copper-3);
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Section base ───────────────────────────────────────── */
+.section {
+  padding: 120px var(--gutter);
+  position: relative;
+}
+.section-inner { max-width: var(--max); margin: 0 auto; }
+.section.dark { background: var(--espresso); color: var(--cream); }
+.section.paper { background: var(--paper); }
+.section.cream-2 { background: var(--cream-2); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: end;
+  padding-bottom: 48px;
+  margin-bottom: 64px;
+  border-bottom: 1px solid var(--rule);
+}
+.section.dark .section-head { border-bottom-color: var(--rule-dark); }
+.section-head .h-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 16px;
+}
+.section.dark .section-head .h-eyebrow { color: var(--copper-3); }
+.section-head .h-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(40px, 4.6vw, 76px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+.section-head .h-title .em { font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--copper); }
+.section.dark .section-head .h-title { color: var(--cream); }
+.section.dark .section-head .h-title .em { color: var(--copper-3); }
+.section-head .h-deck {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 36ch;
+  align-self: end;
+}
+.section.dark .section-head .h-deck { color: oklch(78% 0.015 60); }
+
+/* ── Chapter divider ────────────────────────────────── */
+.chapter {
+  background: var(--cream);
+  padding: 80px var(--gutter) 20px;
+}
+.chapter-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.chapter-tag {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.chapter-head {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 84px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.chapter-head .em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+}
+.chapter-rule {
+  display: block;
+  height: 1px;
+  background: var(--rule);
+  min-width: 80px;
+}
+@media (max-width: 800px) {
+  .chapter-inner { grid-template-columns: auto 1fr; gap: 20px; }
+  .chapter-rule { display: none; }
+  .chapter { padding: 56px var(--gutter) 0; }
+}
+
+/* ── Hero chapter divider ─────────────────────────── */
+.hero-chapter {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.hero-chapter-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--copper);
+}
+.hero-chapter-head {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--ink);
+}
+.hero-chapter-head .em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+}
+.hero-chapter-rule {
+  display: block;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ── About / lede ───────────────────────────────────────── */
+.lede {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.lede-side {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+  font-weight: 600;
+  padding-top: 12px;
+  border-top: 2px solid var(--copper);
+  display: none;
+}
+.lede-body {
+  font-family: var(--sans);
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  max-width: none;
+}
+.lede-body p + p { margin-top: 20px; }
+.lede-body em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+}
+
+.lede-takeaways {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.takeaway {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.takeaway .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 0.85;
+  color: var(--copper);
+}
+.takeaway .body {
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.takeaway .body strong {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+.takeaway .body em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--copper);
+  font-weight: 700;
+}
+
+/* ── Lenses (dark) ──────────────────────────────────────── */
+.lenses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.lens {
+  padding: 8px 40px 8px 0;
+  border-right: 1px solid var(--rule-dark);
+  display: flex; flex-direction: column; gap: 18px;
+  min-height: 380px;
+}
+.lens:last-child { border-right: none; padding-right: 0; }
+.lens:not(:first-child) { padding-left: 40px; }
+
+.lens-head { display: flex; align-items: baseline; gap: 18px; }
+.lens-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 88px;
+  line-height: 0.85;
+  color: var(--copper-3);
+  letter-spacing: -0.02em;
+}
+.lens-num-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule-dark);
+}
+.lens-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper-3);
+}
+.lens-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(36px, 3vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--cream);
+}
+.lens-name + .lens-which {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 26px);
+  color: var(--copper-3);
+  line-height: 1.2;
+  margin-top: 6px;
+}
+.lens-bio {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: oklch(74% 0.018 60);
+  margin-top: 8px;
+}
+.lens-covers {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-dark);
+  font-size: 15px;
+  line-height: 1.55;
+  color: oklch(82% 0.018 60);
+}
+.lens-covers strong { color: var(--copper-3); font-weight: 700; font-family: var(--serif); font-style: italic; }
+
+/* ── Deck preview gallery ───────────────────────────────── */
+.deck-feature {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.deck-feature-image-wrap {
+  position: relative;
+}
+.deck-cover-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--paper);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 var(--rule),
+    0 20px 60px -20px oklch(20% 0.02 265 / 0.25),
+    0 60px 80px -40px oklch(20% 0.02 265 / 0.18);
+  overflow: hidden;
+  transform: rotate(-1deg);
+  transition: transform .5s ease;
+}
+.deck-cover-img:hover { transform: rotate(0deg) scale(1.01); }
+.deck-cover-img img { width: 100%; height: 100%; object-fit: cover; }
+.deck-stamp {
+  position: absolute;
+  bottom: -18px; right: -10px;
+  background: var(--copper);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px -8px oklch(48% 0.17 145 / 0.5);
+  transform: rotate(2deg);
+}
+
+.deck-body { display: flex; flex-direction: column; gap: 20px; }
+.deck-body .tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.deck-body h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(38px, 4vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.deck-body h3 .em { font-family: var(--serif); font-style: italic; color: var(--copper); }
+.deck-body .deck-blurb {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 32ch;
+  margin-top: 4px;
+}
+.deck-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.deck-thumbs {
+  margin-top: 96px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+}
+.deck-thumbs-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 28px;
+}
+.deck-thumbs-head .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.deck-thumbs-head .label .accent { color: var(--copper); }
+.deck-thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.deck-thumb {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.deck-thumb:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -16px oklch(20% 0.02 265 / 0.25); }
+.deck-thumb img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.deck-thumb .caption {
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--rule);
+}
+.deck-thumb .caption .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--copper);
+  text-transform: uppercase;
+}
+.deck-thumb .caption .text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  margin-top: 4px;
+  line-height: 1.25;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: 0.005em;
+  background: var(--ink);
+  color: var(--cream);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--copper);
+  border-color: var(--copper);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -10px oklch(48% 0.17 145 / 0.45);
+}
+.btn .arrow { transition: transform .25s ease; }
+.btn:hover .arrow { transform: translate(3px, -3px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.btn-sm {
+  padding: 10px 16px;
+  font-size: 13px;
+  gap: 8px;
+}
+.btn-on-dark {
+  background: var(--cream);
+  color: var(--espresso);
+  border-color: var(--cream);
+}
+.btn-on-dark:hover {
+  background: var(--copper-3);
+  border-color: var(--copper-3);
+  color: var(--espresso);
+  box-shadow: 0 14px 28px -10px oklch(48% 0.17 145 / 0.55);
+}
+
+/* ── Resources grid ─────────────────────────────────────── */
+.resources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.r-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  position: relative;
+}
+.r-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 56px -24px oklch(20% 0.02 265 / 0.25);
+  border-color: var(--cream-3);
+}
+.r-card .r-thumb {
+  position: relative;
+  aspect-ratio: 8.5 / 11;
+  background: var(--cream);
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+.r-card .r-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+}
+.r-card:hover .r-thumb img { transform: scale(1.03); }
+.r-card .r-num {
+  position: absolute;
+  top: 16px; left: 16px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 0.85;
+  color: var(--copper);
+  background: var(--paper);
+  padding: 6px 14px 4px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px -4px oklch(20% 0.02 265 / 0.18);
+}
+.r-card .r-stamp {
+  position: absolute;
+  top: 18px; right: 16px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+  background: var(--paper);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+}
+.r-card .r-body {
+  padding: 28px 28px 32px;
+  display: flex; flex-direction: column; gap: 12px; flex: 1;
+}
+.r-card .r-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.r-card .r-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.r-card .r-title .em { font-family: var(--serif); font-style: italic; color: var(--copper); }
+.r-card .r-desc {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  flex: 1;
+}
+.r-card .r-foot {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.r-card .r-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* ── Pull quote ─────────────────────────────────────────── */
+.pull {
+  background: var(--cream-2);
+  padding: 120px var(--gutter);
+  position: relative;
+  overflow: hidden;
+}
+.pull-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.pull-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 220px;
+  line-height: 0.7;
+  color: var(--copper);
+  opacity: 0.95;
+}
+.pull-text {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.pull-text .em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--copper);
+}
+.pull-attrib {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pull-attrib .dash { width: 36px; height: 1px; background: var(--copper); display: inline-block; }
+
+.pull.dark { background: var(--espresso); }
+.pull.dark .pull-text { color: var(--cream); }
+.pull.dark .pull-mark { color: var(--copper-3); }
+.pull.dark .pull-text .em { color: var(--copper-3); }
+.pull.dark .pull-attrib { color: oklch(72% 0.018 60); }
+.pull.dark .pull-attrib .dash { background: var(--copper-3); }
+
+/* ── How to use ─────────────────────────────────────────── */
+.how {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.how-cell {
+  border-top: 2px solid var(--copper);
+  padding-top: 22px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.how-cell .h-tag {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.how-cell .h-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.how-cell .h-name .em { font-family: var(--serif); font-style: italic; color: var(--copper); }
+.how-cell .h-desc { font-size: 15.5px; line-height: 1.55; color: var(--muted); }
+
+/* ── Footer ─────────────────────────────────────────────── */
+footer {
+  background: var(--espresso);
+  color: oklch(76% 0.018 60);
+  padding: 96px var(--gutter) 48px;
+  position: relative;
+  overflow: hidden;
+}
+.foot-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 2; }
+.foot-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--rule-dark);
+}
+.foot-mark {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(40px, 4.4vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  max-width: 18ch;
+}
+.foot-mark .em { font-family: var(--serif); font-style: italic; color: var(--copper-3); font-weight: 700; }
+.foot-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper-3);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.foot-right { display: flex; flex-direction: column; gap: 14px; justify-content: flex-end; }
+.foot-right .label {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper-3);
+}
+.foot-right .quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.3;
+  color: var(--cream);
+}
+.foot-meta {
+  margin-top: 56px;
+  display: block;
+  font-family: var(--sans);
+}
+.foot-meta .copyright {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.foot-meta .disclaimer {
+  font-size: 13px;
+  line-height: 1.65;
+  color: oklch(64% 0.018 60);
+  max-width: none;
+}
+.foot-meta .colophon {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: oklch(60% 0.018 60);
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+.foot-meta .colophon strong { color: var(--copper-3); font-weight: 600; }
+
+/* Decorative numeral in footer */
+.foot-numeral {
+  position: absolute;
+  right: -2vw; bottom: -7vw;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(280px, 38vw, 540px);
+  color: var(--copper);
+  opacity: 0.07;
+  line-height: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Reveal animation ───────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: repeat(2, 1fr); }
+  .lede { grid-template-columns: 1fr; gap: 24px; }
+  .lede-body { max-width: none; }
+  .lede-takeaways { grid-template-columns: 1fr; gap: 28px; }
+  .section-head { grid-template-columns: 1fr; gap: 32px; }
+  .lenses { grid-template-columns: 1fr; }
+  .lens { border-right: none; border-bottom: 1px solid var(--rule-dark); padding: 32px 0; min-height: 0; }
+  .lens:last-child { border-bottom: none; }
+  .lens:not(:first-child) { padding-left: 0; }
+  .deck-feature { grid-template-columns: 1fr; gap: 48px; }
+  .deck-thumbs-grid { grid-template-columns: repeat(2, 1fr); }
+  .resources { grid-template-columns: 1fr; gap: 24px; }
+  .how { grid-template-columns: repeat(2, 1fr); }
+  .pull-inner { grid-template-columns: 1fr; gap: 24px; }
+  .pull-mark { font-size: 140px; }
+  .foot-top { grid-template-columns: 1fr; gap: 40px; }
+  .foot-meta { grid-template-columns: 1fr; gap: 28px; }
+  .toprail-nav { display: none; }
+  .section { padding: 80px var(--gutter); }
+  .hero { padding: 56px var(--gutter) 72px; }
+}
+@media (max-width: 600px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+  .how { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; gap: 12px; }
+  .toprail-inner { padding: 12px 20px; }
+  :root { --gutter: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ───── Top rail ───── -->
+<div class="toprail">
+  <div class="toprail-inner">
+    <div class="toprail-left">
+      <span class="dot"></span>
+      <span>Advocis Coffee Talk</span>
+      <span class="sep">·</span>
+      <span>June 2026</span>
+      <span class="sep">·</span>
+      <span>Vol. 01</span>
+    </div>
+    <nav class="toprail-nav">
+      <a href="#about">The conversation</a>
+      <a href="#lenses">The speakers</a>
+      <a href="#deck">The deck</a>
+      <a href="#resources">Take-homes</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ───── Hero ───── -->
+<section class="hero">
+  <div class="hero-numeral" aria-hidden="true">i.</div>
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <span class="pill"><span class="dot"></span>A conversation in three perspectives</span>
+      <span class="sep">/</span>
+      <span>Take-home resources</span>
+    </div>
+
+    <h1 class="hero-title">Responsible <span class="em">Tech&nbsp;&amp;&nbsp;AI</span> Adoption.</h1>
+    <p class="hero-sub">An ethical, operational, and practical conversation for Canadian advisory practices.</p>
+
+    <div class="hero-chapter">
+      <span class="hero-chapter-tag">§</span>
+      <span class="hero-chapter-head">Three <span class="em">perspectives.</span></span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-cell">
+        <span class="k">i. · The Ethical Lens</span>
+        <span class="v"><span class="who">Rod Burylo</span></span>
+      </div>
+      <div class="hero-cell">
+        <span class="k">ii. · The Operational Lens</span>
+        <span class="v"><span class="who">Kelly Gustafson</span></span>
+      </div>
+      <div class="hero-cell">
+        <span class="k">iii. · The Practical Lens</span>
+        <span class="v"><span class="who">Joseph ven der Buhs</span></span>
+      </div>
+      <div class="hero-cell">
+        <span class="k">Format</span>
+        <span class="v"><span class="who">60 minutes</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── Lenses (dark) ───── -->
+<section class="section dark" id="lenses">
+  <div class="section-inner">
+    <div class="section-head" style="grid-template-columns: 1fr;">
+      <div>
+        <div class="h-eyebrow">§ Three Lenses</div>
+        <h2 class="h-title">What does <span class="em">responsible</span> AI adoption look like in an advisory practice?</h2>
+      </div>
+    </div>
+
+    <div class="lenses">
+      <div class="lens reveal">
+        <div class="lens-head">
+          <div class="lens-num">i.</div>
+          <div class="lens-num-rule"></div>
+        </div>
+        <div class="lens-tag">The Ethical Lens</div>
+        <div class="lens-name">Rod Burylo</div>
+        <div class="lens-which">on the commitments already made.</div>
+        <div class="lens-bio">Ethics Champion, Practice Performance Lab. Three decades in financial services.</div>
+        <div class="lens-covers">The professional obligations advisors already carry, and the <strong>three questions</strong> to walk through before any new tool gets used.</div>
+      </div>
+
+      <div class="lens reveal">
+        <div class="lens-head">
+          <div class="lens-num">ii.</div>
+          <div class="lens-num-rule"></div>
+        </div>
+        <div class="lens-tag">The Operational Lens</div>
+        <div class="lens-name">Kelly Gustafson</div>
+        <div class="lens-which">on turning obligations into systems.</div>
+        <div class="lens-bio">Founder, Etc. Projects &amp; Practice Performance Lab. 28 years in financial services; two decades in practice transformation and tech adoption.</div>
+        <div class="lens-covers">How obligations become workflows, policies, and trained teams. <strong>People. Process. Then technology.</strong></div>
+      </div>
+
+      <div class="lens reveal">
+        <div class="lens-head">
+          <div class="lens-num">iii.</div>
+          <div class="lens-num-rule"></div>
+        </div>
+        <div class="lens-tag">The Practical Lens</div>
+        <div class="lens-name">Joseph ven der Buhs</div>
+        <div class="lens-which">on what changes for the client.</div>
+        <div class="lens-bio">A licensed Canadian financial advisor integrating AI and technology into a working practice.</div>
+        <div class="lens-covers">What daily use looks like with a real client across the table, and <strong>the consent conversation</strong> that makes it work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── About / Lede ───── -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="h-eyebrow">§ The Conversation</div>
+        <h2 class="h-title">Tools move fast. <span class="em">Promises</span> don't.</h2>
+      </div>
+      <div class="h-deck">The ethics, the operations, and the daily practice of bringing AI into an advisory firm.</div>
+    </div>
+
+    <div class="lede">
+      <div class="lede-body">
+        <p>AI is moving faster than most advisory practices can keep up with. Tools are being adopted before anyone has asked whether they <em>should be</em>, how, or what they actually change for the client.</p>
+      </div>
+      <div class="lede-body">
+        <p>That gap between capability and readiness is closed by how you adopt the tools. Building client trust includes governance protocols and training <span class="em">first.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── Pull quote ───── -->
+<section class="pull dark">
+  <div class="pull-inner">
+    <div class="pull-mark" aria-hidden="true">&ldquo;</div>
+    <div>
+      <p class="pull-text">The tool is the <span class="em">last</span> decision, never the first.</p>
+      <div class="pull-attrib"><span class="dash"></span>From the Operational perspective · People. Process. Then technology.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── The Deck ───── -->
+<section class="section" id="deck">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="h-eyebrow">§ The Presentation</div>
+        <h2 class="h-title">The full <span class="em">deck.</span></h2>
+      </div>
+    </div>
+
+    <div class="deck-feature">
+      <div class="deck-feature-image-wrap reveal">
+        <a class="deck-cover-img" href="files/Coffee-Talk-Deck.pdf" target="_blank" rel="noopener" aria-label="Open the deck in PDF">
+          <img src="assets/deck-cover.jpg" alt="Cover slide: Responsible Tech and AI Adoption" loading="lazy">
+        </a>
+      </div>
+      <div class="deck-body reveal">
+        <span class="tag">Slide deck · Vol. 01</span>
+        <h3>Responsible Tech &amp; AI <span class="em">Adoption.</span></h3>
+        <p class="deck-blurb">The frameworks, the scenarios, the scripts.</p>
+        <div class="deck-actions">
+          <a class="btn" href="files/Coffee-Talk-Deck.pdf" download="Coffee-Talk-Deck.pdf">
+            <span>Download PDF</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="btn btn-ghost" href="files/Coffee-Talk-Deck.pptx" download="Coffee-Talk-Deck.pptx">
+            <span>Download PowerPoint</span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── Proficiency quote (dark) ───── -->
+<section class="pull dark">
+  <div class="pull-inner">
+    <div class="pull-mark" aria-hidden="true">&ldquo;</div>
+    <div>
+      <p class="pull-text">Proficiency in your licensed work is an <span class="em">obligation.</span> So is proficiency in the tools you use to do that work.</p>
+      <div class="pull-attrib"><span class="dash"></span>A note on professional responsibility</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── Resources ───── -->
+<section class="section paper" id="resources">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="h-eyebrow">§ Take-home Resources</div>
+        <h2 class="h-title">The take-home <span class="em">tools.</span></h2>
+      </div>
+      <div class="h-deck">Three printable one-pagers. Pin them up, mark them up, take them to the team, make them your own.</div>
+    </div>
+
+    <div class="resources">
+
+      <a class="r-card reveal" href="files/01-The-Three-Questions.pdf" download="01-The-Three-Questions.pdf">
+        <div class="r-thumb">
+          <div class="r-num">i.</div>
+          <div class="r-stamp">PDF · 1 page</div>
+          <img src="assets/resource-01.jpg" alt="Preview of The Three Questions one-pager" loading="lazy">
+        </div>
+        <div class="r-body">
+          <div class="r-eyebrow">The Ethical Lens · Rod Burylo</div>
+          <h3 class="r-title">The Three <span class="em">Questions</span>.</h3>
+          <p class="r-desc">Rod's framework on a single page. The three questions to ask before any new AI or technology tool enters your practice.</p>
+          <div class="r-foot">
+            <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
+            <span class="r-meta">01 of III</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card reveal" href="files/02-The-Consent-Conversation.pdf" download="02-The-Consent-Conversation.pdf">
+        <div class="r-thumb">
+          <div class="r-num">ii.</div>
+          <div class="r-stamp">PDF · 1 page</div>
+          <img src="assets/resource-02.jpg" alt="Preview of The Consent Conversation script" loading="lazy">
+        </div>
+        <div class="r-body">
+          <div class="r-eyebrow">The Practical Lens · Script</div>
+          <h3 class="r-title">The Consent <span class="em">Conversation</span>.</h3>
+          <p class="r-desc">A script you can borrow word-for-word, with the three pieces that make consent count: name the tool, offer a real choice, record the answer.</p>
+          <div class="r-foot">
+            <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
+            <span class="r-meta">02 of III</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card reveal" href="files/03-Before-The-Tool-Goes-Live.pdf" download="03-Before-The-Tool-Goes-Live.pdf">
+        <div class="r-thumb">
+          <div class="r-num">iii.</div>
+          <div class="r-stamp">PDF · 1 page</div>
+          <img src="assets/resource-03.jpg" alt="Preview of the Before The Tool Goes Live checklist" loading="lazy">
+        </div>
+        <div class="r-body">
+          <div class="r-eyebrow">The Operational Lens · Checklist</div>
+          <h3 class="r-title">Before the Tool Goes <span class="em">Live</span>.</h3>
+          <p class="r-desc">Three things on the table before any AI tool enters your practice. A documented policy, a consent framework, and a training plan.</p>
+          <div class="r-foot">
+            <span class="btn btn-sm">Download<span class="arrow">↗</span></span>
+            <span class="r-meta">03 of III</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───── Footer ───── -->
+<footer>
+  <div class="foot-numeral" aria-hidden="true">iv.</div>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-tag">§ A closing thought</div>
+        <div class="foot-mark">The tool comes and goes. The <span class="em">promise</span> doesn't.</div>
+      </div>
+      <div class="foot-right">
+        <span class="label">Built by</span>
+        <span class="quote">Etc. Projects &amp; the Practice Performance Lab. Built for sharing.</span>
+        <div style="margin-top: 24px;">
+          <a class="btn btn-on-dark btn-sm" href="#about">
+            <span>Back to the top</span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-meta">
+      <div>
+        <div class="copyright">© 2026 49Maple Inc. o/a Etc Projects · All Rights Reserved</div>
+        <div class="disclaimer">
+          The materials on this page are educational. They do not constitute legal, regulatory, or compliance advice. Compliance obligations vary by license type, product line, provincial jurisdiction, and individual client circumstances. Every advisor is responsible for ensuring their own practices meet applicable regulatory requirements. Review with your compliance officer before applying any framework, script, or process to your practice.
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
