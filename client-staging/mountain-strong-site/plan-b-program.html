@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan B · The planning workbook · Mountain Strong Financial</title>
+<meta name="description" content="When Plan A throws you a curve, Plan B. A planning workbook that keeps all of your data in one place, for you while you live your Plan A, and for your family if life slips off the rails. Free for clients of the practice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   TOKENS · matches the rest of the site
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --bg:           #f6f3ea;
+  --bg-soft:      #faf8f2;
+  --bg-dark:      #0a0a0a;
+  --surface:      #ffffff;
+  --fg:           #0a0a0a;
+  --fg-on-dark:   #f6f3ea;
+  --muted:        #5a5a5a;
+  --muted-2:      #7a7a7a;
+  --muted-dark:   #8a8a8a;
+  --muted-dark-2: #b0b0b0;
+  --line:         #d8d4c8;
+  --line-2:       #ebe8dc;
+  --line-dark:    #2a2a2a;
+  --accent:       #8a9c7a;
+  --radius:       12px;
+  --radius-lg:    18px;
+  --radius-xl:    26px;
+  --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+  --container:    1280px;
+  --nav-h:        72px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--fg);
+  background: var(--bg);
+  letter-spacing: -0.005em;
+  min-height: 100vh;
+}
+.serif, h1, h2, h3, h4 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+}
+.mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; letter-spacing: 0.01em; }
+a { color: inherit; text-decoration: none; transition: opacity 0.2s var(--ease); }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+::selection { background: var(--fg); color: var(--bg); }
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 90;
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; padding: 0 32px;
+  background: rgba(246,243,234,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-brand { display: flex; align-items: center; gap: 14px; }
+.nav-brand img { height: 38px; width: auto; display: block; }
+.nav-brand-name { display: none; }
+.nav-links {
+  display: flex; gap: 32px; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em;
+}
+.nav-links a { color: var(--muted); transition: color 0.2s var(--ease); }
+.nav-links a:hover { color: var(--fg); }
+.nav-cta {
+  padding: 10px 18px; border-radius: 999px;
+  background: var(--fg); color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
+  transition: transform 0.2s var(--ease);
+}
+.nav-cta:hover { transform: scale(1.03); }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav { grid-template-columns: auto 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SECTION SCAFFOLDING
+   ══════════════════════════════════════════════════════════════════ */
+.section { padding: clamp(56px, 9vh, 100px) 28px; position: relative; }
+.section.on-dark { background: var(--bg-dark); color: var(--fg-on-dark); }
+.section-inner { max-width: var(--container); margin: 0 auto; }
+.section-narrow { max-width: 900px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--muted); margin-bottom: 24px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ""; width: 24px; height: 1px; background: var(--muted); }
+.on-dark .section-label { color: var(--muted-dark-2); }
+.on-dark .section-label::before { background: var(--muted-dark-2); }
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1.02; letter-spacing: -0.025em; max-width: 22ch;
+}
+.section-title em { font-style: italic; color: var(--muted-2); }
+.on-dark .section-title em { color: var(--muted-dark-2); }
+
+.section-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start; margin-bottom: 56px;
+}
+.section-intro {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.25rem; line-height: 1.4;
+  color: var(--muted); max-width: 54ch;
+}
+.section-intro em { font-style: italic; color: var(--fg); }
+.on-dark .section-intro { color: var(--muted-dark-2); }
+.on-dark .section-intro em { color: var(--fg-on-dark); }
+
+@media (max-width: 860px) {
+  .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 36px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BUTTONS
+   ══════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em;
+  border-radius: 999px;
+  transition: transform 0.22s var(--ease), background 0.22s var(--ease), color 0.22s var(--ease);
+  border: 1px solid transparent; cursor: pointer;
+}
+.btn-primary { background: var(--fg); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+.btn-ghost:hover { background: var(--fg); color: var(--bg); }
+.btn-invert { background: var(--bg); color: var(--fg); }
+.btn-invert:hover { transform: translateY(-2px); }
+.btn-ghost-invert { background: transparent; color: var(--fg-on-dark); border-color: var(--fg-on-dark); }
+.btn-ghost-invert:hover { background: var(--fg-on-dark); color: var(--bg-dark); }
+.btn .arrow { transition: transform 0.22s var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO
+   ══════════════════════════════════════════════════════════════════ */
+.hero {
+  background: var(--bg-dark); color: var(--fg-on-dark);
+  padding: 140px 28px 72px; position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--line-dark);
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at center, rgba(246,243,234,0.05) 1px, transparent 1.5px);
+  background-size: 32px 32px; opacity: 0.5; pointer-events: none;
+}
+.hero-inner { max-width: var(--container); margin: 0 auto; position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--muted-dark-2); margin-bottom: 28px;
+  padding: 8px 16px; border: 1px solid var(--line-dark); border-radius: 999px;
+}
+.hero-eyebrow-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); animation: pulse 2s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.hero-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.8rem, 6.4vw, 5.6rem);
+  line-height: 1.02; letter-spacing: -0.035em;
+  margin-bottom: 28px; max-width: 16ch;
+}
+.hero-title em { font-style: italic; color: var(--muted-dark-2); }
+.hero-lead {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.35rem; line-height: 1.42;
+  color: var(--muted-dark-2); max-width: 60ch; margin-bottom: 40px;
+}
+.hero-lead em { font-style: italic; color: var(--fg-on-dark); }
+.hero-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark); margin: 40px 0;
+}
+.hero-meta-item { padding: 20px 20px 20px 0; border-right: 1px solid var(--line-dark); }
+.hero-meta-item:last-child { border-right: none; padding-right: 0; }
+.hero-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--muted-dark-2); margin-bottom: 6px;
+}
+.hero-meta-value { font-family: 'Instrument Serif', serif; font-size: 1.1rem; line-height: 1.2; }
+.hero-meta-value em { font-style: italic; color: var(--muted-dark-2); }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero { padding: 110px 22px 56px; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+  .hero-meta-item { border-right: none; border-bottom: 1px solid var(--line-dark); padding: 14px 14px 14px 0; }
+  .hero-meta-item:nth-child(odd) { border-right: 1px solid var(--line-dark); padding-right: 14px; }
+  .hero-meta-item:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   THE IDEA
+   ══════════════════════════════════════════════════════════════════ */
+.idea p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4rem; line-height: 1.45;
+  color: var(--muted); max-width: 64ch; margin-bottom: 20px;
+}
+.idea p em { font-style: italic; color: var(--fg); }
+.idea p strong { color: var(--fg); font-weight: 400; font-style: italic; }
+.idea .idea-lead {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem; line-height: 1.4;
+  color: var(--muted); max-width: 50ch; margin: 24px 0 0;
+}
+.idea .idea-lead + .idea-lead { margin-top: 20px; color: var(--muted-2); }
+.idea .idea-lead em { font-style: italic; color: var(--fg); }
+.idea-pull {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  line-height: 1.2; letter-spacing: -0.02em;
+  color: var(--fg); max-width: 24ch;
+  padding-top: 28px; margin-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.idea-pull em { font-style: italic; color: var(--muted-2); }
+
+/* Idea section · self-check card */
+.idea-checklist {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 30px 32px 26px;
+}
+.checklist-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--muted); margin-bottom: 14px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.checklist-label::before { content: ""; width: 22px; height: 1px; background: var(--muted); }
+.checklist { list-style: none; }
+.check-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 15px 0; border-bottom: 1px solid var(--line-2);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.check-item:last-of-type { border-bottom: none; }
+.check-box {
+  flex: 0 0 auto; width: 26px; height: 26px; margin-top: 2px;
+  border: 1.5px solid var(--muted-2); border-radius: 7px;
+  position: relative; background: transparent;
+  transition: background 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+.check-box::after {
+  content: ""; position: absolute; left: 8.5px; top: 3.5px;
+  width: 6px; height: 12px;
+  border: solid transparent; border-width: 0 2.6px 2.6px 0;
+  transform: rotate(45deg) scale(0.5); opacity: 0;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.check-item:hover .check-box { border-color: var(--accent); }
+.check-item.checked .check-box { background: var(--accent); border-color: var(--accent); }
+.check-item.checked .check-box::after { border-color: #fff; opacity: 1; transform: rotate(45deg) scale(1); }
+.check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.check-text {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.22rem; line-height: 1.32; color: var(--fg);
+  transition: color 0.2s var(--ease);
+}
+.check-item.checked .check-text { color: var(--muted-2); }
+.checklist-foot {
+  margin-top: 18px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.13em;
+  color: var(--muted); line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BENEFIT CARDS
+   ══════════════════════════════════════════════════════════════════ */
+.for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.for-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+  color: var(--fg);
+}
+.for-card:hover { transform: translateY(-4px); border-color: var(--fg); }
+.for-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted);
+}
+.for-card-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.015em;
+}
+.for-card-title em { font-style: italic; color: var(--muted); }
+.for-card-body { font-size: 0.98rem; color: var(--muted); line-height: 1.55; }
+@media (max-width: 860px) { .for-grid { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   WHAT IT COVERS
+   ══════════════════════════════════════════════════════════════════ */
+.covers-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--line-dark);
+  border: 1px solid var(--line-dark); border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.cover-group {
+  background: var(--bg-dark); padding: 30px 28px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.cover-group-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--line-dark);
+}
+.cover-group-name {
+  font-family: 'Instrument Serif', serif; font-size: 1.4rem; line-height: 1.1;
+}
+.cover-group-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.14em; color: var(--muted-dark-2);
+}
+.cover-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.cover-list li {
+  display: flex; align-items: baseline; gap: 12px;
+  font-size: 0.96rem; color: var(--muted-dark-2); line-height: 1.35;
+}
+.cover-list li .cn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; color: var(--accent); flex: 0 0 auto; padding-top: 2px;
+}
+@media (max-width: 860px) { .covers-grid { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   HOW IT WORKS · steps
+   ══════════════════════════════════════════════════════════════════ */
+.steps { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.step {
+  display: grid; grid-template-columns: 90px 1fr; gap: 40px;
+  padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start;
+}
+.step-num {
+  font-family: 'Instrument Serif', serif; font-size: 2.6rem;
+  line-height: 1; color: var(--muted-2);
+}
+.step-content h3 {
+  font-family: 'Instrument Serif', serif; font-size: 1.5rem;
+  line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 10px;
+}
+.step-content h3 em { font-style: italic; color: var(--muted); }
+.step-content p { font-size: 0.98rem; color: var(--muted); line-height: 1.55; max-width: 64ch; }
+@media (max-width: 860px) { .step { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   NOTES · the fine print, in plain language
+   ══════════════════════════════════════════════════════════════════ */
+.notes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.note {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 28px;
+}
+.note.warn { border-color: #d8b4ab; background: #fbf2ee; }
+.note h3 {
+  font-family: 'Instrument Serif', serif; font-size: 1.3rem;
+  line-height: 1.15; margin-bottom: 10px;
+}
+.note p { font-size: 0.96rem; color: var(--muted); line-height: 1.6; }
+.note p strong { color: var(--fg); font-weight: 600; }
+@media (max-width: 860px) { .notes-grid { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   JOE
+   ══════════════════════════════════════════════════════════════════ */
+.joe-layout { display: grid; grid-template-columns: 360px 1fr; gap: 64px; align-items: start; }
+.joe-photo {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  border-radius: var(--radius-lg); filter: grayscale(1) contrast(1.05);
+}
+.joe-caption {
+  margin-top: 14px; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted-dark-2);
+}
+.joe-body p {
+  font-family: 'Hanken Grotesk', sans-serif; font-size: 1.02rem;
+  line-height: 1.65; color: var(--muted-dark-2); margin-bottom: 18px;
+}
+.joe-body p strong { color: var(--fg-on-dark); font-weight: 500; }
+.joe-creds {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding-top: 18px; margin-top: 10px; border-top: 1px solid var(--line-dark);
+}
+.joe-chip {
+  padding: 7px 14px; border: 1px solid var(--line-dark); border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--fg-on-dark);
+}
+@media (max-width: 860px) {
+  .joe-layout { grid-template-columns: 1fr; gap: 32px; }
+  .joe-photo { max-width: 320px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   REQUEST ACCESS
+   ══════════════════════════════════════════════════════════════════ */
+.request { background: var(--bg-dark); color: var(--fg-on-dark); }
+.request-inner { max-width: var(--container); margin: 0 auto; }
+.request-paths {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px;
+}
+.path-card {
+  border: 1px solid var(--line-dark); border-radius: var(--radius-lg);
+  padding: 36px; display: flex; flex-direction: column; gap: 16px;
+  background: rgba(246,243,234,0.02);
+}
+.path-card.feature { background: rgba(138,156,122,0.08); border-color: var(--accent); }
+.path-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted-dark-2);
+}
+.path-card.feature .path-tag { color: var(--accent); }
+.path-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.8rem; line-height: 1.1; }
+.path-card h3 em { font-style: italic; color: var(--muted-dark-2); }
+.path-card p { font-size: 0.98rem; color: var(--muted-dark-2); line-height: 1.6; flex: 1; }
+.path-price {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.1em; color: var(--fg-on-dark);
+}
+.path-card .btn { align-self: flex-start; margin-top: 4px; }
+.privacy-line {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-top: 36px; padding: 20px 24px;
+  border: 1px solid var(--line-dark); border-radius: var(--radius);
+  background: rgba(246,243,234,0.02);
+}
+.privacy-line-dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; }
+.privacy-line p { font-size: 0.92rem; color: var(--muted-dark-2); line-height: 1.55; max-width: 86ch; }
+.privacy-line p strong { color: var(--fg-on-dark); font-weight: 500; }
+@media (max-width: 860px) { .request-paths { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════════════ */
+.footer { background: var(--bg-dark); color: var(--fg-on-dark); padding: 80px 28px 40px; border-top: 1px solid var(--line-dark); }
+.footer-inner { max-width: var(--container); margin: 0 auto; }
+.footer-hero {
+  padding: 40px 0 56px; border-bottom: 1px solid var(--line-dark);
+  display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px;
+}
+.footer-hero-title { font-family: 'Instrument Serif', serif; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.025em; max-width: 22ch; }
+.footer-hero-title em { font-style: italic; color: var(--muted-dark-2); }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding: 48px 0 32px; }
+.footer-brand img { display: block; height: 64px; width: auto; margin-bottom: 16px; filter: brightness(0) invert(1); opacity: 0.94; }
+.footer-brand-name { display: none; }
+.footer-brand-tag { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 0.95rem; color: var(--muted-dark-2); margin-bottom: 16px; }
+.footer-brand-desc { font-size: 0.9rem; color: var(--muted-dark-2); line-height: 1.55; max-width: 40ch; }
+.footer-col h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--fg-on-dark); margin-bottom: 18px; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col li { font-size: 0.9rem; color: var(--muted-dark-2); line-height: 1.45; margin-bottom: 10px; }
+.footer-col a { color: var(--muted-dark-2); transition: color 0.2s var(--ease); }
+.footer-col a:hover { color: var(--fg-on-dark); }
+.footer-partner {
+  display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center;
+  padding: 28px 0; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); margin-top: 8px;
+}
+.footer-partner-logo { background: var(--fg-on-dark); padding: 14px 20px; border-radius: var(--radius); display: inline-flex; align-items: center; }
+.footer-partner-logo img { display: block; height: 32px; width: auto; }
+.footer-partner-text { font-size: 0.86rem; line-height: 1.5; color: var(--muted-dark-2); max-width: 60ch; }
+.footer-partner-text strong { color: var(--fg-on-dark); font-weight: 500; }
+.footer-legal { padding: 26px 0 8px; text-align: center; }
+.footer-legal a {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted-dark-2);
+}
+.footer-legal a:hover { color: var(--fg-on-dark); }
+.footer-bottom { padding-top: 24px; border-top: 1px solid var(--line-dark); display: flex; justify-content: space-between; gap: 20px; font-size: 0.78rem; color: var(--muted-dark-2); line-height: 1.5; }
+.footer-bottom-right { max-width: 60ch; }
+@media (max-width: 860px) {
+  .footer-hero { grid-template-columns: 1fr; }
+  .footer-cols { grid-template-columns: 1fr 1fr; }
+  .footer-partner { grid-template-columns: 1fr; gap: 16px; }
+  .footer-bottom { flex-direction: column; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   REVEAL
+   ══════════════════════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.d-1 { transition-delay: 0.1s; }
+.reveal.d-2 { transition-delay: 0.2s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media print {
+  .nav, .hero-ctas, .footer { display: none; }
+  body { background: white; color: black; }
+  .section.on-dark, .hero, .request { background: white; color: black; }
+}
+</style>
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://mountainstrongfinancial.ca/plan-b-program">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mountain Strong Financial">
+<meta property="og:title" content="Plan B · The planning workbook · Mountain Strong Financial">
+<meta property="og:description" content="When Plan A throws you a curve, Plan B. A planning workbook that keeps all of your data in one place. Free for clients of the practice.">
+<meta property="og:url" content="https://mountainstrongfinancial.ca/plan-b-program">
+<meta property="og:image" content="https://mountainstrongfinancial.ca/assets/logo.png">
+<meta property="og:locale" content="en_CA">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Plan B · The planning workbook · Mountain Strong Financial">
+<meta name="twitter:description" content="When Plan A throws you a curve, Plan B. A planning workbook that keeps all of your data in one place. Free for clients of the practice.">
+<meta name="twitter:image" content="https://mountainstrongfinancial.ca/assets/logo.png">
+
+<!-- Site CSS + JS -->
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="assets/site.js"></script>
+
+</head>
+<body class="page-plan-b-program">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand" aria-label="Mountain Strong Financial">
+    <img src="assets/logo.png" alt="Mountain Strong Financial">
+    <div>
+      <div class="nav-brand-name">Mountain Strong</div>
+    </div>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="about.html" data-nav="about">The practice</a>
+    <a href="client-service.html" data-nav="client-service">Client service</a>
+    <a href="workshop.html" data-nav="workshop">Workshop</a>
+  </div>
+  <a href="#" class="nav-cta js-request" data-kind="general">Request access</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      The Plan B workbook
+    </span>
+    <h1 class="hero-title">When Plan A throws you a curve, <em>Plan B.</em></h1>
+    <p class="hero-lead">
+      Live your <em>Plan A</em>. When something knocks it off the rails, the people around you should not have to go hunting for passwords, deeds, and policies. This workbook is where all of that lives.
+    </p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">The workbook</div>
+        <div class="hero-meta-value">20 sections <em>· one place</em></div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Your data</div>
+        <div class="hero-meta-value">Stays on <em>your device</em></div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">When you're done</div>
+        <div class="hero-meta-value">Print or download</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">For clients</div>
+        <div class="hero-meta-value">Free <em>· part of the work</em></div>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#" class="btn btn-invert js-request" data-kind="general">
+        Request access
+        <span class="arrow">→</span>
+      </a>
+      <a href="#idea" class="btn btn-ghost-invert">
+        See how it works
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Sub-nav -->
+<nav class="subnav" aria-label="Page sections">
+  <div class="subnav-inner">
+    <span class="subnav-label">On this page</span>
+    <a href="#idea">The idea</a>
+    <a href="#covers">What it covers</a>
+    <a href="#how">How it works</a>
+    <a href="#notes">Good to know</a>
+    <a href="#joe">From Joe</a>
+    <a href="#request">Request access</a>
+  </div>
+</nav>
+
+<!-- THE IDEA -->
+<section class="section idea" id="idea">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">The idea / 01</div>
+        <h2 class="section-title">It is only prudent to have a <em>Plan B.</em></h2>
+        <p class="idea-lead">The idea behind your Plan B is to create awareness. We live our life Plan A, but we do not always see life's challenges, even when they are right in front of us or all around us. That does not mean they are not there simply because we cannot see them.</p>
+        <p class="idea-lead">The information in this booklet keeps all of your data in one location. It is an indispensable resource for you and your family while you live your <em>Plan A</em> life. More importantly, when things slip off the rails and you must implement one of your Plan B strategies, the information needed to guide you and your family will be here, <strong>thought out, in advance.</strong></p>
+      </div>
+      <div class="idea-checklist reveal d-1">
+        <div class="checklist-label">Does this sound like you?</div>
+        <ul class="checklist">
+          <li class="check-item" role="button" tabindex="0" aria-pressed="false">
+            <span class="check-box"></span>
+            <span class="check-text">You want your information in order for the people you love.</span>
+          </li>
+          <li class="check-item" role="button" tabindex="0" aria-pressed="false">
+            <span class="check-box"></span>
+            <span class="check-text">You'd rather decide things now, calmly, than leave your family guessing later.</span>
+          </li>
+          <li class="check-item" role="button" tabindex="0" aria-pressed="false">
+            <span class="check-box"></span>
+            <span class="check-text">You want everything in one place: accounts, property, policies, and wishes.</span>
+          </li>
+          <li class="check-item" role="button" tabindex="0" aria-pressed="false">
+            <span class="check-box"></span>
+            <span class="check-text">You want to keep living your Plan A without worrying about the what-ifs.</span>
+          </li>
+          <li class="check-item" role="button" tabindex="0" aria-pressed="false">
+            <span class="check-box"></span>
+            <span class="check-text">You want your plan kept private, on your own device, under your control.</span>
+          </li>
+        </ul>
+        <p class="checklist-foot">Tick even one, and your Plan B is worth starting.</p>
+      </div>
+    </div>
+
+    <p class="idea-pull reveal d-2">With a strong Plan B in place, you can forget about life's challenges and <em>enjoy your life.</em></p>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS · benefits -->
+<section class="section" id="why" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">Why it matters / 02</div>
+        <h2 class="section-title">Everything in <em>one place</em>, sorted out ahead of time.</h2>
+      </div>
+      <p class="section-intro reveal d-1">
+        When a crisis hits, the hardest part is rarely the decision. It is the scramble. Scattered passwords, a policy no one can find, an account no one knew about, papers in three different drawers. Grief and pressure make even simple things hard, and the people you love end up guessing under a deadline. Plan B does that finding now, while life is calm, so no one has to do it later.
+      </p>
+    </div>
+
+    <div class="for-grid">
+      <div class="for-card reveal">
+        <div class="for-card-num">01 / One location</div>
+        <h3 class="for-card-title">All of your data, <em>organized in one place.</em></h3>
+        <p class="for-card-body">Accounts, property, policies, people, and wishes. An easy way to keep all the essential documents of your life in one location, so nothing important is scattered or lost.</p>
+      </div>
+
+      <div class="for-card reveal d-1">
+        <div class="for-card-num">02 / Ready in advance</div>
+        <h3 class="for-card-title">Thought out <em>before</em> it is needed.</h3>
+        <p class="for-card-body">When something slips off the rails, the answers your family needs are already here, decided when you were calm and clear, not guessed at under pressure.</p>
+      </div>
+
+      <div class="for-card reveal d-2">
+        <div class="for-card-num">03 / Easy to keep current</div>
+        <h3 class="for-card-title">As accurate as <em>what you put in.</em></h3>
+        <p class="for-card-body">The booklet is only as accurate as what you enter. Miss a detail or two and that is okay, just keep your papers with your book so everything stays together and current.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT COVERS -->
+<section class="section on-dark" id="covers">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">What it covers / 03</div>
+        <h2 class="section-title">Twenty sections, in <em>five parts.</em></h2>
+      </div>
+      <p class="section-intro reveal d-1">
+        It opens with your <em>why</em> and your goals, then walks the whole picture of a life: about you, what you own and owe, how you are protected, your estate and wishes, and the team who will carry it out.
+      </p>
+    </div>
+
+    <div class="covers-grid reveal">
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">About you</div>
+          <div class="cover-group-count">05 sections</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">02</span> General information</li>
+          <li><span class="cn">03</span> Family tree</li>
+          <li><span class="cn">04</span> Identification</li>
+          <li><span class="cn">05</span> Digital life</li>
+          <li><span class="cn">06</span> Health</li>
+        </ul>
+      </div>
+
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">What you own &amp; owe</div>
+          <div class="cover-group-count">06 sections</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">07</span> Property</li>
+          <li><span class="cn">08</span> Work &amp; business</li>
+          <li><span class="cn">09</span> Banking &amp; debts</li>
+          <li><span class="cn">10</span> Investments</li>
+          <li><span class="cn">11</span> Balance sheet</li>
+          <li><span class="cn">12</span> Cash flow</li>
+        </ul>
+      </div>
+
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">Protection</div>
+          <div class="cover-group-count">02 sections</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">13</span> Life insurance</li>
+          <li><span class="cn">14</span> Other insurance</li>
+        </ul>
+      </div>
+
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">Estate &amp; wishes</div>
+          <div class="cover-group-count">03 sections</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">15</span> Will &amp; estate</li>
+          <li><span class="cn">16</span> Estate checklist</li>
+          <li><span class="cn">17</span> Funeral wishes</li>
+        </ul>
+      </div>
+
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">Team &amp; handover</div>
+          <div class="cover-group-count">03 sections</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">18</span> Your team</li>
+          <li><span class="cn">19</span> Executor duties</li>
+          <li><span class="cn">20</span> Review</li>
+        </ul>
+      </div>
+
+      <div class="cover-group">
+        <div class="cover-group-head">
+          <div class="cover-group-name">Where it starts</div>
+          <div class="cover-group-count">01 section</div>
+        </div>
+        <ul class="cover-list">
+          <li><span class="cn">01</span> Why &amp; goals</li>
+        </ul>
+        <p style="font-size:0.9rem;color:var(--muted-dark-2);line-height:1.55;margin-top:auto">Before any of the detail, you set down what your Plan B is for and what you want it to protect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">How it works / 04</div>
+        <h2 class="section-title">Yours to fill in, <em>at your own pace.</em></h2>
+      </div>
+      <p class="section-intro reveal d-1">
+        Plan B is a private workbook you complete in your own browser. There is no account to make and nothing to send in. You work through it whenever it suits you.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Request your access.</h3>
+          <p>Send a short note and we will share your private link to the workbook. Clients of the practice receive it as part of their service; everyone else can request self-guided access.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Fill it in, <em>section by section.</em></h3>
+          <p>Work through the twenty sections in any order, a little at a time. Your progress is saved automatically and privately in the browser you use to complete the form, so you can stop and pick it back up whenever you like.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Print or download a copy.</h3>
+          <p>When it is ready, print a clean copy for the shelf or download one to keep. There is also a blank version you can print and complete by hand if you prefer paper.</p>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Keep it current, <em>and keep in touch.</em></h3>
+          <p>Store the document somewhere safe and keep your papers with it. Things change, sometimes a little and sometimes a lot, so review it with Joe when life shifts, which may only be every few years.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOD TO KNOW · plain-language fine print -->
+<section class="section" id="notes" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">Good to know / 05</div>
+        <h2 class="section-title">A few honest things, <em>up front.</em></h2>
+      </div>
+      <p class="section-intro reveal d-1">
+        Plan B is a place to think through ideas and gather what matters. Here is exactly what it is, and what it is not.
+      </p>
+    </div>
+
+    <div class="notes-grid">
+      <div class="note reveal">
+        <h3>It does not replace your legal documents.</h3>
+        <p>Nothing recorded in this book overrides any legal document, including your Last Will and Testament. This planning book and everything in it is only for working through ideas.</p>
+      </div>
+
+      <div class="note reveal d-1">
+        <h3>Joe advises where he is licensed.</h3>
+        <p>The book covers your investment portfolio and life insurance products. Registered with CIRO and licensed with the Life Insurance Councils of BC, AB, SK, MB, and ON, Joe can advise you on these parts of your portfolio.</p>
+      </div>
+
+      <div class="note reveal">
+        <h3>He is not a lawyer or an accountant.</h3>
+        <p>Much of what you plan touches legal and accounting matters. Joe is neither a lawyer nor a chartered accountant, and will tell you when an area needs one. You can use your existing lawyer or accountant for those pieces.</p>
+      </div>
+
+      <div class="note reveal d-1">
+        <h3>Review it as life changes.</h3>
+        <p>The advice is current as of when the book is put together. Things change, sometimes a little, sometimes a lot, so keep in touch and review your financial affairs and estate plan regularly, even if only every few years.</p>
+      </div>
+
+      <div class="note warn reveal" style="grid-column:1 / -1">
+        <h3>Store it somewhere safe.</h3>
+        <p>Because the workbook gathers so much in one place, you must keep it somewhere secure. <strong>Lost or stolen information may allow identity theft or financial theft.</strong> If your copy is ever lost or stolen, protect yourself immediately by notifying the relevant authorities, including your bank, credit card company, and insurer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A WORD FROM JOE -->
+<section class="section on-dark" id="joe">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="reveal">
+        <div class="section-label">A word from Joe / 06</div>
+        <h2 class="section-title">Why I built this.</h2>
+      </div>
+    </div>
+
+    <div class="joe-layout">
+      <div class="reveal">
+        <img src="https://mountainstrongfinancial.ca/wp-content/uploads/2026/04/joe1.jpg"
+             alt="Joe ven der Buhs, Certified Executor Advisor" class="joe-photo">
+        <div class="joe-caption">Joe ven der Buhs · CEA · Saskatchewan</div>
+      </div>
+
+      <div class="joe-body reveal d-1">
+        <p>My job as your advisor is to help simplify as many aspects of your life as possible, drawing on the experience I have gained working with families and on the continuing education I do in financial and estate planning.</p>
+        <p>Plan B is how I do that on paper. It puts the picture of your life in one place, so that you can get on with living your Plan A, and so the people who love you are not left guessing if the day ever comes that they need it.</p>
+        <p>Many of the things we will discuss touch on legal and accounting matters. <strong>I am neither a lawyer nor a chartered accountant.</strong> I will let you know when we enter areas where those professionals are required, and we can bring in your existing lawyer or accountant for that work.</p>
+        <p>All of the advice in the book is current when I put it together. Things change, though, so keep in touch and let us review your affairs whenever life shifts.</p>
+
+        <div class="joe-creds">
+          <span class="joe-chip">CEA · Certified Executor Advisor</span>
+          <span class="joe-chip">CFP</span>
+          <span class="joe-chip">CLU</span>
+          <span class="joe-chip">CHS</span>
+          <span class="joe-chip">CPCA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST ACCESS -->
+<section class="section request" id="request">
+  <div class="request-inner">
+    <div class="section-label" style="color:var(--muted-dark-2)">Request access / 07</div>
+    <h2 class="section-title">Start your Plan B.</h2>
+    <p class="section-intro" style="color:var(--muted-dark-2);margin-top:16px">
+      The workbook is shared by private link. Tell us a little about you and Joe will send yours, usually within two business days.
+    </p>
+
+    <div class="request-paths">
+      <div class="path-card feature reveal">
+        <div class="path-tag">For clients of the practice</div>
+        <h3>Already working <em>with Joe?</em></h3>
+        <p>Your Plan B is part of your service. If Joe is your financial advisor, your private link is included at no cost. Request it here and he will send it along.</p>
+        <div class="path-price">Included · no cost</div>
+        <a class="btn btn-invert js-request" href="#" data-kind="client">
+          Request my link
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="path-card reveal d-1">
+        <div class="path-tag">Self-guided</div>
+        <h3>Working through it <em>on your own?</em></h3>
+        <p>Request self-guided access to the workbook and complete it privately, at your own pace. Prefer to do it in good company? The workshop is the guided session to finish it together.</p>
+        <div class="path-price">Workshop · $1,500 per family or business</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-ghost-invert js-request" href="#" data-kind="self">
+            Request access
+            <span class="arrow">→</span>
+          </a>
+          <a class="btn btn-ghost-invert" href="workshop.html">
+            About the workshop
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-line">
+      <span class="privacy-line-dot"></span>
+      <p><strong>Private by design.</strong> Everything you enter stays locally on your own device. Mountain Strong Financial does not receive, see, or store anything you type into the workbook. Nothing leaves your device unless you choose to print or download it.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer on-dark" id="contact" data-site-footer>
+  <div class="footer-inner">
+
+    <div class="footer-hero">
+      <h2 class="footer-hero-title">Start with a <em>conversation.</em><br>The choice is yours from there.</h2>
+      <div class="footer-hero-cta" style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="mailto:joe@mountainstrongfinancial.ca" class="btn btn-invert">
+          Email
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://calendly.com/joe-venderbuhs" target="_blank" rel="noopener" class="btn btn-ghost-invert">
+          Book a time
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Mountain Strong Financial">
+        <div class="footer-brand-name">Mountain Strong Financial</div>
+        <div class="footer-brand-tag"><em>How can I help?</em></div>
+        <p class="footer-brand-desc">A boutique practice for families, business owners, and executors. Personally licensed in Saskatchewan, British Columbia, Alberta, Manitoba, and Ontario.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Saskatchewan</h5>
+        <ul>
+          <li>1265A 8th St East<br>Saskatoon, SK S7H 0S5</li>
+          <li><a href="tel:+13066688833">306 668 8833</a></li>
+          <li><a href="tel:+18334258885">833 425 8885</a> <span style="color:var(--muted-dark-2)">toll-free</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>British Columbia</h5>
+        <ul>
+          <li>By appointment<br>Greater Vancouver, BC</li>
+          <li><a href="tel:+16042171999">604 217 1999</a></li>
+          <li><a href="mailto:joe@mountainstrongfinancial.ca">joe@mountainstrongfinancial.ca</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Site</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">The practice</a></li>
+          <li><a href="client-service.html">Client service</a></li>
+          <li><a href="family-business.html">Family business</a></li>
+          <li><a href="managing-risk.html">Managing risk</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-partner">
+      <div class="footer-partner-logo">
+        <img src="assets/monarch-logo.jpg" alt="Monarch Wealth Corporation">
+      </div>
+      <div class="footer-partner-text">
+        <strong>In partnership with Monarch Wealth Corporation.</strong><br>
+        Insurance products offered through Monarch Wealth Corporation, a licensed managing general agency. Joe ven der Buhs is personally licensed to advise on life, accident and sickness insurance in Saskatchewan, British Columbia, Alberta, Manitoba, and Ontario.
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <a href="trust-centre.html">Trust Centre</a>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        © 1995 – 2026 Mountain Strong Financial
+      </div>
+      <div class="footer-bottom-right">
+        Mountain Strong Financial Inc. is incorporated in British Columbia and extra-provincially registered in Saskatchewan. Mutual fund products distributed through a registered mutual fund dealer. The content of this site is provided for educational purposes only and does not constitute legal, accounting, or tax advice.
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+// Prefilled "Request access" emails with a privacy acknowledgement
+(function () {
+  var to = 'joe@mountainstrongfinancial.ca';
+  var ack = "I understand that:\n\n\u2022 Plan B is for working through ideas, and nothing I record in it overrides any legal document, including my Last Will and Testament.\n\u2022 Everything I enter is stored locally on my own device, and Mountain Strong Financial does not retain any of my information.\n\u2022 Any advice is current as of when the book is put together. Things change, sometimes a little and sometimes a lot, so I will keep in touch and review my financial affairs and estate plan regularly, which may only be every few years.\n\u2022 Protecting my private data is my responsibility. I will store my completed workbook somewhere safe, and if it is ever lost or stolen I will immediately protect myself by advising the relevant authorities, including my bank, credit card company, and insurer.";
+  var bodies = {
+    general: "Hi Joe,\n\nI'd like access to the Plan B planning workbook.\n\n" + ack + "\n\nA little about my situation (optional):\n\n\nThank you,\n",
+    client: "Hi Joe,\n\nI'd like access to the Plan B planning workbook. You're my financial advisor, so I understand this is included as part of my service.\n\n" + ack + "\n\nA little about my situation (optional):\n\n\nThank you,\n",
+    self: "Hi Joe,\n\nI'd like self-guided access to the Plan B planning workbook.\n\n" + ack + "\n\nA little about my situation (optional):\n\n\nThank you,\n"
+  };
+  var subjects = {
+    general: "Plan B: Request access",
+    client: "Plan B: Request access (client)",
+    self: "Plan B: Request access (self-guided)"
+  };
+  document.querySelectorAll('.js-request').forEach(function (a) {
+    var kind = a.getAttribute('data-kind') || 'self';
+    a.setAttribute('href',
+      'mailto:' + to +
+      '?subject=' + encodeURIComponent(subjects[kind]) +
+      '&body=' + encodeURIComponent(bodies[kind]));
+  });
+})();
+
+// Idea self-check · toggle statements
+(function () {
+  function toggle(item) {
+    var on = item.classList.toggle('checked');
+    item.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  document.querySelectorAll('.check-item').forEach(function (item) {
+    item.addEventListener('click', function () { toggle(item); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(item); }
+    });
+  });
+})();
+
+// Reveal on scroll
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach(function (el) { obs.observe(el); });
+})();
+
+// Smooth scroll for in-page anchors
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    var href = link.getAttribute('href');
+    if (href.length <= 1) return;
+    var target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    var top = target.getBoundingClientRect().top + window.scrollY - 40;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>

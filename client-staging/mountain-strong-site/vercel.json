@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/msf-home", "destination": "/about", "permanent": true },
+    { "source": "/msf-index", "destination": "/", "permanent": true },
+    { "source": "/msf-family-business", "destination": "/family-business", "permanent": true },
+    { "source": "/msf-managing-risk", "destination": "/managing-risk", "permanent": true },
+    { "source": "/msf-workshop-landing-page", "destination": "/workshop", "permanent": true },
+    { "source": "/msf-plan-b", "destination": "/plan-b", "permanent": true },
+    { "source": "/privacy", "destination": "/trust-centre#privacy", "permanent": false },
+    { "source": "/terms", "destination": "/trust-centre#terms", "permanent": false },
+    { "source": "/complaint-handling", "destination": "/trust-centre#complaints", "permanent": false },
+    { "source": "/disclosures", "destination": "/trust-centre#disclosures", "permanent": false },
+    { "source": "/disclaimers", "destination": "/trust-centre#disclaimers", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}
