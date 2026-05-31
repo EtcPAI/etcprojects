@@ -4,9 +4,10 @@
 // Required environment variables (set in the Vercel project dashboard):
 //   GITHUB_TOKEN    - fine-grained PAT, scope: only the client repos, Issues: read/write
 //   CLIENT_REPOS    - JSON: {"krips":"etcp-clients/krips-site","advocis":"etcp-clients/advocis-site"}
-//   ALLOWED_ORIGIN  - the form's public URL, e.g. https://updates.example.com
+//   ALLOWED_ORIGIN  - the form's public URL, e.g. https://clientweb.etcprojects.com
 
 const MAX_LEN = 5000;
+const MAX_CHANGES = 20;
 
 function bad(res, status, message) {
   return res.status(status).json({ error: message });
@@ -14,6 +15,10 @@ function bad(res, status, message) {
 
 function escapeForMarkdown(s) {
   return String(s).replace(/[<>]/g, (c) => (c === '<' ? '&lt;' : '&gt;'));
+}
+
+function isShortString(v) {
+  return typeof v === 'string' && v.length > 0 && v.length <= MAX_LEN;
 }
 
 export default async function handler(req, res) {
@@ -29,21 +34,32 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return bad(res, 405, 'Method not allowed');
 
   const body = req.body && typeof req.body === 'object' ? req.body : {};
-  const { client, name, email, page, description, urgency, website_url } = body;
+  const { client, name, email, urgency, changes, website_url } = body;
 
   // Honeypot: real users leave this empty. Bots fill it.
   if (website_url) return res.status(200).json({ ok: true });
 
-  if (!client || !name || !email || !page || !description || !urgency) {
+  if (!isShortString(client) || !isShortString(name) || !isShortString(email) || !isShortString(urgency)) {
     return bad(res, 400, 'Please fill in every field.');
-  }
-  for (const field of [client, name, email, page, description, urgency]) {
-    if (typeof field !== 'string' || field.length > MAX_LEN) {
-      return bad(res, 400, 'One of the fields is too long.');
-    }
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return bad(res, 400, 'That email address does not look right.');
+  }
+  if (!Array.isArray(changes) || changes.length === 0) {
+    return bad(res, 400, 'Please describe at least one change.');
+  }
+  if (changes.length > MAX_CHANGES) {
+    return bad(res, 400, `Please submit at most ${MAX_CHANGES} changes at a time.`);
+  }
+
+  for (const ch of changes) {
+    if (!ch || typeof ch !== 'object') return bad(res, 400, 'Invalid change entry.');
+    if (!isShortString(ch.pageUrl) || !isShortString(ch.section) || !isShortString(ch.description)) {
+      return bad(res, 400, 'Each change needs a page URL, section, and description.');
+    }
+    if (ch.referenceUrl && !isShortString(ch.referenceUrl)) {
+      return bad(res, 400, 'Reference URL is too long.');
+    }
   }
 
   let repoMap;
@@ -65,19 +81,40 @@ export default async function handler(req, res) {
     rush: 'Same day (rush)',
   };
 
-  const title = `[Update] ${page.slice(0, 80)}`;
-  const issueBody = [
+  const titleSummary =
+    changes.length === 1
+      ? changes[0].section.slice(0, 80)
+      : `${changes.length} changes`;
+  const title = `[Update] ${titleSummary}`;
+
+  const lines = [
     `**From:** ${escapeForMarkdown(name)} (${escapeForMarkdown(email)})`,
-    `**Page / section:** ${escapeForMarkdown(page)}`,
     `**Urgency:** ${urgencyLabels[urgency] || urgency}`,
+    `**Changes requested:** ${changes.length}`,
     '',
-    '**Request:**',
-    '',
-    escapeForMarkdown(description),
-    '',
-    '---',
-    `_Submitted via intake form at ${new Date().toISOString()}._`,
-  ].join('\n');
+  ];
+
+  changes.forEach((ch, i) => {
+    lines.push(`---`);
+    lines.push('');
+    lines.push(`### Change ${i + 1}: ${escapeForMarkdown(ch.section)}`);
+    lines.push('');
+    lines.push(`**Page:** ${escapeForMarkdown(ch.pageUrl)}`);
+    lines.push('');
+    lines.push(`**What should change:**`);
+    lines.push('');
+    lines.push(escapeForMarkdown(ch.description));
+    if (ch.referenceUrl) {
+      lines.push('');
+      lines.push(`**Reference:** ${escapeForMarkdown(ch.referenceUrl)}`);
+    }
+    lines.push('');
+  });
+
+  lines.push('---');
+  lines.push(`_Submitted via intake form at ${new Date().toISOString()}._`);
+
+  const issueBody = lines.join('\n');
 
   const ghRes = await fetch(`https://api.github.com/repos/${repo}/issues`, {
     method: 'POST',

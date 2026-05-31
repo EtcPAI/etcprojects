@@ -3,144 +3,371 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Request a Website Update</title>
-    <meta name="description" content="Submit a content or design change request for your website." />
+    <title>Client Portal · Etc. Projects</title>
+    <meta name="description" content="Submit content or design change requests for your website." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #fafafa;
-        --card: #ffffff;
-        --text: #1a1a1a;
-        --muted: #6b7280;
-        --border: #e5e7eb;
-        --accent: #1f2937;
-        --accent-hover: #111827;
-        --error: #b91c1c;
-        --success: #047857;
+        --cream: #F4EFE3;
+        --cream-2: #EAE3D3;
+        --cream-line: rgba(10, 26, 34, 0.08);
+        --ink: #0A1A22;
+        --ink-2: #1B3640;
+        --ink-mute: #506670;
+        --teal: #1FDDC5;
+        --teal-deep: #14B9A5;
+        --navy-900: #042A33;
+        --navy-800: #06424E;
+        --flag-red: #E36363;
+        --flag-green: #1FDDC5;
+        --radius-sm: 8px;
+        --radius: 16px;
+        --radius-lg: 22px;
+        --ff-display: "Mona Sans", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        --ff-body: "Mona Sans", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        --ff-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
       }
       * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
       body {
-        font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        margin: 0;
-        padding: 2rem 1rem;
+        font: 16px/1.5 var(--ff-body);
+        background: var(--cream);
+        color: var(--ink);
+        min-height: 100vh;
       }
-      main {
-        max-width: 40rem;
+
+      /* ---------- top bar ---------- */
+      .topbar {
+        border-bottom: 1px solid var(--cream-line);
+        background: var(--cream);
+      }
+      .topbar-inner {
+        max-width: 56rem;
         margin: 0 auto;
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 2rem;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
-      h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
-      p.lead { color: var(--muted); margin: 0 0 1.5rem; }
+      .wordmark {
+        font-family: var(--ff-display);
+        font-weight: 800;
+        font-size: 1.4rem;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        line-height: 1;
+      }
+      .wordmark .dot { color: var(--teal); }
+      .topbar-meta {
+        font-family: var(--ff-mono);
+        font-size: 0.78rem;
+        color: var(--ink-mute);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* ---------- main ---------- */
+      main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+      h1 {
+        font-family: var(--ff-display);
+        font-weight: 800;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.4rem;
+        color: var(--ink);
+      }
+      .lead { color: var(--ink-mute); margin: 0 0 1.5rem; font-size: 1.05rem; }
+
       .site-banner {
-        background: #f3f4f6;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 0.75rem 1rem;
+        background: white;
+        border: 1px solid var(--cream-line);
+        border-radius: var(--radius);
+        padding: 1rem 1.25rem;
         margin-bottom: 1.5rem;
         font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
       }
-      .site-banner strong { color: var(--accent); }
-      label { display: block; font-weight: 600; margin: 1rem 0 0.25rem; font-size: 0.95rem; }
-      .hint { color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-bottom: 0.25rem; }
-      input, select, textarea {
-        width: 100%;
-        padding: 0.6rem 0.75rem;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        font: inherit;
+      .site-banner .label {
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-mute);
+      }
+      .site-banner .site-name {
+        font-family: var(--ff-display);
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .instructions {
         background: white;
+        border: 1px solid var(--cream-line);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .instructions h2 {
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-mute);
+        margin: 0 0 0.75rem;
+      }
+      .instructions ul { margin: 0; padding-left: 1.25rem; color: var(--ink-2); }
+      .instructions li { margin-bottom: 0.4rem; }
+      .instructions li:last-child { margin-bottom: 0; }
+
+      /* ---------- form ---------- */
+      form { background: white; border: 1px solid var(--cream-line); border-radius: var(--radius-lg); padding: 1.5rem; }
+      fieldset { border: 0; padding: 0; margin: 0 0 1.25rem; }
+      fieldset:last-of-type { margin-bottom: 0; }
+
+      legend {
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-mute);
+        padding: 0;
+        margin-bottom: 0.75rem;
+      }
+
+      label { display: block; font-weight: 600; margin: 0.9rem 0 0.25rem; font-size: 0.95rem; color: var(--ink); }
+      label:first-of-type { margin-top: 0; }
+      .hint { color: var(--ink-mute); font-size: 0.85rem; font-weight: 400; margin: 0.1rem 0 0.35rem; }
+
+      input[type="text"], input[type="email"], input[type="url"], select, textarea {
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid var(--cream-line);
+        border-radius: var(--radius-sm);
+        font: inherit;
+        background: var(--cream);
+        color: var(--ink);
+        transition: border-color 0.15s, background 0.15s;
       }
       input:focus, select:focus, textarea:focus {
-        outline: 2px solid var(--accent);
-        outline-offset: -1px;
+        outline: 2px solid var(--teal);
+        outline-offset: 1px;
+        border-color: var(--teal);
+        background: white;
       }
-      textarea { min-height: 8rem; resize: vertical; }
-      .honeypot { position: absolute; left: -9999px; }
-      button {
-        margin-top: 1.5rem;
-        padding: 0.75rem 1.25rem;
-        background: var(--accent);
-        color: white;
-        border: 0;
-        border-radius: 6px;
+      textarea { min-height: 6.5rem; resize: vertical; }
+
+      .change-block {
+        background: var(--cream);
+        border: 1px solid var(--cream-line);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        position: relative;
+      }
+      .change-block legend {
+        background: var(--cream);
+        padding: 0 0.4rem;
+      }
+      .change-block input, .change-block textarea {
+        background: white;
+      }
+      .change-block .remove-btn {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: transparent;
+        border: 1px solid var(--cream-line);
+        color: var(--ink-mute);
+        padding: 0.25rem 0.6rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        width: auto;
+      }
+      .change-block .remove-btn:hover { color: var(--flag-red); border-color: var(--flag-red); }
+
+      .add-change-btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background: transparent;
+        border: 1px dashed var(--ink-mute);
+        color: var(--ink-2);
+        border-radius: var(--radius-sm);
         font: inherit;
         font-weight: 600;
         cursor: pointer;
-        width: 100%;
+        margin-bottom: 1.25rem;
+        transition: border-color 0.15s, color 0.15s;
       }
-      button:hover { background: var(--accent-hover); }
-      button:disabled { opacity: 0.6; cursor: not-allowed; }
-      .message { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.95rem; }
-      .message.error { background: #fef2f2; color: var(--error); border: 1px solid #fecaca; }
-      .message.success { background: #ecfdf5; color: var(--success); border: 1px solid #a7f3d0; }
+      .add-change-btn:hover { border-color: var(--teal-deep); color: var(--teal-deep); }
+
+      .honeypot { position: absolute; left: -9999px; }
+
+      .submit-btn {
+        margin-top: 0.5rem;
+        padding: 0.9rem 1.25rem;
+        background: var(--ink);
+        color: white;
+        border: 0;
+        border-radius: var(--radius-sm);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1rem;
+        transition: background 0.15s;
+      }
+      .submit-btn:hover { background: var(--navy-900); }
+      .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+      .message { margin-top: 1rem; padding: 0.85rem 1rem; border-radius: var(--radius-sm); font-size: 0.95rem; }
+      .message.error { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+      .message.success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+
+      .disclaimer {
+        margin-top: 1.5rem;
+        padding: 1.25rem 1.5rem;
+        background: transparent;
+        border-left: 3px solid var(--teal);
+        color: var(--ink-mute);
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .disclaimer .label {
+        font-family: var(--ff-mono);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .disclaimer p { margin: 0 0 0.5rem; }
+      .disclaimer p:last-child { margin-bottom: 0; }
+
       .no-client {
         text-align: center;
-        padding: 2rem 1rem;
-        color: var(--muted);
+        padding: 3rem 1.5rem;
+        background: white;
+        border: 1px solid var(--cream-line);
+        border-radius: var(--radius-lg);
       }
-      .no-client h2 { color: var(--text); font-size: 1.2rem; margin: 0 0 0.5rem; }
-      footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 2rem; }
+      .no-client h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+      .no-client p { color: var(--ink-mute); margin: 0; }
+
+      /* ---------- footer ---------- */
+      footer {
+        border-top: 1px solid var(--cream-line);
+        padding: 1.5rem;
+        text-align: center;
+        color: var(--ink-mute);
+        font-size: 0.82rem;
+      }
+      footer a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--cream-line); }
+      footer a:hover { color: var(--teal-deep); border-bottom-color: var(--teal-deep); }
     </style>
   </head>
   <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <a class="wordmark" href="https://www.etcprojects.com">Etc<span class="dot">.</span> Projects</a>
+        <span class="topbar-meta">Client Portal</span>
+      </div>
+    </div>
+
     <main>
       <div id="no-client" class="no-client" hidden>
-        <h2>Personalized link required</h2>
+        <h1>Personalized link required</h1>
         <p>
-          This form needs a personalized link to know which site your request is for.
-          Please use the URL we sent you, or email us if you can't find it.
+          This portal needs a personalized link to know which site your request is for.
+          Please use the URL we sent you, or email
+          <a href="mailto:kelly@kellygustafson.com">kelly@kellygustafson.com</a>
+          if you can't find it.
         </p>
       </div>
 
       <div id="form-section" hidden>
-        <h1>Request a website update</h1>
-        <p class="lead">Tell us what you'd like changed. We'll reply within one business day.</p>
+        <h1>Request a change</h1>
+        <p class="lead">Tell us what to change. We'll reply within one business day.</p>
 
         <div class="site-banner">
-          Requesting an update for <strong id="site-display"></strong>
+          <span class="label">Site</span>
+          <span class="site-name" id="site-display"></span>
+        </div>
+
+        <div class="instructions">
+          <h2>How to fill this in</h2>
+          <ul>
+            <li><strong>Page URL</strong> — paste the link to the page you want changed.</li>
+            <li><strong>Section</strong> — name the section. Use the heading you see on the page (e.g. "Our Team", "Pricing").</li>
+            <li><strong>Description</strong> — what should change. For text edits, paste the exact new wording.</li>
+            <li><strong>More than one change?</strong> Click "Add another change" at the bottom and we'll handle them together.</li>
+          </ul>
         </div>
 
         <form id="request-form" novalidate>
           <input type="hidden" id="client" name="client" />
 
-          <label for="name">Your name</label>
-          <input id="name" name="name" type="text" required autocomplete="name" />
+          <fieldset>
+            <legend>About you</legend>
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" />
 
-          <label for="email">Your email
+            <label for="email">Your email</label>
             <div class="hint">We'll use this to follow up.</div>
-          </label>
-          <input id="email" name="email" type="email" required autocomplete="email" />
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </fieldset>
 
-          <label for="page">Which page or section?
-            <div class="hint">e.g. homepage hero, /about, footer.</div>
-          </label>
-          <input id="page" name="page" type="text" required />
+          <fieldset>
+            <legend>What needs changing</legend>
+            <div id="changes-container">
+              <!-- change blocks injected by JS -->
+            </div>
 
-          <label for="description">What should change?
-            <div class="hint">If it's text, paste the exact new wording. Attach files by emailing them to us afterward.</div>
-          </label>
-          <textarea id="description" name="description" required></textarea>
+            <button type="button" class="add-change-btn" id="add-change">+ Add another change</button>
+          </fieldset>
 
-          <label for="urgency">How urgent is this?</label>
-          <select id="urgency" name="urgency" required>
-            <option value="whenever">Whenever you get to it</option>
-            <option value="week">Within a week</option>
-            <option value="48h">Within 48 hours</option>
-            <option value="rush">Same day (rush — extra fee may apply)</option>
-          </select>
+          <fieldset>
+            <legend>Timing</legend>
+            <label for="urgency">How urgent is this?</label>
+            <select id="urgency" name="urgency" required>
+              <option value="whenever">Whenever you get to it</option>
+              <option value="week">Within a week</option>
+              <option value="48h">Within 48 hours</option>
+              <option value="rush">Same day (rush — extra fee may apply)</option>
+            </select>
+          </fieldset>
 
           <input class="honeypot" type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <button type="submit" id="submit-btn">Submit request</button>
+          <button type="submit" class="submit-btn" id="submit-btn">Submit request</button>
           <div id="message" class="message" hidden></div>
         </form>
+
+        <div class="disclaimer">
+          <span class="label">Scope &amp; timing</span>
+          <p>Content edits and image swaps usually ship the same business day. Layout, design, and new-feature work is quoted separately before we start.</p>
+          <p>Rush requests submitted after 4pm ET land the next business day. For genuinely broken pages, write "SITE DOWN" in the description — we monitor those after hours.</p>
+        </div>
       </div>
     </main>
-    <footer>Submitted requests are confidential and used only to action your update.</footer>
+
+    <footer>
+      Etc<span style="color: var(--teal);">.</span> Projects ·
+      <a href="mailto:kelly@kellygustafson.com">kelly@kellygustafson.com</a> ·
+      <a href="https://www.etcprojects.com">etcprojects.com</a>
+    </footer>
 
     <script>
       function formatSiteName(slug) {
@@ -161,6 +388,64 @@
         document.getElementById('form-section').hidden = false;
       }
 
+      // ----- multi-change support -----
+      const container = document.getElementById('changes-container');
+      const addBtn = document.getElementById('add-change');
+      let changeCounter = 0;
+
+      function buildChangeBlock(index) {
+        const block = document.createElement('fieldset');
+        block.className = 'change-block';
+        block.dataset.index = index;
+        block.innerHTML = `
+          <legend>Change ${index + 1}</legend>
+          ${index > 0 ? '<button type="button" class="remove-btn">Remove</button>' : ''}
+
+          <label>Page URL</label>
+          <div class="hint">The full link to the page you want changed.</div>
+          <input type="url" name="pageUrl" placeholder="https://yoursite.com/about" required />
+
+          <label>Section</label>
+          <div class="hint">Use the visible heading or section name (e.g. "Our Team", "Pricing", "Footer").</div>
+          <input type="text" name="section" required />
+
+          <label>What should change?</label>
+          <div class="hint">For text edits, paste the exact new wording. For images, describe what you want.</div>
+          <textarea name="description" required></textarea>
+
+          <label>Reference images / files (optional)</label>
+          <div class="hint">Paste a link to an image or file. Upload it to Google Drive, Dropbox, or iCloud first and make sure it's shareable.</div>
+          <input type="url" name="referenceUrl" placeholder="https://drive.google.com/..." />
+        `;
+        const removeBtn = block.querySelector('.remove-btn');
+        if (removeBtn) {
+          removeBtn.addEventListener('click', () => {
+            block.remove();
+            renumberBlocks();
+          });
+        }
+        return block;
+      }
+
+      function renumberBlocks() {
+        const blocks = container.querySelectorAll('.change-block');
+        blocks.forEach((block, i) => {
+          block.dataset.index = i;
+          const legend = block.querySelector('legend');
+          if (legend) legend.textContent = `Change ${i + 1}`;
+        });
+      }
+
+      // Initial change block
+      container.appendChild(buildChangeBlock(0));
+      changeCounter = 1;
+
+      addBtn.addEventListener('click', () => {
+        container.appendChild(buildChangeBlock(changeCounter));
+        changeCounter++;
+      });
+
+      // ----- form submit -----
       const form = document.getElementById('request-form');
       if (form) {
         const btn = document.getElementById('submit-btn');
@@ -178,13 +463,31 @@
           btn.disabled = true;
           btn.textContent = 'Submitting…';
 
-          const data = Object.fromEntries(new FormData(form).entries());
+          // Collect all change blocks into an array
+          const changes = [];
+          container.querySelectorAll('.change-block').forEach((block) => {
+            changes.push({
+              pageUrl: block.querySelector('[name="pageUrl"]').value.trim(),
+              section: block.querySelector('[name="section"]').value.trim(),
+              description: block.querySelector('[name="description"]').value.trim(),
+              referenceUrl: block.querySelector('[name="referenceUrl"]').value.trim(),
+            });
+          });
+
+          const payload = {
+            client: document.getElementById('client').value,
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            urgency: document.getElementById('urgency').value,
+            changes,
+            website_url: form.querySelector('[name="website_url"]').value,
+          };
 
           try {
             const res = await fetch('/api/submit', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
+              body: JSON.stringify(payload),
             });
             const body = await res.json().catch(() => ({}));
 
@@ -197,6 +500,11 @@
 
             form.reset();
             document.getElementById('client').value = clientSlug;
+            // Reset to a single empty change block
+            container.innerHTML = '';
+            container.appendChild(buildChangeBlock(0));
+            changeCounter = 1;
+
             showMessage("Thanks — we got it. You'll hear from us within one business day.", 'success');
             btn.textContent = 'Submitted';
           } catch (err) {
