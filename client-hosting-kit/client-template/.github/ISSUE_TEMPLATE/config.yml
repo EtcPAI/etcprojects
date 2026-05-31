@@ -1,5 +1,4 @@
+# Issue templates here are for internal use. Clients never visit this repo's
+# Issues tab — they submit via the intake form, which calls the GitHub API
+# directly. Blank issues are disabled so accidental clicks don't create noise.
 blank_issues_enabled: false
-contact_links:
-  - name: Update Request Form
-    url: https://updates.yourdomain.com
-    about: Prefer a form instead of GitHub? Use the update request form.
