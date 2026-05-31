@@ -1,0 +1,9 @@
+{
+  "name": "etcp-clients-intake-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Client update request form. Static page + one Vercel serverless function that files a GitHub issue in the relevant client repo.",
+  "engines": {
+    "node": ">=18"
+  }
+}

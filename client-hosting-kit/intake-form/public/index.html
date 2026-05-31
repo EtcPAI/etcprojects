@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a Website Update</title>
+    <meta name="description" content="Submit a content or design change request for your website." />
+    <style>
+      :root {
+        --bg: #fafafa;
+        --card: #ffffff;
+        --text: #1a1a1a;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #1f2937;
+        --accent-hover: #111827;
+        --error: #b91c1c;
+        --success: #047857;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 2rem 1rem;
+      }
+      main {
+        max-width: 40rem;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+      }
+      h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
+      p.lead { color: var(--muted); margin: 0 0 1.5rem; }
+      label { display: block; font-weight: 600; margin: 1rem 0 0.25rem; font-size: 0.95rem; }
+      .hint { color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-bottom: 0.25rem; }
+      input, select, textarea {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font: inherit;
+        background: white;
+      }
+      input:focus, select:focus, textarea:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -1px;
+      }
+      textarea { min-height: 8rem; resize: vertical; }
+      .honeypot { position: absolute; left: -9999px; }
+      button {
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--accent);
+        color: white;
+        border: 0;
+        border-radius: 6px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover { background: var(--accent-hover); }
+      button:disabled { opacity: 0.6; cursor: not-allowed; }
+      .message { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.95rem; }
+      .message.error { background: #fef2f2; color: var(--error); border: 1px solid #fecaca; }
+      .message.success { background: #ecfdf5; color: var(--success); border: 1px solid #a7f3d0; }
+      footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 2rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Request a website update</h1>
+      <p class="lead">Tell us what you'd like changed. We'll reply within one business day.</p>
+
+      <form id="request-form" novalidate>
+        <label for="client">Which site is this for?
+          <div class="hint">Pick your business.</div>
+        </label>
+        <select id="client" name="client" required>
+          <option value="">Select your site…</option>
+          <option value="krips">Krips</option>
+          <option value="advocis">Advocis</option>
+        </select>
+
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required autocomplete="name" />
+
+        <label for="email">Your email
+          <div class="hint">We'll use this to follow up.</div>
+        </label>
+        <input id="email" name="email" type="email" required autocomplete="email" />
+
+        <label for="page">Which page or section?
+          <div class="hint">e.g. homepage hero, /about, footer.</div>
+        </label>
+        <input id="page" name="page" type="text" required />
+
+        <label for="description">What should change?
+          <div class="hint">If it's text, paste the exact new wording. Attach files by emailing them to us afterward.</div>
+        </label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="urgency">How urgent is this?</label>
+        <select id="urgency" name="urgency" required>
+          <option value="whenever">Whenever you get to it</option>
+          <option value="week">Within a week</option>
+          <option value="48h">Within 48 hours</option>
+          <option value="rush">Same day (rush — extra fee may apply)</option>
+        </select>
+
+        <input class="honeypot" type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <button type="submit" id="submit-btn">Submit request</button>
+        <div id="message" class="message" hidden></div>
+      </form>
+    </main>
+    <footer>Submitted requests are confidential and used only to action your update.</footer>
+
+    <script>
+      const form = document.getElementById('request-form');
+      const btn = document.getElementById('submit-btn');
+      const messageEl = document.getElementById('message');
+
+      function showMessage(text, kind) {
+        messageEl.textContent = text;
+        messageEl.className = 'message ' + kind;
+        messageEl.hidden = false;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        messageEl.hidden = true;
+        btn.disabled = true;
+        btn.textContent = 'Submitting…';
+
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        try {
+          const res = await fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const body = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            showMessage(body.error || 'Something went wrong. Please try again or email us.', 'error');
+            btn.disabled = false;
+            btn.textContent = 'Submit request';
+            return;
+          }
+
+          form.reset();
+          showMessage("Thanks — we got it. You'll hear from us within one business day.", 'success');
+          btn.textContent = 'Submitted';
+        } catch (err) {
+          showMessage('Could not reach the server. Please try again in a moment.', 'error');
+          btn.disabled = false;
+          btn.textContent = 'Submit request';
+        }
+      });
+    </script>
+  </body>
+</html>
