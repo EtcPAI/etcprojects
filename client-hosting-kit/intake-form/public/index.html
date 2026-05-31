@@ -171,9 +171,13 @@
         margin-bottom: 1rem;
         position: relative;
       }
-      .change-block legend {
-        background: var(--cream);
-        padding: 0 0.4rem;
+      .change-block .change-label {
+        font-family: var(--ff-mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-mute);
+        margin: 0 0 1rem;
       }
       .change-block input, .change-block textarea {
         background: white;
@@ -207,7 +211,7 @@
         font: inherit;
         font-weight: 600;
         cursor: pointer;
-        margin-bottom: 1.25rem;
+        margin: 1.25rem 0;
         transition: border-color 0.15s, color 0.15s;
       }
       .add-change-btn:hover { border-color: var(--teal-deep); color: var(--teal-deep); }
@@ -394,11 +398,11 @@
       let changeCounter = 0;
 
       function buildChangeBlock(index) {
-        const block = document.createElement('fieldset');
+        const block = document.createElement('div');
         block.className = 'change-block';
         block.dataset.index = index;
         block.innerHTML = `
-          <legend>Change ${index + 1}</legend>
+          <div class="change-label">Change ${index + 1}</div>
           ${index > 0 ? '<button type="button" class="remove-btn">Remove</button>' : ''}
 
           <label>Page URL</label>
@@ -431,8 +435,8 @@
         const blocks = container.querySelectorAll('.change-block');
         blocks.forEach((block, i) => {
           block.dataset.index = i;
-          const legend = block.querySelector('legend');
-          if (legend) legend.textContent = `Change ${i + 1}`;
+          const label = block.querySelector('.change-label');
+          if (label) label.textContent = `Change ${i + 1}`;
         });
       }
 
