@@ -1,0 +1,39 @@
+name: Update request
+description: Request a content or design change to the site.
+title: "[Update] "
+labels: ["update-request"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page or section?
+      placeholder: e.g. /about, homepage hero, footer
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change?
+      description: Describe the change. If it's text, paste the exact new copy.
+      placeholder: |
+        - Replace "Founded in 2020" with "Founded in 2019"
+        - Swap the team photo for the attached image
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: How urgent is this?
+      options:
+        - Whenever you get to it
+        - Within a week
+        - Within 48 hours
+        - Same day (rush — extra fee may apply)
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Links, references, attachments (drag & drop here).

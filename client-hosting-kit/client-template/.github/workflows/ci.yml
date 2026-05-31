@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  links-and-html:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTML files exist
+        run: |
+          if ! ls *.html >/dev/null 2>&1; then
+            echo "::warning::No top-level HTML files found"
+          fi
+      - name: Validate vercel.json
+        run: |
+          if [ -f vercel.json ]; then
+            python3 -c "import json,sys; json.load(open('vercel.json'))"
+          fi
