@@ -12,7 +12,7 @@ Keep this file private (it lives in the kit, not in a client-facing repo).
 
 | Slug | Business name | Their domain | Repo | Contact email | Onboarded | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| `mountain-strong` | Mountain Strong | _(not yet — site not deployed)_ | [mountain-strong-site](https://github.com/etcp-clients/mountain-strong-site) | _(fill in)_ | 2026-05-31 | |
+| `mountain-strong` | Mountain Strong Financial | [mountainstrong.ca](https://mountainstrong.ca) | [mountain-strong-site](https://github.com/etcp-clients/mountain-strong-site) | joe@mountainstrongfinancial.ca | 2026-05-31 | Site deployed 2026-05-31. Joe ven der Buhs. Personal insurance licence in SK, BC, AB, MB, ON. Corporation registered in BC, extra-provincially in SK. |
 | `chamberlain-eg` | Chamberlain EG | _(not yet)_ | [chamberlain-eg-site](https://github.com/etcp-clients/chamberlain-eg-site) | _(fill in)_ | 2026-05-31 | |
 | `chamberlain-eg-advisors` | Chamberlain EG Advisors | _(not yet)_ | [chamberlain-eg-advisors-site](https://github.com/etcp-clients/chamberlain-eg-advisors-site) | _(fill in)_ | 2026-05-31 | Sister/sub-brand of Chamberlain EG |
 | `yutaka` | Yutaka | _(not yet)_ | [yutaka-site](https://github.com/etcp-clients/yutaka-site) | _(fill in)_ | 2026-05-31 | |
