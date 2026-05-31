@@ -1,0 +1,32 @@
+name: Bug report
+description: Something on the site is broken or behaving wrong.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Which page (URL)?
+      placeholder: https://example.com/about
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong?
+      placeholder: e.g. "Contact form submits but I never get the email."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to /contact
+        2. Fill in the form
+        3. Click submit
+  - type: input
+    id: device
+    attributes:
+      label: Device / browser
+      placeholder: e.g. iPhone 15 Safari, Chrome on Windows
