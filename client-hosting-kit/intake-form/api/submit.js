@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return bad(res, 405, 'Method not allowed');
 
   const body = req.body && typeof req.body === 'object' ? req.body : {};
-  const { client, name, email, urgency, changes, website_url } = body;
+  const { client, name, email, urgency, notes, changes, website_url } = body;
 
   // Honeypot: real users leave this empty. Bots fill it.
   if (website_url) return res.status(200).json({ ok: true });
@@ -60,6 +60,13 @@ export default async function handler(req, res) {
     if (ch.referenceUrl && !isShortString(ch.referenceUrl)) {
       return bad(res, 400, 'Reference URL is too long.');
     }
+  }
+
+  if (notes && typeof notes !== 'string') {
+    return bad(res, 400, 'Notes must be text.');
+  }
+  if (notes && notes.length > MAX_LEN) {
+    return bad(res, 400, 'Notes are too long.');
   }
 
   let repoMap;
@@ -110,6 +117,15 @@ export default async function handler(req, res) {
     }
     lines.push('');
   });
+
+  if (notes) {
+    lines.push('---');
+    lines.push('');
+    lines.push('### Additional notes');
+    lines.push('');
+    lines.push(escapeForMarkdown(notes));
+    lines.push('');
+  }
 
   lines.push('---');
   lines.push(`_Submitted via intake form at ${new Date().toISOString()}._`);

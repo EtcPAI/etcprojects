@@ -353,6 +353,13 @@
             </select>
           </fieldset>
 
+          <fieldset>
+            <legend>Additional notes</legend>
+            <label for="notes">Anything else we should know? <span style="font-weight: 400; color: var(--ink-mute);">(optional)</span></label>
+            <div class="hint">Context, deadlines, links to inspiration, names of stakeholders, etc.</div>
+            <textarea id="notes" name="notes"></textarea>
+          </fieldset>
+
           <input class="honeypot" type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <button type="submit" class="submit-btn" id="submit-btn">Submit request</button>
@@ -483,6 +490,7 @@
             name: document.getElementById('name').value.trim(),
             email: document.getElementById('email').value.trim(),
             urgency: document.getElementById('urgency').value,
+            notes: document.getElementById('notes').value.trim(),
             changes,
             website_url: form.querySelector('[name="website_url"]').value,
           };
