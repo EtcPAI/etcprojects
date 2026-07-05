@@ -1,6 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "bsmission.etcprojects.com" }],
+      "destination": "/bsmission/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/:path*",
