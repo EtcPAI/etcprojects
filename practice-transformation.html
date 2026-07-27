@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Transformation &amp; Tech Implementation | Etc. Projects</title>
+<meta name="description" content="People first, then process, then technology. Practice transformation, technology implementation, and the Etc. AI Program for independent Canadian advisory practices. 500 transformations, 25 years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=17">
+<style>
+.g3{grid-template-columns:repeat(3,1fr)}
+.cloud{margin-top:28px;display:flex;flex-wrap:wrap;gap:9px;max-width:1000px}
+.cloud span{font-family:var(--ff-mono);font-size:12px;letter-spacing:.04em;padding:8px 15px;border-radius:999px;background:#fff;border:1px solid var(--cream-line);color:var(--ink-mute)}
+.cloud span.hot{background:var(--navy-900);border-color:var(--navy-900);color:var(--teal)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.stack{display:flex;flex-direction:column;gap:14px}
+.stack .row{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding:20px 24px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:16px;transition:border-color .22s,background .22s}
+.stack .row:hover{border-color:rgba(31,221,197,.38);background:rgba(31,221,197,.04)}
+.stack .row .o{font-family:var(--ff-mono);font-size:11px;letter-spacing:.2em;color:var(--teal)}
+.stack .row .t{font-family:var(--ff-display);font-weight:800;font-size:21px;letter-spacing:-.024em;color:var(--cream)}
+.stack .row .d{margin-top:7px;font-size:14.5px;line-height:1.6;color:rgba(244,239,227,.68)}
+.stack .row .tagx{margin-top:12px;display:inline-block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(31,221,197,.4);border-radius:999px;padding:4px 11px}
+.covers{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px}
+.covers div{font-family:var(--ff-display);font-weight:600;font-size:14.5px;color:rgba(244,239,227,.85);padding-left:17px;position:relative}
+.covers div::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.term{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;font-family:var(--ff-mono);font-size:12.5px;line-height:1.75;color:rgba(244,239,227,.72)}
+.term .q{color:var(--cream)}
+.term .a{color:var(--teal)}
+.term .hr{margin:14px 0;border-top:1px dashed rgba(255,255,255,.14)}
+.term .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,227,.4)}
+.term .r{display:flex;justify-content:space-between;gap:16px;padding:3px 0}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.story-copy h2{font-size:clamp(46px,5.6vw,80px);line-height:.95;letter-spacing:-.035em;margin-top:16px}
+.story-copy h2 em{font-style:normal;color:#16C9B2;display:block}
+.story-copy .lead{margin-top:24px;font-family:var(--ff-display);font-weight:700;font-size:18px;line-height:1.55;color:var(--ink);max-width:46ch;text-wrap:pretty}
+.deserve{margin:28px 0;border-left:5px solid #16C9B2;padding:2px 0 2px 20px;font-family:var(--ff-display);font-weight:800;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.02em;color:#16C9B2;text-transform:uppercase;line-height:1}
+.story-steps{display:flex;flex-direction:column;gap:22px;padding-top:38px}
+.step-card{background:#fff;border-radius:20px;padding:26px 32px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start;box-shadow:0 14px 40px -16px rgba(10,26,34,.2)}
+.step-card:nth-child(2){margin-left:26px}
+.sc-num{font-family:var(--ff-display);font-weight:800;font-size:44px;letter-spacing:-.05em;color:#16C9B2;line-height:1}
+.sc-when{font-family:var(--ff-display);font-weight:700;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute)}
+.sc-name{margin-top:5px;font-family:var(--ff-display);font-weight:800;font-size:26px;letter-spacing:-.025em;color:var(--ink);line-height:1.05}
+.sc-desc{margin-top:8px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+@media (max-width:900px){.story-grid{grid-template-columns:1fr;gap:36px}.story-steps{padding-top:0}.step-card:nth-child(2){margin-left:0}}
+.callout{margin-top:26px;border-left:4px solid var(--teal);padding:6px 0 6px 22px;font-family:var(--ff-display);font-weight:800;font-size:clamp(24px,3vw,40px);letter-spacing:-.028em;color:var(--teal);text-transform:uppercase;line-height:1.02}
+@media (max-width:1180px){.split{grid-template-columns:1fr;gap:44px}.g3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.g3,.covers{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="mark">E.</span><span class="word">Etc<span class="dot">.</span> Projects</span></a>
+    <div class="nav-links">
+      <a class="lmp" href="index.html#living-my-plan">Living My Plan</a>
+      <a class="ctn" href="index.html#contannuity">Contannuity</a>
+      <a href="#method">Practice Transformation</a>
+      <a href="#platform">Platform</a>
+      <a href="index.html#why">Why Etc.</a>
+    </div>
+    <a class="btn btn-teal btn-sm nav-cta" href="#talk">Book a conversation <span class="arrow">&rarr;</span></a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a class="lmp" href="index.html#living-my-plan">Living My Plan&trade;</a>
+    <a class="ctn" href="index.html#contannuity">Contannuity&trade;</a>
+    <a href="#method">Practice Transformation</a>
+    <a href="#tech">Tech Implementation</a>
+    <a href="#platform">Platform</a>
+    <a href="index.html">Digital Solutions</a>
+    <a class="btn btn-teal" href="#talk">Book a conversation <span class="arrow">&rarr;</span></a>
+  </div>
+</nav>
+
+<main id="top">
+
+<section class="hero" style="min-height:auto;padding:170px 0 0">
+  <div class="grid-bg"></div><div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span>Practice Transformation &middot; Tech Implementation</span>
+    <h1 style="max-width:14ch">Real people. Real practices.<em>Real transformation.</em></h1>
+    <p class="sub">500+ independent Canadian practices modernized from the inside out. <b>People first. Then process. Then technology.</b> Decades in, and we still love this work more than the day we started.</p>
+    <div class="hero-actions">
+      <a class="btn btn-teal" href="#talk">Start with a conversation <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="#method">See the method</a>
+      <a class="btn btn-ghost" href="index.html">Our digital solutions</a>
+    </div>
+    <p class="hero-note">Agnostic by design across tech, dealer, MGA, license, designation, and jurisdiction.</p>
+    <div class="proof">
+      <div><div class="n">500<span class="u">+</span></div><div class="l">Practice transformations</div></div>
+      <div><div class="n">Decades</div><div class="l">In the trenches</div></div>
+      <div><div class="n">100<span class="u">%</span></div><div class="l">Canadian built</div></div>
+      <div><div class="n">0<span class="u">%</span></div><div class="l">Hype, fluff, or jargon</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gaps on-cream" id="reality">
+  <div class="wrap">
+    <span class="rule rv">The reality</span>
+    <h2 class="rv" style="max-width:12ch">We bring calm to the chaos.</h2>
+    <p class="intro rv">You are running a complex business in a regulated industry with clients who trust you, a team that depends on you, regulators watching you, and a thousand moving parts nobody outside your office will ever see. The list your clients see is much shorter than the list you manage.</p>
+    <div class="cloud rv">
+      <span class="hot">Advisor</span><span class="hot">Recommendations</span><span class="hot">Team</span><span class="hot">Products</span><span class="hot">Service</span>
+      <span>20 carriers</span><span>60 processes</span><span>150 workflows</span><span>80 compliance checks per client</span><span>Technology stack</span><span>MGAs</span><span>Dealers</span><span>Regulators</span><span>Jurisdictions</span><span>Licenses</span><span>Ethics</span><span>CE credits</span><span>Designations</span><span>Conflict of interest</span><span>Cyber security</span><span>170 systems</span><span>2,000 policy holders</span><span>380 households</span><span>Competing priorities</span><span>AUM</span><span>KYC</span><span>AML</span><span>PIPEDA</span><span>CASL</span><span>Dirty data</span><span>Disengaged clients</span><span>Outdated industry processes</span><span>CRM</span><span>Back offices</span><span>Complaint handling</span><span>Wholesalers</span><span>2FA</span>
+    </div>
+    <div class="why-band rv" style="margin-top:34px">
+      <div class="t">We see you. We get it. <i>We can help.</i></div>
+      <a class="btn btn-teal" href="#talk">Tell us what is not working <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="story on-cream" id="order">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-copy">
+        <span class="rule rv">Our story</span>
+        <h2 class="rv">Built from the <em>inside out.</em></h2>
+        <p class="lead rv">We started Etc. Projects to solve a problem we kept seeing. Independent financial advisors trying to run modern, ambitious businesses and doing it brilliantly, but often without the right tools, the right support, or a partner who understood the whole picture.</p>
+        <div class="deserve rv">You deserve better.</div>
+        <p class="lead rv">We knew we could build it, so we rolled up our sleeves and went to work. 500+ transformations later, we have a system and proven method that is rooted in advisor reality. A process we have used, refined, and used again. Successfully.</p>
+      </div>
+      <div class="story-steps">
+        <div class="step-card rv"><div class="sc-num">01</div><div><div class="sc-when">Start here</div><div class="sc-name">People</div><div class="sc-desc">Roles, capacity, dynamics, and the realities of how the team actually works together.</div></div></div>
+        <div class="step-card rv"><div class="sc-num">02</div><div><div class="sc-when">Then</div><div class="sc-name">Process</div><div class="sc-desc">Workflows, handoffs, and the documented ways the work moves through the practice.</div></div></div>
+        <div class="step-card rv"><div class="sc-num">03</div><div><div class="sc-when">Then and only then</div><div class="sc-name">Technology</div><div class="sc-desc">The right tools, in the right sequence, configured for the practice we just mapped.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why on-cream" id="method">
+  <div class="wrap">
+    <span class="rule rv">How we work</span>
+    <h2 class="rv" style="max-width:14ch">Rooted in reality. Used in real practices.</h2>
+    <p class="intro rv">Three steps, in this order, every time. Purpose-built tools, proven systems, and a hands-on team that diagnoses with depth, aligns solutions to real problems, and guides every practice through a transformation built on decades of experience.</p>
+    <div class="why-grid g3 rv" style="margin-top:34px">
+      <div class="why-card"><div class="n">01 &middot; No assumptions</div><h3>Diagnose with depth</h3><p>Our diagnostic tools, built from 500+ real transformations, audit every corner of the practice. Team dynamics, workflows, compliance posture, and tech stack, all through the lens of risk and growth. You get a clear, prioritized roadmap you can act on.</p></div>
+      <div class="why-card"><div class="n">02 &middot; Goldilocks rule</div><h3>Align what matters</h3><p>Our alignment engine connects your roadmap to the right solutions in the right sequence. Matches tested in real offices and built specifically for independent Canadian advisory teams, sized to the practice, with nothing you will not use.</p></div>
+      <div class="why-card"><div class="n">03 &middot; Always moving</div><h3>A guided journey</h3><p>A guided transformation designed from hundreds of engagements across Canada. Our platform keeps you moving between sessions and our team shows up when it matters most, so the practice keeps progressing whether we are in the room or not.</p></div>
+    </div>
+    <div class="why-band rv">
+      <div class="t">Two evaluation lenses run through every engagement: <i>risk mitigation and strategic growth</i>, across people, process, and technology.</div>
+    </div>
+  </div>
+</section>
+
+<section class="prod lmp" id="tech">
+  <div class="glow-l"></div>
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="rule rv">Tech implementation</span>
+        <h2 class="rv" style="margin-top:16px;font-size:clamp(38px,4.6vw,68px)">Rollout is where most implementations <em>break down</em>.</h2>
+        <p class="body rv">Selecting software takes a few weeks. Adoption is decided by the sequence, the configuration, the data you migrate, and whether the team was trained in the context of their own work. We run implementations the same way we run everything else: map the practice first, then configure, then train, then stay until the system is being used every day.</p>
+        <div class="covers rv">
+          <div>CRM selection and configuration</div><div>Data cleanup and migration</div>
+          <div>Workflow build and automation</div><div>Client portal and e-signature</div>
+          <div>Scheduling, forms, and surveys</div><div>Compliance and supervision records</div>
+          <div>Document management</div><div>Role-based training in context</div>
+          <div>Adoption checkpoints after go-live</div><div>Vendor coordination</div>
+        </div>
+        <div class="prod-actions rv"><a class="btn btn-teal" href="#talk">Scope an implementation <span class="arrow">&rarr;</span></a></div>
+      </div>
+      <div class="rv">
+        <div class="term">
+          <div class="k">Implementation checkpoint &middot; week 6</div>
+          <div class="hr"></div>
+          <div class="r"><span class="q">Workflows built</span><span class="a">14 of 14</span></div>
+          <div class="r"><span class="q">Records migrated</span><span class="a">2,184</span></div>
+          <div class="r"><span class="q">Duplicate records resolved</span><span class="a">311</span></div>
+          <div class="r"><span class="q">Team trained in role</span><span class="a">6 of 6</span></div>
+          <div class="r"><span class="q">Client portal live</span><span class="a">yes</span></div>
+          <div class="hr"></div>
+          <div class="k">Adoption, day 30</div>
+          <div class="r"><span class="q">Tasks created in system</span><span class="a">94%</span></div>
+          <div class="r"><span class="q">Meetings logged same day</span><span class="a">88%</span></div>
+          <div class="r"><span class="q">Notes outside the CRM</span><span class="a">3%</span></div>
+        </div>
+        <div class="mini rv" style="margin-top:18px;display:block">
+          <div class="k">Partner product</div>
+          <h4>Laylah <em>CRM</em></h4>
+          <p>As Laylah's implementation team, we run a streamlined rollout with a full customization package, in-context CRM training, and workflows aligned to how your practice actually runs. Canadian built and hosted.</p>
+          <a class="go" href="https://www.laylah.ca/en" target="_blank" rel="noopener">Learn about Laylah <span class="ar">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="more" id="platform">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <span class="rule rv">Where the work lives</span>
+    <h2 class="rv" style="max-width:15ch">The platform and the apps behind the method.</h2>
+    <div class="more-grid" style="margin-top:18px">
+      <a class="mini rv" href="index.html#living-my-plan"><div class="k">Digital solution</div><h4>Living My <em>Plan&trade;</em></h4><p>The client-facing piece that came out of this work. A living service plan that makes the value of advice visible between meetings.</p><span class="go">See the solution <span class="ar">&rarr;</span></span></a>
+      <a class="mini rv" href="index.html#contannuity"><div class="k">Digital solution</div><h4>Contannuity<em>&trade;</em></h4><p>The continuity piece that came out of this work. Clear instructions, the right contacts, and a step by step plan for the people who would have to act on it.</p><span class="go">See the solution <span class="ar">&rarr;</span></span></a>
+      <a class="mini rv" href="https://app.etcprojectsai.com/" target="_blank" rel="noopener"><div class="k">Training platform</div><h4>Practice Performance <em>Lab&trade;</em></h4><p>The whole method in one place. 25+ practice intelligence tools covering diagnostics, alignment logic, sequencing, and execution support. Clarity on where you stand and a clear path forward, without waiting for the next session.</p><span class="go">Enter the Lab <span class="ar">&rarr;</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="talk">
+  <div class="wrap">
+    <span class="rule rv">Start a real conversation</span>
+    <h2 class="rv">No pitch. No pressure. <em>Just clarity.</em></h2>
+    <p class="sub rv">Tell us what is working, what is not, and where you want your practice to go next. We will tell you straight whether we can help, and what the right first step looks like.</p>
+    <div class="acts rv">
+      <a class="btn btn-teal" href="mailto:hello@etcprojects.com?subject=Practice%20transformation%20conversation">Book a conversation <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="index.html">See our digital solutions</a>
+    </div>
+    <p class="mail rv"><a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a></p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="mark">E.</span><span class="word">Etc<span class="dot">.</span> Projects</span></a>
+        <p class="blurb">Digital solutions and practice intelligence for independent Canadian financial advisory practices. Built from 500+ real transformations and tech implementations.</p>
+      </div>
+      <div>
+        <h5>Digital Solutions</h5>
+        <ul>
+          <li><a href="https://www.livingmyplan.com" target="_blank" rel="noopener">Living My Plan&trade;</a></li>
+          <li><a href="https://www.contannuity.ca" target="_blank" rel="noopener">Contannuity&trade;</a></li>
+          <li><a href="https://app.etcprojectsai.com/" target="_blank" rel="noopener">Practice Performance Lab&trade;</a></li>
+          <li><a href="https://www.laylah.ca/en" target="_blank" rel="noopener">Laylah CRM</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#method">How we work</a></li>
+          <li><a href="#tech">Tech implementation</a></li>
+          <li><a href="#platform">Platform &amp; apps</a></li>
+          <li><a href="#talk">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="https://etcprojects.com/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="https://etcprojects.com/terms-and-conditions.html">Terms</a></li>
+          <li><a href="https://etcprojects.com/ai-disclaimer.html">AI Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 49Maple Inc. o/a Etcetera Projects. LIVING MY PLAN&trade; and CONTANNUITY&trade; are trademarks of 49Maple Inc.</span>
+      <span>Powered by highly efficient people.</span>
+    </div>
+  </div>
+</footer>
+</main>
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
+  var b=document.getElementById('burger'),d=document.getElementById('drawer');
+  b.addEventListener('click',function(){var o=d.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
+  d.addEventListener('click',function(e){if(e.target.tagName==='A'){d.classList.remove('open');b.setAttribute('aria-expanded','false')}});
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.style.background=scrollY>40?'rgba(4,42,51,.92)':'rgba(4,42,51,.72)'},{passive:true});
+})();
+</script>
+</body>
+</html>
