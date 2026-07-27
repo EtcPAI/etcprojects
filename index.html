@@ -3,2683 +3,348 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Etc. Projects | Practice Intelligence for Independent Canadian Advisors</title>
-<meta name="description" content="Etc. Projects has spent over a decade transforming independent Canadian financial advisory practices. People first, then process, then technology. 500+ transformations and counting.">
+<title>Etc. Projects | The missing pieces of an independent practice</title>
+<meta name="description" content="Digital solutions by Etc. Projects. Living My Plan makes the value of advice visible. Contannuity gets a practice prepared for every possibility. Built from 500 practice transformations across Canada.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;600;700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --blue: #04253A;
-  --blue-mid: #0a3d5c;
-  --blue-deep: #021a28;
-  --blue-darker: #010f17;
-  --turquoise: #14D4C4;
-  --turquoise-bright: #2EEDDB;
-  --turquoise-light: #fff4ee;
-  --white: #ffffff;
-  --cream: #FAF7F2;
-  --grey: #EDF0F4;
-  --grey-mid: #C8D1DA;
-  --border: #D4DBE0;
-  --muted: #5C6F7D;
-  --text: #1A2E3B;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 2px 16px rgba(4,37,58,.11);
-  --shadow-sm: 0 1px 4px rgba(4,37,58,.08);
-  --shadow-md: 0 8px 32px rgba(4,37,58,.14);
-  --shadow-lg: 0 24px 64px rgba(4,37,58,.18);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text);
-  background: var(--cream);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; }
-
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 48px;
-  background: rgba(4, 37, 58, 0.92);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: padding 0.3s ease;
-}
-
-nav.scrolled { padding: 14px 48px; }
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.nav-logo-mark {
-  width: 36px;
-  height: 36px;
-  background: var(--turquoise);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: 17px;
-  color: white;
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.nav-logo:hover .nav-logo-mark {
-  transform: rotate(-6deg);
-}
-
-.nav-logo-text {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  color: rgba(255,255,255,0.95);
-  letter-spacing: 0.3px;
-}
-
-.nav-logo-text span { color: var(--turquoise); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-}
-
-.nav-links a {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
-  transition: color 0.2s ease;
-  position: relative;
-}
-
-.nav-links a:hover { color: var(--turquoise); }
-
-.nav-actions { display: flex; align-items: center; gap: 18px; }
-
-.btn-nav-cta {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 11px 22px;
-  background: var(--turquoise);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-nav-cta:hover {
-  background: var(--turquoise-bright);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(20, 212, 196, 0.35);
-}
-
-/* ─── HERO ─── */
-.hero {
-  background: var(--blue-deep);
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 140px 48px 100px;
-  color: white;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 90% 80% at 30% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 30% 50%, black 30%, transparent 100%);
-  z-index: 1;
-}
-
-.hero-bg-image {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://img1.wsimg.com/isteam/ip/5e0eefde-5849-4faf-b768-e5753bf5a63a/blob-6f1a2f1.png/:/rs=w:1920,m');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.18;
-  filter: contrast(1.1) brightness(0.7) saturate(0.6) hue-rotate(160deg);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-bg-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(2,26,40,0.7) 0%, rgba(2,26,40,0.3) 50%, rgba(2,26,40,0.85) 100%),
-    linear-gradient(180deg, rgba(2,26,40,0.4) 0%, rgba(2,26,40,0.6) 100%);
-}
-
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  animation: float 18s ease-in-out infinite;
-}
-
-.hero-orb-1 {
-  top: -10%;
-  right: -8%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(20,212,196,0.28) 0%, transparent 70%);
-}
-
-.hero-orb-2 {
-  bottom: -20%;
-  left: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(10, 61, 92, 0.6) 0%, transparent 70%);
-  animation-delay: -9s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.05); }
-}
-
-.hero-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  background: rgba(20,212,196,0.12);
-  border: 1px solid rgba(20,212,196,0.3);
-  padding: 8px 18px;
-  border-radius: 100px;
-  margin-bottom: 36px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--turquoise);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--turquoise);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.3); }
-}
-
-.hero-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(52px, 8.5vw, 132px);
-  line-height: 0.92;
-  letter-spacing: -3px;
-  color: white;
-  margin-bottom: 32px;
-  max-width: 1100px;
-}
-
-.hero-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-  position: relative;
-  display: inline-block;
-}
-
-.hero-headline em::after {
-  content: none;
-}
-
-.hero-sub {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(17px, 1.4vw, 21px);
-  line-height: 1.55;
-  color: rgba(255,255,255,0.78);
-  max-width: 680px;
-  margin-bottom: 48px;
-  font-weight: 400;
-}
-
-.hero-sub strong {
-  color: white;
-  font-weight: 600;
-}
-
-/* Subtle divider between buttons and agnostic statement */
-.hero-divider {
-  width: 100%;
-  max-width: 280px;
-  height: 1px;
-  margin: 36px auto 0;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(20, 212, 196, 0.4) 25%,
-    rgba(46, 237, 219, 0.7) 50%,
-    rgba(20, 212, 196, 0.4) 75%,
-    transparent 100%);
-  box-shadow: 0 0 12px rgba(20, 212, 196, 0.4);
-}
-
-/* Agnostic-by-design statement — pure typography, no frame */
-.hero-agnostic {
-  margin: 24px auto 32px;
-  max-width: 820px;
-  text-align: center;
-}
-
-.hero-agnostic-label {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(20px, 2.2vw, 28px);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--turquoise-bright);
-  text-shadow:
-    0 0 20px rgba(46, 237, 219, 0.8),
-    0 0 40px rgba(46, 237, 219, 0.5),
-    0 0 60px rgba(20, 212, 196, 0.3);
-  margin-bottom: 14px;
-}
-
-.hero-agnostic-tags {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 800;
-  font-size: clamp(15px, 1.6vw, 19px);
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: white;
-  margin-bottom: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 6px 16px;
-}
-
-.hero-agnostic-tags .sep {
-  color: var(--turquoise);
-  opacity: 0.55;
-  font-weight: 400;
-}
-
-.hero-agnostic-line {
-  font-size: clamp(15px, 1.5vw, 18px);
-  line-height: 1.5;
-  color: white;
-  font-weight: 500;
-  margin: 0 auto;
-  max-width: 720px;
-}
-
-.hero-agnostic-line strong {
-  color: var(--turquoise);
-  font-weight: 700;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 80px;
-}
-
-.btn-primary {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  padding: 20px 36px;
-  background: var(--turquoise);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 8px 24px rgba(20, 212, 196, 0.3);
-}
-
-.btn-primary:hover {
-  background: var(--turquoise-bright);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(20, 212, 196, 0.45);
-}
-
-.btn-primary .arrow { transition: transform 0.25s ease; }
-.btn-primary:hover .arrow { transform: translateX(4px); }
-
-.btn-ghost {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  padding: 20px 36px;
-  background: rgba(255,255,255,0.04);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn-ghost:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.4);
-  transform: translateY(-2px);
-}
-
-/* Hero stat strip */
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  padding-top: 48px;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  max-width: 1100px;
-}
-
-.hero-stat {
-  padding: 0 32px;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.hero-stat:first-child { padding-left: 0; }
-.hero-stat:last-child { border-right: none; padding-right: 0; }
-
-.hero-stat-num {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 800;
-  font-size: clamp(36px, 4vw, 56px);
-  line-height: 1;
-  color: white;
-  letter-spacing: -1.5px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-}
-
-.hero-stat-num span {
-  color: var(--turquoise);
-  font-size: 0.6em;
-}
-
-.hero-stat-label {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.3;
-}
-
-/* ─── MARQUEE ─── */
-.marquee {
-  background: var(--turquoise);
-  overflow: hidden;
-  padding: 20px 0;
-  border-top: 4px solid var(--blue-deep);
-  border-bottom: 4px solid var(--blue-deep);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-}
-
-.marquee-track {
-  display: flex;
-  gap: 56px;
-  white-space: nowrap;
-  animation: scroll 40s linear infinite;
-  width: max-content;
-}
-
-.marquee-item {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--blue-deep);
-  display: inline-flex;
-  align-items: center;
-  gap: 56px;
-}
-
-.marquee-item::after {
-  content: '✦';
-  color: var(--blue-deep);
-  font-size: 16px;
-}
-
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ─── SECTION SHELL ─── */
-section { position: relative; }
-
-.wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  margin-bottom: 24px;
-}
-
-.section-label::before {
-  content: '';
-  width: 28px;
-  height: 2px;
-  background: var(--turquoise);
-}
-
-/* ─── CHAOS SECTION ─── */
-.section-chaos {
-  padding: 70px 0 80px;
-  background: #010810;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-chaos::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 90% at 50% 30%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 30%, black 30%, transparent 100%);
-  pointer-events: none;
-}
-
-.chaos-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.chaos-glow-1 {
-  top: 8%;
-  left: 30%;
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(20, 212, 196, 0.18) 0%, transparent 65%);
-}
-
-.chaos-glow-2 {
-  bottom: -10%;
-  right: 5%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(20, 212, 196, 0.12) 0%, transparent 60%);
-}
-
-.chaos-glow-center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1100px;
-  height: 700px;
-  background: radial-gradient(ellipse, rgba(46, 237, 219, 0.22) 0%, rgba(20, 212, 196, 0.1) 35%, transparent 70%);
-}
-
-.chaos-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 56px;
-}
-
-/* Row 1: Title centered, paragraph below */
-.chaos-header {
-  text-align: center;
-  max-width: 880px;
-  margin: 0 auto;
-}
-
-.chaos-header .section-label {
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.chaos-header .section-label::after {
-  content: '';
-  width: 28px;
-  height: 2px;
-  background: var(--turquoise);
-}
-
-.chaos-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(48px, 6.8vw, 104px);
-  line-height: 0.98;
-  letter-spacing: -2.8px;
-  color: white;
-  margin: 0 0 14px 0;
-}
-
-.chaos-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-  position: relative;
-  display: inline-block;
-}
-
-.chaos-headline em::after {
-  content: none;
-}
-
-.chaos-intro {
-  font-size: 18px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.88);
-  margin: 0 auto;
-  max-width: 720px;
-}
-
-.chaos-equation {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(20px, 2.4vw, 32px);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 28px 0 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  gap: 0.5em;
-}
-
-.chaos-equation .eq-visible {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.chaos-equation .eq-symbol {
-  color: var(--turquoise);
-  font-size: 1.2em;
-}
-
-.chaos-equation .eq-reality {
-  color: var(--turquoise-bright);
-  text-shadow: 0 0 24px rgba(46, 237, 219, 0.5);
-}
-
-/* Row 2: Bubble scene with glowing waterline */
-.chaos-scene {
-  position: relative;
-  width: 100%;
-  height: 540px;
-}
-
-.chaos-waterline {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(20, 212, 196, 0.4) 12%,
-    rgba(46, 237, 219, 1) 50%,
-    rgba(20, 212, 196, 0.4) 88%,
-    transparent 100%);
-  box-shadow:
-    0 0 20px rgba(20, 212, 196, 0.8),
-    0 0 40px rgba(20, 212, 196, 0.5),
-    0 0 80px rgba(20, 212, 196, 0.3);
-  z-index: 3;
-  animation: waterlinePulse 4s ease-in-out infinite;
-}
-
-@keyframes waterlinePulse {
-  0%, 100% { opacity: 0.85; }
-  50%      { opacity: 1; }
-}
-
-/* Floating bubble labels */
-.bubble {
-  position: absolute;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  z-index: 4;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  will-change: transform;
-}
-
-.bubble.above {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(20, 212, 196, 0.7);
-  color: var(--blue-deep);
-  font-size: 12px;
-  padding: 8px 14px;
-  font-weight: 800;
-  border-radius: 100px;
-  box-shadow: 0 8px 28px rgba(20, 212, 196, 0.35), 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.bubble.below {
-  background: rgba(20, 212, 196, 0.18);
-  border: 1px solid rgba(20, 212, 196, 0.55);
-  color: white;
-  font-size: 11px;
-  padding: 6px 12px;
-  font-weight: 700;
-  border-radius: 100px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.6);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-.bubble.below.tiny {
-  font-size: 9px;
-  padding: 5px 9px;
-  background: rgba(20, 212, 196, 0.14);
-  border-color: rgba(20, 212, 196, 0.45);
-}
-
-/* Drift animations */
-@keyframes drift1 {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(8px, -8px); }
-}
-@keyframes drift2 {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(-8px, 6px); }
-}
-@keyframes drift3 {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(6px, 8px); }
-}
-
-.bubble.d1 { animation: drift1 12s ease-in-out infinite; }
-.bubble.d2 { animation: drift2 14s ease-in-out infinite; }
-.bubble.d3 { animation: drift3 16s ease-in-out infinite; }
-
-/* ABOVE WATERLINE — top band 6-24% (waterline at 50%) */
-.b-advisor         { top:  6%; left: 42%; animation-delay: -0.2s; }
-.b-recommendations { top: 10%; left: 60%; animation-delay: -0.6s; }
-.b-products        { top: 12%; left: 78%; animation-delay: -1.6s; }
-.b-team            { top:  8%; left: 22%; animation-delay: -0.9s; }
-.b-presence        { top: 22%; left: 40%; animation-delay: -3.0s; }
-.b-services        { top: 20%; left: 24%; animation-delay: -2.3s; }
-.b-experience      { top: 24%; left: 56%; animation-delay: -3.7s; }
-
-/* BELOW WATERLINE — main grid 55-77% in 4 rows */
-
-/* Row 1 — 55% */
-.b-carriers        { top: 55%; left:  4%; animation-delay: -0.3s; }
-.b-processes       { top: 56%; left: 22%; animation-delay: -0.9s; }
-.b-workflows       { top: 55%; left: 42%; animation-delay: -1.5s; }
-.b-compliance      { top: 56%; left: 60%; animation-delay: -2.1s; }
-.b-tech            { top: 55%; left: 86%; animation-delay: -2.7s; }
-
-/* Row 2 — 62% */
-.b-mgas            { top: 62%; left:  8%; animation-delay: -3.3s; }
-.b-dealers         { top: 63%; left: 22%; animation-delay: -3.9s; }
-.b-regulators      { top: 62%; left: 40%; animation-delay: -4.5s; }
-.b-laws            { top: 63%; left: 58%; animation-delay: -5.1s; }
-.b-jurisdictions   { top: 62%; left: 78%; animation-delay: -5.7s; }
-
-/* Row 3 — 69% */
-.b-licenses        { top: 69%; left:  4%; animation-delay: -6.3s; }
-.b-ethics          { top: 70%; left: 18%; animation-delay: -1.0s; }
-.b-ce              { top: 69%; left: 32%; animation-delay: -1.8s; }
-.b-designations    { top: 70%; left: 50%; animation-delay: -2.4s; }
-.b-conflict        { top: 69%; left: 66%; animation-delay: -3.0s; }
-
-/* Row 4 — 76% */
-.b-cyber           { top: 76%; left:  4%; animation-delay: -0.6s; }
-.b-systems         { top: 77%; left: 22%; animation-delay: -2.0s; }
-.b-policies        { top: 76%; left: 38%; animation-delay: -4.1s; }
-.b-households      { top: 77%; left: 60%; animation-delay: -4.8s; }
-.b-competing       { top: 76%; left: 78%; animation-delay: -5.5s; }
-
-/* Row 5 — 82% — small acronyms left, chaos overflow right */
-.b-aum             { top: 82%; left:  4%; animation-delay: -3.6s; }
-.b-kyc             { top: 82%; left: 14%; animation-delay: -4.2s; }
-.b-aml             { top: 82%; left: 24%; animation-delay: -4.8s; }
-.b-pipeda          { top: 82%; left: 34%; animation-delay: -5.4s; }
-.b-casl            { top: 82%; left: 46%; animation-delay: -6.0s; }
-.b-crm             { top: 82%; left: 58%; animation-delay: -4.4s; }
-.b-backoffices     { top: 82%; left: 70%; animation-delay: -5.0s; }
-.b-wholesalers     { top: 82%; left: 84%; animation-delay: -3.8s; }
-
-/* Row 6 — 88% — bumping into each other on purpose */
-.b-dirty           { top: 88%; left:  4%; animation-delay: -2.5s; }
-.b-disengaged      { top: 88%; left: 18%; animation-delay: -3.1s; }
-.b-outdated        { top: 88%; left: 38%; animation-delay: -1.7s; }
-.b-complaints      { top: 88%; left: 64%; animation-delay: -2.2s; }
-.b-twofa           { top: 88%; left: 84%; animation-delay: -1.4s; }
-
-/* Row 3: Pullout */
-.chaos-pullout {
-  text-align: center;
-}
-
-.chaos-pullout p {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(28px, 4.2vw, 64px);
-  line-height: 1;
-  letter-spacing: -1.6px;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 44px 0;
-  border-top: 1px solid rgba(20, 212, 196, 0.3);
-  border-bottom: 1px solid rgba(20, 212, 196, 0.3);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  gap: 0.4em;
-}
-
-.chaos-pullout .line-white {
-  color: white;
-  text-shadow: 0 0 30px rgba(255,255,255,0.2);
-}
-
-.chaos-pullout .line-turquoise {
-  color: var(--turquoise);
-  text-shadow: 0 0 40px rgba(20, 212, 196, 0.5);
-}
-
-/* ─── STORY ─── */
-.section-story {
-  padding: 140px 0;
-  background: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-story::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  right: -20%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(20, 212, 196, 0.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.story-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 100px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.story-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(48px, 6.4vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -2.6px;
-  color: var(--blue-deep);
-  margin-bottom: 32px;
-}
-
-.story-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-  position: relative;
-}
-
-.story-body {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-.story-body p {
-  margin-bottom: 22px;
-}
-
-.story-body p:last-child { margin-bottom: 0; }
-
-.story-body strong {
-  color: var(--blue-deep);
-  font-weight: 600;
-}
-
-.story-pullout {
-  font-family: 'League Spartan', sans-serif !important;
-  font-weight: 900;
-  font-size: clamp(32px, 3.6vw, 52px);
-  line-height: 1;
-  letter-spacing: -1.4px;
-  color: var(--turquoise);
-  text-transform: uppercase;
-  margin: 32px 0 32px 0 !important;
-  padding-left: 20px;
-  border-left: 3px solid var(--turquoise);
-}
-
-/* People First Stack */
-.story-stack {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.story-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 36px;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.story-card:hover {
-  border-color: var(--turquoise);
-  box-shadow: var(--shadow-md);
-}
-
-.story-card-num {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: 56px;
-  line-height: 1;
-  color: var(--turquoise);
-  letter-spacing: -2px;
-  flex-shrink: 0;
-}
-
-.story-card-content {
-  flex: 1;
-}
-
-.story-card-label {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.story-card-title {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 800;
-  font-size: 28px;
-  letter-spacing: -0.8px;
-  color: var(--blue-deep);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-
-.story-card-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.story-card:nth-child(1) { transform: rotate(-1.5deg); }
-.story-card:nth-child(2) { transform: rotate(1deg); margin-left: 24px; }
-.story-card:nth-child(3) { transform: rotate(-0.5deg); }
-
-.story-card:nth-child(1):hover { transform: rotate(-1.5deg) translateX(8px); }
-.story-card:nth-child(2):hover { transform: rotate(1deg) translateX(8px); }
-.story-card:nth-child(3):hover { transform: rotate(-0.5deg) translateX(8px); }
-
-/* ─── METHOD ─── */
-.section-method {
-  padding: 140px 0;
-  background: var(--blue-deep);
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-method::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-}
-
-.method-header {
-  max-width: 820px;
-  margin: 0 auto 80px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.method-header .section-label {
-  justify-content: center;
-}
-
-.method-header .section-label::after {
-  content: '';
-  width: 28px;
-  height: 2px;
-  background: var(--turquoise);
-}
-
-.method-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(40px, 5vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -2px;
-  color: white;
-  margin-bottom: 24px;
-}
-
-.method-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-}
-
-.method-sub {
-  font-size: 19px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.72);
-}
-
-.method-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  position: relative;
-  z-index: 2;
-}
-
-.method-step {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 18px;
-  padding: 44px 36px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.method-step::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--turquoise), var(--turquoise-bright));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s ease;
-}
-
-.method-step:hover {
-  transform: translateY(-8px);
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(20, 212, 196, 0.4);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.method-step:hover::before { transform: scaleX(1); }
-
-.method-step-icon {
-  width: 64px;
-  height: 64px;
-  background: rgba(20, 212, 196, 0.15);
-  border: 1px solid rgba(20, 212, 196, 0.3);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 28px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: 24px;
-  color: var(--turquoise);
-  transition: all 0.3s ease;
-}
-
-.method-step:hover .method-step-icon {
-  background: var(--turquoise);
-  color: white;
-  transform: rotate(-6deg) scale(1.05);
-}
-
-.method-step-title {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 800;
-  font-size: 28px;
-  letter-spacing: -0.8px;
-  color: white;
-  margin-bottom: 16px;
-  line-height: 1.1;
-}
-
-.method-step-desc {
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.72);
-  margin-bottom: 24px;
-}
-
-.method-step-tag {
-  display: inline-block;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  padding: 6px 14px;
-  background: rgba(20, 212, 196, 0.1);
-  border: 1px solid rgba(20, 212, 196, 0.25);
-  border-radius: 100px;
-}
-
-/* ─── PRODUCTS ─── */
-.section-products {
-  padding: 140px 0;
-  background: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-products::before {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -10%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(4, 37, 58, 0.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.products-header {
-  max-width: 820px;
-  margin-bottom: 72px;
-  position: relative;
-  z-index: 2;
-}
-
-.products-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(48px, 6.4vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -2.6px;
-  color: var(--blue-deep);
-  margin-bottom: 24px;
-}
-
-.products-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-}
-
-.products-sub {
-  font-size: 19px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card {
-  border-radius: 24px;
-  padding: 56px 48px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.4s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-card:hover { transform: translateY(-6px); }
-
-.product-card.lab {
-  background: var(--blue-deep);
-  color: white;
-  box-shadow: 0 24px 64px rgba(4, 37, 58, 0.25);
-}
-
-.product-card.lab::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 30%, black 30%, transparent 100%);
-}
-
-.product-card.lab::after {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -20%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(20,212,196,0.18) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.product-card.laylah {
-  background: white;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-.product-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 8px 16px;
-  border-radius: 100px;
-  margin-bottom: 28px;
-  align-self: flex-start;
-  position: relative;
-  z-index: 2;
-}
-
-.product-tag::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-.product-card.lab .product-tag {
-  color: var(--turquoise);
-  background: rgba(20, 212, 196, 0.12);
-  border: 1px solid rgba(20, 212, 196, 0.3);
-}
-
-.product-card.lab .product-tag::before {
-  background: var(--turquoise);
-  box-shadow: 0 0 10px var(--turquoise);
-}
-
-.product-card.laylah .product-tag {
-  color: var(--blue);
-  background: rgba(4, 37, 58, 0.06);
-  border: 1px solid rgba(4, 37, 58, 0.15);
-}
-
-.product-card.laylah .product-tag::before { background: var(--blue); }
-
-.product-name {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(38px, 4vw, 56px);
-  letter-spacing: -1.8px;
-  line-height: 0.95;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card.lab .product-name { color: white; }
-.product-card.lab .product-name em { font-style: normal; color: var(--turquoise); }
-.product-card.laylah .product-name { color: var(--blue-deep); }
-.product-card.laylah .product-name em { font-style: normal; color: var(--turquoise); }
-
-.product-desc {
-  font-size: 16px;
-  line-height: 1.65;
-  margin-bottom: 36px;
-  flex-grow: 1;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card.lab .product-desc { color: rgba(255,255,255,0.78); }
-.product-card.laylah .product-desc { color: var(--text); }
-
-.product-features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 28px 0;
-  margin-bottom: 32px;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card.lab .product-features {
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-
-.product-card.laylah .product-features {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.product-feature {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.product-feature-num {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: 36px;
-  line-height: 1;
-  letter-spacing: -1px;
-  color: var(--turquoise);
-}
-
-.product-feature-label {
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.product-card.lab .product-feature-label { color: rgba(255,255,255,0.7); }
-.product-card.laylah .product-feature-label { color: var(--muted); }
-
-.product-cta {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  padding: 16px 30px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  align-self: flex-start;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card.lab .product-cta {
-  background: var(--turquoise);
-  color: white;
-  box-shadow: 0 8px 24px rgba(20, 212, 196, 0.3);
-}
-
-.product-card.lab .product-cta:hover {
-  background: var(--turquoise-bright);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(20, 212, 196, 0.45);
-}
-
-.product-card.laylah .product-cta {
-  background: var(--blue-deep);
-  color: white;
-}
-
-.product-card.laylah .product-cta:hover {
-  background: var(--turquoise);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(20, 212, 196, 0.35);
-}
-
-.product-cta .arrow { transition: transform 0.25s ease; }
-.product-cta:hover .arrow { transform: translateX(4px); }
-
-/* ─── AI BAND (light strip below AI section) ─── */
-.section-ai-band {
-  padding: 36px 0;
-  background: var(--cream);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-ai-band::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(4,37,58,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(4,37,58,0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-}
-
-.ai-band-inner {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.ai-band-label {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-
-.ai-band-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.ai-band-pill {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--blue-deep);
-  padding: 12px 22px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow-sm);
-}
-
-.ai-band-pill:hover {
-  background: var(--turquoise);
-  border-color: var(--turquoise);
-  color: var(--blue-deep);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(20, 212, 196, 0.3);
-}
-
-/* ─── CONTACT ─── */
-.section-contact {
-  padding: 140px 0;
-  background: var(--blue-deep);
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-contact::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-}
-
-.section-contact::after {
-  content: '';
-  position: absolute;
-  top: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(20,212,196,0.15) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.contact-inner {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 880px;
-  margin: 0 auto;
-}
-
-.contact-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(48px, 6vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -2.5px;
-  color: white;
-  margin-bottom: 28px;
-}
-
-.contact-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-}
-
-.contact-sub {
-  font-size: 20px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.78);
-  margin-bottom: 48px;
-  max-width: 660px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-email-wrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 24px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.18);
-  padding: 8px 36px;
-  border-radius: 100px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.contact-email-wrap:hover {
-  border-color: var(--turquoise);
-  background: rgba(20, 212, 196, 0.08);
-  transform: translateY(-2px);
-}
-
-.contact-email {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: white;
-  letter-spacing: 0.3px;
-}
-
-.contact-email-btn {
-  background: var(--turquoise);
-  color: var(--blue-deep);
-  border: none;
-  padding: 18px 32px;
-  border-radius: 100px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.25s ease;
-}
-
-.contact-email-btn:hover {
-  background: var(--turquoise-bright);
-  box-shadow: 0 8px 24px rgba(20, 212, 196, 0.4);
-}
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--blue-darker);
-  color: rgba(255,255,255,0.7);
-  padding: 64px 0 32px;
-  position: relative;
-}
-
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.footer-brand-block .nav-logo { margin-bottom: 20px; }
-.footer-brand-block .nav-logo-text { color: white; }
-
-.footer-tagline {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.6);
-  max-width: 320px;
-}
-
-.footer-col-title {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  margin-bottom: 18px;
-}
-
-.footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-col a {
-  font-size: 14px;
-  color: rgba(255,255,255,0.7);
-  transition: color 0.2s ease;
-}
-
-.footer-col a:hover { color: var(--turquoise); }
-
-.footer-bottom {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 28px 48px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.footer-copy {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.2px;
-}
-
-.footer-powered {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  font-style: italic;
-}
-
-/* ─── REVEAL ─── */
-/* Reveal animation only activates if JS adds .js-reveal-ready to <html> */
-.js-reveal-ready .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.js-reveal-ready .reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-d1 { transition-delay: 0.1s; }
-.reveal-d2 { transition-delay: 0.2s; }
-.reveal-d3 { transition-delay: 0.3s; }
-.reveal-d4 { transition-delay: 0.4s; }
-
-/* ─── AI SECTION ─── */
-.section-ai {
-  padding: 160px 0 90px;
-  background: #010810;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-ai::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(20,212,196,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20,212,196,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 20%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 20%, transparent 100%);
-}
-
-.ai-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  animation: aiFloat 22s ease-in-out infinite;
-}
-
-.ai-glow-1 {
-  top: -15%;
-  left: -10%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(20, 212, 196, 0.25) 0%, transparent 65%);
-}
-
-.ai-glow-2 {
-  bottom: -20%;
-  right: -10%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(20, 212, 196, 0.18) 0%, transparent 65%);
-  animation-delay: -11s;
-}
-
-@keyframes aiFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, -40px) scale(1.08); }
-}
-
-.ai-header {
-  text-align: center;
-  max-width: 940px;
-  margin: 0 auto 80px;
-  position: relative;
-  z-index: 2;
-}
-
-.ai-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  background: rgba(20, 212, 196, 0.08);
-  border: 1px solid rgba(20, 212, 196, 0.3);
-  padding: 10px 22px;
-  border-radius: 100px;
-  margin-bottom: 36px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.ai-eyebrow::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--turquoise);
-  border-radius: 50%;
-  box-shadow: 0 0 14px var(--turquoise);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.ai-headline {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(48px, 7vw, 112px);
-  line-height: 0.92;
-  letter-spacing: -3px;
-  color: white;
-  margin-bottom: 32px;
-}
-
-.ai-headline em {
-  font-style: normal;
-  color: var(--turquoise);
-  position: relative;
-  display: inline-block;
-}
-
-.ai-headline em::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: var(--turquoise);
-  opacity: 0.22;
-  transform: skewX(-15deg);
-}
-
-.ai-sub {
-  font-size: 20px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.78);
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.ai-sub strong {
-  color: var(--turquoise);
-  font-weight: 600;
-}
-
-/* Bento Grid */
-.ai-bento {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 28px;
-  position: relative;
-  z-index: 2;
-}
-
-.ai-card.featured {
-  grid-row: span 2;
-  display: flex;
-  flex-direction: column;
-}
-
-.ai-card.wide {
-  grid-column: span 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 48px;
-  padding: 44px 56px;
-}
-
-.ai-card.wide .ai-card-body {
-  flex: 1;
-}
-
-.ai-card.wide .ai-card-features {
-  margin-bottom: 0;
-  flex-shrink: 0;
-  max-width: 320px;
-  justify-content: flex-end;
-}
-
-.ai-card.compact {
-  padding: 36px 36px;
-}
-
-.ai-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 48px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-}
-
-.ai-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(20,212,196,0.5), transparent);
-}
-
-.ai-card:hover {
-  border-color: rgba(20, 212, 196, 0.4);
-  background: linear-gradient(180deg, rgba(20,212,196,0.06) 0%, rgba(255,255,255,0.02) 100%);
-  transform: translateY(-6px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(20,212,196,0.1);
-}
-
-.ai-card-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--turquoise);
-  background: rgba(20, 212, 196, 0.1);
-  border: 1px solid rgba(20, 212, 196, 0.3);
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 24px;
-  align-self: flex-start;
-}
-
-.ai-card-tag::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--turquoise);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--turquoise);
-}
-
-.ai-card-name {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 900;
-  font-size: clamp(30px, 3vw, 44px);
-  letter-spacing: -1.4px;
-  line-height: 1;
-  color: white;
-  margin-bottom: 18px;
-}
-
-.ai-card.featured .ai-card-name {
-  font-size: clamp(36px, 3.6vw, 56px);
-}
-
-.ai-card-desc {
-  font-size: 16px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.72);
-  margin-bottom: 28px;
-}
-
-.ai-card.featured .ai-card-desc {
-  font-size: 17px;
-}
-
-.ai-card-features {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.ai-card-features li {
-  font-family: 'League Spartan', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  padding: 8px 14px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
-}
-
-/* Faux Terminal */
-.ai-terminal {
-  background: #000408;
-  border: 1px solid rgba(20, 212, 196, 0.25);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 60px rgba(20,212,196,0.08);
-  margin-top: auto;
-}
-
-.ai-terminal-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.ai-terminal-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.ai-terminal-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.18);
-}
-
-.ai-terminal-dot.live {
-  background: var(--turquoise);
-  box-shadow: 0 0 8px var(--turquoise);
-}
-
-.ai-terminal-title {
-  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  margin-left: 12px;
-  letter-spacing: 0.4px;
-}
-
-.ai-terminal-body {
-  padding: 22px 24px;
-  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-  font-size: 13px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.85);
-}
-
-.ai-terminal-line { display: block; }
-.ai-terminal-key { color: var(--turquoise); }
-.ai-terminal-val { color: rgba(255,255,255,0.78); }
-.ai-terminal-comment { color: rgba(255,255,255,0.35); font-style: italic; }
-.ai-terminal-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 14px;
-  background: var(--turquoise);
-  vertical-align: middle;
-  margin-left: 4px;
-  animation: blink 1.1s steps(2) infinite;
-  box-shadow: 0 0 6px var(--turquoise);
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  nav, nav.scrolled { padding: 16px 28px; }
-  .wrap, .footer-inner, .footer-bottom { padding-left: 28px; padding-right: 28px; }
-
-  .hero { padding: 130px 28px 80px; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
-  .hero-stat { border-right: none; padding: 0 16px; }
-
-  .section-story, .section-method, .section-products, .section-contact, .section-ai, .section-chaos { padding: 90px 0; }
-
-  .chaos-scene { height: 600px; }
-  .bubble.above { font-size: 10px; padding: 6px 12px; }
-  .bubble.below { font-size: 9px; padding: 5px 10px; }
-  .bubble.below.tiny { font-size: 8px; padding: 4px 8px; }
-
-  .ai-bento { grid-template-columns: 1fr; }
-  .ai-card { padding: 36px 28px; }
-  .ai-card.featured { grid-row: auto; }
-  .ai-card.wide { grid-column: auto; flex-direction: column; align-items: flex-start; gap: 24px; padding: 36px 28px; }
-  .ai-card.wide .ai-card-features { max-width: none; justify-content: flex-start; }
-
-  .story-grid { grid-template-columns: 1fr; gap: 60px; }
-  .method-steps { grid-template-columns: 1fr; gap: 20px; }
-  .products-grid { grid-template-columns: 1fr; gap: 24px; }
-
-  .product-card { padding: 44px 32px; }
-
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-}
-@media (max-width: 600px) {
-  .hero-actions { flex-direction: column; align-items: stretch; }
-  .btn-primary, .btn-ghost { justify-content: center; }
-  .hero-stats { grid-template-columns: 1fr; }
-  .hero-stat { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .hero-stat:last-child { border-bottom: none; }
-
-  .story-card { flex-direction: column; text-align: center; gap: 12px; }
-  .story-card:nth-child(1), .story-card:nth-child(2), .story-card:nth-child(3) {
-    transform: none; margin-left: 0;
-  }
-
-  .product-features { grid-template-columns: 1fr; }
-  .contact-email-wrap { flex-direction: column; padding: 24px; border-radius: 20px; gap: 16px; }
-  .contact-email-btn { width: 100%; justify-content: center; }
-
-  .footer-inner { grid-template-columns: 1fr; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=17">
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#top" class="nav-logo">
-    <div class="nav-logo-mark">E.</div>
-    <div class="nav-logo-text">Etc<span>.</span> Projects</div>
-  </a>
-  <div class="nav-links">
-    <a href="#story">Our Story</a>
-    <a href="#method">How We Work</a>
-    <a href="#products">What We Build</a>
-    <a href="#ai">Etc. AI</a>
-    <a href="#contact">Contact</a>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">E.</span><span class="word">Etc<span class="dot">.</span> Projects</span></a>
+    <div class="nav-links">
+      <a class="lmp" href="#living-my-plan">Living My Plan</a>
+      <a class="ctn" href="#contannuity">Contannuity</a>
+      <a href="practice-transformation.html">Practice Transformation</a>
+      <a href="practice-transformation.html">Tech Implementation</a>
+      <a href="#why">Why Etc.</a>
+    </div>
+    <a class="btn btn-teal btn-sm nav-cta" href="#talk">Book a conversation <span class="arrow">&rarr;</span></a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
   </div>
-  <div class="nav-actions">
-    <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener" class="btn-nav-cta">
-      Enter the Lab →
-    </a>
+  <div class="drawer" id="drawer">
+    <a class="lmp" href="#living-my-plan">Living My Plan&trade;</a>
+    <a class="ctn" href="#contannuity">Contannuity&trade;</a>
+    <a href="practice-transformation.html">Practice Transformation</a>
+    <a href="practice-transformation.html">Tech Implementation</a>
+    <a href="#why">Why Etc.</a>
+    <a class="btn btn-teal" href="#talk">Book a conversation <span class="arrow">&rarr;</span></a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg-image"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
+<main id="top">
 
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Driving Intelligent Transformation</div>
-    <h1 class="hero-headline">
-      Real People.<br>Real Practices.<br><em>Real Transformation.</em>
-    </h1>
-    <p class="hero-sub">
-      Etc. Projects has spent over two decades modernizing independent Canadian financial advisory practices from the inside out. <strong>People first. Then process. Then technology.</strong> Twenty-five years in, five hundred transformations behind us, and we love this work more than the day we started.
-    </p>
-
+<section class="hero">
+  <div class="grid-bg"></div><div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span>Digital Solutions &middot; Apps by Etc.</span>
+    <h1>We found what was missing.<em>Then we built it.</em></h1>
+    <p class="sub">Decades inside independent Canadian practices. <b>500+ practice transformations and tech implementations.</b> We found the greatest challenges and built the solutions that didn't exist. Two HUGE opportunities showed up in every practice, and no software existed to close either one. <b>Now it does.</b></p>
     <div class="hero-actions">
-      <a href="#story" class="btn-primary">See How We Work <span class="arrow">→</span></a>
-      <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener" class="btn-ghost">Visit the Lab</a>
+      <a class="btn btn-teal" href="#living-my-plan"><span class="nm">Living My Plan<span class="tm">&trade;</span></span><span class="arrow">&rarr;</span></a>
+      <a class="btn btn-gold" href="#contannuity"><span class="nm">Contannuity<span class="tm">&trade;</span></span><span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="#gaps">Why we built them</a>
     </div>
-
-    <div class="hero-divider"></div>
-
-    <div class="hero-agnostic reveal reveal-d2">
-      <div class="hero-agnostic-label">Agnostic by design</div>
-      <div class="hero-agnostic-tags">
-        <span>Tech</span><span class="sep">·</span>
-        <span>Dealer</span><span class="sep">·</span>
-        <span>MGA</span><span class="sep">·</span>
-        <span>License</span><span class="sep">·</span>
-        <span>Designation</span><span class="sep">·</span>
-        <span>Jurisdiction</span>
-      </div>
-      <p class="hero-agnostic-line">Built to <strong>protect your independence</strong> and <strong>support your existing relationships.</p>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">500<span>+</span></div>
-        <div class="hero-stat-label">Practice<br>Transformations</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">25<span>+</span></div>
-        <div class="hero-stat-label">Years In<br>The Trenches</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100<span>%</span></div>
-        <div class="hero-stat-label">Canadian<br>Built</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">0<span>%</span></div>
-        <div class="hero-stat-label">Hype, Fluff,<br>Or Jargon</div>
-      </div>
-    </div>
+    <p class="hero-note">100% built and hosted in Canada by Etc. Projects. <a href="practice-transformation.html">Looking for practice transformation?</a></p>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <div class="marquee-item">Practice Planning</div>
-    <div class="marquee-item">Performance Management</div>
-    <div class="marquee-item">Tech Implementation</div>
-    <div class="marquee-item">Compliance Clarity</div>
-    <div class="marquee-item">Workflow Design</div>
-    <div class="marquee-item">Team Training</div>
-    <div class="marquee-item">Practice Planning</div>
-    <div class="marquee-item">Performance Management</div>
-    <div class="marquee-item">Tech Implementation</div>
-    <div class="marquee-item">Compliance Clarity</div>
-    <div class="marquee-item">Workflow Design</div>
-    <div class="marquee-item">Team Training</div>
-  </div>
-</div>
-
-<!-- CHAOS -->
-<section class="section-chaos" id="chaos">
-  <div class="chaos-glow chaos-glow-1"></div>
-  <div class="chaos-glow chaos-glow-2"></div>
-  <div class="chaos-glow chaos-glow-center"></div>
-
+<section class="gaps on-cream" id="gaps">
   <div class="wrap">
-    <div class="chaos-inner">
-
-      <!-- ROW 1: TITLE + PARAGRAPH (centered) -->
-      <div class="chaos-header">
-        <div class="section-label reveal">The Reality</div>
-        <h2 class="chaos-headline reveal reveal-d1">
-          We bring calm<br>to the <em>chaos.</em>
-        </h2>
-        <p class="chaos-intro reveal reveal-d2">
-          You are running a complex business in a regulated industry with many stakeholders and competing priorities. With clients who trust you, a team that depends on you, regulators watching you, and a thousand moving parts that nobody outside your office will ever see.
-        </p>
-        <p class="chaos-equation reveal reveal-d3">
-          <span class="eq-visible">What's visible</span>
-          <span class="eq-symbol">≠</span>
-          <span class="eq-reality">Advisor reality</span>
-        </p>
-      </div>
-
-      <!-- ROW 2: BUBBLE SCENE WITH GLOWING WATERLINE -->
-      <div class="chaos-scene reveal reveal-d2">
-        <div class="chaos-waterline"></div>
-
-        <!-- ABOVE-WATERLINE BUBBLES -->
-        <span class="bubble above b-advisor d1">Advisor</span>
-        <span class="bubble above b-recommendations d2">Recommendations</span>
-        <span class="bubble above b-team d3">Team</span>
-        <span class="bubble above b-products d1">Products</span>
-        <span class="bubble above b-services d2">Services</span>
-        <span class="bubble above b-presence d3">Presence</span>
-        <span class="bubble above b-experience d1">Experience</span>
-
-        <!-- BELOW-WATERLINE BUBBLES -->
-        <span class="bubble below b-carriers d2">20 Carriers</span>
-        <span class="bubble below b-processes d3">60 Processes</span>
-        <span class="bubble below b-workflows d1">150 Workflows</span>
-        <span class="bubble below b-compliance d2">80 Compliance Checks Per Client</span>
-        <span class="bubble below b-tech d3">Technology Stack</span>
-        <span class="bubble below b-mgas d1">MGAs</span>
-        <span class="bubble below b-dealers d2">Dealers</span>
-        <span class="bubble below b-regulators d3">Regulators</span>
-        <span class="bubble below b-laws d1">Laws</span>
-        <span class="bubble below b-jurisdictions d2">Jurisdictions</span>
-        <span class="bubble below b-licenses d3">Licenses</span>
-        <span class="bubble below b-ethics d1">Ethics</span>
-        <span class="bubble below b-ce d2">CE Credits</span>
-        <span class="bubble below b-designations d3">Designations</span>
-        <span class="bubble below b-conflict d1">Conflict of Interest</span>
-        <span class="bubble below b-cyber d2">Cyber Security</span>
-        <span class="bubble below b-systems d3">170 Systems</span>
-        <span class="bubble below b-policies d1">2,000 Policy Holders</span>
-        <span class="bubble below b-households d2">380 Households</span>
-        <span class="bubble below b-competing d3">Competing Priorities</span>
-        <span class="bubble below b-aum tiny d1">AUM</span>
-        <span class="bubble below b-kyc tiny d2">KYC</span>
-        <span class="bubble below b-aml tiny d3">AML</span>
-        <span class="bubble below b-pipeda tiny d1">PIPEDA</span>
-        <span class="bubble below b-casl tiny d2">CASL</span>
-        <span class="bubble below b-dirty d3">Dirty Data</span>
-        <span class="bubble below b-disengaged d1">Disengaged Clients</span>
-        <span class="bubble below b-outdated d2">Outdated Industry Processes</span>
-        <span class="bubble below b-crm d3">CRM</span>
-        <span class="bubble below b-backoffices d1">Back Offices</span>
-        <span class="bubble below b-complaints d2">Complaint Handling</span>
-        <span class="bubble below b-wholesalers d3">Wholesalers</span>
-        <span class="bubble below b-twofa d1">2FA</span>
-      </div>
-
-      <!-- ROW 3: PULLOUT -->
-      <div class="chaos-pullout reveal reveal-d3">
-        <p>
-          <span class="line-white">We see you.</span>
-          <span class="line-turquoise">We get it.</span>
-          <span class="line-white">We can help.</span>
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- STORY -->
-<section class="section-story" id="story">
-  <div class="wrap">
-    <div class="story-grid">
-      <div>
-        <div class="section-label reveal">Our Story</div>
-        <h2 class="story-headline reveal reveal-d1">
-          Built from the<br><em>inside out.</em>
-        </h2>
-        <div class="story-body reveal reveal-d2">
-          <p>
-            We started Etc. Projects to solve a problem we kept seeing. Independent financial advisors trying to run modern, ambitious businesses and doing it brilliantly, but often without the right tools, the right support, or a partner who understood the whole picture.
-          </p>
-          <p class="story-pullout">You deserve better.</p>
-          <p>
-            We knew we could build it, so we rolled up our sleeves and went to work. <strong>Five hundred transformations later, we have a system and proven method that is rooted in advisor reality.</strong> A process we have used, refined, and used again. Successfully.
-          </p>
-        </div>
-      </div>
-
-      <div class="story-stack reveal reveal-d2">
-        <div class="story-card">
-          <div class="story-card-num">01</div>
-          <div class="story-card-content">
-            <div class="story-card-label">Start Here</div>
-            <div class="story-card-title">People</div>
-            <div class="story-card-desc">Roles, capacity, dynamics, and the realities of how the team actually works together.</div>
-          </div>
-        </div>
-        <div class="story-card">
-          <div class="story-card-num">02</div>
-          <div class="story-card-content">
-            <div class="story-card-label">Then</div>
-            <div class="story-card-title">Process</div>
-            <div class="story-card-desc">Workflows, handoffs, and the documented ways the work moves through the practice.</div>
-          </div>
-        </div>
-        <div class="story-card">
-          <div class="story-card-num">03</div>
-          <div class="story-card-content">
-            <div class="story-card-label">Then And Only Then</div>
-            <div class="story-card-title">Technology</div>
-            <div class="story-card-desc">The right tools, in the right sequence, configured for the practice we just mapped.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- METHOD -->
-<section class="section-method" id="method">
-  <div class="wrap">
-    <div class="method-header">
-      <div class="section-label reveal">How We Work</div>
-      <h2 class="method-headline reveal reveal-d1">
-        Rooted in reality.<br><em>Used in real practices.</em>
-      </h2>
-      <p class="method-sub reveal reveal-d2">
-        Three steps, in this order, every time. Our purpose-built tools, proven systems, and hands-on team work together to diagnose with depth, align solutions to real problems, and guide every practice through a transformation built on decades of experience.
-      </p>
-    </div>
-
-    <div class="method-steps">
-      <div class="method-step reveal reveal-d1">
-        <div class="method-step-icon">01</div>
-        <div class="method-step-title">Diagnose with Depth</div>
-        <p class="method-step-desc">
-          Our diagnostic tools, built from 500 real transformations, audit every corner of the practice. Team dynamics, workflows, compliance posture, and tech stack, all through the lens of risk and growth. The result is a clear, prioritized roadmap you can actually act on.
-        </p>
-        <span class="method-step-tag">No assumptions</span>
-      </div>
-
-      <div class="method-step reveal reveal-d2">
-        <div class="method-step-icon">02</div>
-        <div class="method-step-title">Align What Matters</div>
-        <p class="method-step-desc">
-          Our alignment engine connects your roadmap to the right solutions in the right sequence. Battle-tested matches, powered by decades of pattern recognition and built specifically for independent Canadian financial advisory teams.
-        </p>
-        <span class="method-step-tag">Goldilocks rule</span>
-      </div>
-
-      <div class="method-step reveal reveal-d3">
-        <div class="method-step-icon">03</div>
-        <div class="method-step-title">A Guided Journey</div>
-        <p class="method-step-desc">
-          A guided transformation journey designed from hundreds of real practice engagements across Canada. Our platform keeps you moving between sessions, our team shows up when it matters most, and your practice keeps progressing whether we are in the room or not.
-        </p>
-        <span class="method-step-tag">Always moving</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section-products" id="products">
-  <div class="wrap">
-    <div class="products-header">
-      <div class="section-label reveal">What We Build</div>
-      <h2 class="products-headline reveal reveal-d1">
-        Your practice intelligence,<br><em>on demand.</em>
-      </h2>
-      <p class="products-sub reveal reveal-d2">
-        Everything we have learned from actual experience now lives inside our purpose-built platform with 25+ tools. Personalized to your practice, available whenever you need them, and built and hosted in Canada by people who do this work every day.
-      </p>
-    </div>
-
-    <div class="products-grid">
-      <div class="product-card lab reveal reveal-d1">
-        <span class="product-tag">Flagship Platform</span>
-        <h3 class="product-name">Practice Performance <em>Lab™</em></h3>
-        <p class="product-desc">
-          A complete transformation platform built from our methodology. Diagnostics, alignment logic, sequencing, and execution support, all in one place. Advisors get clarity on where they stand and a clear path forward, without waiting for the next consulting engagement.
-        </p>
-        <div class="product-features">
-          <div class="product-feature">
-            <div class="product-feature-num">25+</div>
-            <div class="product-feature-label">Practice intelligence tools</div>
-          </div>
-          <div class="product-feature">
-            <div class="product-feature-num">1st</div>
-            <div class="product-feature-label">Of its kind for advisors</div>
-          </div>
-        </div>
-        <a href="https://app.etcprojectsai.com" target="_blank" rel="noopener" class="product-cta">
-          Enter the Lab <span class="arrow">→</span>
-        </a>
-      </div>
-
-      <div class="product-card laylah reveal reveal-d2">
-        <span class="product-tag">Partner Product</span>
-        <h3 class="product-name">Laylah <em>CRM</em></h3>
-        <p class="product-desc">
-          A purpose-built CRM for independent Canadian advisory practices. As Laylah's implementation team, we run a streamlined rollout that includes a full customization package, in-context CRM training, and workflows completely aligned to how your practice actually runs.
-        </p>
-        <div class="product-features">
-          <div class="product-feature">
-            <div class="product-feature-num">100%</div>
-            <div class="product-feature-label">Canadian built and hosted</div>
-          </div>
-          <div class="product-feature">
-            <div class="product-feature-num">Full</div>
-            <div class="product-feature-label">Implementation & training</div>
-          </div>
-        </div>
-        <a href="https://www.laylah.ca/en" target="_blank" rel="noopener" class="product-cta">
-          Learn About Laylah <span class="arrow">→</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AI -->
-<section class="section-ai" id="ai">
-  <div class="ai-glow ai-glow-1"></div>
-  <div class="ai-glow ai-glow-2"></div>
-
-  <div class="wrap">
-    <div class="ai-header">
-      <div class="ai-eyebrow">Etc. AI Program</div>
-      <h2 class="ai-headline reveal">
-        AI that knows<br><em>your practice.</em>
-      </h2>
-      <p class="ai-sub reveal reveal-d1">
-        Any team that has been through our practice transformation program knows just how committed we are to supporting your practice by mitigating risk. We are unwavering in our efforts and help you build upon a solid foundation with clear guardrails. <strong>AI adoption included.</strong>
-      </p>
-      <p class="ai-sub reveal reveal-d2" style="margin-top: 24px;">
-        Most AI tools are built without context. They do not know your obligations, your products, your compliance posture, your team, or how you talk to clients. You may not know the boundaries you need to work within. The Etc. AI Program configures AI to work the way your practice works, gives you ready-to-use workflows for the things you do every day, and trains you in context every step of the way with risk and compliance at the heart of our program. <strong>This is what ethical stewardship and independence look like in 2026.</strong>
-      </p>
-    </div>
-
-    <div class="ai-bento">
-      <!-- FEATURED: Practice Profile Builder -->
-      <div class="ai-card featured reveal reveal-d1">
-        <span class="ai-card-tag">The Foundation</span>
-        <h3 class="ai-card-name">Practice Profile Builder</h3>
-        <p class="ai-card-desc">
-          Independent practices are unlike any other business. You answer to clients, laws, regulators, partners, your team, and yourself. You juggle compliance cycles, client commitments, growth goals, and the day-to-day realities of running an independent practice all at once. The Practice Profile Builder gives you an AI solution that supports the best interest of you, your team, and your clients. Every stakeholder, every obligation, every priority, organized and ready when you need it.
-        </p>
-        <ul class="ai-card-features">
-          <li>Built around your reality</li>
-          <li>Industry aligned</li>
-          <li>Compliance first</li>
-          <li>Structured output</li>
+    <span class="rule rv">What we kept finding</span>
+    <h2 class="rv">Two <span class="hu">HUGE</span> opportunities. In every practice.</h2>
+    <p class="intro rv">We are hired to mitigate risk and support strategic growth: sort out people, then process, then technology. We have done that work in hundreds of offices across Canada. Two opportunities came up in every single one. Both were worth solving, so we built them.</p>
+    <div class="gap-grid">
+      <article class="gap rv">
+        <div class="ord"><span>Opportunity 01</span><span class="shift">Reactive to proactive &middot; Sporadic to systematic &middot; Chaos to clarity</span></div>
+        <h3>Care, structure and progress is hidden.</h3>
+        <ul class="obs">
+          <li>Meeting prep, in-meeting discussion guide, service delivery, and follow-through sit in separate systems. Nothing gives the client one view of what is being worked on and what comes next.</li>
+          <li>Activities, documentation, and next steps get buried instead of staying visible and collaborative.</li>
+          <li>Services and support are delivered differently by different people on the team.</li>
+          <li>Between meetings clients have nowhere convenient to return to, and education reaches them without the context of their own plan.</li>
+          <li>The value is delivered every year. It is just not visible between meetings, so clients do not see it building over the lifetime of the relationship.</li>
+          <li>Clients feel well served and still cannot describe what their advisor does for them across a year.</li>
         </ul>
+        <div class="quote"><p>"We do so much for these people and they have no idea."</p><p>"Our clients are asking for convenience and a digital experience."</p><span>Heard in practice after practice</span></div>
+        <div class="built"><div class="k">So we built the living service plan</div><a class="go" href="#living-my-plan"><span class="nm">Living My Plan<span class="tm">&trade;</span></span><span class="ar">&rarr;</span></a></div>
+      </article>
+      <article class="gap g rv">
+        <div class="ord"><span>Opportunity 02</span><span class="shift">Guesswork to instructions &middot; Exposed to protected &middot; Crisis to clarity</span></div>
+        <h3>The plan you make for everyone else does not exist.</h3>
+        <ul class="obs">
+          <li>Emergency access to systems, files, and accounts lives in one person's head, in random sticky notes, or in a hidden notebook.</li>
+          <li>Injury, illness, a family emergency, or worse. Your clients still need service the next morning, and nobody has agreed who contacts them, what they are told, or who handles their business while you are away.</li>
+          <li>Insurance, ownership, and estate details are disorganized and spread across places nobody else can find.</li>
+          <li>Your spouse, your key support staff, and your successor have never been given step by step instructions for the first days you cannot be there.</li>
+          <li>Succession planning covers the eventual sale. Almost nothing covers the first 72 hours after a catastrophic event.</li>
+        </ul>
+        <div class="quote"><p>"If something happened to me tomorrow, my team would be guessing."</p><p>"I've never thought about half of the questions asked in the Contannuity&trade; assessment. Makes complete sense."</p><span>Said out loud in every workshop</span></div>
+        <div class="built"><div class="k">So we built a catastrophic event planning app</div><a class="go" href="#contannuity"><span class="nm">Contannuity<span class="tm">&trade;</span></span><span class="ar">&rarr;</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="ai-terminal">
-          <div class="ai-terminal-header">
-            <div class="ai-terminal-dots">
-              <span class="ai-terminal-dot"></span>
-              <span class="ai-terminal-dot"></span>
-              <span class="ai-terminal-dot live"></span>
+<section class="prod lmp" id="living-my-plan">
+  <div class="glow-l"></div>
+  <div class="wrap">
+    <div class="prod-top">
+      <div class="pt-copy">
+        <div class="plock rv"><span class="wm"><span class="sq">L</span><span class="nm">Living My Plan<span class="tm">&trade;</span></span></span><span class="tag">A digital client experience for advisory practices</span></div>
+        <h2 class="rv">Making the value of advice <em>visible</em>.</h2>
+        <p class="kicker rv">One place for advisors and clients to stay connected, organized, informed, and progress together.</p>
+        <p class="body rv">Living My Plan is built around a <b>living service plan</b>. It brings meetings, process, education, documentation, and next steps into one guided experience, so clients see the work, understand what matters, and act with confidence. Your team delivers the same standard of service on every file, and the service plan becomes a progressive record that gains value as more work is completed.</p>
+        <div class="prod-actions rv">
+          <a class="btn btn-teal" href="https://www.livingmyplan.com" target="_blank" rel="noopener">Visit livingmyplan.com <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-ghost" href="https://calendly.com/etcprojects/living-my-plan-demo" target="_blank" rel="noopener">Book a demo</a>
+          <a class="btn btn-ghost" href="https://www.livingmyplan.com/demo" target="_blank" rel="noopener">View a live service plan</a>
+        </div>
+      </div>
+      <div class="mock-col">
+        <div class="mock rv">
+          <div class="mk-float"><span class="d"></span>One shared view</div>
+          <div class="mock-in">
+            <div class="mk-bar"><span class="d on"></span><span class="d"></span><span class="d"></span>Living My Plan &middot; Service Plan 2026</div>
+            <div class="mk-body">
+              <div class="mk-panel">
+                <span class="mk-tag">Your service plan</span>
+                <div class="mk-hi">Hi Sam, <i>let's stay connected.</i></div>
+                <div class="mk-sm">Your plan, your progress, and every step that matters along the way.</div>
+                <div class="mk-ring">
+                  <div class="ring" style="--p:62"><span class="v">62</span></div>
+                  <div class="txt"><b>2 of 3 activities complete</b>You are on track for the year.</div>
+                </div>
+                <div class="mk-stats">
+                  <div><div class="n">2</div><div class="k">Completed</div></div>
+                  <div><div class="n">1</div><div class="k">Coming up</div></div>
+                  <div><div class="n">0</div><div class="k">Needs you</div></div>
+                </div>
+              </div>
+              <div class="mk-panel">
+                <div class="mk-adv"><span class="av">KG</span><div><div class="nm">Kelly G.</div><div class="rl">Chief Engagement Officer</div></div></div>
+                <div class="mk-list">
+                  <div class="row">Annual review meeting<span class="st done">Done</span></div>
+                  <div class="row">Beneficiary confirmation<span class="st due">Due</span></div>
+                  <div class="row">Estate document refresh<span class="st next">Next</span></div>
+                  <div class="row">Consent and disclosure<span class="st done">Done</span></div>
+                </div>
+              </div>
             </div>
-            <span class="ai-terminal-title">Etc. AI  ·  live session</span>
-          </div>
-          <div class="ai-terminal-body">
-            <span class="ai-terminal-line"><span class="ai-terminal-comment"># You</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">When was my compliance program last updated?</span></span>
-            <span class="ai-terminal-line">&nbsp;</span>
-            <span class="ai-terminal-line"><span class="ai-terminal-comment"># Etc. AI</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Last full review: Aug 12, 2025</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Next scheduled: Feb 15, 2026</span></span>
-            <span class="ai-terminal-line">&nbsp;</span>
-            <span class="ai-terminal-line"><span class="ai-terminal-key">─ Q2 KEY DATES</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">KYC refresh cycle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apr 15</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Annual training due&nbsp;&nbsp;&nbsp;May 30</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Quarterly review&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jun 28</span></span>
-            <span class="ai-terminal-line">&nbsp;</span>
-            <span class="ai-terminal-line"><span class="ai-terminal-key">─ PRIORITY ACTIVITIES</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Annual reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12 of 18</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Estate plan refresh&nbsp;&nbsp;&nbsp;in progress</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">New onboardings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 in pipeline</span></span>
-            <span class="ai-terminal-line">&nbsp;</span>
-            <span class="ai-terminal-line"><span class="ai-terminal-key">─ GOALS STATUS</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">Revenue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ai-terminal-key">✓ on target</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">AUM growth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ai-terminal-key">✓ on target</span></span>
-            <span class="ai-terminal-line"><span class="ai-terminal-val">New clients&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="ai-terminal-comment">⚠ 73% of goal</span><span class="ai-terminal-cursor"></span></span>
+            <div class="mk-foot"><span class="lb">Service plan health</span><span class="track"><i style="width:78%"></i></span><span class="pct">78<span>/100</span></span></div>
           </div>
         </div>
+        <p class="compliance rv"><span class="d"></span>Regulatory compliance built in</p>
       </div>
+    </div>
 
-      <!-- Skills Library -->
-      <div class="ai-card compact reveal reveal-d2">
-        <span class="ai-card-tag">Pre-Built Workflows</span>
-        <h3 class="ai-card-name">Skills Library</h3>
-        <p class="ai-card-desc">
-          A growing library of ready-to-use workflows for the things advisors do every day. Each one teaches your AI how to contemplate Canadian laws, regulations, obligations, and standards, and handle that work the way independent practices actually run. Add what you need, skip what you don't, and trust that everything has been built and tested in real practices.
-        </p>
-        <ul class="ai-card-features">
-          <li>Plug-and-play</li>
-          <li>Guardrails included</li>
-          <li>Bundle savings</li>
-          <li>Always growing</li>
-        </ul>
-      </div>
+    <div class="pfeat">
+      <div class="hd rv"><h3>Nine sections inside the service plan</h3><span class="note">Welcome, progress, activities, documentation, financial snapshot, meetings, library, connected workspaces, referrals.</span></div>
+      <div class="prod-actions rv" style="margin-top:22px"><a class="btn btn-teal" href="https://www.livingmyplan.com" target="_blank" rel="noopener">See what is inside at livingmyplan.com <span class="arrow">&rarr;</span></a></div>
+    </div>
 
-      <!-- Project Builder -->
-      <div class="ai-card compact reveal reveal-d3">
-        <span class="ai-card-tag">Focused Workspaces</span>
-        <h3 class="ai-card-name">AI Project Builder</h3>
-        <p class="ai-card-desc">
-          Some work is recurring and deserves its own dedicated space. Annual reviews. Compliance documentation. Onboarding. The AI Project Builder helps you set up focused workspaces for the work that matters most, with guidance built into every step.
-        </p>
-        <ul class="ai-card-features">
-          <li>Built for recurring work</li>
-          <li>Tailored to your practice</li>
-          <li>Reality tested</li>
-        </ul>
-      </div>
+    <div class="outcomes rv">
+      <div>Easier to stay <i>connected</i>.</div>
+      <div>Easier to stay <i>organized</i>.</div>
+      <div>Easier to <i>follow through</i>.</div>
+      <div>Easier to <i>learn</i>.</div>
+      <div>Easier to see <i>progress</i>.</div>
+      <div>Easier to feel the <i>value of advice</i>.</div>
+    </div>
+    <div class="price teal rv"><span class="amt">$5</span><span class="pd">per plan, per month, to 20 plans<i>$99 onboarding fee. Capped at $99 a month for unlimited plans. Launch pricing.*</i><em class="fine">*All launch subscribers are grandfathered into this pricing model.</em></span></div>
+  </div>
+</section>
 
-      <!-- Learn As You Build -->
-      <div class="ai-card wide reveal reveal-d4">
-        <div class="ai-card-body">
-          <span class="ai-card-tag">Training & Support</span>
-          <h3 class="ai-card-name">Learn As You Build</h3>
-          <p class="ai-card-desc">
-            Every step of the program comes with clear instructions and built-in support. You learn how to use AI well while you set it up for your practice. By the time you finish, you know exactly how to put it to work and get real results, fast.
-          </p>
+<section class="prod ctn" id="contannuity">
+  <div class="glow-g"></div>
+  <div class="wrap">
+    <div class="prod-top rev top">
+      <div class="pt-copy">
+        <div class="plock rv"><span class="wm"><span class="sq g">&rarr;</span><span class="nm">Contannuity<span class="tm">&trade;</span></span></span><span class="tag">Prepared for every possibility</span></div>
+        <h2 class="rv">Some plans you make for yourself. This one you make for <em>everyone else</em>.</h2>
+        <p class="kicker rv">One set of written instructions for the people who would need them.</p>
+        <p class="body rv">Contannuity gives the important people in your life and business exactly what they need when something unexpected happens: clear instructions, the right contacts, and a step by step plan. It works the moment it matters. <span class="aside">(We could have called it a catastrophic event planning tool. We didn't, because, well, it sounds catastrophic.)</span></p>
+        <div class="metrics rv">
+          <div><div class="n">30 min</div><div class="k">to get started</div></div>
+          <div><div class="n"><span class="ap">approx.</span>28</div><div class="k">questions across five readiness areas</div></div>
+          <div><div class="n">1 plan</div><div class="k">ready when it matters</div></div>
         </div>
-        <ul class="ai-card-features">
-          <li>Guidance at every step</li>
-          <li>No prior AI experience needed</li>
-          <li>Confidence built in</li>
-          <li>Compliance ready</li>
+        <p class="compliance rv"><span class="d"></span>Regulatory compliance built in</p>
+      </div>
+      <div class="mock-col">
+        <div class="mock rv">
+          <div class="mk-float g"><span class="d"></span>Readiness, scored</div>
+          <div class="mock-in">
+            <div class="mk-bar"><span class="d on"></span><span class="d"></span><span class="d"></span>Contannuity &middot; Practice Readiness</div>
+            <div class="score">
+              <div class="score-l">
+                <div class="lb">Your readiness score</div>
+                <div class="big-ring" style="--p:31"><div class="c"><div class="n">48</div><div class="o">of 155</div></div></div>
+                <div class="badge-ok risk"><span class="d"></span>At Risk</div>
+              </div>
+              <div class="score-r">
+                <div class="lb">Five readiness areas</div>
+                <div class="areas">
+                  <div class="row"><span>Emergency access</span><span class="sc">14/40</span><span class="bar"><i style="width:35%"></i></span></div>
+                  <div class="row"><span>Client protection</span><span class="sc">11/35</span><span class="bar"><i style="width:31%"></i></span></div>
+                  <div class="row"><span>Business operations</span><span class="sc">9/30</span><span class="bar"><i style="width:30%"></i></span></div>
+                  <div class="row"><span>Insurance and estate</span><span class="sc">9/30</span><span class="bar"><i style="width:30%"></i></span></div>
+                  <div class="row"><span>People and instructions</span><span class="sc">5/20</span><span class="bar"><i style="width:25%"></i></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="protect rv">
+          <div class="ttl">Written for the people who would have to <i>act on it</i>.</div>
+          <div class="who"><span>Your spouse</span><span>Your key support staff</span><span>Your successor</span><span>Your clients</span><span>Your dealer or MGA</span><span>Your estate</span></div>
+        </div>
+        <div class="prod-actions rv">
+          <a class="btn btn-gold" href="https://www.contannuity.ca" target="_blank" rel="noopener">Visit contannuity.ca <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-ghost g" href="https://www.contannuity.ca" target="_blank" rel="noopener">Start my plan</a>
+          <a class="btn btn-ghost g" href="https://www.contannuity.ca" target="_blank" rel="noopener">See how it works</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pfeat">
+      <div class="hd rv"><h3>Five readiness areas</h3><span class="note">Answer approx. 28 questions once. You get a score, a plan, and written instructions.</span></div>
+      <div class="chips">
+        <div class="chip rv"><div class="n">01</div><div class="t">Emergency access</div><div class="d">Who gets into which system, what they are allowed to reach, and how they prove it.</div></div>
+        <div class="chip rv"><div class="n">02</div><div class="t">Client protection</div><div class="d">What clients are told, who tells them, in what order, and how quickly.</div></div>
+        <div class="chip rv"><div class="n">03</div><div class="t">Business operations</div><div class="d">Commissions, renewals, payroll, vendors, and every case in the mill.</div></div>
+        <div class="chip rv"><div class="n">04</div><div class="t">Insurance and estate</div><div class="d">Your own coverage, ownership structure, and beneficiary reality, checked against the plan.</div></div>
+        <div class="chip rv"><div class="n">05</div><div class="t">People and instructions</div><div class="d">Named people, their roles, and the first 72 hours after a catastrophic event, written down in order.</div></div>
+        <div class="chip rv"><div class="n">06</div><div class="t">Annual update checklist</div><div class="d">What to revisit each year so the plan reflects the people, systems, and commitments you have now.</div></div>
+      </div>
+      <div class="price rv"><span class="amt">$199</span><span class="pd">one time, per Contannuity&trade; plan<i>$0 to $99 through select enterprise partners*</i><em class="fine">*Sponsoring organizations: confirm with your MGA or Dealer prior to purchase. Your Contannuity&trade; plan may be covered.</em></span></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="why on-cream" id="why">
+  <div class="wrap">
+    <span class="rule rv">Why these two</span>
+    <h2 class="rv">Not another disconnected tool.</h2>
+    <div class="why-copy rv">
+      <p>These apps came out of our own work. Among many other things, transforming a practice includes rebuilding the service models and writing the catastrophic event plans, and our team has done both by hand in hundreds of Canadian offices. We know exactly which questions matter, the order they belong in, and the cost of skipping them. These apps were built to help more advisors and teams with the essentials.</p>
+      <p>You keep your CRM, portal, scheduling, e-signature, forms, and compliance workflows. Our apps complement and work alongside your tools, and we tell you how. Both meet Canadian regulation, privacy, and record keeping requirements, both are 100% built and hosted in Canada by Etc. Projects, and both arrive with the process design and role-based training your team needs to use them well.</p>
+    </div>
+    <div class="why-band rv">
+      <div class="t">Agnostic by design across tech, dealer, MGA, license, designation, and jurisdiction. <i>Your independence and your existing relationships stay protected.</i></div>
+      <a class="btn btn-teal" href="#talk">Talk to us <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="more" id="more">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <span class="rule rv">The rest of the work</span>
+    <h2 class="rv">The consulting practice that made these possible.</h2>
+    <p class="sub rv">Practice transformation and technology implementation are still what we do, and they are still where the research comes from. That work now has its own place behind the scenes.</p>
+    <div class="pt-card rv">
+      <div>
+        <h3>Practice Transformation and <em>Tech Implementation</em></h3>
+        <p>People, then process, then technology. In that order, every time. We diagnose with depth, align the roadmap to real problems, and stay with the practice through execution.</p>
+        <a class="btn btn-teal" style="margin-top:28px" href="practice-transformation.html">See the full method <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="pt-steps">
+        <div class="s"><span class="o">01</span><div><div class="n">People</div><div class="d">Roles, capacity, dynamics, and how the team actually works together.</div></div></div>
+        <div class="s"><span class="o">02</span><div><div class="n">Process</div><div class="d">Workflows, handoffs, and the documented way work moves through the practice.</div></div></div>
+        <div class="s"><span class="o">03</span><div><div class="n">Technology</div><div class="d">The right tools, in the right sequence, configured for the practice we just mapped.</div></div></div>
+      </div>
+    </div>
+    <div class="more-grid two">
+      <a class="mini rv" href="https://app.etcprojectsai.com/" target="_blank" rel="noopener"><div class="k">Training platform</div><h4>Practice Performance <em>Lab&trade;</em></h4><p>25+ practice intelligence tools. Diagnostics, alignment logic, sequencing, and execution support in one place.</p><span class="go">Enter the Lab <span class="ar">&rarr;</span></span></a>
+      <a class="mini rv" href="https://www.laylah.ca/en" target="_blank" rel="noopener"><div class="k">Partner product</div><h4>Laylah <em>CRM</em></h4><p>A purpose-built CRM for independent Canadian practices, 100% built and hosted in Canada. As Laylah's implementation team we run the full rollout: data cleanup and migration, workflow build, customization to how your practice actually runs, and role-based training in the context of your own files. We stay through go-live and check adoption after it.</p><span class="go">Learn about Laylah <span class="ar">&rarr;</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="talk">
+  <div class="wrap">
+    <span class="rule rv">Start a real conversation</span>
+    <h2 class="rv">No pitch. No pressure. <em>Just clarity.</em></h2>
+    <p class="sub rv">Tell us how you serve clients today, and what would happen in your office if you were not there next week. We will tell you straight which piece you need first, and whether you need us at all.</p>
+    <div class="acts rv">
+      <a class="btn btn-teal" href="mailto:hello@etcprojects.com?subject=Book%20a%20conversation">Book a conversation <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="#living-my-plan">See Living My Plan</a>
+      <a class="btn btn-ghost g" href="#contannuity">See Contannuity</a>
+    </div>
+    <p class="mail rv"><a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a></p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><span class="mark">E.</span><span class="word">Etc<span class="dot">.</span> Projects</span></a>
+        <p class="blurb">Digital solutions and practice intelligence for independent Canadian financial advisory practices. Built from 500+ real transformations and tech implementations.</p>
+      </div>
+      <div>
+        <h5>Digital Solutions</h5>
+        <ul>
+          <li><a href="https://www.livingmyplan.com" target="_blank" rel="noopener">Living My Plan&trade;</a></li>
+          <li><a href="https://www.contannuity.ca" target="_blank" rel="noopener">Contannuity&trade;</a></li>
+          <li><a href="https://app.etcprojectsai.com/" target="_blank" rel="noopener">Practice Performance Lab&trade;</a></li>
+          <li><a href="https://www.laylah.ca/en" target="_blank" rel="noopener">Laylah CRM</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="practice-transformation.html">Practice Transformation</a></li>
+          <li><a href="practice-transformation.html#tech">Tech Implementation</a></li>
+          <li><a href="#why">Why Etc.</a></li>
+          <li><a href="#talk">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="https://etcprojects.com/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="https://etcprojects.com/terms-and-conditions.html">Terms</a></li>
+          <li><a href="https://etcprojects.com/ai-disclaimer.html">AI Disclaimer</a></li>
         </ul>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- AI BAND -->
-<section class="section-ai-band">
-  <div class="wrap">
-    <div class="ai-band-inner">
-      <div class="ai-band-label">Built for the work advisors actually do</div>
-      <div class="ai-band-pills">
-        <span class="ai-band-pill">Client Work</span>
-        <span class="ai-band-pill">Compliance Support</span>
-        <span class="ai-band-pill">Practice Operations</span>
-        <span class="ai-band-pill">Business Development</span>
-        <span class="ai-band-pill">Team Enablement</span>
-      </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 49Maple Inc. o/a Etcetera Projects. LIVING MY PLAN&trade; and CONTANNUITY&trade; are trademarks of 49Maple Inc.</span>
+      <span>Powered by highly efficient people.</span>
     </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section-contact" id="contact">
-  <div class="wrap">
-    <div class="contact-inner">
-      <div class="section-label reveal" style="justify-content:center;">Start a Real Conversation</div>
-      <h2 class="contact-headline reveal reveal-d1">
-        No pitch.<br>No pressure. <em>Just clarity.</em>
-      </h2>
-      <p class="contact-sub reveal reveal-d2">
-        Tell us what is working, what is not, and where you want your practice to go next. We will tell you straight whether we can help, and what the right first step looks like.
-      </p>
-    <div class="contact-email-wrap reveal reveal-d3">
-        <span class="contact-email"><a href="mailto:hello@etcprojects.com">hello@etcprojects.com</a></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand-block">
-      <a href="#top" class="nav-logo">
-        <div class="nav-logo-mark">E.</div>
-        <div class="nav-logo-text">Etc<span>.</span> Projects</div>
-      </a>
-      <p class="footer-tagline">
-        Practice intelligence for independent Canadian financial advisory practices. Built from 500 real transformations.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-col-title">Products</div>
-      <ul>
-        <li><a href="https://app.etcprojectsai.com" target="_blank" rel="noopener">Practice Performance Lab</a></li>
-        <li><a href="https://www.laylah.ca/en" target="_blank" rel="noopener">Laylah CRM</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-col-title">Company</div>
-      <ul>
-        <li><a href="#story">Our Story</a></li>
-        <li><a href="#method">How We Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-col-title">Legal</div>
-      <ul>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms-and-conditions.html">Terms</a></li>
-        <li><a href="ai-disclaimer.html">AI Disclaimer</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 49Maple Inc. o/a Etcetera Projects. All rights reserved.</div>
-    <div class="footer-powered">Powered by highly efficient people.</div>
   </div>
 </footer>
+</main>
 
 <script>
-if ('IntersectionObserver' in window) {
-  document.documentElement.classList.add('js-reveal-ready');
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-  setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
-  }, 2000);
-} else {
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-}
-
-// Nav scroll state
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-}, { passive: true });
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  var items=document.querySelectorAll('.rv');
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
+  var b=document.getElementById('burger'),d=document.getElementById('drawer');
+  b.addEventListener('click',function(){var o=d.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});
+  d.addEventListener('click',function(e){if(e.target.tagName==='A'){d.classList.remove('open');b.setAttribute('aria-expanded','false')}});
+  document.querySelectorAll('.grid-bg').forEach(function(g,gi){
+    var n=window.innerWidth<800?6:14;
+    for(var i=0;i<n;i++){
+      var d=document.createElement('div');
+      d.className='grid-cell'+((gi+i)%5===0?' g':'');
+      d.style.left=(Math.floor(Math.random()*22)*64-1)+'px';
+      d.style.top=(Math.floor(Math.random()*12)*64-1)+'px';
+      d.style.animationDelay=(Math.random()*7).toFixed(2)+'s';
+      d.style.animationDuration=(5+Math.random()*5).toFixed(2)+'s';
+      g.appendChild(d);
+    }
+  });
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.style.background=scrollY>40?'rgba(4,42,51,.92)':'rgba(4,42,51,.72)'},{passive:true});
+})();
 </script>
-
 </body>
 </html>
